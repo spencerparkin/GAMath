@@ -10,13 +10,6 @@
 			]
 		},
 		{
-			"name": "PsuedoScalar",
-			"basis":
-			[
-				"e1^e2^e3^no^ni"
-			]
-		},
-		{
 			"name": "Vector",
 			"basis":
 			[
@@ -47,7 +40,7 @@
 			"name": "Trivector",
 			"basis":
 			[
-				"e1^e2^e3"
+				"e1^e2^e3",
 				"e1^e2^no",
 				"e1^e2^ni",
 				"e1^e3^no",
@@ -60,7 +53,7 @@
 			]
 		},
 		{
-			"name": "PsuedoVector",
+			"name": "Quadvector",
 			"basis":
 			[
 				"e1^e2^e3^no",
@@ -68,6 +61,13 @@
 				"e1^e2^no^ni",
 				"e1^e3^no^ni",
 				"e2^e3^no^ni"
+			]
+		},
+		{
+			"name": "PsuedoScalar",
+			"basis":
+			[
+				"e1^e2^e3^no^ni"
 			]
 		},
 		{
@@ -90,7 +90,7 @@
 				"e3^no",
 				"e3^ni",
 				"no^ni",
-				"e1^e2^e3"
+				"e1^e2^e3",
 				"e1^e2^no",
 				"e1^e2^ni",
 				"e1^e3^no",

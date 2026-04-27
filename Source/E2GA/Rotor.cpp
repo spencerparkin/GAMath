@@ -89,18 +89,18 @@ void Rotor::Subtract(const Scalar& scalarA, const Scalar& scalarB)
 void Rotor::Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB)
 {
 	this->_1 = scalarA._1;
-	this->e1_e2 = psuedoscalarB.e1_e2;
+	this->e1_e2 = -psuedoscalarB.e1_e2;
 }
 
 void Rotor::Subtract(const Scalar& scalarA, const Rotor& rotorB)
 {
 	this->_1 = scalarA._1 - rotorB._1;
-	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e2 = -rotorB.e1_e2;
 }
 
 void Rotor::Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
 {
-	this->_1 = scalarB._1;
+	this->_1 = -scalarB._1;
 	this->e1_e2 = psuedoscalarA.e1_e2;
 }
 
@@ -112,7 +112,7 @@ void Rotor::Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psue
 
 void Rotor::Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
 {
-	this->_1 = rotorB._1;
+	this->_1 = -rotorB._1;
 	this->e1_e2 = psuedoscalarA.e1_e2 - rotorB.e1_e2;
 }
 

@@ -1,0 +1,21 @@
+{
+	"sub_config_list":
+	[
+		{
+			"config_file": "E2GA.json",
+			"output_dir": "../Source/E2GA"
+		},
+		{
+			"config_file": "E3GA.json",
+			"output_dir": "../Source/E3GA"
+		},
+		{
+			"config_file": "C2GA.json",
+			"output_dir": "../Source/C2GA"
+		},
+		{
+			"config_file": "C3GA.json",
+			"output_dir": "../Source/C3GA"
+		}
+	]
+}

@@ -263,14 +263,14 @@ void Multivector::Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscal
 	this->_1 = scalarA._1;
 	this->e1 = 0.0;
 	this->e2 = 0.0;
-	this->e1_e2 = psuedoscalarB.e1_e2;
+	this->e1_e2 = -psuedoscalarB.e1_e2;
 }
 
 void Multivector::Subtract(const Scalar& scalarA, const Vector& vectorB)
 {
 	this->_1 = scalarA._1;
-	this->e1 = vectorB.e1;
-	this->e2 = vectorB.e2;
+	this->e1 = -vectorB.e1;
+	this->e2 = -vectorB.e2;
 	this->e1_e2 = 0.0;
 }
 
@@ -279,20 +279,20 @@ void Multivector::Subtract(const Scalar& scalarA, const Rotor& rotorB)
 	this->_1 = scalarA._1 - rotorB._1;
 	this->e1 = 0.0;
 	this->e2 = 0.0;
-	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e2 = -rotorB.e1_e2;
 }
 
 void Multivector::Subtract(const Scalar& scalarA, const Multivector& multivectorB)
 {
 	this->_1 = scalarA._1 - multivectorB._1;
-	this->e1 = multivectorB.e1;
-	this->e2 = multivectorB.e2;
-	this->e1_e2 = multivectorB.e1_e2;
+	this->e1 = -multivectorB.e1;
+	this->e2 = -multivectorB.e2;
+	this->e1_e2 = -multivectorB.e1_e2;
 }
 
 void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
 {
-	this->_1 = scalarB._1;
+	this->_1 = -scalarB._1;
 	this->e1 = 0.0;
 	this->e2 = 0.0;
 	this->e1_e2 = psuedoscalarA.e1_e2;
@@ -309,14 +309,14 @@ void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar
 void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB)
 {
 	this->_1 = 0.0;
-	this->e1 = vectorB.e1;
-	this->e2 = vectorB.e2;
+	this->e1 = -vectorB.e1;
+	this->e2 = -vectorB.e2;
 	this->e1_e2 = psuedoscalarA.e1_e2;
 }
 
 void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
 {
-	this->_1 = rotorB._1;
+	this->_1 = -rotorB._1;
 	this->e1 = 0.0;
 	this->e2 = 0.0;
 	this->e1_e2 = psuedoscalarA.e1_e2 - rotorB.e1_e2;
@@ -324,15 +324,15 @@ void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotor
 
 void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB)
 {
-	this->_1 = multivectorB._1;
-	this->e1 = multivectorB.e1;
-	this->e2 = multivectorB.e2;
+	this->_1 = -multivectorB._1;
+	this->e1 = -multivectorB.e1;
+	this->e2 = -multivectorB.e2;
 	this->e1_e2 = psuedoscalarA.e1_e2 - multivectorB.e1_e2;
 }
 
 void Multivector::Subtract(const Vector& vectorA, const Scalar& scalarB)
 {
-	this->_1 = scalarB._1;
+	this->_1 = -scalarB._1;
 	this->e1 = vectorA.e1;
 	this->e2 = vectorA.e2;
 	this->e1_e2 = 0.0;
@@ -343,7 +343,7 @@ void Multivector::Subtract(const Vector& vectorA, const PsuedoScalar& psuedoscal
 	this->_1 = 0.0;
 	this->e1 = vectorA.e1;
 	this->e2 = vectorA.e2;
-	this->e1_e2 = psuedoscalarB.e1_e2;
+	this->e1_e2 = -psuedoscalarB.e1_e2;
 }
 
 void Multivector::Subtract(const Vector& vectorA, const Vector& vectorB)
@@ -356,18 +356,18 @@ void Multivector::Subtract(const Vector& vectorA, const Vector& vectorB)
 
 void Multivector::Subtract(const Vector& vectorA, const Rotor& rotorB)
 {
-	this->_1 = rotorB._1;
+	this->_1 = -rotorB._1;
 	this->e1 = vectorA.e1;
 	this->e2 = vectorA.e2;
-	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e2 = -rotorB.e1_e2;
 }
 
 void Multivector::Subtract(const Vector& vectorA, const Multivector& multivectorB)
 {
-	this->_1 = multivectorB._1;
+	this->_1 = -multivectorB._1;
 	this->e1 = vectorA.e1 - multivectorB.e1;
 	this->e2 = vectorA.e2 - multivectorB.e2;
-	this->e1_e2 = multivectorB.e1_e2;
+	this->e1_e2 = -multivectorB.e1_e2;
 }
 
 void Multivector::Subtract(const Rotor& rotorA, const Scalar& scalarB)
@@ -389,8 +389,8 @@ void Multivector::Subtract(const Rotor& rotorA, const PsuedoScalar& psuedoscalar
 void Multivector::Subtract(const Rotor& rotorA, const Vector& vectorB)
 {
 	this->_1 = rotorA._1;
-	this->e1 = vectorB.e1;
-	this->e2 = vectorB.e2;
+	this->e1 = -vectorB.e1;
+	this->e2 = -vectorB.e2;
 	this->e1_e2 = rotorA.e1_e2;
 }
 
@@ -405,8 +405,8 @@ void Multivector::Subtract(const Rotor& rotorA, const Rotor& rotorB)
 void Multivector::Subtract(const Rotor& rotorA, const Multivector& multivectorB)
 {
 	this->_1 = rotorA._1 - multivectorB._1;
-	this->e1 = multivectorB.e1;
-	this->e2 = multivectorB.e2;
+	this->e1 = -multivectorB.e1;
+	this->e2 = -multivectorB.e2;
 	this->e1_e2 = rotorA.e1_e2 - multivectorB.e1_e2;
 }
 

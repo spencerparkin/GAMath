@@ -117,22 +117,22 @@ void Rotor::Subtract(const Scalar& scalarA, const Scalar& scalarB)
 void Rotor::Subtract(const Scalar& scalarA, const Bivector& bivectorB)
 {
 	this->_1 = scalarA._1;
-	this->e1_e2 = bivectorB.e1_e2;
-	this->e2_e3 = bivectorB.e2_e3;
-	this->e3_e1 = bivectorB.e3_e1;
+	this->e1_e2 = -bivectorB.e1_e2;
+	this->e2_e3 = -bivectorB.e2_e3;
+	this->e3_e1 = -bivectorB.e3_e1;
 }
 
 void Rotor::Subtract(const Scalar& scalarA, const Rotor& rotorB)
 {
 	this->_1 = scalarA._1 - rotorB._1;
-	this->e1_e2 = rotorB.e1_e2;
-	this->e2_e3 = rotorB.e2_e3;
-	this->e3_e1 = rotorB.e3_e1;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e3_e1 = -rotorB.e3_e1;
 }
 
 void Rotor::Subtract(const Bivector& bivectorA, const Scalar& scalarB)
 {
-	this->_1 = scalarB._1;
+	this->_1 = -scalarB._1;
 	this->e1_e2 = bivectorA.e1_e2;
 	this->e2_e3 = bivectorA.e2_e3;
 	this->e3_e1 = bivectorA.e3_e1;
@@ -148,7 +148,7 @@ void Rotor::Subtract(const Bivector& bivectorA, const Bivector& bivectorB)
 
 void Rotor::Subtract(const Bivector& bivectorA, const Rotor& rotorB)
 {
-	this->_1 = rotorB._1;
+	this->_1 = -rotorB._1;
 	this->e1_e2 = bivectorA.e1_e2 - rotorB.e1_e2;
 	this->e2_e3 = bivectorA.e2_e3 - rotorB.e2_e3;
 	this->e3_e1 = bivectorA.e3_e1 - rotorB.e3_e1;
