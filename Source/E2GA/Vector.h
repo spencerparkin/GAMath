@@ -1,11 +1,11 @@
 #pragma once
 
-namespace E3GA
+namespace E2GA
 {
 	class Vector
 	{
 	public:
-		Vector(double e1, double e2, double e3);
+		Vector(double e1, double e2);
 		Vector(const Vector& vector);
 
 		void Add(const Vector& vectorA, const Vector& vectorB);
@@ -13,22 +13,24 @@ namespace E3GA
 		void Subract(const Vector& vectorA, const Vector& vectorB);
 
 		void InnerProduct(const Scalar& scalarA, const Vector& vectorB);
-		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
+		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void InnerProduct(const Vector& vectorA, const Scalar& scalarB);
-		void InnerProduct(const Vector& vectorA, const Bivector& bivectorB);
+		void InnerProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Vector& vectorA, const Rotor& rotorB);
-		void InnerProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
-		void InnerProduct(const Bivector& bivectorA, const Vector& vectorB);
 		void InnerProduct(const Rotor& rotorA, const Vector& vectorB);
 
 		void OuterProduct(const Scalar& scalarA, const Vector& vectorB);
 		void OuterProduct(const Vector& vectorA, const Scalar& scalarB);
+		void OuterProduct(const Vector& vectorA, const Rotor& rotorB);
+		void OuterProduct(const Rotor& rotorA, const Vector& vectorB);
 
 		void GeometricProduct(const Scalar& scalarA, const Vector& vectorB);
-		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
+		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void GeometricProduct(const Vector& vectorA, const Scalar& scalarB);
-		void GeometricProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
+		void GeometricProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
+		void GeometricProduct(const Vector& vectorA, const Rotor& rotorB);
+		void GeometricProduct(const Rotor& rotorA, const Vector& vectorB);
 
-		double e1, e2, e3;
+		double e1, e2;
 	};
 }

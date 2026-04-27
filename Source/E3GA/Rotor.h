@@ -74,7 +74,6 @@ namespace E3GA
 		void GeometricProduct(const Rotor& rotorA, const Bivector& bivectorB);
 		void GeometricProduct(const Rotor& rotorA, const Rotor& rotorB);
 
-
 		double _1, e1_e2, e2_e3, e3_e1;
 	};
 }

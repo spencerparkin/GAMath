@@ -1,6 +1,6 @@
 #include "Scalar.h"
 
-using namespace E3GA;
+using namespace E2GA;
 
 Scalar::Scalar(double _1)
 {
@@ -29,17 +29,12 @@ void Scalar::InnerProduct(const Scalar& scalarA, const Scalar& scalarB)
 
 void Scalar::InnerProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB)
 {
-	this->_1 = (-1.0) * psuedoscalarA.e1_e2_e3 * psuedoscalarB.e1_e2_e3;
+	this->_1 = (-1.0) * psuedoscalarA.e1_e2 * psuedoscalarB.e1_e2;
 }
 
 void Scalar::InnerProduct(const Vector& vectorA, const Vector& vectorB)
 {
-	this->_1 = vectorA.e1 * vectorB.e1 + vectorA.e2 * vectorB.e2 + vectorA.e3 * vectorB.e3;
-}
-
-void Scalar::InnerProduct(const Bivector& bivectorA, const Bivector& bivectorB)
-{
-	this->_1 = (-1.0) * bivectorA.e1_e2 * bivectorB.e1_e2 + (-1.0) * bivectorA.e2_e3 * bivectorB.e2_e3 + (-1.0) * bivectorA.e3_e1 * bivectorB.e3_e1;
+	this->_1 = vectorA.e1 * vectorB.e1 + vectorA.e2 * vectorB.e2;
 }
 
 void Scalar::OuterProduct(const Scalar& scalarA, const Scalar& scalarB)
@@ -57,22 +52,7 @@ void Scalar::OuterProduct(const PsuedoScalar& psuedoscalarA, const Vector& vecto
 	this->_1 = 0.0;
 }
 
-void Scalar::OuterProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB)
-{
-	this->_1 = 0.0;
-}
-
 void Scalar::OuterProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB)
-{
-	this->_1 = 0.0;
-}
-
-void Scalar::OuterProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB)
-{
-	this->_1 = 0.0;
-}
-
-void Scalar::OuterProduct(const Bivector& bivectorA, const Bivector& bivectorB)
 {
 	this->_1 = 0.0;
 }
@@ -84,6 +64,6 @@ void Scalar::GeometricProduct(const Scalar& scalarA, const Scalar& scalarB)
 
 void Scalar::GeometricProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB)
 {
-	this->_1 = (-1.0) * psuedoscalarA.e1_e2_e3 * psuedoscalarB.e1_e2_e3;
+	this->_1 = (-1.0) * psuedoscalarA.e1_e2 * psuedoscalarB.e1_e2;
 }
 

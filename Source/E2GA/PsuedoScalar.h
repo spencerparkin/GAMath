@@ -1,11 +1,11 @@
 #pragma once
 
-namespace E3GA
+namespace E2GA
 {
 	class PsuedoScalar
 	{
 	public:
-		PsuedoScalar(double e1_e2_e3);
+		PsuedoScalar(double e1_e2);
 		PsuedoScalar(const PsuedoScalar& psuedoscalar);
 
 		void Add(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
@@ -19,14 +19,13 @@ namespace E3GA
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
-		void OuterProduct(const Vector& vectorA, const Bivector& bivectorB);
-		void OuterProduct(const Bivector& bivectorA, const Vector& vectorB);
+		void OuterProduct(const Vector& vectorA, const Vector& vectorB);
 		void OuterProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 
 		void GeometricProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 
-		double e1_e2_e3;
+		double e1_e2;
 	};
 }
