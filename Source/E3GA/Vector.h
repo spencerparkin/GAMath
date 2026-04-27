@@ -11,6 +11,7 @@ namespace E3GA
 	class Vector
 	{
 	public:
+		Vector();
 		Vector(double e1, double e2, double e3);
 		Vector(const Vector& vector);
 

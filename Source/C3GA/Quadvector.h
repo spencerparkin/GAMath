@@ -12,6 +12,7 @@ namespace C3GA
 	class Quadvector
 	{
 	public:
+		Quadvector();
 		Quadvector(double e1_e2_e3_no, double e1_e2_e3_ni, double e1_e2_no_ni, double e1_e3_no_ni, double e2_e3_no_ni);
 		Quadvector(const Quadvector& quadvector);
 

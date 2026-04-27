@@ -11,6 +11,7 @@ namespace E3GA
 	class Scalar
 	{
 	public:
+		Scalar();
 		Scalar(double _1);
 		Scalar(const Scalar& scalar);
 

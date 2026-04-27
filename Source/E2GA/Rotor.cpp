@@ -6,6 +6,12 @@
 
 using namespace E2GA;
 
+Rotor::Rotor()
+{
+	this->_1 = 0.0;
+	this->e1_e2 = 0.0;
+}
+
 Rotor::Rotor(double _1, double e1_e2)
 {
 	this->_1 = _1;

@@ -7,6 +7,14 @@
 
 using namespace C2GA;
 
+Vector::Vector()
+{
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+}
+
 Vector::Vector(double e1, double e2, double no, double ni)
 {
 	this->e1 = e1;

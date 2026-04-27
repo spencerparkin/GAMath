@@ -7,6 +7,11 @@
 
 using namespace C2GA;
 
+PsuedoScalar::PsuedoScalar()
+{
+	this->e1_e2_no_ni = 0.0;
+}
+
 PsuedoScalar::PsuedoScalar(double e1_e2_no_ni)
 {
 	this->e1_e2_no_ni = e1_e2_no_ni;

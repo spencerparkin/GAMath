@@ -12,6 +12,7 @@ namespace C3GA
 	class Vector
 	{
 	public:
+		Vector();
 		Vector(double e1, double e2, double e3, double no, double ni);
 		Vector(const Vector& vector);
 

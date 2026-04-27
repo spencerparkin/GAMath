@@ -10,6 +10,7 @@ namespace E2GA
 	class PsuedoScalar
 	{
 	public:
+		PsuedoScalar();
 		PsuedoScalar(double e1_e2);
 		PsuedoScalar(const PsuedoScalar& psuedoscalar);
 

@@ -11,6 +11,7 @@ namespace C2GA
 	class PsuedoScalar
 	{
 	public:
+		PsuedoScalar();
 		PsuedoScalar(double e1_e2_no_ni);
 		PsuedoScalar(const PsuedoScalar& psuedoscalar);
 

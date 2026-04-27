@@ -8,6 +8,11 @@
 
 using namespace C3GA;
 
+PsuedoScalar::PsuedoScalar()
+{
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 PsuedoScalar::PsuedoScalar(double e1_e2_e3_no_ni)
 {
 	this->e1_e2_e3_no_ni = e1_e2_e3_no_ni;

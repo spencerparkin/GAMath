@@ -8,6 +8,15 @@
 
 using namespace C3GA;
 
+Quadvector::Quadvector()
+{
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+}
+
 Quadvector::Quadvector(double e1_e2_e3_no, double e1_e2_e3_ni, double e1_e2_no_ni, double e1_e3_no_ni, double e2_e3_no_ni)
 {
 	this->e1_e2_e3_no = e1_e2_e3_no;

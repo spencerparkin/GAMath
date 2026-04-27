@@ -7,6 +7,14 @@
 
 using namespace C2GA;
 
+Trivector::Trivector()
+{
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_no_ni = 0.0;
+}
+
 Trivector::Trivector(double e1_e2_no, double e1_e2_ni, double e1_no_ni, double e2_no_ni)
 {
 	this->e1_e2_no = e1_e2_no;

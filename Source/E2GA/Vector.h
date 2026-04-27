@@ -10,6 +10,7 @@ namespace E2GA
 	class Vector
 	{
 	public:
+		Vector();
 		Vector(double e1, double e2);
 		Vector(const Vector& vector);
 

@@ -6,6 +6,11 @@
 
 using namespace E2GA;
 
+PsuedoScalar::PsuedoScalar()
+{
+	this->e1_e2 = 0.0;
+}
+
 PsuedoScalar::PsuedoScalar(double e1_e2)
 {
 	this->e1_e2 = e1_e2;

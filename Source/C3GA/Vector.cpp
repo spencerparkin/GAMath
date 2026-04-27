@@ -8,6 +8,15 @@
 
 using namespace C3GA;
 
+Vector::Vector()
+{
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+}
+
 Vector::Vector(double e1, double e2, double e3, double no, double ni)
 {
 	this->e1 = e1;

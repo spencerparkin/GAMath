@@ -8,6 +8,42 @@
 
 using namespace C3GA;
 
+Multivector::Multivector()
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 Multivector::Multivector(double _1, double e1, double e2, double e3, double no, double ni, double e1_e2, double e1_e3, double e1_no, double e1_ni, double e2_e3, double e2_no, double e2_ni, double e3_no, double e3_ni, double no_ni, double e1_e2_e3, double e1_e2_no, double e1_e2_ni, double e1_e3_no, double e1_e3_ni, double e1_no_ni, double e2_e3_no, double e2_e3_ni, double e2_no_ni, double e3_no_ni, double e1_e2_e3_no, double e1_e2_e3_ni, double e1_e2_no_ni, double e1_e3_no_ni, double e2_e3_no_ni, double e1_e2_e3_no_ni)
 {
 	this->_1 = _1;

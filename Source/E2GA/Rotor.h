@@ -10,6 +10,7 @@ namespace E2GA
 	class Rotor
 	{
 	public:
+		Rotor();
 		Rotor(double _1, double e1_e2);
 		Rotor(const Scalar& scalar);
 		Rotor(const PsuedoScalar& psuedoscalar);

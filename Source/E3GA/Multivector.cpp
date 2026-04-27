@@ -7,6 +7,18 @@
 
 using namespace E3GA;
 
+Multivector::Multivector()
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->e1_e2 = 0.0;
+	this->e2_e3 = 0.0;
+	this->e3_e1 = 0.0;
+	this->e1_e2_e3 = 0.0;
+}
+
 Multivector::Multivector(double _1, double e1, double e2, double e3, double e1_e2, double e2_e3, double e3_e1, double e1_e2_e3)
 {
 	this->_1 = _1;

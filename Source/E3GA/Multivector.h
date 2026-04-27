@@ -11,6 +11,7 @@ namespace E3GA
 	class Multivector
 	{
 	public:
+		Multivector();
 		Multivector(double _1, double e1, double e2, double e3, double e1_e2, double e2_e3, double e3_e1, double e1_e2_e3);
 		Multivector(const Scalar& scalar);
 		Multivector(const PsuedoScalar& psuedoscalar);

@@ -6,6 +6,12 @@
 
 using namespace E2GA;
 
+Vector::Vector()
+{
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+}
+
 Vector::Vector(double e1, double e2)
 {
 	this->e1 = e1;

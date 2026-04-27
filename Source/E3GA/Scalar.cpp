@@ -7,6 +7,11 @@
 
 using namespace E3GA;
 
+Scalar::Scalar()
+{
+	this->_1 = 0.0;
+}
+
 Scalar::Scalar(double _1)
 {
 	this->_1 = _1;

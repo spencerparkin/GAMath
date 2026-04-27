@@ -11,6 +11,7 @@ namespace E3GA
 	class Bivector
 	{
 	public:
+		Bivector();
 		Bivector(double e1_e2, double e2_e3, double e3_e1);
 		Bivector(const Bivector& bivector);
 

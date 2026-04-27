@@ -11,6 +11,7 @@ namespace C2GA
 	class Multivector
 	{
 	public:
+		Multivector();
 		Multivector(double _1, double e1, double e2, double no, double ni, double e1_e2, double e1_no, double e1_ni, double e2_no, double e2_ni, double no_ni, double e1_e2_no, double e1_e2_ni, double e1_no_ni, double e2_no_ni, double e1_e2_no_ni);
 		Multivector(const Scalar& scalar);
 		Multivector(const Vector& vector);

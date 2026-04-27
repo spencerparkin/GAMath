@@ -7,6 +7,11 @@
 
 using namespace E3GA;
 
+PsuedoScalar::PsuedoScalar()
+{
+	this->e1_e2_e3 = 0.0;
+}
+
 PsuedoScalar::PsuedoScalar(double e1_e2_e3)
 {
 	this->e1_e2_e3 = e1_e2_e3;

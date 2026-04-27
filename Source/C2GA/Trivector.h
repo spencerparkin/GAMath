@@ -11,6 +11,7 @@ namespace C2GA
 	class Trivector
 	{
 	public:
+		Trivector();
 		Trivector(double e1_e2_no, double e1_e2_ni, double e1_no_ni, double e2_no_ni);
 		Trivector(const Trivector& trivector);
 

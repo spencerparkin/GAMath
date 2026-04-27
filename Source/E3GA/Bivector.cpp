@@ -7,6 +7,13 @@
 
 using namespace E3GA;
 
+Bivector::Bivector()
+{
+	this->e1_e2 = 0.0;
+	this->e2_e3 = 0.0;
+	this->e3_e1 = 0.0;
+}
+
 Bivector::Bivector(double e1_e2, double e2_e3, double e3_e1)
 {
 	this->e1_e2 = e1_e2;

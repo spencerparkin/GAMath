@@ -10,6 +10,7 @@ namespace E2GA
 	class Multivector
 	{
 	public:
+		Multivector();
 		Multivector(double _1, double e1, double e2, double e1_e2);
 		Multivector(const Scalar& scalar);
 		Multivector(const PsuedoScalar& psuedoscalar);

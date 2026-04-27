@@ -7,6 +7,16 @@
 
 using namespace C2GA;
 
+Bivector::Bivector()
+{
+	this->e1_e2 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->no_ni = 0.0;
+}
+
 Bivector::Bivector(double e1_e2, double e1_no, double e1_ni, double e2_no, double e2_ni, double no_ni)
 {
 	this->e1_e2 = e1_e2;

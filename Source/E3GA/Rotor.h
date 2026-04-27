@@ -11,6 +11,7 @@ namespace E3GA
 	class Rotor
 	{
 	public:
+		Rotor();
 		Rotor(double _1, double e1_e2, double e2_e3, double e3_e1);
 		Rotor(const Scalar& scalar);
 		Rotor(const Bivector& bivector);

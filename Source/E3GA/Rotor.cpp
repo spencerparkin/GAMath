@@ -7,6 +7,14 @@
 
 using namespace E3GA;
 
+Rotor::Rotor()
+{
+	this->_1 = 0.0;
+	this->e1_e2 = 0.0;
+	this->e2_e3 = 0.0;
+	this->e3_e1 = 0.0;
+}
+
 Rotor::Rotor(double _1, double e1_e2, double e2_e3, double e3_e1)
 {
 	this->_1 = _1;
