@@ -1,4 +1,8 @@
 #include "Rotor.h"
+#include "Scalar.h"
+#include "PsuedoScalar.h"
+#include "Vector.h"
+#include "Multivector.h"
 
 using namespace E2GA;
 

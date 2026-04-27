@@ -2,6 +2,11 @@
 
 namespace E2GA
 {
+	class PsuedoScalar;
+	class Vector;
+	class Rotor;
+	class Multivector;
+
 	class Scalar
 	{
 	public:
@@ -10,7 +15,7 @@ namespace E2GA
 
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);

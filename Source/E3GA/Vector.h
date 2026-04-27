@@ -2,6 +2,12 @@
 
 namespace E3GA
 {
+	class Scalar;
+	class PsuedoScalar;
+	class Bivector;
+	class Rotor;
+	class Multivector;
+
 	class Vector
 	{
 	public:
@@ -10,7 +16,7 @@ namespace E3GA
 
 		void Add(const Vector& vectorA, const Vector& vectorB);
 
-		void Subract(const Vector& vectorA, const Vector& vectorB);
+		void Subtract(const Vector& vectorA, const Vector& vectorB);
 
 		void InnerProduct(const Scalar& scalarA, const Vector& vectorB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);

@@ -2,6 +2,11 @@
 
 namespace E2GA
 {
+	class Scalar;
+	class PsuedoScalar;
+	class Vector;
+	class Multivector;
+
 	class Rotor
 	{
 	public:
@@ -20,15 +25,15 @@ namespace E2GA
 		void Add(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Rotor& rotorA, const Rotor& rotorB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
-		void Subract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Scalar& scalarA, const Rotor& rotorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
-		void Subract(const Rotor& rotorA, const Scalar& scalarB);
-		void Subract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Rotor& rotorA, const Rotor& rotorB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Scalar& scalarA, const Rotor& rotorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
+		void Subtract(const Rotor& rotorA, const Scalar& scalarB);
+		void Subtract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Rotor& rotorA, const Rotor& rotorB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);

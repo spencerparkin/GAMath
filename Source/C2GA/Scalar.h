@@ -2,6 +2,12 @@
 
 namespace C2GA
 {
+	class Vector;
+	class Bivector;
+	class Trivector;
+	class PsuedoScalar;
+	class Multivector;
+
 	class Scalar
 	{
 	public:
@@ -10,7 +16,7 @@ namespace C2GA
 
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Vector& vectorA, const Vector& vectorB);

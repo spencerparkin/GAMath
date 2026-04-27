@@ -2,6 +2,13 @@
 
 namespace C3GA
 {
+	class Vector;
+	class Bivector;
+	class Trivector;
+	class Quadvector;
+	class PsuedoScalar;
+	class Multivector;
+
 	class Scalar
 	{
 	public:
@@ -10,7 +17,7 @@ namespace C3GA
 
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Vector& vectorA, const Vector& vectorB);

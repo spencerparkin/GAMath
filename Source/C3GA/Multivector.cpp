@@ -1,4 +1,10 @@
 #include "Multivector.h"
+#include "Scalar.h"
+#include "Vector.h"
+#include "Bivector.h"
+#include "Trivector.h"
+#include "Quadvector.h"
+#include "PsuedoScalar.h"
 
 using namespace C3GA;
 

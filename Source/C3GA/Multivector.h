@@ -2,6 +2,13 @@
 
 namespace C3GA
 {
+	class Scalar;
+	class Vector;
+	class Bivector;
+	class Trivector;
+	class Quadvector;
+	class PsuedoScalar;
+
 	class Multivector
 	{
 	public:
@@ -64,55 +71,55 @@ namespace C3GA
 		void Add(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Multivector& multivectorA, const Multivector& multivectorB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
-		void Subract(const Scalar& scalarA, const Vector& vectorB);
-		void Subract(const Scalar& scalarA, const Bivector& bivectorB);
-		void Subract(const Scalar& scalarA, const Trivector& trivectorB);
-		void Subract(const Scalar& scalarA, const Quadvector& quadvectorB);
-		void Subract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Scalar& scalarA, const Multivector& multivectorB);
-		void Subract(const Vector& vectorA, const Scalar& scalarB);
-		void Subract(const Vector& vectorA, const Vector& vectorB);
-		void Subract(const Vector& vectorA, const Bivector& bivectorB);
-		void Subract(const Vector& vectorA, const Trivector& trivectorB);
-		void Subract(const Vector& vectorA, const Quadvector& quadvectorB);
-		void Subract(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Vector& vectorA, const Multivector& multivectorB);
-		void Subract(const Bivector& bivectorA, const Scalar& scalarB);
-		void Subract(const Bivector& bivectorA, const Vector& vectorB);
-		void Subract(const Bivector& bivectorA, const Bivector& bivectorB);
-		void Subract(const Bivector& bivectorA, const Trivector& trivectorB);
-		void Subract(const Bivector& bivectorA, const Quadvector& quadvectorB);
-		void Subract(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Bivector& bivectorA, const Multivector& multivectorB);
-		void Subract(const Trivector& trivectorA, const Scalar& scalarB);
-		void Subract(const Trivector& trivectorA, const Vector& vectorB);
-		void Subract(const Trivector& trivectorA, const Bivector& bivectorB);
-		void Subract(const Trivector& trivectorA, const Trivector& trivectorB);
-		void Subract(const Trivector& trivectorA, const Quadvector& quadvectorB);
-		void Subract(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Trivector& trivectorA, const Multivector& multivectorB);
-		void Subract(const Quadvector& quadvectorA, const Scalar& scalarB);
-		void Subract(const Quadvector& quadvectorA, const Vector& vectorB);
-		void Subract(const Quadvector& quadvectorA, const Bivector& bivectorB);
-		void Subract(const Quadvector& quadvectorA, const Trivector& trivectorB);
-		void Subract(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
-		void Subract(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Quadvector& quadvectorA, const Multivector& multivectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Trivector& trivectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
-		void Subract(const Multivector& multivectorA, const Scalar& scalarB);
-		void Subract(const Multivector& multivectorA, const Vector& vectorB);
-		void Subract(const Multivector& multivectorA, const Bivector& bivectorB);
-		void Subract(const Multivector& multivectorA, const Trivector& trivectorB);
-		void Subract(const Multivector& multivectorA, const Quadvector& quadvectorB);
-		void Subract(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Multivector& multivectorA, const Multivector& multivectorB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const Vector& vectorB);
+		void Subtract(const Scalar& scalarA, const Bivector& bivectorB);
+		void Subtract(const Scalar& scalarA, const Trivector& trivectorB);
+		void Subtract(const Scalar& scalarA, const Quadvector& quadvectorB);
+		void Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Scalar& scalarA, const Multivector& multivectorB);
+		void Subtract(const Vector& vectorA, const Scalar& scalarB);
+		void Subtract(const Vector& vectorA, const Vector& vectorB);
+		void Subtract(const Vector& vectorA, const Bivector& bivectorB);
+		void Subtract(const Vector& vectorA, const Trivector& trivectorB);
+		void Subtract(const Vector& vectorA, const Quadvector& quadvectorB);
+		void Subtract(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Vector& vectorA, const Multivector& multivectorB);
+		void Subtract(const Bivector& bivectorA, const Scalar& scalarB);
+		void Subtract(const Bivector& bivectorA, const Vector& vectorB);
+		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);
+		void Subtract(const Bivector& bivectorA, const Trivector& trivectorB);
+		void Subtract(const Bivector& bivectorA, const Quadvector& quadvectorB);
+		void Subtract(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Bivector& bivectorA, const Multivector& multivectorB);
+		void Subtract(const Trivector& trivectorA, const Scalar& scalarB);
+		void Subtract(const Trivector& trivectorA, const Vector& vectorB);
+		void Subtract(const Trivector& trivectorA, const Bivector& bivectorB);
+		void Subtract(const Trivector& trivectorA, const Trivector& trivectorB);
+		void Subtract(const Trivector& trivectorA, const Quadvector& quadvectorB);
+		void Subtract(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Trivector& trivectorA, const Multivector& multivectorB);
+		void Subtract(const Quadvector& quadvectorA, const Scalar& scalarB);
+		void Subtract(const Quadvector& quadvectorA, const Vector& vectorB);
+		void Subtract(const Quadvector& quadvectorA, const Bivector& bivectorB);
+		void Subtract(const Quadvector& quadvectorA, const Trivector& trivectorB);
+		void Subtract(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
+		void Subtract(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Trivector& trivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void Subtract(const Multivector& multivectorA, const Scalar& scalarB);
+		void Subtract(const Multivector& multivectorA, const Vector& vectorB);
+		void Subtract(const Multivector& multivectorA, const Bivector& bivectorB);
+		void Subtract(const Multivector& multivectorA, const Trivector& trivectorB);
+		void Subtract(const Multivector& multivectorA, const Quadvector& quadvectorB);
+		void Subtract(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Multivector& multivectorA, const Multivector& multivectorB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Scalar& scalarA, const Vector& vectorB);

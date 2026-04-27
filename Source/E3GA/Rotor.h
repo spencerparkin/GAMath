@@ -2,6 +2,12 @@
 
 namespace E3GA
 {
+	class Scalar;
+	class PsuedoScalar;
+	class Vector;
+	class Bivector;
+	class Multivector;
+
 	class Rotor
 	{
 	public:
@@ -20,15 +26,15 @@ namespace E3GA
 		void Add(const Rotor& rotorA, const Bivector& bivectorB);
 		void Add(const Rotor& rotorA, const Rotor& rotorB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
-		void Subract(const Scalar& scalarA, const Bivector& bivectorB);
-		void Subract(const Scalar& scalarA, const Rotor& rotorB);
-		void Subract(const Bivector& bivectorA, const Scalar& scalarB);
-		void Subract(const Bivector& bivectorA, const Bivector& bivectorB);
-		void Subract(const Bivector& bivectorA, const Rotor& rotorB);
-		void Subract(const Rotor& rotorA, const Scalar& scalarB);
-		void Subract(const Rotor& rotorA, const Bivector& bivectorB);
-		void Subract(const Rotor& rotorA, const Rotor& rotorB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const Bivector& bivectorB);
+		void Subtract(const Scalar& scalarA, const Rotor& rotorB);
+		void Subtract(const Bivector& bivectorA, const Scalar& scalarB);
+		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);
+		void Subtract(const Bivector& bivectorA, const Rotor& rotorB);
+		void Subtract(const Rotor& rotorA, const Scalar& scalarB);
+		void Subtract(const Rotor& rotorA, const Bivector& bivectorB);
+		void Subtract(const Rotor& rotorA, const Rotor& rotorB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Scalar& scalarA, const Bivector& bivectorB);

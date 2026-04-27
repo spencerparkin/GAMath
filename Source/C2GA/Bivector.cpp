@@ -1,4 +1,9 @@
 #include "Bivector.h"
+#include "Scalar.h"
+#include "Vector.h"
+#include "Trivector.h"
+#include "PsuedoScalar.h"
+#include "Multivector.h"
 
 using namespace C2GA;
 

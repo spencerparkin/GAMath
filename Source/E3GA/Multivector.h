@@ -2,6 +2,12 @@
 
 namespace E3GA
 {
+	class Scalar;
+	class PsuedoScalar;
+	class Vector;
+	class Bivector;
+	class Rotor;
+
 	class Multivector
 	{
 	public:
@@ -50,42 +56,42 @@ namespace E3GA
 		void Add(const Multivector& multivectorA, const Rotor& rotorB);
 		void Add(const Multivector& multivectorA, const Multivector& multivectorB);
 
-		void Subract(const Scalar& scalarA, const Scalar& scalarB);
-		void Subract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Scalar& scalarA, const Vector& vectorB);
-		void Subract(const Scalar& scalarA, const Bivector& bivectorB);
-		void Subract(const Scalar& scalarA, const Rotor& rotorB);
-		void Subract(const Scalar& scalarA, const Multivector& multivectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
-		void Subract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
-		void Subract(const Vector& vectorA, const Scalar& scalarB);
-		void Subract(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Vector& vectorA, const Vector& vectorB);
-		void Subract(const Vector& vectorA, const Bivector& bivectorB);
-		void Subract(const Vector& vectorA, const Rotor& rotorB);
-		void Subract(const Vector& vectorA, const Multivector& multivectorB);
-		void Subract(const Bivector& bivectorA, const Scalar& scalarB);
-		void Subract(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Bivector& bivectorA, const Vector& vectorB);
-		void Subract(const Bivector& bivectorA, const Bivector& bivectorB);
-		void Subract(const Bivector& bivectorA, const Rotor& rotorB);
-		void Subract(const Bivector& bivectorA, const Multivector& multivectorB);
-		void Subract(const Rotor& rotorA, const Scalar& scalarB);
-		void Subract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Rotor& rotorA, const Vector& vectorB);
-		void Subract(const Rotor& rotorA, const Bivector& bivectorB);
-		void Subract(const Rotor& rotorA, const Rotor& rotorB);
-		void Subract(const Rotor& rotorA, const Multivector& multivectorB);
-		void Subract(const Multivector& multivectorA, const Scalar& scalarB);
-		void Subract(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
-		void Subract(const Multivector& multivectorA, const Vector& vectorB);
-		void Subract(const Multivector& multivectorA, const Bivector& bivectorB);
-		void Subract(const Multivector& multivectorA, const Rotor& rotorB);
-		void Subract(const Multivector& multivectorA, const Multivector& multivectorB);
+		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
+		void Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Scalar& scalarA, const Vector& vectorB);
+		void Subtract(const Scalar& scalarA, const Bivector& bivectorB);
+		void Subtract(const Scalar& scalarA, const Rotor& rotorB);
+		void Subtract(const Scalar& scalarA, const Multivector& multivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void Subtract(const Vector& vectorA, const Scalar& scalarB);
+		void Subtract(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Vector& vectorA, const Vector& vectorB);
+		void Subtract(const Vector& vectorA, const Bivector& bivectorB);
+		void Subtract(const Vector& vectorA, const Rotor& rotorB);
+		void Subtract(const Vector& vectorA, const Multivector& multivectorB);
+		void Subtract(const Bivector& bivectorA, const Scalar& scalarB);
+		void Subtract(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Bivector& bivectorA, const Vector& vectorB);
+		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);
+		void Subtract(const Bivector& bivectorA, const Rotor& rotorB);
+		void Subtract(const Bivector& bivectorA, const Multivector& multivectorB);
+		void Subtract(const Rotor& rotorA, const Scalar& scalarB);
+		void Subtract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Rotor& rotorA, const Vector& vectorB);
+		void Subtract(const Rotor& rotorA, const Bivector& bivectorB);
+		void Subtract(const Rotor& rotorA, const Rotor& rotorB);
+		void Subtract(const Rotor& rotorA, const Multivector& multivectorB);
+		void Subtract(const Multivector& multivectorA, const Scalar& scalarB);
+		void Subtract(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Multivector& multivectorA, const Vector& vectorB);
+		void Subtract(const Multivector& multivectorA, const Bivector& bivectorB);
+		void Subtract(const Multivector& multivectorA, const Rotor& rotorB);
+		void Subtract(const Multivector& multivectorA, const Multivector& multivectorB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
