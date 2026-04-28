@@ -2,6 +2,7 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
+#include "Drawer.h"
 #include "HappyMath/Vector3.h"
 
 class GLCanvas : public QOpenGLWidget, protected QOpenGLFunctions
@@ -18,4 +19,6 @@ protected:
 
     HappyMath::Vector3 cameraEyePos;
     HappyMath::Vector3 cameraLookAt;
+
+    Drawer drawer;
 };

@@ -4,7 +4,7 @@
 
 GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
-    this->cameraEyePos = HappyMath::Vector3(0.0, 0.0, 20.0);
+    this->cameraEyePos = HappyMath::Vector3(20.0, 20.0, 20.0);
     this->cameraLookAt = HappyMath::Vector3(0.0, 0.0, 0.0);
 }
 
@@ -12,8 +12,10 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
     initializeOpenGLFunctions();
 
-    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
+
+    this->drawer.Initialize();
 }
 
 /*virtual*/ void GLCanvas::resizeGL(int width, int height)
