@@ -7,6 +7,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 CONFIG REQUIRED COMPONENTS Widgets OpenGLWidgets)
+find_package(OpenGL REQUIRED)
 
 add_executable(Demo WIN32
 	Source/Main.cpp
@@ -19,5 +20,7 @@ add_executable(Demo WIN32
 target_link_libraries(Demo PRIVATE
 	Qt6::Widgets
 	Qt6::OpenGLWidgets
+	OpenGL::GL
 	GAMath
+	HappyMath
 )

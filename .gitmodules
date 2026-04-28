@@ -1,0 +1,3 @@
+[submodule "ThirdParty/HappyMath"]
+	path = ThirdParty/HappyMath
+	url = https://github.com/spencerparkin/HappyMath
