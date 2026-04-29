@@ -55,6 +55,9 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glLoadIdentity();
     glMultMatrixd(&worldToViewT.ele[0][0]);
 
+    glEnable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
+
     glBegin(GL_LINES);
 
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -70,6 +73,13 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glVertex3f(0.0f, 0.0f, 10.0f);
 
     glEnd();
+
+    this->drawer.DrawSphere(HappyMath::Vector3(5.0, 5.0, 0.0), 2.0, HappyMath::Vector3(1.0, 0.5, 0.0), true);
+    this->drawer.DrawSphere(HappyMath::Vector3(0.0, 5.0, 5.0), 2.0, HappyMath::Vector3(0.0, 0.5, 1.0), true);
+
+    this->drawer.DrawPoint(HappyMath::Vector3(5.0, 7.0, 6.0), HappyMath::Vector3(0.5, 1.0, 0.5), false);
+    this->drawer.DrawPoint(HappyMath::Vector3(3.0, 6.0, 6.0), HappyMath::Vector3(0.5, 1.0, 0.5), false);
+    this->drawer.DrawPoint(HappyMath::Vector3(3.0, 7.0, 2.0), HappyMath::Vector3(0.5, 1.0, 0.5), false);
 
     glFlush();
 }
