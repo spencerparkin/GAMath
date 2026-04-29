@@ -5,6 +5,14 @@
 
 using namespace C3GA;
 
+Point::Point()
+{
+	this->w = 1.0;
+	this->x = 0.0;
+	this->y = 0.0;
+	this->z = 0.0;
+}
+
 Point::Point(double x, double y, double z, double w /*= 1.0*/)
 {
 	this->x = x;

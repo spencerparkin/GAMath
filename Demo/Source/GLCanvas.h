@@ -4,6 +4,8 @@
 #include <QOpenGLFunctions>
 #include "Drawer.h"
 #include "HappyMath/Vector3.h"
+#include "C3GA/Geometry/Point.h"
+#include "C3GA/Geometry/Sphere.h"
 
 class GLCanvas : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -19,6 +21,9 @@ protected:
 
     HappyMath::Vector3 cameraEyePos;
     HappyMath::Vector3 cameraLookAt;
+
+    C3GA::Sphere sphere;
+    C3GA::Point point[4];
 
     Drawer drawer;
 };

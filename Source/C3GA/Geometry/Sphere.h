@@ -15,6 +15,7 @@ namespace C3GA
 	class Sphere
 	{
 	public:
+		Sphere();
 		Sphere(double cx, double cy, double cz, double r, double w = 1.0);
 		Sphere(const Sphere& sphere);
 		virtual ~Sphere();

@@ -8,6 +8,15 @@
 
 using namespace C3GA;
 
+Sphere::Sphere()
+{
+	this->w = 1.0;
+	this->r = 1.0;
+	this->cx = 0.0;
+	this->cy = 0.0;
+	this->cz = 0.0;
+}
+
 Sphere::Sphere(double cx, double cy, double cz, double r, double w /*= 1.0*/)
 {
 	this->cx = cx;

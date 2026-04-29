@@ -7,6 +7,7 @@ namespace C3GA
 	class Point
 	{
 	public:
+		Point();
 		Point(double x, double y, double z, double w = 1.0);
 		Point(const Point& point);
 		virtual ~Point();
