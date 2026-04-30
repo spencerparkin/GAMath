@@ -1,13 +1,17 @@
 #pragma once
 
+#include "HappyMath/Vector3.h"
+
 namespace C3GA
 {
 	class Circle
 	{
 	public:
 
-		double cx, cy, cz;
-		double nx, ny, nz;
-		double r;
+
+		HappyMath::Vector3 center;
+		HappyMath::Vector3 normal;
+		double radius;
+		double weight;
 	};
 }

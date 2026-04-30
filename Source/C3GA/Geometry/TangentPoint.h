@@ -1,12 +1,16 @@
 #pragma once
 
+#include "HappyMath/Vector3.h"
+
 namespace C3GA
 {
 	class TangentPoint
 	{
 	public:
 
-		double x, y, z;
-		double nx, ny, cz;
+
+		HappyMath::Vector3 center;
+		HappyMath::Vector3 normal;
+		double weight;
 	};
 }

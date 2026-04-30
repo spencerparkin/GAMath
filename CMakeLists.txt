@@ -91,6 +91,10 @@ set(GAMATH_SOURCES
 
 add_library(GAMath STATIC ${GAMATH_SOURCES})
 
+target_link_libraries(GAMath PUBLIC
+	HappyMath
+)
+
 target_include_directories(GAMath PUBLIC Source)
 
 add_subdirectory(Demo)

@@ -7,41 +7,32 @@ using namespace C3GA;
 
 Point::Point()
 {
-	this->w = 1.0;
-	this->x = 0.0;
-	this->y = 0.0;
-	this->z = 0.0;
+	this->weight = 1.0;
 }
 
-Point::Point(double x, double y, double z, double w /*= 1.0*/)
+Point::Point(const HappyMath::Vector3& center, double weight /*= 1.0*/)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
+	this->center = center;
+	this->weight = weight;
 }
 
 Point::Point(const Point& point)
 {
-	this->x = point.x;
-	this->y = point.y;
-	this->z = point.z;
-	this->w = point.w;
+	this->center = point.center;
+	this->weight = point.weight;
 }
 
 /*virtual*/ Point::~Point()
 {
 }
 
-bool Point::ToVector(Vector& vector) const
+void Point::ToVector(Vector& vector) const
 {
-	vector.no = this->w;
-	vector.e1 = this->w * this->x;
-	vector.e2 = this->w * this->y;
-	vector.e3 = this->w * this->z;
-	vector.ni = 0.5 * (this->x * this->x + this->y * this->y + this->z * this->z);
-
-	return true;
+	vector.no = this->weight;
+	vector.e1 = this->weight * this->center.x;
+	vector.e2 = this->weight * this->center.y;
+	vector.e3 = this->weight * this->center.z;
+	vector.ni = 0.5 * this->center.SquareLength();
 }
 
 bool Point::FromVector(const Vector& vector)
@@ -49,14 +40,12 @@ bool Point::FromVector(const Vector& vector)
 	if (vector.no == 0.0)
 		return false;
 
-	this->w = vector.no;
-	this->x = vector.e1 / this->w;
-	this->y = vector.e2 / this->w;
-	this->z = vector.e3 / this->w;
+	this->weight = vector.no;
+	this->center.x = vector.e1 / this->weight;
+	this->center.y = vector.e2 / this->weight;
+	this->center.z = vector.e3 / this->weight;
 
-	double alpha = this->x * this->x + this->y * this->y + this->z * this->z - 2.0 * vector.ni / this->w;
-	if (::fabs(alpha) > std::numeric_limits<double>::epsilon())
-		return false;
+	double alpha = this->center.SquareLength() - 2.0 * vector.ni / this->weight;
 
-	return true;
+	return ::fabs(alpha) <= std::numeric_limits<double>::epsilon();
 }

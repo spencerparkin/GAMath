@@ -18,6 +18,9 @@ protected:
     virtual void initializeGL() override;
     virtual void resizeGL(int width, int height) override;
     virtual void paintGL() override;
+    virtual void mousePressEvent(QMouseEvent* event) override;
+    virtual void mouseMoveEvent(QMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QMouseEvent* event) override;
 
     HappyMath::Vector3 cameraEyePos;
     HappyMath::Vector3 cameraLookAt;
@@ -26,4 +29,6 @@ protected:
     C3GA::Point point[4];
 
     Drawer drawer;
+    bool dragging;
+    QPointF lastMousePos;
 };

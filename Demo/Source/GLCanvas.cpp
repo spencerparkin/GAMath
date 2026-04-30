@@ -1,9 +1,12 @@
 #include "GLCanvas.h"
 #include "HappyMath/Frustum.h"
 #include "HappyMath/Matrix4x4.h"
+#include <qevent.h>
 
 GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
+    this->dragging = false;
+
     this->cameraEyePos = HappyMath::Vector3(20.0, 20.0, 20.0);
     this->cameraLookAt = HappyMath::Vector3(0.0, 0.0, 0.0);
 }
@@ -15,25 +18,25 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
 
-    this->point[0].w = 1.0;
-    this->point[0].x = 0.0;
-    this->point[0].y = 0.0;
-    this->point[0].z = 0.0;
+    this->point[0].weight = 1.0;
+    this->point[0].center.x = 0.0;
+    this->point[0].center.y = 0.0;
+    this->point[0].center.z = 0.0;
 
-    this->point[1].w = 1.0;
-    this->point[1].x = 5.0;
-    this->point[1].y = 0.0;
-    this->point[1].z = 0.0;
+    this->point[1].weight = 1.0;
+    this->point[1].center.x = 5.0;
+    this->point[1].center.y = 0.0;
+    this->point[1].center.z = 0.0;
 
-    this->point[2].w = 1.0;
-    this->point[2].x = 0.0;
-    this->point[2].y = 5.0;
-    this->point[2].z = 0.0;
+    this->point[2].weight = 1.0;
+    this->point[2].center.x = 0.0;
+    this->point[2].center.y = 5.0;
+    this->point[2].center.z = 0.0;
 
-    this->point[3].w = 1.0;
-    this->point[3].x = 0.0;
-    this->point[3].y = 0.0;
-    this->point[3].z = 5.0;
+    this->point[3].weight = 1.0;
+    this->point[3].center.x = 0.0;
+    this->point[3].center.y = 0.0;
+    this->point[3].center.z = 5.0;
 
     this->sphere.FitToPoints(this->point[0], this->point[1], this->point[2], this->point[3]);
 
@@ -97,13 +100,50 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glEnd();
 
     for (int i = 0; i < 4; i++)
-    {
-        HappyMath::Vector3 location(this->point[i].x, this->point[i].y, this->point[i].z);
-        this->drawer.DrawPoint(location, HappyMath::Vector3(1.0, 0.5, 0.5), false);
-    }
+        this->drawer.DrawPoint(this->point[i].center, HappyMath::Vector3(1.0, 0.5, 0.5), false);
 
-    HappyMath::Vector3 center(this->sphere.cx, this->sphere.cy, this->sphere.cz);
-    this->drawer.DrawSphere(center, this->sphere.r, HappyMath::Vector3(1.0, 0.5, 0.0), true);
+    this->drawer.DrawSphere(this->sphere.center, this->sphere.radius, HappyMath::Vector3(1.0, 0.5, 0.0), true);
 
     glFlush();
+}
+
+/*virtual*/ void GLCanvas::mousePressEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::MouseButton::LeftButton)
+    {
+        this->dragging = true;
+        this->lastMousePos = event->position();
+    }
+}
+
+/*virtual*/ void GLCanvas::mouseMoveEvent(QMouseEvent* event)
+{
+    if (this->dragging)
+    {
+        QPointF currentMousePos = event->position();
+        QPointF mouseDelta = currentMousePos - this->lastMousePos;
+        this->lastMousePos = currentMousePos;
+
+        HappyMath::Vector3 lookVector = this->cameraLookAt - this->cameraEyePos;
+        double length = lookVector.Length();
+
+        HappyMath::Vector3 upVector(0.0, 1.0, 0.0);
+        HappyMath::Vector3 xAxis = lookVector.Cross(upVector).Normalized();
+        HappyMath::Vector3 yAxis = xAxis.Cross(lookVector).Normalized();
+
+        double sensativity = 0.1;
+        this->cameraEyePos += sensativity * (-xAxis * mouseDelta.x() + yAxis * mouseDelta.y());
+
+        HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
+        vector *= length / vector.Length();
+        this->cameraEyePos = this->cameraLookAt + vector;
+
+        this->update();
+    }
+}
+
+/*virtual*/ void GLCanvas::mouseReleaseEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::MouseButton::LeftButton)
+        this->dragging = false;
 }
