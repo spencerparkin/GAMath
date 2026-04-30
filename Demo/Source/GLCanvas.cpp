@@ -1,4 +1,6 @@
 #include "GLCanvas.h"
+#include "Object.h"
+#include "Constraint.h"
 #include "HappyMath/Frustum.h"
 #include "HappyMath/Matrix4x4.h"
 #include <qevent.h>
@@ -18,27 +20,37 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
 
-    this->point[0].weight = 1.0;
-    this->point[0].center.x = 0.0;
-    this->point[0].center.y = 0.0;
-    this->point[0].center.z = 0.0;
+    std::shared_ptr<PointObject> pointObjectA = std::make_shared<PointObject>();
+    pointObjectA->point.center.SetComponents(0.0, 0.0, 0.0);
+    pointObjectA->color.SetComponents(1.0, 1.0, 1.0);
+    this->objectArray.push_back(pointObjectA);
 
-    this->point[1].weight = 1.0;
-    this->point[1].center.x = 5.0;
-    this->point[1].center.y = 0.0;
-    this->point[1].center.z = 0.0;
+    std::shared_ptr<PointObject> pointObjectB = std::make_shared<PointObject>();
+    pointObjectB->point.center.SetComponents(5.0, 0.0, 0.0);
+    pointObjectB->color.SetComponents(1.0, 1.0, 1.0);
+    this->objectArray.push_back(pointObjectB);
 
-    this->point[2].weight = 1.0;
-    this->point[2].center.x = 0.0;
-    this->point[2].center.y = 5.0;
-    this->point[2].center.z = 0.0;
+    std::shared_ptr<PointObject> pointObjectC = std::make_shared<PointObject>();
+    pointObjectC->point.center.SetComponents(0.0, 5.0, 0.0);
+    pointObjectC->color.SetComponents(1.0, 1.0, 1.0);
+    this->objectArray.push_back(pointObjectC);
 
-    this->point[3].weight = 1.0;
-    this->point[3].center.x = 0.0;
-    this->point[3].center.y = 0.0;
-    this->point[3].center.z = 5.0;
+    std::shared_ptr<PointObject> pointObjectD = std::make_shared<PointObject>();
+    pointObjectD->point.center.SetComponents(0.0, 0.0, 5.0);
+    pointObjectD->color.SetComponents(1.0, 1.0, 1.0);
+    this->objectArray.push_back(pointObjectD);
 
-    this->sphere.FitToPoints(this->point[0], this->point[1], this->point[2], this->point[3]);
+    std::shared_ptr<SphereObject> sphereObject = std::make_shared<SphereObject>();
+    sphereObject->color.SetComponents(0.0, 1.0, 1.0);
+    this->objectArray.push_back(sphereObject);
+
+    std::shared_ptr<FitSphereToPointsConstraint> constraint = std::make_shared<FitSphereToPointsConstraint>();
+    constraint->inputObjectWeakPtrArray.push_back(pointObjectA);
+    constraint->inputObjectWeakPtrArray.push_back(pointObjectB);
+    constraint->inputObjectWeakPtrArray.push_back(pointObjectC);
+    constraint->inputObjectWeakPtrArray.push_back(pointObjectD);
+    constraint->outputObjectWeakPtr = sphereObject;
+    this->constraintArray.push_back(constraint);
 
     this->drawer.Initialize();
 }
@@ -99,10 +111,11 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
     glEnd();
 
-    for (int i = 0; i < 4; i++)
-        this->drawer.DrawPoint(this->point[i].center, HappyMath::Vector3(1.0, 0.5, 0.5), false);
+    for (std::shared_ptr<Constraint> constraint : this->constraintArray)
+        constraint->Enforce();
 
-    this->drawer.DrawSphere(this->sphere.center, this->sphere.radius, HappyMath::Vector3(1.0, 0.5, 0.0), true);
+    for (std::shared_ptr<Object> object : this->objectArray)
+        object->Draw(&this->drawer);
 
     glFlush();
 }

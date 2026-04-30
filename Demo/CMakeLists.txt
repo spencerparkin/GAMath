@@ -17,6 +17,10 @@ add_executable(Demo WIN32
 	Source/GLCanvas.h
 	Source/Drawer.cpp
 	Source/Drawer.h
+	Source/Object.cpp
+	Source/Object.h
+	Source/Constraint.cpp
+	Source/Constraint.h
 )
 
 target_link_libraries(Demo PRIVATE
