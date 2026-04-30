@@ -1,8 +1,8 @@
 #include "GLCanvas.h"
 #include "Object.h"
 #include "Constraint.h"
-#include "HappyMath/Frustum.h"
 #include "HappyMath/Matrix4x4.h"
+#include "HappyMath/Rectangle.h"
 #include <qevent.h>
 
 GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
@@ -22,22 +22,22 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
     std::shared_ptr<PointObject> pointObjectA = std::make_shared<PointObject>();
     pointObjectA->point.center.SetComponents(0.0, 0.0, 0.0);
-    pointObjectA->color.SetComponents(1.0, 1.0, 1.0);
+    pointObjectA->color.SetComponents(0.0, 1.0, 0.0);
     this->objectArray.push_back(pointObjectA);
 
     std::shared_ptr<PointObject> pointObjectB = std::make_shared<PointObject>();
     pointObjectB->point.center.SetComponents(5.0, 0.0, 0.0);
-    pointObjectB->color.SetComponents(1.0, 1.0, 1.0);
+    pointObjectB->color.SetComponents(0.0, 1.0, 0.0);
     this->objectArray.push_back(pointObjectB);
 
     std::shared_ptr<PointObject> pointObjectC = std::make_shared<PointObject>();
     pointObjectC->point.center.SetComponents(0.0, 5.0, 0.0);
-    pointObjectC->color.SetComponents(1.0, 1.0, 1.0);
+    pointObjectC->color.SetComponents(0.0, 1.0, 0.0);
     this->objectArray.push_back(pointObjectC);
 
     std::shared_ptr<PointObject> pointObjectD = std::make_shared<PointObject>();
     pointObjectD->point.center.SetComponents(0.0, 0.0, 5.0);
-    pointObjectD->color.SetComponents(1.0, 1.0, 1.0);
+    pointObjectD->color.SetComponents(0.0, 1.0, 0.0);
     this->objectArray.push_back(pointObjectD);
 
     std::shared_ptr<SphereObject> sphereObject = std::make_shared<SphereObject>();
@@ -69,11 +69,10 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
     double aspectRatio = double(viewportParams[2]) / double(viewportParams[3]);
 
-    HappyMath::Frustum frustum;
-    frustum.SetFromAspectRatio(aspectRatio, M_PI / 3.0, 0.1, 1000.0);
+    this->frustum.SetFromAspectRatio(aspectRatio, M_PI / 3.0, 0.1, 1000.0);
     
     HappyMath::Matrix4x4 projMatrix;
-    frustum.GetToProjectionMatrix(projMatrix);
+    this->frustum.GetToProjectionMatrix(projMatrix);
 
     HappyMath::Matrix4x4 projMatrixT;
     projMatrixT.Transpose(projMatrix);
@@ -82,8 +81,10 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     glLoadIdentity();
     glMultMatrixd(&projMatrixT.ele[0][0]);
 
+    this->viewToWorld.SetAsViewToWorldTransform(this->cameraEyePos, this->cameraLookAt, HappyMath::Vector3(0.0, 1.0, 0.0));
+
     HappyMath::Matrix4x4 worldToView;
-    worldToView.SetAsViewTransform(this->cameraEyePos, this->cameraLookAt, HappyMath::Vector3(0.0, 1.0, 0.0));
+    worldToView.Invert(this->viewToWorld);
 
     HappyMath::Matrix4x4 worldToViewT;
     worldToViewT.Transpose(worldToView);
@@ -114,18 +115,30 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     for (std::shared_ptr<Constraint> constraint : this->constraintArray)
         constraint->Enforce();
 
+    std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
     for (std::shared_ptr<Object> object : this->objectArray)
-        object->Draw(&this->drawer);
+        object->Draw(&this->drawer, object == selectedObject);
 
     glFlush();
 }
 
 /*virtual*/ void GLCanvas::mousePressEvent(QMouseEvent* event)
 {
-    if (event->button() == Qt::MouseButton::LeftButton)
+    switch (event->button())
     {
-        this->dragging = true;
-        this->lastMousePos = event->position();
+        case Qt::MouseButton::RightButton:
+        {
+            this->dragging = true;
+            this->lastMousePos = event->position();
+            break;
+        }
+        case Qt::MouseButton::LeftButton:
+        {
+            std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
+            this->selectedObjectWeakPtr = object;
+            this->update();
+            break;
+        }
     }
 }
 
@@ -157,6 +170,50 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
 /*virtual*/ void GLCanvas::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (event->button() == Qt::MouseButton::LeftButton)
+    switch (event->button())
+    {
+    case Qt::MouseButton::RightButton:
         this->dragging = false;
+        break;
+    }
+}
+
+std::shared_ptr<Object> GLCanvas::GetObjectAtMouseLocation(const QPointF& mousePos)
+{
+    this->makeCurrent();
+
+    GLint viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
+
+    HappyMath::Rectangle viewportRect;
+    viewportRect.minCorner.x = 0.0;
+    viewportRect.maxCorner.x = (double)viewport[2];
+    viewportRect.minCorner.y = 0.0;
+    viewportRect.maxCorner.y = (double)viewport[3];
+
+    double scale = this->devicePixelRatioF();
+
+    HappyMath::Vector2 scaledPoint;
+    scaledPoint.x = mousePos.x() * scale;
+    scaledPoint.y = (double)viewport[3] - mousePos.y() * scale;
+
+    HappyMath::Vector2 UVs = viewportRect.PointToUVs(scaledPoint);
+    HappyMath::Ray ray = this->frustum.CalcViewSpaceRay(UVs);
+
+    ray = this->viewToWorld.TransformRay(ray);
+
+    double shortestRayDistance = std::numeric_limits<double>::max();
+    std::shared_ptr<Object> nearestObject;
+
+    for (std::shared_ptr<Object> object : this->objectArray)
+    {
+        double rayDistance = 0.0;
+        if (object->IsHitByWorldRay(ray, rayDistance) && rayDistance < shortestRayDistance)
+        {
+            shortestRayDistance = rayDistance;
+            nearestObject = object;
+        }
+    }
+
+    return nearestObject;
 }
