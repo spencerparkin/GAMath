@@ -6,6 +6,7 @@
 #include "HappyMath/Vector3.h"
 #include "HappyMath/Matrix4x4.h"
 #include "HappyMath/Frustum.h"
+#include "HappyMath/Ray.h"
 
 class Object;
 class Constraint;
@@ -24,8 +25,12 @@ protected:
     virtual void mousePressEvent(QMouseEvent* event) override;
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void wheelEvent(QWheelEvent* event) override;
 
+    HappyMath::Ray CalcMouseRay(const QPointF& mousePos);
     std::shared_ptr<Object> GetObjectAtMouseLocation(const QPointF& mousePos);
+
+    void PutSelectedObjectUnderMouse(const QPointF& mousePos);
 
     HappyMath::Vector3 cameraEyePos;
     HappyMath::Vector3 cameraLookAt;
@@ -36,7 +41,15 @@ protected:
     std::vector<std::shared_ptr<Constraint>> constraintArray;
     std::weak_ptr<Object> selectedObjectWeakPtr;
 
+    enum DragDisposition
+    {
+        NONE,
+        DRAG_CAMERA,
+        DRAG_OBJECT
+    };
+
     Drawer drawer;
-    bool dragging;
+    DragDisposition dragDisposition;
     QPointF lastMousePos;
+    double distanceToSelectedObject;
 };

@@ -13,7 +13,8 @@ public:
 	virtual ~Object();
 
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const = 0;
-	virtual void Translate(const HappyMath::Vector3& delta) = 0;
+	virtual void SetPosition(const HappyMath::Vector3& position) = 0;
+	virtual HappyMath::Vector3 GetPosition() const = 0;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const = 0;
 
 	HappyMath::Vector3 color;
@@ -26,7 +27,8 @@ public:
 	virtual ~SphereObject();
 
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
-	virtual void Translate(const HappyMath::Vector3& delta) override;
+	virtual void SetPosition(const HappyMath::Vector3& position) override;
+	virtual HappyMath::Vector3 GetPosition() const override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
 
 	C3GA::Sphere sphere;
@@ -39,7 +41,8 @@ public:
 	virtual ~PointObject();
 
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
-	virtual void Translate(const HappyMath::Vector3& delta) override;
+	virtual void SetPosition(const HappyMath::Vector3& position) override;
+	virtual HappyMath::Vector3 GetPosition() const override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
 
 	C3GA::Point point;

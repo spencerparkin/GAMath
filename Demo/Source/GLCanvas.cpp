@@ -7,7 +7,8 @@
 
 GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
-    this->dragging = false;
+    this->dragDisposition = DragDisposition::NONE;
+    this->distanceToSelectedObject = 0.0;
 
     this->cameraEyePos = HappyMath::Vector3(20.0, 20.0, 20.0);
     this->cameraLookAt = HappyMath::Vector3(0.0, 0.0, 0.0);
@@ -126,13 +127,28 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
     switch (event->button())
     {
-        case Qt::MouseButton::RightButton:
+        case Qt::MouseButton::LeftButton:
         {
-            this->dragging = true;
+            if ((event->modifiers() & Qt::ShiftModifier) != 0)
+            {
+                std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
+                if (selectedObject.get())
+                {
+                    this->dragDisposition = DragDisposition::DRAG_OBJECT;
+                    this->distanceToSelectedObject = (this->cameraEyePos - selectedObject->GetPosition()).Length();
+                    this->PutSelectedObjectUnderMouse(event->position());
+                    this->update();
+                }
+            }
+            else
+            {
+                this->dragDisposition = DragDisposition::DRAG_CAMERA;
+            }
+
             this->lastMousePos = event->position();
             break;
         }
-        case Qt::MouseButton::LeftButton:
+        case Qt::MouseButton::RightButton:
         {
             std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
             this->selectedObjectWeakPtr = object;
@@ -144,27 +160,39 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
 /*virtual*/ void GLCanvas::mouseMoveEvent(QMouseEvent* event)
 {
-    if (this->dragging)
+    switch(this->dragDisposition)
     {
-        QPointF currentMousePos = event->position();
-        QPointF mouseDelta = currentMousePos - this->lastMousePos;
-        this->lastMousePos = currentMousePos;
+        case DragDisposition::DRAG_CAMERA:
+        {
+            HappyMath::Vector3 lookVector = this->cameraLookAt - this->cameraEyePos;
+            double length = lookVector.Length();
 
-        HappyMath::Vector3 lookVector = this->cameraLookAt - this->cameraEyePos;
-        double length = lookVector.Length();
+            HappyMath::Vector3 upVector(0.0, 1.0, 0.0);
+            HappyMath::Vector3 xAxis = lookVector.Cross(upVector).Normalized();
+            HappyMath::Vector3 yAxis = xAxis.Cross(lookVector).Normalized();
 
-        HappyMath::Vector3 upVector(0.0, 1.0, 0.0);
-        HappyMath::Vector3 xAxis = lookVector.Cross(upVector).Normalized();
-        HappyMath::Vector3 yAxis = xAxis.Cross(lookVector).Normalized();
+            QPointF currentMousePos = event->position();
+            QPointF mouseDelta = currentMousePos - this->lastMousePos;
+            this->lastMousePos = currentMousePos;
 
-        double sensativity = 0.1;
-        this->cameraEyePos += sensativity * (-xAxis * mouseDelta.x() + yAxis * mouseDelta.y());
+            HappyMath::Vector3 delta = -xAxis * mouseDelta.x() + yAxis * mouseDelta.y();
 
-        HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
-        vector *= length / vector.Length();
-        this->cameraEyePos = this->cameraLookAt + vector;
+            double sensativity = 0.1;
+            this->cameraEyePos += sensativity * delta;
 
-        this->update();
+            HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
+            vector *= length / vector.Length();
+            this->cameraEyePos = this->cameraLookAt + vector;
+
+            this->update();
+            break;
+        }
+        case DragDisposition::DRAG_OBJECT:
+        {
+            this->PutSelectedObjectUnderMouse(event->position());
+            this->update();
+            break;
+        }
     }
 }
 
@@ -172,13 +200,51 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
     switch (event->button())
     {
-    case Qt::MouseButton::RightButton:
-        this->dragging = false;
-        break;
+        case Qt::MouseButton::LeftButton:
+        {
+            this->dragDisposition = DragDisposition::NONE;
+            break;
+        }
     }
 }
 
-std::shared_ptr<Object> GLCanvas::GetObjectAtMouseLocation(const QPointF& mousePos)
+/*virtual*/ void GLCanvas::wheelEvent(QWheelEvent* event)
+{
+    QPoint angleDelta = event->angleDelta();
+
+    HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
+
+    double minDistance = 1.0;
+    double maxDistance = 500.0;
+    double zoomFactor = 0.9;
+
+    if (angleDelta.y() > 0)
+        vector *= zoomFactor;
+    else if (angleDelta.y() < 0)
+        vector /= zoomFactor;
+
+    HappyMath::Vector3 newEyePos = this->cameraLookAt + vector;
+    double distance = (newEyePos - this->cameraLookAt).Length();
+
+    if (distance >= minDistance && distance <= maxDistance)
+    {
+        this->cameraEyePos = newEyePos;
+        this->update();
+    }
+}
+
+void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)
+{
+    std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
+    if (!selectedObject.get())
+        return;
+
+    HappyMath::Ray ray = this->CalcMouseRay(mousePos);
+    HappyMath::Vector3 position = ray.CalculatePoint(this->distanceToSelectedObject);
+    selectedObject->SetPosition(position);
+}
+
+HappyMath::Ray GLCanvas::CalcMouseRay(const QPointF& mousePos)
 {
     this->makeCurrent();
 
@@ -201,6 +267,13 @@ std::shared_ptr<Object> GLCanvas::GetObjectAtMouseLocation(const QPointF& mouseP
     HappyMath::Ray ray = this->frustum.CalcViewSpaceRay(UVs);
 
     ray = this->viewToWorld.TransformRay(ray);
+
+    return ray;
+}
+
+std::shared_ptr<Object> GLCanvas::GetObjectAtMouseLocation(const QPointF& mousePos)
+{
+    HappyMath::Ray ray = this->CalcMouseRay(mousePos);
 
     double shortestRayDistance = std::numeric_limits<double>::max();
     std::shared_ptr<Object> nearestObject;

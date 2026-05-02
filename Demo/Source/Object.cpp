@@ -27,9 +27,14 @@ SphereObject::SphereObject()
 	drawer->DrawSphere(this->sphere.center, this->sphere.radius, usedColor, true);
 }
 
-/*virtual*/ void SphereObject::Translate(const HappyMath::Vector3& delta)
+/*virtual*/ void SphereObject::SetPosition(const HappyMath::Vector3& position)
 {
-	this->sphere.center += delta;
+	this->sphere.center = position;
+}
+
+/*virtual*/ HappyMath::Vector3 SphereObject::GetPosition() const
+{
+	return this->sphere.center;
 }
 
 /*virtual*/ bool SphereObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
@@ -53,9 +58,14 @@ PointObject::PointObject()
 	drawer->DrawPoint(this->point.center, usedColor, false);
 }
 
-/*virtual*/ void PointObject::Translate(const HappyMath::Vector3& delta)
+/*virtual*/ void PointObject::SetPosition(const HappyMath::Vector3& position)
 {
-	this->point.center += delta;
+	this->point.center = position;
+}
+
+/*virtual*/ HappyMath::Vector3 PointObject::GetPosition() const
+{
+	return this->point.center;
 }
 
 /*virtual*/ bool PointObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
