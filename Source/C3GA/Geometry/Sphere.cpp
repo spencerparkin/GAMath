@@ -12,6 +12,7 @@ Sphere::Sphere()
 {
 	this->radius = 1.0;
 	this->weight = 1.0;
+	this->imaginary = false;
 }
 
 Sphere::Sphere(const HappyMath::Vector3& center, double radius, double weight /*= 1.0*/)
@@ -19,6 +20,7 @@ Sphere::Sphere(const HappyMath::Vector3& center, double radius, double weight /*
 	this->center = center;
 	this->radius = radius;
 	this->weight = weight;
+	this->imaginary = false;
 }
 
 Sphere::Sphere(const Sphere& sphere)
@@ -26,6 +28,7 @@ Sphere::Sphere(const Sphere& sphere)
 	this->center = sphere.center;
 	this->radius = sphere.radius;
 	this->weight = sphere.weight;
+	this->imaginary = false;
 }
 
 /*virtual*/ Sphere::~Sphere()
@@ -34,11 +37,13 @@ Sphere::Sphere(const Sphere& sphere)
 
 void Sphere::ToVector(Vector& vector) const
 {
+	double sign = this->imaginary ? -1.0 : 1.0;
+
 	vector.no = this->weight;
 	vector.e1 = this->weight * this->center.x;
 	vector.e2 = this->weight * this->center.y;
 	vector.e3 = this->weight * this->center.z;
-	vector.ni = this->weight * 0.5 * (this->center.SquareLength() - this->radius * this->radius);
+	vector.ni = this->weight * 0.5 * (this->center.SquareLength() - sign * this->radius * this->radius);
 }
 
 bool Sphere::FromVector(const Vector& vector)
@@ -51,8 +56,17 @@ bool Sphere::FromVector(const Vector& vector)
 	this->center.y = vector.e2 / this->weight;
 	this->center.z = vector.e3 / this->weight;
 
-	// STPTODO: What about imaginary spheres?
-	this->radius = sqrt(fabs(this->center.SquareLength() - 2.0 * vector.ni / this->weight));
+	double squareRadius = this->center.SquareLength() - 2.0 * vector.ni / this->weight;
+
+	if (squareRadius >= 0.0)
+		this->imaginary = false;
+	else
+	{
+		this->imaginary = true;
+		squareRadius = -squareRadius;
+	}
+
+	this->radius = sqrt(squareRadius);
 	
 	return true;
 }

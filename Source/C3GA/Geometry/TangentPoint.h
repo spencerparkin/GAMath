@@ -8,7 +8,6 @@ namespace C3GA
 	{
 	public:
 
-
 		HappyMath::Vector3 center;
 		HappyMath::Vector3 normal;
 		double weight;

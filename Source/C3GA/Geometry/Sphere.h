@@ -11,8 +11,6 @@ namespace C3GA
 
 	/**
 	 * These are spheres in 3D conformal geometric algebra.
-	 * Note that if the radius is negative, then they're imaginary.
-	 * If the radius is zero, then it's a point.
 	 */
 	class Sphere
 	{
@@ -32,5 +30,6 @@ namespace C3GA
 		HappyMath::Vector3 center;
 		double radius;
 		double weight;
+		bool imaginary;
 	};
 }

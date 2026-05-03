@@ -23,40 +23,28 @@ FitSphereToPointsConstraint::FitSphereToPointsConstraint()
 
 /*virtual*/ bool FitSphereToPointsConstraint::Enforce()
 {
-	std::shared_ptr<Object> outputObject = this->outputObjectWeakPtr.lock();
-	if (!outputObject.get())
-		return false;
-
-	auto* sphereObject = dynamic_cast<SphereObject*>(outputObject.get());
-	if (!sphereObject)
+	std::shared_ptr<SphereObject> sphereObject = std::dynamic_pointer_cast<SphereObject>(this->outputObjectWeakPtr.lock());
+	if (!sphereObject.get())
 		return false;
 
 	if (this->inputObjectWeakPtrArray.size() != 4)
 		return false;
 
-	std::shared_ptr<Object> inputObjectArray[4] =
-	{
-		this->inputObjectWeakPtrArray[0].lock(),
-		this->inputObjectWeakPtrArray[1].lock(),
-		this->inputObjectWeakPtrArray[2].lock(),
-		this->inputObjectWeakPtrArray[3].lock()
-	};
+	std::shared_ptr<PointObject> pointObjectA = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[0].lock());
+	if (!pointObjectA.get())
+		return false;
 
-	PointObject* pointObjectArray[4] =
-	{
-		dynamic_cast<PointObject*>(inputObjectArray[0].get()),
-		dynamic_cast<PointObject*>(inputObjectArray[1].get()),
-		dynamic_cast<PointObject*>(inputObjectArray[2].get()),
-		dynamic_cast<PointObject*>(inputObjectArray[3].get())
-	};
+	std::shared_ptr<PointObject> pointObjectB = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[1].lock());
+	if (!pointObjectB.get())
+		return false;
 
-	for (int i = 0; i < 4; i++)
-		if (!pointObjectArray[i])
-			return false;
+	std::shared_ptr<PointObject> pointObjectC = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[2].lock());
+	if (!pointObjectC.get())
+		return false;
 
-	return sphereObject->sphere.FitToPoints(
-						pointObjectArray[0]->point,
-						pointObjectArray[1]->point,
-						pointObjectArray[2]->point,
-						pointObjectArray[3]->point);
+	std::shared_ptr<PointObject> pointObjectD = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[3].lock());
+	if (!pointObjectD.get())
+		return false;
+
+	return sphereObject->sphere.FitToPoints(pointObjectA->point, pointObjectB->point, pointObjectC->point, pointObjectD->point);
 }
