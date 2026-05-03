@@ -43,6 +43,8 @@ set(C2GA_SOURCES
 	Source/C2GA/Multivector.h
 	Source/C2GA/PsuedoScalar.cpp
 	Source/C2GA/PsuedoScalar.h
+	Source/C2GA/Rotor.cpp
+	Source/C2GA/Rotor.h
 	Source/C2GA/Scalar.cpp
 	Source/C2GA/Scalar.h
 	Source/C2GA/Trivector.cpp
@@ -60,6 +62,8 @@ set(C3GA_SOURCES
 	Source/C3GA/PsuedoScalar.h
 	Source/C3GA/Quadvector.cpp
 	Source/C3GA/Quadvector.h
+	Source/C3GA/Rotor.cpp
+	Source/C3GA/Rotor.h
 	Source/C3GA/Scalar.cpp
 	Source/C3GA/Scalar.h
 	Source/C3GA/Trivector.cpp
