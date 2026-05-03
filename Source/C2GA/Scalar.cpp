@@ -1,9 +1,12 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Scalar.h"
 #include "Vector.h"
 #include "Bivector.h"
 #include "Trivector.h"
 #include "PsuedoScalar.h"
 #include "Multivector.h"
+#include "Rotor.h"
 
 using namespace C2GA;
 

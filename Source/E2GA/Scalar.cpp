@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Scalar.h"
 #include "PsuedoScalar.h"
 #include "Vector.h"

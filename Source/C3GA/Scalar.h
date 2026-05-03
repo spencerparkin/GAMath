@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #pragma once
 
 namespace C3GA
@@ -8,6 +10,7 @@ namespace C3GA
 	class Quadvector;
 	class PsuedoScalar;
 	class Multivector;
+	class Rotor;
 
 	class Scalar
 	{

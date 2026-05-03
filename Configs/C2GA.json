@@ -69,6 +69,19 @@
 				"e2^no^ni",
 				"e1^e2^no^ni"
 			]
+		},
+		{
+			"name": "Rotor",
+			"basis":
+			[
+				"1",
+				"e1^e2",
+				"e1^no",
+				"e1^ni",
+				"e2^no",
+				"e2^ni",
+				"no^ni"
+			]
 		}
 	]
 }

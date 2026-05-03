@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #pragma once
 
 namespace C2GA
@@ -7,6 +9,7 @@ namespace C2GA
 	class Bivector;
 	class PsuedoScalar;
 	class Multivector;
+	class Rotor;
 
 	class Trivector
 	{
@@ -28,6 +31,8 @@ namespace C2GA
 		void OuterProduct(const Vector& vectorA, const Bivector& bivectorB);
 		void OuterProduct(const Bivector& bivectorA, const Vector& vectorB);
 		void OuterProduct(const Trivector& trivectorA, const Scalar& scalarB);
+		void OuterProduct(const Trivector& trivectorA, const Rotor& rotorB);
+		void OuterProduct(const Rotor& rotorA, const Trivector& trivectorB);
 
 		void GeometricProduct(const Scalar& scalarA, const Trivector& trivectorB);
 		void GeometricProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);

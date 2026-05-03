@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Quadvector.h"
 #include "Scalar.h"
 #include "Vector.h"
@@ -5,6 +7,7 @@
 #include "Trivector.h"
 #include "PsuedoScalar.h"
 #include "Multivector.h"
+#include "Rotor.h"
 
 using namespace C3GA;
 
@@ -132,6 +135,24 @@ void Quadvector::OuterProduct(const Quadvector& quadvectorA, const Scalar& scala
 	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni * scalarB._1;
 	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni * scalarB._1;
 	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni * scalarB._1;
+}
+
+void Quadvector::OuterProduct(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no * rotorB._1;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni * rotorB._1;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni * rotorB._1;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni * rotorB._1;
+}
+
+void Quadvector::OuterProduct(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->e1_e2_e3_no = rotorA._1 * quadvectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = rotorA._1 * quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = rotorA._1 * quadvectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = rotorA._1 * quadvectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = rotorA._1 * quadvectorB.e2_e3_no_ni;
 }
 
 void Quadvector::GeometricProduct(const Scalar& scalarA, const Quadvector& quadvectorB)

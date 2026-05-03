@@ -1,9 +1,12 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Vector.h"
 #include "Scalar.h"
 #include "Bivector.h"
 #include "Trivector.h"
 #include "PsuedoScalar.h"
 #include "Multivector.h"
+#include "Rotor.h"
 
 using namespace C2GA;
 
@@ -71,6 +74,14 @@ void Vector::InnerProduct(const Vector& vectorA, const Bivector& bivectorB)
 	this->ni = vectorA.e1 * bivectorB.e1_ni + vectorA.e2 * bivectorB.e2_ni + (-1.0) * vectorA.ni * bivectorB.no_ni;
 }
 
+void Vector::InnerProduct(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->e1 = vectorA.e1 * rotorB._1 + (-1.0) * vectorA.e2 * rotorB.e1_e2 + vectorA.ni * rotorB.e1_no + vectorA.no * rotorB.e1_ni;
+	this->e2 = vectorA.e1 * rotorB.e1_e2 + vectorA.e2 * rotorB._1 + vectorA.ni * rotorB.e2_no + vectorA.no * rotorB.e2_ni;
+	this->no = vectorA.e1 * rotorB.e1_no + vectorA.e2 * rotorB.e2_no + vectorA.no * rotorB._1 + vectorA.no * rotorB.no_ni;
+	this->ni = vectorA.e1 * rotorB.e1_ni + vectorA.e2 * rotorB.e2_ni + vectorA.ni * rotorB._1 + (-1.0) * vectorA.ni * rotorB.no_ni;
+}
+
 void Vector::InnerProduct(const Bivector& bivectorA, const Vector& vectorB)
 {
 	this->e1 = bivectorA.e1_e2 * vectorB.e2 + (-1.0) * bivectorA.e1_ni * vectorB.no + (-1.0) * bivectorA.e1_no * vectorB.ni;
@@ -109,6 +120,14 @@ void Vector::InnerProduct(const PsuedoScalar& psuedoscalarA, const Trivector& tr
 	this->e2 = (-1.0) * psuedoscalarA.e1_e2_no_ni * trivectorB.e1_no_ni;
 	this->no = psuedoscalarA.e1_e2_no_ni * trivectorB.e1_e2_no;
 	this->ni = (-1.0) * psuedoscalarA.e1_e2_no_ni * trivectorB.e1_e2_ni;
+}
+
+void Vector::InnerProduct(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->e1 = rotorA._1 * vectorB.e1 + rotorA.e1_e2 * vectorB.e2 + (-1.0) * rotorA.e1_ni * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.ni;
+	this->e2 = rotorA._1 * vectorB.e2 + (-1.0) * rotorA.e1_e2 * vectorB.e1 + (-1.0) * rotorA.e2_ni * vectorB.no + (-1.0) * rotorA.e2_no * vectorB.ni;
+	this->no = rotorA._1 * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e1 + (-1.0) * rotorA.e2_no * vectorB.e2 + (-1.0) * rotorA.no_ni * vectorB.no;
+	this->ni = rotorA._1 * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e1 + (-1.0) * rotorA.e2_ni * vectorB.e2 + rotorA.no_ni * vectorB.ni;
 }
 
 void Vector::OuterProduct(const Scalar& scalarA, const Vector& vectorB)

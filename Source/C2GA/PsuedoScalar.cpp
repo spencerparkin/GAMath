@@ -1,9 +1,12 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "PsuedoScalar.h"
 #include "Scalar.h"
 #include "Vector.h"
 #include "Bivector.h"
 #include "Trivector.h"
 #include "Multivector.h"
+#include "Rotor.h"
 
 using namespace C2GA;
 
@@ -72,9 +75,19 @@ void PsuedoScalar::OuterProduct(const PsuedoScalar& psuedoscalarA, const Multive
 	this->e1_e2_no_ni = psuedoscalarA.e1_e2_no_ni * multivectorB._1;
 }
 
+void PsuedoScalar::OuterProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->e1_e2_no_ni = psuedoscalarA.e1_e2_no_ni * rotorB._1;
+}
+
 void PsuedoScalar::OuterProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB)
 {
 	this->e1_e2_no_ni = multivectorA._1 * psuedoscalarB.e1_e2_no_ni;
+}
+
+void PsuedoScalar::OuterProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->e1_e2_no_ni = rotorA._1 * psuedoscalarB.e1_e2_no_ni;
 }
 
 void PsuedoScalar::GeometricProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB)

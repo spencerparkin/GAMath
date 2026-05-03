@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #pragma once
 
 namespace C3GA
@@ -8,6 +10,7 @@ namespace C3GA
 	class Trivector;
 	class Quadvector;
 	class Multivector;
+	class Rotor;
 
 	class PsuedoScalar
 	{
@@ -30,7 +33,9 @@ namespace C3GA
 		void OuterProduct(const Quadvector& quadvectorA, const Vector& vectorB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void OuterProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
+		void OuterProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
 
 		void GeometricProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);

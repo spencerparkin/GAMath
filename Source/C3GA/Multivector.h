@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #pragma once
 
 namespace C3GA
@@ -8,6 +10,7 @@ namespace C3GA
 	class Trivector;
 	class Quadvector;
 	class PsuedoScalar;
+	class Rotor;
 
 	class Multivector
 	{
@@ -21,6 +24,7 @@ namespace C3GA
 		Multivector(const Quadvector& quadvector);
 		Multivector(const PsuedoScalar& psuedoscalar);
 		Multivector(const Multivector& multivector);
+		Multivector(const Rotor& rotor);
 
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 		void Add(const Scalar& scalarA, const Vector& vectorB);
@@ -29,6 +33,7 @@ namespace C3GA
 		void Add(const Scalar& scalarA, const Quadvector& quadvectorB);
 		void Add(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Scalar& scalarA, const Multivector& multivectorB);
+		void Add(const Scalar& scalarA, const Rotor& rotorB);
 		void Add(const Vector& vectorA, const Scalar& scalarB);
 		void Add(const Vector& vectorA, const Vector& vectorB);
 		void Add(const Vector& vectorA, const Bivector& bivectorB);
@@ -36,6 +41,7 @@ namespace C3GA
 		void Add(const Vector& vectorA, const Quadvector& quadvectorB);
 		void Add(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Vector& vectorA, const Multivector& multivectorB);
+		void Add(const Vector& vectorA, const Rotor& rotorB);
 		void Add(const Bivector& bivectorA, const Scalar& scalarB);
 		void Add(const Bivector& bivectorA, const Vector& vectorB);
 		void Add(const Bivector& bivectorA, const Bivector& bivectorB);
@@ -43,6 +49,7 @@ namespace C3GA
 		void Add(const Bivector& bivectorA, const Quadvector& quadvectorB);
 		void Add(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Bivector& bivectorA, const Multivector& multivectorB);
+		void Add(const Bivector& bivectorA, const Rotor& rotorB);
 		void Add(const Trivector& trivectorA, const Scalar& scalarB);
 		void Add(const Trivector& trivectorA, const Vector& vectorB);
 		void Add(const Trivector& trivectorA, const Bivector& bivectorB);
@@ -50,6 +57,7 @@ namespace C3GA
 		void Add(const Trivector& trivectorA, const Quadvector& quadvectorB);
 		void Add(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Trivector& trivectorA, const Multivector& multivectorB);
+		void Add(const Trivector& trivectorA, const Rotor& rotorB);
 		void Add(const Quadvector& quadvectorA, const Scalar& scalarB);
 		void Add(const Quadvector& quadvectorA, const Vector& vectorB);
 		void Add(const Quadvector& quadvectorA, const Bivector& bivectorB);
@@ -57,6 +65,7 @@ namespace C3GA
 		void Add(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
 		void Add(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void Add(const Quadvector& quadvectorA, const Rotor& rotorB);
 		void Add(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void Add(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void Add(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
@@ -64,6 +73,7 @@ namespace C3GA
 		void Add(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
 		void Add(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void Add(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void Add(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void Add(const Multivector& multivectorA, const Scalar& scalarB);
 		void Add(const Multivector& multivectorA, const Vector& vectorB);
 		void Add(const Multivector& multivectorA, const Bivector& bivectorB);
@@ -71,6 +81,15 @@ namespace C3GA
 		void Add(const Multivector& multivectorA, const Quadvector& quadvectorB);
 		void Add(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Multivector& multivectorA, const Multivector& multivectorB);
+		void Add(const Multivector& multivectorA, const Rotor& rotorB);
+		void Add(const Rotor& rotorA, const Scalar& scalarB);
+		void Add(const Rotor& rotorA, const Vector& vectorB);
+		void Add(const Rotor& rotorA, const Bivector& bivectorB);
+		void Add(const Rotor& rotorA, const Trivector& trivectorB);
+		void Add(const Rotor& rotorA, const Quadvector& quadvectorB);
+		void Add(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void Add(const Rotor& rotorA, const Multivector& multivectorB);
+		void Add(const Rotor& rotorA, const Rotor& rotorB);
 
 		void Subtract(const Scalar& scalarA, const Scalar& scalarB);
 		void Subtract(const Scalar& scalarA, const Vector& vectorB);
@@ -79,6 +98,7 @@ namespace C3GA
 		void Subtract(const Scalar& scalarA, const Quadvector& quadvectorB);
 		void Subtract(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Scalar& scalarA, const Multivector& multivectorB);
+		void Subtract(const Scalar& scalarA, const Rotor& rotorB);
 		void Subtract(const Vector& vectorA, const Scalar& scalarB);
 		void Subtract(const Vector& vectorA, const Vector& vectorB);
 		void Subtract(const Vector& vectorA, const Bivector& bivectorB);
@@ -86,6 +106,7 @@ namespace C3GA
 		void Subtract(const Vector& vectorA, const Quadvector& quadvectorB);
 		void Subtract(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Vector& vectorA, const Multivector& multivectorB);
+		void Subtract(const Vector& vectorA, const Rotor& rotorB);
 		void Subtract(const Bivector& bivectorA, const Scalar& scalarB);
 		void Subtract(const Bivector& bivectorA, const Vector& vectorB);
 		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);
@@ -93,6 +114,7 @@ namespace C3GA
 		void Subtract(const Bivector& bivectorA, const Quadvector& quadvectorB);
 		void Subtract(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Bivector& bivectorA, const Multivector& multivectorB);
+		void Subtract(const Bivector& bivectorA, const Rotor& rotorB);
 		void Subtract(const Trivector& trivectorA, const Scalar& scalarB);
 		void Subtract(const Trivector& trivectorA, const Vector& vectorB);
 		void Subtract(const Trivector& trivectorA, const Bivector& bivectorB);
@@ -100,6 +122,7 @@ namespace C3GA
 		void Subtract(const Trivector& trivectorA, const Quadvector& quadvectorB);
 		void Subtract(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Trivector& trivectorA, const Multivector& multivectorB);
+		void Subtract(const Trivector& trivectorA, const Rotor& rotorB);
 		void Subtract(const Quadvector& quadvectorA, const Scalar& scalarB);
 		void Subtract(const Quadvector& quadvectorA, const Vector& vectorB);
 		void Subtract(const Quadvector& quadvectorA, const Bivector& bivectorB);
@@ -107,6 +130,7 @@ namespace C3GA
 		void Subtract(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
 		void Subtract(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void Subtract(const Quadvector& quadvectorA, const Rotor& rotorB);
 		void Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void Subtract(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void Subtract(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
@@ -114,6 +138,7 @@ namespace C3GA
 		void Subtract(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
 		void Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void Subtract(const Multivector& multivectorA, const Scalar& scalarB);
 		void Subtract(const Multivector& multivectorA, const Vector& vectorB);
 		void Subtract(const Multivector& multivectorA, const Bivector& bivectorB);
@@ -121,6 +146,15 @@ namespace C3GA
 		void Subtract(const Multivector& multivectorA, const Quadvector& quadvectorB);
 		void Subtract(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void Subtract(const Multivector& multivectorA, const Multivector& multivectorB);
+		void Subtract(const Multivector& multivectorA, const Rotor& rotorB);
+		void Subtract(const Rotor& rotorA, const Scalar& scalarB);
+		void Subtract(const Rotor& rotorA, const Vector& vectorB);
+		void Subtract(const Rotor& rotorA, const Bivector& bivectorB);
+		void Subtract(const Rotor& rotorA, const Trivector& trivectorB);
+		void Subtract(const Rotor& rotorA, const Quadvector& quadvectorB);
+		void Subtract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void Subtract(const Rotor& rotorA, const Multivector& multivectorB);
+		void Subtract(const Rotor& rotorA, const Rotor& rotorB);
 
 		void InnerProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void InnerProduct(const Scalar& scalarA, const Vector& vectorB);
@@ -129,6 +163,7 @@ namespace C3GA
 		void InnerProduct(const Scalar& scalarA, const Quadvector& quadvectorB);
 		void InnerProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Scalar& scalarA, const Multivector& multivectorB);
+		void InnerProduct(const Scalar& scalarA, const Rotor& rotorB);
 		void InnerProduct(const Vector& vectorA, const Scalar& scalarB);
 		void InnerProduct(const Vector& vectorA, const Vector& vectorB);
 		void InnerProduct(const Vector& vectorA, const Bivector& bivectorB);
@@ -136,6 +171,7 @@ namespace C3GA
 		void InnerProduct(const Vector& vectorA, const Quadvector& quadvectorB);
 		void InnerProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Vector& vectorA, const Multivector& multivectorB);
+		void InnerProduct(const Vector& vectorA, const Rotor& rotorB);
 		void InnerProduct(const Bivector& bivectorA, const Scalar& scalarB);
 		void InnerProduct(const Bivector& bivectorA, const Vector& vectorB);
 		void InnerProduct(const Bivector& bivectorA, const Bivector& bivectorB);
@@ -143,6 +179,7 @@ namespace C3GA
 		void InnerProduct(const Bivector& bivectorA, const Quadvector& quadvectorB);
 		void InnerProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Bivector& bivectorA, const Multivector& multivectorB);
+		void InnerProduct(const Bivector& bivectorA, const Rotor& rotorB);
 		void InnerProduct(const Trivector& trivectorA, const Scalar& scalarB);
 		void InnerProduct(const Trivector& trivectorA, const Vector& vectorB);
 		void InnerProduct(const Trivector& trivectorA, const Bivector& bivectorB);
@@ -150,6 +187,7 @@ namespace C3GA
 		void InnerProduct(const Trivector& trivectorA, const Quadvector& quadvectorB);
 		void InnerProduct(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Trivector& trivectorA, const Multivector& multivectorB);
+		void InnerProduct(const Trivector& trivectorA, const Rotor& rotorB);
 		void InnerProduct(const Quadvector& quadvectorA, const Scalar& scalarB);
 		void InnerProduct(const Quadvector& quadvectorA, const Vector& vectorB);
 		void InnerProduct(const Quadvector& quadvectorA, const Bivector& bivectorB);
@@ -157,6 +195,7 @@ namespace C3GA
 		void InnerProduct(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
 		void InnerProduct(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void InnerProduct(const Quadvector& quadvectorA, const Rotor& rotorB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
@@ -164,6 +203,7 @@ namespace C3GA
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void InnerProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void InnerProduct(const Multivector& multivectorA, const Scalar& scalarB);
 		void InnerProduct(const Multivector& multivectorA, const Vector& vectorB);
 		void InnerProduct(const Multivector& multivectorA, const Bivector& bivectorB);
@@ -171,6 +211,15 @@ namespace C3GA
 		void InnerProduct(const Multivector& multivectorA, const Quadvector& quadvectorB);
 		void InnerProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void InnerProduct(const Multivector& multivectorA, const Multivector& multivectorB);
+		void InnerProduct(const Multivector& multivectorA, const Rotor& rotorB);
+		void InnerProduct(const Rotor& rotorA, const Scalar& scalarB);
+		void InnerProduct(const Rotor& rotorA, const Vector& vectorB);
+		void InnerProduct(const Rotor& rotorA, const Bivector& bivectorB);
+		void InnerProduct(const Rotor& rotorA, const Trivector& trivectorB);
+		void InnerProduct(const Rotor& rotorA, const Quadvector& quadvectorB);
+		void InnerProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void InnerProduct(const Rotor& rotorA, const Multivector& multivectorB);
+		void InnerProduct(const Rotor& rotorA, const Rotor& rotorB);
 
 		void OuterProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void OuterProduct(const Scalar& scalarA, const Vector& vectorB);
@@ -179,6 +228,7 @@ namespace C3GA
 		void OuterProduct(const Scalar& scalarA, const Quadvector& quadvectorB);
 		void OuterProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Scalar& scalarA, const Multivector& multivectorB);
+		void OuterProduct(const Scalar& scalarA, const Rotor& rotorB);
 		void OuterProduct(const Vector& vectorA, const Scalar& scalarB);
 		void OuterProduct(const Vector& vectorA, const Vector& vectorB);
 		void OuterProduct(const Vector& vectorA, const Bivector& bivectorB);
@@ -186,6 +236,7 @@ namespace C3GA
 		void OuterProduct(const Vector& vectorA, const Quadvector& quadvectorB);
 		void OuterProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Vector& vectorA, const Multivector& multivectorB);
+		void OuterProduct(const Vector& vectorA, const Rotor& rotorB);
 		void OuterProduct(const Bivector& bivectorA, const Scalar& scalarB);
 		void OuterProduct(const Bivector& bivectorA, const Vector& vectorB);
 		void OuterProduct(const Bivector& bivectorA, const Bivector& bivectorB);
@@ -193,6 +244,7 @@ namespace C3GA
 		void OuterProduct(const Bivector& bivectorA, const Quadvector& quadvectorB);
 		void OuterProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Bivector& bivectorA, const Multivector& multivectorB);
+		void OuterProduct(const Bivector& bivectorA, const Rotor& rotorB);
 		void OuterProduct(const Trivector& trivectorA, const Scalar& scalarB);
 		void OuterProduct(const Trivector& trivectorA, const Vector& vectorB);
 		void OuterProduct(const Trivector& trivectorA, const Bivector& bivectorB);
@@ -200,6 +252,7 @@ namespace C3GA
 		void OuterProduct(const Trivector& trivectorA, const Quadvector& quadvectorB);
 		void OuterProduct(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Trivector& trivectorA, const Multivector& multivectorB);
+		void OuterProduct(const Trivector& trivectorA, const Rotor& rotorB);
 		void OuterProduct(const Quadvector& quadvectorA, const Scalar& scalarB);
 		void OuterProduct(const Quadvector& quadvectorA, const Vector& vectorB);
 		void OuterProduct(const Quadvector& quadvectorA, const Bivector& bivectorB);
@@ -207,6 +260,7 @@ namespace C3GA
 		void OuterProduct(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
 		void OuterProduct(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void OuterProduct(const Quadvector& quadvectorA, const Rotor& rotorB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
@@ -214,6 +268,7 @@ namespace C3GA
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void OuterProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void OuterProduct(const Multivector& multivectorA, const Scalar& scalarB);
 		void OuterProduct(const Multivector& multivectorA, const Vector& vectorB);
 		void OuterProduct(const Multivector& multivectorA, const Bivector& bivectorB);
@@ -221,6 +276,15 @@ namespace C3GA
 		void OuterProduct(const Multivector& multivectorA, const Quadvector& quadvectorB);
 		void OuterProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void OuterProduct(const Multivector& multivectorA, const Multivector& multivectorB);
+		void OuterProduct(const Multivector& multivectorA, const Rotor& rotorB);
+		void OuterProduct(const Rotor& rotorA, const Scalar& scalarB);
+		void OuterProduct(const Rotor& rotorA, const Vector& vectorB);
+		void OuterProduct(const Rotor& rotorA, const Bivector& bivectorB);
+		void OuterProduct(const Rotor& rotorA, const Trivector& trivectorB);
+		void OuterProduct(const Rotor& rotorA, const Quadvector& quadvectorB);
+		void OuterProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void OuterProduct(const Rotor& rotorA, const Multivector& multivectorB);
+		void OuterProduct(const Rotor& rotorA, const Rotor& rotorB);
 
 		void GeometricProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void GeometricProduct(const Scalar& scalarA, const Vector& vectorB);
@@ -229,6 +293,7 @@ namespace C3GA
 		void GeometricProduct(const Scalar& scalarA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Scalar& scalarA, const Multivector& multivectorB);
+		void GeometricProduct(const Scalar& scalarA, const Rotor& rotorB);
 		void GeometricProduct(const Vector& vectorA, const Scalar& scalarB);
 		void GeometricProduct(const Vector& vectorA, const Vector& vectorB);
 		void GeometricProduct(const Vector& vectorA, const Bivector& bivectorB);
@@ -236,6 +301,7 @@ namespace C3GA
 		void GeometricProduct(const Vector& vectorA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Vector& vectorA, const Multivector& multivectorB);
+		void GeometricProduct(const Vector& vectorA, const Rotor& rotorB);
 		void GeometricProduct(const Bivector& bivectorA, const Scalar& scalarB);
 		void GeometricProduct(const Bivector& bivectorA, const Vector& vectorB);
 		void GeometricProduct(const Bivector& bivectorA, const Bivector& bivectorB);
@@ -243,6 +309,7 @@ namespace C3GA
 		void GeometricProduct(const Bivector& bivectorA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Bivector& bivectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Bivector& bivectorA, const Multivector& multivectorB);
+		void GeometricProduct(const Bivector& bivectorA, const Rotor& rotorB);
 		void GeometricProduct(const Trivector& trivectorA, const Scalar& scalarB);
 		void GeometricProduct(const Trivector& trivectorA, const Vector& vectorB);
 		void GeometricProduct(const Trivector& trivectorA, const Bivector& bivectorB);
@@ -250,6 +317,7 @@ namespace C3GA
 		void GeometricProduct(const Trivector& trivectorA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Trivector& trivectorA, const Multivector& multivectorB);
+		void GeometricProduct(const Trivector& trivectorA, const Rotor& rotorB);
 		void GeometricProduct(const Quadvector& quadvectorA, const Scalar& scalarB);
 		void GeometricProduct(const Quadvector& quadvectorA, const Vector& vectorB);
 		void GeometricProduct(const Quadvector& quadvectorA, const Bivector& bivectorB);
@@ -257,6 +325,7 @@ namespace C3GA
 		void GeometricProduct(const Quadvector& quadvectorA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Quadvector& quadvectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Quadvector& quadvectorA, const Multivector& multivectorB);
+		void GeometricProduct(const Quadvector& quadvectorA, const Rotor& rotorB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Vector& vectorB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Bivector& bivectorB);
@@ -264,6 +333,7 @@ namespace C3GA
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Quadvector& quadvectorB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Multivector& multivectorB);
+		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB);
 		void GeometricProduct(const Multivector& multivectorA, const Scalar& scalarB);
 		void GeometricProduct(const Multivector& multivectorA, const Vector& vectorB);
 		void GeometricProduct(const Multivector& multivectorA, const Bivector& bivectorB);
@@ -271,6 +341,15 @@ namespace C3GA
 		void GeometricProduct(const Multivector& multivectorA, const Quadvector& quadvectorB);
 		void GeometricProduct(const Multivector& multivectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Multivector& multivectorA, const Multivector& multivectorB);
+		void GeometricProduct(const Multivector& multivectorA, const Rotor& rotorB);
+		void GeometricProduct(const Rotor& rotorA, const Scalar& scalarB);
+		void GeometricProduct(const Rotor& rotorA, const Vector& vectorB);
+		void GeometricProduct(const Rotor& rotorA, const Bivector& bivectorB);
+		void GeometricProduct(const Rotor& rotorA, const Trivector& trivectorB);
+		void GeometricProduct(const Rotor& rotorA, const Quadvector& quadvectorB);
+		void GeometricProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
+		void GeometricProduct(const Rotor& rotorA, const Multivector& multivectorB);
+		void GeometricProduct(const Rotor& rotorA, const Rotor& rotorB);
 
 		double _1, e1, e2, e3, no, ni, e1_e2, e1_e3, e1_no, e1_ni, e2_e3, e2_no, e2_ni, e3_no, e3_ni, no_ni, e1_e2_e3, e1_e2_no, e1_e2_ni, e1_e3_no, e1_e3_ni, e1_no_ni, e2_e3_no, e2_e3_ni, e2_no_ni, e3_no_ni, e1_e2_e3_no, e1_e2_e3_ni, e1_e2_no_ni, e1_e3_no_ni, e2_e3_no_ni, e1_e2_e3_no_ni;
 	};

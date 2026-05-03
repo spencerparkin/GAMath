@@ -1,9 +1,12 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Trivector.h"
 #include "Scalar.h"
 #include "Vector.h"
 #include "Bivector.h"
 #include "PsuedoScalar.h"
 #include "Multivector.h"
+#include "Rotor.h"
 
 using namespace C2GA;
 
@@ -109,6 +112,22 @@ void Trivector::OuterProduct(const Trivector& trivectorA, const Scalar& scalarB)
 	this->e1_e2_ni = trivectorA.e1_e2_ni * scalarB._1;
 	this->e1_no_ni = trivectorA.e1_no_ni * scalarB._1;
 	this->e2_no_ni = trivectorA.e2_no_ni * scalarB._1;
+}
+
+void Trivector::OuterProduct(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->e1_e2_no = trivectorA.e1_e2_no * rotorB._1;
+	this->e1_e2_ni = trivectorA.e1_e2_ni * rotorB._1;
+	this->e1_no_ni = trivectorA.e1_no_ni * rotorB._1;
+	this->e2_no_ni = trivectorA.e2_no_ni * rotorB._1;
+}
+
+void Trivector::OuterProduct(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->e1_e2_no = rotorA._1 * trivectorB.e1_e2_no;
+	this->e1_e2_ni = rotorA._1 * trivectorB.e1_e2_ni;
+	this->e1_no_ni = rotorA._1 * trivectorB.e1_no_ni;
+	this->e2_no_ni = rotorA._1 * trivectorB.e2_no_ni;
 }
 
 void Trivector::GeometricProduct(const Scalar& scalarA, const Trivector& trivectorB)

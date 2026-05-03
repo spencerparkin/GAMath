@@ -1,3 +1,5 @@
+// NOTE: This is a generated source file!  Any edits you make will not be preserved.
+
 #include "Multivector.h"
 #include "Scalar.h"
 #include "Vector.h"
@@ -5,6 +7,7 @@
 #include "Trivector.h"
 #include "Quadvector.h"
 #include "PsuedoScalar.h"
+#include "Rotor.h"
 
 using namespace C3GA;
 
@@ -332,6 +335,42 @@ Multivector::Multivector(const Multivector& multivector)
 	this->e1_e2_e3_no_ni = multivector.e1_e2_e3_no_ni;
 }
 
+Multivector::Multivector(const Rotor& rotor)
+{
+	this->_1 = rotor._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotor.e1_e2;
+	this->e1_e3 = rotor.e1_e3;
+	this->e1_no = rotor.e1_no;
+	this->e1_ni = rotor.e1_ni;
+	this->e2_e3 = rotor.e2_e3;
+	this->e2_no = rotor.e2_no;
+	this->e2_ni = rotor.e2_ni;
+	this->e3_no = rotor.e3_no;
+	this->e3_ni = rotor.e3_ni;
+	this->no_ni = rotor.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;
@@ -582,6 +621,42 @@ void Multivector::Add(const Scalar& scalarA, const Multivector& multivectorB)
 	this->e1_e3_no_ni = multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Scalar& scalarA, const Rotor& rotorB)
+{
+	this->_1 = scalarA._1 + rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e3 = rotorB.e1_e3;
+	this->e1_no = rotorB.e1_no;
+	this->e1_ni = rotorB.e1_ni;
+	this->e2_e3 = rotorB.e2_e3;
+	this->e2_no = rotorB.e2_no;
+	this->e2_ni = rotorB.e2_ni;
+	this->e3_no = rotorB.e3_no;
+	this->e3_ni = rotorB.e3_ni;
+	this->no_ni = rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Add(const Vector& vectorA, const Scalar& scalarB)
@@ -836,6 +911,42 @@ void Multivector::Add(const Vector& vectorA, const Multivector& multivectorB)
 	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Add(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->_1 = rotorB._1;
+	this->e1 = vectorA.e1;
+	this->e2 = vectorA.e2;
+	this->e3 = vectorA.e3;
+	this->no = vectorA.no;
+	this->ni = vectorA.ni;
+	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e3 = rotorB.e1_e3;
+	this->e1_no = rotorB.e1_no;
+	this->e1_ni = rotorB.e1_ni;
+	this->e2_e3 = rotorB.e2_e3;
+	this->e2_no = rotorB.e2_no;
+	this->e2_ni = rotorB.e2_ni;
+	this->e3_no = rotorB.e3_no;
+	this->e3_ni = rotorB.e3_ni;
+	this->no_ni = rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Add(const Bivector& bivectorA, const Scalar& scalarB)
 {
 	this->_1 = scalarB._1;
@@ -1086,6 +1197,42 @@ void Multivector::Add(const Bivector& bivectorA, const Multivector& multivectorB
 	this->e1_e3_no_ni = multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Bivector& bivectorA, const Rotor& rotorB)
+{
+	this->_1 = rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = bivectorA.e1_e2 + rotorB.e1_e2;
+	this->e1_e3 = bivectorA.e1_e3 + rotorB.e1_e3;
+	this->e1_no = bivectorA.e1_no + rotorB.e1_no;
+	this->e1_ni = bivectorA.e1_ni + rotorB.e1_ni;
+	this->e2_e3 = bivectorA.e2_e3 + rotorB.e2_e3;
+	this->e2_no = bivectorA.e2_no + rotorB.e2_no;
+	this->e2_ni = bivectorA.e2_ni + rotorB.e2_ni;
+	this->e3_no = bivectorA.e3_no + rotorB.e3_no;
+	this->e3_ni = bivectorA.e3_ni + rotorB.e3_ni;
+	this->no_ni = bivectorA.no_ni + rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Add(const Trivector& trivectorA, const Scalar& scalarB)
@@ -1340,6 +1487,42 @@ void Multivector::Add(const Trivector& trivectorA, const Multivector& multivecto
 	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Add(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->_1 = rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e3 = rotorB.e1_e3;
+	this->e1_no = rotorB.e1_no;
+	this->e1_ni = rotorB.e1_ni;
+	this->e2_e3 = rotorB.e2_e3;
+	this->e2_no = rotorB.e2_no;
+	this->e2_ni = rotorB.e2_ni;
+	this->e3_no = rotorB.e3_no;
+	this->e3_ni = rotorB.e3_ni;
+	this->no_ni = rotorB.no_ni;
+	this->e1_e2_e3 = trivectorA.e1_e2_e3;
+	this->e1_e2_no = trivectorA.e1_e2_no;
+	this->e1_e2_ni = trivectorA.e1_e2_ni;
+	this->e1_e3_no = trivectorA.e1_e3_no;
+	this->e1_e3_ni = trivectorA.e1_e3_ni;
+	this->e1_no_ni = trivectorA.e1_no_ni;
+	this->e2_e3_no = trivectorA.e2_e3_no;
+	this->e2_e3_ni = trivectorA.e2_e3_ni;
+	this->e2_no_ni = trivectorA.e2_no_ni;
+	this->e3_no_ni = trivectorA.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Add(const Quadvector& quadvectorA, const Scalar& scalarB)
 {
 	this->_1 = scalarB._1;
@@ -1590,6 +1773,42 @@ void Multivector::Add(const Quadvector& quadvectorA, const Multivector& multivec
 	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni + multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni + multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->_1 = rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e3 = rotorB.e1_e3;
+	this->e1_no = rotorB.e1_no;
+	this->e1_ni = rotorB.e1_ni;
+	this->e2_e3 = rotorB.e2_e3;
+	this->e2_no = rotorB.e2_no;
+	this->e2_ni = rotorB.e2_ni;
+	this->e3_no = rotorB.e3_no;
+	this->e3_ni = rotorB.e3_ni;
+	this->no_ni = rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Add(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
@@ -1844,6 +2063,42 @@ void Multivector::Add(const PsuedoScalar& psuedoscalarA, const Multivector& mult
 	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni + multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Add(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->_1 = rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorB.e1_e2;
+	this->e1_e3 = rotorB.e1_e3;
+	this->e1_no = rotorB.e1_no;
+	this->e1_ni = rotorB.e1_ni;
+	this->e2_e3 = rotorB.e2_e3;
+	this->e2_no = rotorB.e2_no;
+	this->e2_ni = rotorB.e2_ni;
+	this->e3_no = rotorB.e3_no;
+	this->e3_ni = rotorB.e3_ni;
+	this->no_ni = rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni;
+}
+
 void Multivector::Add(const Multivector& multivectorA, const Scalar& scalarB)
 {
 	this->_1 = multivectorA._1 + scalarB._1;
@@ -2094,6 +2349,330 @@ void Multivector::Add(const Multivector& multivectorA, const Multivector& multiv
 	this->e1_e3_no_ni = multivectorA.e1_e3_no_ni + multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = multivectorA.e2_e3_no_ni + multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = multivectorA.e1_e2_e3_no_ni + multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Multivector& multivectorA, const Rotor& rotorB)
+{
+	this->_1 = multivectorA._1 + rotorB._1;
+	this->e1 = multivectorA.e1;
+	this->e2 = multivectorA.e2;
+	this->e3 = multivectorA.e3;
+	this->no = multivectorA.no;
+	this->ni = multivectorA.ni;
+	this->e1_e2 = multivectorA.e1_e2 + rotorB.e1_e2;
+	this->e1_e3 = multivectorA.e1_e3 + rotorB.e1_e3;
+	this->e1_no = multivectorA.e1_no + rotorB.e1_no;
+	this->e1_ni = multivectorA.e1_ni + rotorB.e1_ni;
+	this->e2_e3 = multivectorA.e2_e3 + rotorB.e2_e3;
+	this->e2_no = multivectorA.e2_no + rotorB.e2_no;
+	this->e2_ni = multivectorA.e2_ni + rotorB.e2_ni;
+	this->e3_no = multivectorA.e3_no + rotorB.e3_no;
+	this->e3_ni = multivectorA.e3_ni + rotorB.e3_ni;
+	this->no_ni = multivectorA.no_ni + rotorB.no_ni;
+	this->e1_e2_e3 = multivectorA.e1_e2_e3;
+	this->e1_e2_no = multivectorA.e1_e2_no;
+	this->e1_e2_ni = multivectorA.e1_e2_ni;
+	this->e1_e3_no = multivectorA.e1_e3_no;
+	this->e1_e3_ni = multivectorA.e1_e3_ni;
+	this->e1_no_ni = multivectorA.e1_no_ni;
+	this->e2_e3_no = multivectorA.e2_e3_no;
+	this->e2_e3_ni = multivectorA.e2_e3_ni;
+	this->e2_no_ni = multivectorA.e2_no_ni;
+	this->e3_no_ni = multivectorA.e3_no_ni;
+	this->e1_e2_e3_no = multivectorA.e1_e2_e3_no;
+	this->e1_e2_e3_ni = multivectorA.e1_e2_e3_ni;
+	this->e1_e2_no_ni = multivectorA.e1_e2_no_ni;
+	this->e1_e3_no_ni = multivectorA.e1_e3_no_ni;
+	this->e2_e3_no_ni = multivectorA.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = multivectorA.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Scalar& scalarB)
+{
+	this->_1 = rotorA._1 + scalarB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = vectorB.e1;
+	this->e2 = vectorB.e2;
+	this->e3 = vectorB.e3;
+	this->no = vectorB.no;
+	this->ni = vectorB.ni;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Bivector& bivectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 + bivectorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 + bivectorB.e1_e3;
+	this->e1_no = rotorA.e1_no + bivectorB.e1_no;
+	this->e1_ni = rotorA.e1_ni + bivectorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 + bivectorB.e2_e3;
+	this->e2_no = rotorA.e2_no + bivectorB.e2_no;
+	this->e2_ni = rotorA.e2_ni + bivectorB.e2_ni;
+	this->e3_no = rotorA.e3_no + bivectorB.e3_no;
+	this->e3_ni = rotorA.e3_ni + bivectorB.e3_ni;
+	this->no_ni = rotorA.no_ni + bivectorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = trivectorB.e1_e2_e3;
+	this->e1_e2_no = trivectorB.e1_e2_no;
+	this->e1_e2_ni = trivectorB.e1_e2_ni;
+	this->e1_e3_no = trivectorB.e1_e3_no;
+	this->e1_e3_ni = trivectorB.e1_e3_ni;
+	this->e1_no_ni = trivectorB.e1_no_ni;
+	this->e2_e3_no = trivectorB.e2_e3_no;
+	this->e2_e3_ni = trivectorB.e2_e3_ni;
+	this->e2_no_ni = trivectorB.e2_no_ni;
+	this->e3_no_ni = trivectorB.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = quadvectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = quadvectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Add(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Multivector& multivectorB)
+{
+	this->_1 = rotorA._1 + multivectorB._1;
+	this->e1 = multivectorB.e1;
+	this->e2 = multivectorB.e2;
+	this->e3 = multivectorB.e3;
+	this->no = multivectorB.no;
+	this->ni = multivectorB.ni;
+	this->e1_e2 = rotorA.e1_e2 + multivectorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 + multivectorB.e1_e3;
+	this->e1_no = rotorA.e1_no + multivectorB.e1_no;
+	this->e1_ni = rotorA.e1_ni + multivectorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 + multivectorB.e2_e3;
+	this->e2_no = rotorA.e2_no + multivectorB.e2_no;
+	this->e2_ni = rotorA.e2_ni + multivectorB.e2_ni;
+	this->e3_no = rotorA.e3_no + multivectorB.e3_no;
+	this->e3_ni = rotorA.e3_ni + multivectorB.e3_ni;
+	this->no_ni = rotorA.no_ni + multivectorB.no_ni;
+	this->e1_e2_e3 = multivectorB.e1_e2_e3;
+	this->e1_e2_no = multivectorB.e1_e2_no;
+	this->e1_e2_ni = multivectorB.e1_e2_ni;
+	this->e1_e3_no = multivectorB.e1_e3_no;
+	this->e1_e3_ni = multivectorB.e1_e3_ni;
+	this->e1_no_ni = multivectorB.e1_no_ni;
+	this->e2_e3_no = multivectorB.e2_e3_no;
+	this->e2_e3_ni = multivectorB.e2_e3_ni;
+	this->e2_no_ni = multivectorB.e2_no_ni;
+	this->e3_no_ni = multivectorB.e3_no_ni;
+	this->e1_e2_e3_no = multivectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = multivectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = multivectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = multivectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = multivectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Add(const Rotor& rotorA, const Rotor& rotorB)
+{
+	this->_1 = rotorA._1 + rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 + rotorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 + rotorB.e1_e3;
+	this->e1_no = rotorA.e1_no + rotorB.e1_no;
+	this->e1_ni = rotorA.e1_ni + rotorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 + rotorB.e2_e3;
+	this->e2_no = rotorA.e2_no + rotorB.e2_no;
+	this->e2_ni = rotorA.e2_ni + rotorB.e2_ni;
+	this->e3_no = rotorA.e3_no + rotorB.e3_no;
+	this->e3_ni = rotorA.e3_ni + rotorB.e3_ni;
+	this->no_ni = rotorA.no_ni + rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Subtract(const Scalar& scalarA, const Scalar& scalarB)
@@ -2348,6 +2927,42 @@ void Multivector::Subtract(const Scalar& scalarA, const Multivector& multivector
 	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Subtract(const Scalar& scalarA, const Rotor& rotorB)
+{
+	this->_1 = scalarA._1 - rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e1_e3 = -rotorB.e1_e3;
+	this->e1_no = -rotorB.e1_no;
+	this->e1_ni = -rotorB.e1_ni;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e2_no = -rotorB.e2_no;
+	this->e2_ni = -rotorB.e2_ni;
+	this->e3_no = -rotorB.e3_no;
+	this->e3_ni = -rotorB.e3_ni;
+	this->no_ni = -rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Subtract(const Vector& vectorA, const Scalar& scalarB)
 {
 	this->_1 = -scalarB._1;
@@ -2598,6 +3213,42 @@ void Multivector::Subtract(const Vector& vectorA, const Multivector& multivector
 	this->e1_e3_no_ni = -multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = -multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->_1 = -rotorB._1;
+	this->e1 = vectorA.e1;
+	this->e2 = vectorA.e2;
+	this->e3 = vectorA.e3;
+	this->no = vectorA.no;
+	this->ni = vectorA.ni;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e1_e3 = -rotorB.e1_e3;
+	this->e1_no = -rotorB.e1_no;
+	this->e1_ni = -rotorB.e1_ni;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e2_no = -rotorB.e2_no;
+	this->e2_ni = -rotorB.e2_ni;
+	this->e3_no = -rotorB.e3_no;
+	this->e3_ni = -rotorB.e3_ni;
+	this->no_ni = -rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Subtract(const Bivector& bivectorA, const Scalar& scalarB)
@@ -2852,6 +3503,42 @@ void Multivector::Subtract(const Bivector& bivectorA, const Multivector& multive
 	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Subtract(const Bivector& bivectorA, const Rotor& rotorB)
+{
+	this->_1 = -rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = bivectorA.e1_e2 - rotorB.e1_e2;
+	this->e1_e3 = bivectorA.e1_e3 - rotorB.e1_e3;
+	this->e1_no = bivectorA.e1_no - rotorB.e1_no;
+	this->e1_ni = bivectorA.e1_ni - rotorB.e1_ni;
+	this->e2_e3 = bivectorA.e2_e3 - rotorB.e2_e3;
+	this->e2_no = bivectorA.e2_no - rotorB.e2_no;
+	this->e2_ni = bivectorA.e2_ni - rotorB.e2_ni;
+	this->e3_no = bivectorA.e3_no - rotorB.e3_no;
+	this->e3_ni = bivectorA.e3_ni - rotorB.e3_ni;
+	this->no_ni = bivectorA.no_ni - rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Subtract(const Trivector& trivectorA, const Scalar& scalarB)
 {
 	this->_1 = -scalarB._1;
@@ -3102,6 +3789,42 @@ void Multivector::Subtract(const Trivector& trivectorA, const Multivector& multi
 	this->e1_e3_no_ni = -multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = -multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->_1 = -rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e1_e3 = -rotorB.e1_e3;
+	this->e1_no = -rotorB.e1_no;
+	this->e1_ni = -rotorB.e1_ni;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e2_no = -rotorB.e2_no;
+	this->e2_ni = -rotorB.e2_ni;
+	this->e3_no = -rotorB.e3_no;
+	this->e3_ni = -rotorB.e3_ni;
+	this->no_ni = -rotorB.no_ni;
+	this->e1_e2_e3 = trivectorA.e1_e2_e3;
+	this->e1_e2_no = trivectorA.e1_e2_no;
+	this->e1_e2_ni = trivectorA.e1_e2_ni;
+	this->e1_e3_no = trivectorA.e1_e3_no;
+	this->e1_e3_ni = trivectorA.e1_e3_ni;
+	this->e1_no_ni = trivectorA.e1_no_ni;
+	this->e2_e3_no = trivectorA.e2_e3_no;
+	this->e2_e3_ni = trivectorA.e2_e3_ni;
+	this->e2_no_ni = trivectorA.e2_no_ni;
+	this->e3_no_ni = trivectorA.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::Subtract(const Quadvector& quadvectorA, const Scalar& scalarB)
@@ -3356,6 +4079,42 @@ void Multivector::Subtract(const Quadvector& quadvectorA, const Multivector& mul
 	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Subtract(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->_1 = -rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e1_e3 = -rotorB.e1_e3;
+	this->e1_no = -rotorB.e1_no;
+	this->e1_ni = -rotorB.e1_ni;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e2_no = -rotorB.e2_no;
+	this->e2_ni = -rotorB.e2_ni;
+	this->e3_no = -rotorB.e3_no;
+	this->e3_ni = -rotorB.e3_ni;
+	this->no_ni = -rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
 {
 	this->_1 = -scalarB._1;
@@ -3606,6 +4365,42 @@ void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Multivector&
 	this->e1_e3_no_ni = -multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = -multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni - multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->_1 = -rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = -rotorB.e1_e2;
+	this->e1_e3 = -rotorB.e1_e3;
+	this->e1_no = -rotorB.e1_no;
+	this->e1_ni = -rotorB.e1_ni;
+	this->e2_e3 = -rotorB.e2_e3;
+	this->e2_no = -rotorB.e2_no;
+	this->e2_ni = -rotorB.e2_ni;
+	this->e3_no = -rotorB.e3_no;
+	this->e3_ni = -rotorB.e3_ni;
+	this->no_ni = -rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni;
 }
 
 void Multivector::Subtract(const Multivector& multivectorA, const Scalar& scalarB)
@@ -3860,6 +4655,330 @@ void Multivector::Subtract(const Multivector& multivectorA, const Multivector& m
 	this->e1_e2_e3_no_ni = multivectorA.e1_e2_e3_no_ni - multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::Subtract(const Multivector& multivectorA, const Rotor& rotorB)
+{
+	this->_1 = multivectorA._1 - rotorB._1;
+	this->e1 = multivectorA.e1;
+	this->e2 = multivectorA.e2;
+	this->e3 = multivectorA.e3;
+	this->no = multivectorA.no;
+	this->ni = multivectorA.ni;
+	this->e1_e2 = multivectorA.e1_e2 - rotorB.e1_e2;
+	this->e1_e3 = multivectorA.e1_e3 - rotorB.e1_e3;
+	this->e1_no = multivectorA.e1_no - rotorB.e1_no;
+	this->e1_ni = multivectorA.e1_ni - rotorB.e1_ni;
+	this->e2_e3 = multivectorA.e2_e3 - rotorB.e2_e3;
+	this->e2_no = multivectorA.e2_no - rotorB.e2_no;
+	this->e2_ni = multivectorA.e2_ni - rotorB.e2_ni;
+	this->e3_no = multivectorA.e3_no - rotorB.e3_no;
+	this->e3_ni = multivectorA.e3_ni - rotorB.e3_ni;
+	this->no_ni = multivectorA.no_ni - rotorB.no_ni;
+	this->e1_e2_e3 = multivectorA.e1_e2_e3;
+	this->e1_e2_no = multivectorA.e1_e2_no;
+	this->e1_e2_ni = multivectorA.e1_e2_ni;
+	this->e1_e3_no = multivectorA.e1_e3_no;
+	this->e1_e3_ni = multivectorA.e1_e3_ni;
+	this->e1_no_ni = multivectorA.e1_no_ni;
+	this->e2_e3_no = multivectorA.e2_e3_no;
+	this->e2_e3_ni = multivectorA.e2_e3_ni;
+	this->e2_no_ni = multivectorA.e2_no_ni;
+	this->e3_no_ni = multivectorA.e3_no_ni;
+	this->e1_e2_e3_no = multivectorA.e1_e2_e3_no;
+	this->e1_e2_e3_ni = multivectorA.e1_e2_e3_ni;
+	this->e1_e2_no_ni = multivectorA.e1_e2_no_ni;
+	this->e1_e3_no_ni = multivectorA.e1_e3_no_ni;
+	this->e2_e3_no_ni = multivectorA.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = multivectorA.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Scalar& scalarB)
+{
+	this->_1 = rotorA._1 - scalarB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = -vectorB.e1;
+	this->e2 = -vectorB.e2;
+	this->e3 = -vectorB.e3;
+	this->no = -vectorB.no;
+	this->ni = -vectorB.ni;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Bivector& bivectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 - bivectorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 - bivectorB.e1_e3;
+	this->e1_no = rotorA.e1_no - bivectorB.e1_no;
+	this->e1_ni = rotorA.e1_ni - bivectorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 - bivectorB.e2_e3;
+	this->e2_no = rotorA.e2_no - bivectorB.e2_no;
+	this->e2_ni = rotorA.e2_ni - bivectorB.e2_ni;
+	this->e3_no = rotorA.e3_no - bivectorB.e3_no;
+	this->e3_ni = rotorA.e3_ni - bivectorB.e3_ni;
+	this->no_ni = rotorA.no_ni - bivectorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = -trivectorB.e1_e2_e3;
+	this->e1_e2_no = -trivectorB.e1_e2_no;
+	this->e1_e2_ni = -trivectorB.e1_e2_ni;
+	this->e1_e3_no = -trivectorB.e1_e3_no;
+	this->e1_e3_ni = -trivectorB.e1_e3_ni;
+	this->e1_no_ni = -trivectorB.e1_no_ni;
+	this->e2_e3_no = -trivectorB.e2_e3_no;
+	this->e2_e3_ni = -trivectorB.e2_e3_ni;
+	this->e2_no_ni = -trivectorB.e2_no_ni;
+	this->e3_no_ni = -trivectorB.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = -quadvectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = -quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = -quadvectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = -quadvectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = -quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->_1 = rotorA._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2;
+	this->e1_e3 = rotorA.e1_e3;
+	this->e1_no = rotorA.e1_no;
+	this->e1_ni = rotorA.e1_ni;
+	this->e2_e3 = rotorA.e2_e3;
+	this->e2_no = rotorA.e2_no;
+	this->e2_ni = rotorA.e2_ni;
+	this->e3_no = rotorA.e3_no;
+	this->e3_ni = rotorA.e3_ni;
+	this->no_ni = rotorA.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = -psuedoscalarB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Multivector& multivectorB)
+{
+	this->_1 = rotorA._1 - multivectorB._1;
+	this->e1 = -multivectorB.e1;
+	this->e2 = -multivectorB.e2;
+	this->e3 = -multivectorB.e3;
+	this->no = -multivectorB.no;
+	this->ni = -multivectorB.ni;
+	this->e1_e2 = rotorA.e1_e2 - multivectorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 - multivectorB.e1_e3;
+	this->e1_no = rotorA.e1_no - multivectorB.e1_no;
+	this->e1_ni = rotorA.e1_ni - multivectorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 - multivectorB.e2_e3;
+	this->e2_no = rotorA.e2_no - multivectorB.e2_no;
+	this->e2_ni = rotorA.e2_ni - multivectorB.e2_ni;
+	this->e3_no = rotorA.e3_no - multivectorB.e3_no;
+	this->e3_ni = rotorA.e3_ni - multivectorB.e3_ni;
+	this->no_ni = rotorA.no_ni - multivectorB.no_ni;
+	this->e1_e2_e3 = -multivectorB.e1_e2_e3;
+	this->e1_e2_no = -multivectorB.e1_e2_no;
+	this->e1_e2_ni = -multivectorB.e1_e2_ni;
+	this->e1_e3_no = -multivectorB.e1_e3_no;
+	this->e1_e3_ni = -multivectorB.e1_e3_ni;
+	this->e1_no_ni = -multivectorB.e1_no_ni;
+	this->e2_e3_no = -multivectorB.e2_e3_no;
+	this->e2_e3_ni = -multivectorB.e2_e3_ni;
+	this->e2_no_ni = -multivectorB.e2_no_ni;
+	this->e3_no_ni = -multivectorB.e3_no_ni;
+	this->e1_e2_e3_no = -multivectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = -multivectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = -multivectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = -multivectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = -multivectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = -multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::Subtract(const Rotor& rotorA, const Rotor& rotorB)
+{
+	this->_1 = rotorA._1 - rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 - rotorB.e1_e2;
+	this->e1_e3 = rotorA.e1_e3 - rotorB.e1_e3;
+	this->e1_no = rotorA.e1_no - rotorB.e1_no;
+	this->e1_ni = rotorA.e1_ni - rotorB.e1_ni;
+	this->e2_e3 = rotorA.e2_e3 - rotorB.e2_e3;
+	this->e2_no = rotorA.e2_no - rotorB.e2_no;
+	this->e2_ni = rotorA.e2_ni - rotorB.e2_ni;
+	this->e3_no = rotorA.e3_no - rotorB.e3_no;
+	this->e3_ni = rotorA.e3_ni - rotorB.e3_ni;
+	this->no_ni = rotorA.no_ni - rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::InnerProduct(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 * scalarB._1;
@@ -4110,6 +5229,42 @@ void Multivector::InnerProduct(const Scalar& scalarA, const Multivector& multive
 	this->e1_e3_no_ni = scalarA._1 * multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = scalarA._1 * multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = scalarA._1 * multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::InnerProduct(const Scalar& scalarA, const Rotor& rotorB)
+{
+	this->_1 = scalarA._1 * rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = scalarA._1 * rotorB.e1_e2;
+	this->e1_e3 = scalarA._1 * rotorB.e1_e3;
+	this->e1_no = scalarA._1 * rotorB.e1_no;
+	this->e1_ni = scalarA._1 * rotorB.e1_ni;
+	this->e2_e3 = scalarA._1 * rotorB.e2_e3;
+	this->e2_no = scalarA._1 * rotorB.e2_no;
+	this->e2_ni = scalarA._1 * rotorB.e2_ni;
+	this->e3_no = scalarA._1 * rotorB.e3_no;
+	this->e3_ni = scalarA._1 * rotorB.e3_ni;
+	this->no_ni = scalarA._1 * rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::InnerProduct(const Vector& vectorA, const Scalar& scalarB)
@@ -4364,6 +5519,42 @@ void Multivector::InnerProduct(const Vector& vectorA, const Multivector& multive
 	this->e1_e2_e3_no_ni = 0.0;
 }
 
+void Multivector::InnerProduct(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = vectorA.e1 * rotorB._1 + (-1.0) * vectorA.e2 * rotorB.e1_e2 + (-1.0) * vectorA.e3 * rotorB.e1_e3 + vectorA.ni * rotorB.e1_no + vectorA.no * rotorB.e1_ni;
+	this->e2 = vectorA.e1 * rotorB.e1_e2 + vectorA.e2 * rotorB._1 + (-1.0) * vectorA.e3 * rotorB.e2_e3 + vectorA.ni * rotorB.e2_no + vectorA.no * rotorB.e2_ni;
+	this->e3 = vectorA.e1 * rotorB.e1_e3 + vectorA.e2 * rotorB.e2_e3 + vectorA.e3 * rotorB._1 + vectorA.ni * rotorB.e3_no + vectorA.no * rotorB.e3_ni;
+	this->no = vectorA.e1 * rotorB.e1_no + vectorA.e2 * rotorB.e2_no + vectorA.e3 * rotorB.e3_no + vectorA.no * rotorB._1 + vectorA.no * rotorB.no_ni;
+	this->ni = vectorA.e1 * rotorB.e1_ni + vectorA.e2 * rotorB.e2_ni + vectorA.e3 * rotorB.e3_ni + vectorA.ni * rotorB._1 + (-1.0) * vectorA.ni * rotorB.no_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::InnerProduct(const Bivector& bivectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -4608,6 +5799,42 @@ void Multivector::InnerProduct(const Bivector& bivectorA, const Multivector& mul
 	this->e2_e3_ni = bivectorA.e1_ni * multivectorB.e1_e2_e3_no_ni;
 	this->e2_no_ni = bivectorA.e1_e3 * multivectorB.e1_e2_e3_no_ni;
 	this->e3_no_ni = (-1.0) * bivectorA.e1_e2 * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Bivector& bivectorA, const Rotor& rotorB)
+{
+	this->_1 = (-1.0) * bivectorA.e1_e2 * rotorB.e1_e2 + (-1.0) * bivectorA.e1_e3 * rotorB.e1_e3 + bivectorA.e1_ni * rotorB.e1_no + bivectorA.e1_no * rotorB.e1_ni + (-1.0) * bivectorA.e2_e3 * rotorB.e2_e3 + bivectorA.e2_ni * rotorB.e2_no + bivectorA.e2_no * rotorB.e2_ni + bivectorA.e3_ni * rotorB.e3_no + bivectorA.e3_no * rotorB.e3_ni + bivectorA.no_ni * rotorB.no_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = bivectorA.e1_e2 * rotorB._1;
+	this->e1_e3 = bivectorA.e1_e3 * rotorB._1;
+	this->e1_no = bivectorA.e1_no * rotorB._1;
+	this->e1_ni = bivectorA.e1_ni * rotorB._1;
+	this->e2_e3 = bivectorA.e2_e3 * rotorB._1;
+	this->e2_no = bivectorA.e2_no * rotorB._1;
+	this->e2_ni = bivectorA.e2_ni * rotorB._1;
+	this->e3_no = bivectorA.e3_no * rotorB._1;
+	this->e3_ni = bivectorA.e3_ni * rotorB._1;
+	this->no_ni = bivectorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
 	this->e1_e2_e3_no = 0.0;
 	this->e1_e2_e3_ni = 0.0;
 	this->e1_e2_no_ni = 0.0;
@@ -4868,6 +6095,42 @@ void Multivector::InnerProduct(const Trivector& trivectorA, const Multivector& m
 	this->e1_e2_e3_no_ni = 0.0;
 }
 
+void Multivector::InnerProduct(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e2_e3 + trivectorA.e1_e2_ni * rotorB.e2_no + trivectorA.e1_e2_no * rotorB.e2_ni + trivectorA.e1_e3_ni * rotorB.e3_no + trivectorA.e1_e3_no * rotorB.e3_ni + trivectorA.e1_no_ni * rotorB.no_ni;
+	this->e2 = trivectorA.e1_e2_e3 * rotorB.e1_e3 + (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e1_ni + trivectorA.e2_e3_ni * rotorB.e3_no + trivectorA.e2_e3_no * rotorB.e3_ni + trivectorA.e2_no_ni * rotorB.no_ni;
+	this->e3 = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_ni * rotorB.e1_no + (-1.0) * trivectorA.e1_e3_no * rotorB.e1_ni + (-1.0) * trivectorA.e2_e3_ni * rotorB.e2_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e2_ni + trivectorA.e3_no_ni * rotorB.no_ni;
+	this->no = (-1.0) * trivectorA.e1_e2_no * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_no * rotorB.e1_e3 + (-1.0) * trivectorA.e1_no_ni * rotorB.e1_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e2_e3 + (-1.0) * trivectorA.e2_no_ni * rotorB.e2_no + (-1.0) * trivectorA.e3_no_ni * rotorB.e3_no;
+	this->ni = (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_ni * rotorB.e1_e3 + trivectorA.e1_no_ni * rotorB.e1_ni + (-1.0) * trivectorA.e2_e3_ni * rotorB.e2_e3 + trivectorA.e2_no_ni * rotorB.e2_ni + trivectorA.e3_no_ni * rotorB.e3_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = trivectorA.e1_e2_e3 * rotorB._1;
+	this->e1_e2_no = trivectorA.e1_e2_no * rotorB._1;
+	this->e1_e2_ni = trivectorA.e1_e2_ni * rotorB._1;
+	this->e1_e3_no = trivectorA.e1_e3_no * rotorB._1;
+	this->e1_e3_ni = trivectorA.e1_e3_ni * rotorB._1;
+	this->e1_no_ni = trivectorA.e1_no_ni * rotorB._1;
+	this->e2_e3_no = trivectorA.e2_e3_no * rotorB._1;
+	this->e2_e3_ni = trivectorA.e2_e3_ni * rotorB._1;
+	this->e2_no_ni = trivectorA.e2_no_ni * rotorB._1;
+	this->e3_no_ni = trivectorA.e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::InnerProduct(const Quadvector& quadvectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -5117,6 +6380,42 @@ void Multivector::InnerProduct(const Quadvector& quadvectorA, const Multivector&
 	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni * multivectorB._1;
 	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni * multivectorB._1;
 	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni * multivectorB._1;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = quadvectorA.e1_e2_e3_ni * rotorB.e3_no + quadvectorA.e1_e2_e3_no * rotorB.e3_ni + quadvectorA.e1_e2_no_ni * rotorB.no_ni;
+	this->e1_e3 = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e2_no + (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e2_ni + quadvectorA.e1_e3_no_ni * rotorB.no_ni;
+	this->e1_no = (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e2_e3 + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e2_no + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e3_no;
+	this->e1_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e2_e3 + quadvectorA.e1_e2_no_ni * rotorB.e2_ni + quadvectorA.e1_e3_no_ni * rotorB.e3_ni;
+	this->e2_e3 = quadvectorA.e1_e2_e3_ni * rotorB.e1_no + quadvectorA.e1_e2_e3_no * rotorB.e1_ni + quadvectorA.e2_e3_no_ni * rotorB.no_ni;
+	this->e2_no = quadvectorA.e1_e2_e3_no * rotorB.e1_e3 + quadvectorA.e1_e2_no_ni * rotorB.e1_no + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e3_no;
+	this->e2_ni = quadvectorA.e1_e2_e3_ni * rotorB.e1_e3 + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e1_ni + quadvectorA.e2_e3_no_ni * rotorB.e3_ni;
+	this->e3_no = (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e1_e2 + quadvectorA.e1_e3_no_ni * rotorB.e1_no + quadvectorA.e2_e3_no_ni * rotorB.e2_no;
+	this->e3_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e1_e2 + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e1_ni + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e2_ni;
+	this->no_ni = (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e1_e2 + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e1_e3 + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e2_e3;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no * rotorB._1;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni * rotorB._1;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni * rotorB._1;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni * rotorB._1;
 	this->e1_e2_e3_no_ni = 0.0;
 }
 
@@ -5372,6 +6671,42 @@ void Multivector::InnerProduct(const PsuedoScalar& psuedoscalarA, const Multivec
 	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * multivectorB._1;
 }
 
+void Multivector::InnerProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = psuedoscalarA.e1_e2_e3_no_ni * rotorB.no_ni;
+	this->e1_e2_no = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e3_no;
+	this->e1_e2_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e3_ni;
+	this->e1_e3_no = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_no;
+	this->e1_e3_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_ni;
+	this->e1_no_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_e3;
+	this->e2_e3_no = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_no;
+	this->e2_e3_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_ni;
+	this->e2_no_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_e3;
+	this->e3_no_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB._1;
+}
+
 void Multivector::InnerProduct(const Multivector& multivectorA, const Scalar& scalarB)
 {
 	this->_1 = multivectorA._1 * scalarB._1;
@@ -5622,6 +6957,330 @@ void Multivector::InnerProduct(const Multivector& multivectorA, const Multivecto
 	this->e1_e3_no_ni = multivectorA._1 * multivectorB.e1_e3_no_ni + multivectorA.e1_e3_no_ni * multivectorB._1 + (-1.0) * multivectorA.e2 * multivectorB.e1_e2_e3_no_ni + (-1.0) * multivectorA.e1_e2_e3_no_ni * multivectorB.e2;
 	this->e2_e3_no_ni = multivectorA._1 * multivectorB.e2_e3_no_ni + multivectorA.e1 * multivectorB.e1_e2_e3_no_ni + multivectorA.e2_e3_no_ni * multivectorB._1 + multivectorA.e1_e2_e3_no_ni * multivectorB.e1;
 	this->e1_e2_e3_no_ni = multivectorA._1 * multivectorB.e1_e2_e3_no_ni + multivectorA.e1_e2_e3_no_ni * multivectorB._1;
+}
+
+void Multivector::InnerProduct(const Multivector& multivectorA, const Rotor& rotorB)
+{
+	this->_1 = multivectorA._1 * rotorB._1 + (-1.0) * multivectorA.e1_e3 * rotorB.e1_e3 + multivectorA.e1_ni * rotorB.e1_no + multivectorA.e1_no * rotorB.e1_ni + (-1.0) * multivectorA.e2_e3 * rotorB.e2_e3 + multivectorA.e2_ni * rotorB.e2_no + multivectorA.e2_no * rotorB.e2_ni + multivectorA.e3_ni * rotorB.e3_no + multivectorA.e3_no * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2 * rotorB.e1_e2 + multivectorA.no_ni * rotorB.no_ni;
+	this->e1 = multivectorA.e1_e3_ni * rotorB.e3_no + multivectorA.e1_e3_no * rotorB.e3_ni + multivectorA.e1_no_ni * rotorB.no_ni + (-1.0) * multivectorA.e2 * rotorB.e1_e2 + multivectorA.e1 * rotorB._1 + (-1.0) * multivectorA.e3 * rotorB.e1_e3 + multivectorA.ni * rotorB.e1_no + multivectorA.no * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e2_e3 + multivectorA.e1_e2_ni * rotorB.e2_no + multivectorA.e1_e2_no * rotorB.e2_ni;
+	this->e2 = multivectorA.e2 * rotorB._1 + multivectorA.e2_e3_ni * rotorB.e3_no + multivectorA.e1 * rotorB.e1_e2 + multivectorA.e2_e3_no * rotorB.e3_ni + multivectorA.e2_no_ni * rotorB.no_ni + (-1.0) * multivectorA.e3 * rotorB.e2_e3 + multivectorA.ni * rotorB.e2_no + multivectorA.no * rotorB.e2_ni + multivectorA.e1_e2_e3 * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e1_ni;
+	this->e3 = (-1.0) * multivectorA.e1_e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e3_no * rotorB.e1_ni + multivectorA.e2 * rotorB.e2_e3 + (-1.0) * multivectorA.e2_e3_ni * rotorB.e2_no + multivectorA.e1 * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3_no * rotorB.e2_ni + multivectorA.e3 * rotorB._1 + multivectorA.e3_no_ni * rotorB.no_ni + multivectorA.ni * rotorB.e3_no + multivectorA.no * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e1_e2;
+	this->no = (-1.0) * multivectorA.e1_e3_no * rotorB.e1_e3 + (-1.0) * multivectorA.e1_no_ni * rotorB.e1_no + multivectorA.e2 * rotorB.e2_no + multivectorA.e1 * rotorB.e1_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e2_no_ni * rotorB.e2_no + multivectorA.e3 * rotorB.e3_no + (-1.0) * multivectorA.e3_no_ni * rotorB.e3_no + multivectorA.no * rotorB._1 + multivectorA.no * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_no * rotorB.e1_e2;
+	this->ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e1_e3 + multivectorA.e1_no_ni * rotorB.e1_ni + multivectorA.e2 * rotorB.e2_ni + (-1.0) * multivectorA.e2_e3_ni * rotorB.e2_e3 + multivectorA.e1 * rotorB.e1_ni + multivectorA.e2_no_ni * rotorB.e2_ni + multivectorA.e3 * rotorB.e3_ni + multivectorA.e3_no_ni * rotorB.e3_ni + multivectorA.ni * rotorB._1 + (-1.0) * multivectorA.ni * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_e2;
+	this->e1_e2 = multivectorA._1 * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB._1 + multivectorA.e1_e2_e3_ni * rotorB.e3_no + multivectorA.e1_e2_e3_no * rotorB.e3_ni + multivectorA.e1_e2_no_ni * rotorB.no_ni;
+	this->e1_e3 = multivectorA._1 * rotorB.e1_e3 + multivectorA.e1_e3 * rotorB._1 + multivectorA.e1_e3_no_ni * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e2_ni;
+	this->e1_no = multivectorA._1 * rotorB.e1_no + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e3_no + multivectorA.e1_no * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e2_no;
+	this->e1_ni = multivectorA._1 * rotorB.e1_ni + multivectorA.e1_e3_no_ni * rotorB.e3_ni + multivectorA.e1_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e2_e3 + multivectorA.e1_e2_no_ni * rotorB.e2_ni;
+	this->e2_e3 = multivectorA._1 * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB._1 + multivectorA.e2_e3_no_ni * rotorB.no_ni + multivectorA.e1_e2_e3_ni * rotorB.e1_no + multivectorA.e1_e2_e3_no * rotorB.e1_ni;
+	this->e2_no = multivectorA._1 * rotorB.e2_no + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e3_no + multivectorA.e2_no * rotorB._1 + multivectorA.e1_e2_e3_no * rotorB.e1_e3 + multivectorA.e1_e2_no_ni * rotorB.e1_no;
+	this->e2_ni = multivectorA._1 * rotorB.e2_ni + multivectorA.e2_e3_no_ni * rotorB.e3_ni + multivectorA.e2_ni * rotorB._1 + multivectorA.e1_e2_e3_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e1_ni;
+	this->e3_no = multivectorA._1 * rotorB.e3_no + multivectorA.e1_e3_no_ni * rotorB.e1_no + multivectorA.e2_e3_no_ni * rotorB.e2_no + multivectorA.e3_no * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e1_e2;
+	this->e3_ni = multivectorA._1 * rotorB.e3_ni + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e1_ni + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e2_ni + multivectorA.e3_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e1_e2;
+	this->no_ni = multivectorA._1 * rotorB.no_ni + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e2_e3 + multivectorA.no_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3 = multivectorA.e1_e2_e3 * rotorB._1 + multivectorA.e1_e2_e3_no_ni * rotorB.no_ni;
+	this->e1_e2_no = (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e3_no + multivectorA.e1_e2_no * rotorB._1;
+	this->e1_e2_ni = multivectorA.e1_e2_e3_no_ni * rotorB.e3_ni + multivectorA.e1_e2_ni * rotorB._1;
+	this->e1_e3_no = multivectorA.e1_e3_no * rotorB._1 + multivectorA.e1_e2_e3_no_ni * rotorB.e2_no;
+	this->e1_e3_ni = multivectorA.e1_e3_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e2_ni;
+	this->e1_no_ni = multivectorA.e1_no_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e2_e3;
+	this->e2_e3_no = multivectorA.e2_e3_no * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e1_no;
+	this->e2_e3_ni = multivectorA.e2_e3_ni * rotorB._1 + multivectorA.e1_e2_e3_no_ni * rotorB.e1_ni;
+	this->e2_no_ni = multivectorA.e2_no_ni * rotorB._1 + multivectorA.e1_e2_e3_no_ni * rotorB.e1_e3;
+	this->e3_no_ni = multivectorA.e3_no_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3_no = multivectorA.e1_e2_e3_no * rotorB._1;
+	this->e1_e2_e3_ni = multivectorA.e1_e2_e3_ni * rotorB._1;
+	this->e1_e2_no_ni = multivectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = multivectorA.e1_e3_no_ni * rotorB._1;
+	this->e2_e3_no_ni = multivectorA.e2_e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no_ni = multivectorA.e1_e2_e3_no_ni * rotorB._1;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Scalar& scalarB)
+{
+	this->_1 = rotorA._1 * scalarB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 * scalarB._1;
+	this->e1_e3 = rotorA.e1_e3 * scalarB._1;
+	this->e1_no = rotorA.e1_no * scalarB._1;
+	this->e1_ni = rotorA.e1_ni * scalarB._1;
+	this->e2_e3 = rotorA.e2_e3 * scalarB._1;
+	this->e2_no = rotorA.e2_no * scalarB._1;
+	this->e2_ni = rotorA.e2_ni * scalarB._1;
+	this->e3_no = rotorA.e3_no * scalarB._1;
+	this->e3_ni = rotorA.e3_ni * scalarB._1;
+	this->no_ni = rotorA.no_ni * scalarB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = rotorA._1 * vectorB.e1 + rotorA.e1_e2 * vectorB.e2 + rotorA.e1_e3 * vectorB.e3 + (-1.0) * rotorA.e1_ni * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.ni;
+	this->e2 = rotorA._1 * vectorB.e2 + (-1.0) * rotorA.e1_e2 * vectorB.e1 + rotorA.e2_e3 * vectorB.e3 + (-1.0) * rotorA.e2_ni * vectorB.no + (-1.0) * rotorA.e2_no * vectorB.ni;
+	this->e3 = rotorA._1 * vectorB.e3 + (-1.0) * rotorA.e1_e3 * vectorB.e1 + (-1.0) * rotorA.e2_e3 * vectorB.e2 + (-1.0) * rotorA.e3_ni * vectorB.no + (-1.0) * rotorA.e3_no * vectorB.ni;
+	this->no = rotorA._1 * vectorB.no + (-1.0) * rotorA.no_ni * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e1 + (-1.0) * rotorA.e2_no * vectorB.e2 + (-1.0) * rotorA.e3_no * vectorB.e3;
+	this->ni = rotorA._1 * vectorB.ni + rotorA.no_ni * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e1 + (-1.0) * rotorA.e2_ni * vectorB.e2 + (-1.0) * rotorA.e3_ni * vectorB.e3;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Bivector& bivectorB)
+{
+	this->_1 = rotorA.no_ni * bivectorB.no_ni + (-1.0) * rotorA.e1_e2 * bivectorB.e1_e2 + (-1.0) * rotorA.e1_e3 * bivectorB.e1_e3 + rotorA.e1_ni * bivectorB.e1_no + rotorA.e1_no * bivectorB.e1_ni + (-1.0) * rotorA.e2_e3 * bivectorB.e2_e3 + rotorA.e2_ni * bivectorB.e2_no + rotorA.e2_no * bivectorB.e2_ni + rotorA.e3_ni * bivectorB.e3_no + rotorA.e3_no * bivectorB.e3_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * bivectorB.e1_e2;
+	this->e1_e3 = rotorA._1 * bivectorB.e1_e3;
+	this->e1_no = rotorA._1 * bivectorB.e1_no;
+	this->e1_ni = rotorA._1 * bivectorB.e1_ni;
+	this->e2_e3 = rotorA._1 * bivectorB.e2_e3;
+	this->e2_no = rotorA._1 * bivectorB.e2_no;
+	this->e2_ni = rotorA._1 * bivectorB.e2_ni;
+	this->e3_no = rotorA._1 * bivectorB.e3_no;
+	this->e3_ni = rotorA._1 * bivectorB.e3_ni;
+	this->no_ni = rotorA._1 * bivectorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = rotorA.no_ni * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e1_e2_e3 + rotorA.e2_ni * trivectorB.e1_e2_no + rotorA.e2_no * trivectorB.e1_e2_ni + rotorA.e3_ni * trivectorB.e1_e3_no + rotorA.e3_no * trivectorB.e1_e3_ni;
+	this->e2 = rotorA.no_ni * trivectorB.e2_no_ni + rotorA.e1_e3 * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * trivectorB.e1_e2_ni + rotorA.e3_ni * trivectorB.e2_e3_no + rotorA.e3_no * trivectorB.e2_e3_ni;
+	this->e3 = rotorA.no_ni * trivectorB.e3_no_ni + (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * trivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e2_ni * trivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e2_e3_ni;
+	this->no = (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_e3 * trivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e2_no_ni + (-1.0) * rotorA.e3_no * trivectorB.e3_no_ni;
+	this->ni = (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e1_e3_ni + rotorA.e1_ni * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e2_e3_ni + rotorA.e2_ni * trivectorB.e2_no_ni + rotorA.e3_ni * trivectorB.e3_no_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA._1 * trivectorB.e1_e2_e3;
+	this->e1_e2_no = rotorA._1 * trivectorB.e1_e2_no;
+	this->e1_e2_ni = rotorA._1 * trivectorB.e1_e2_ni;
+	this->e1_e3_no = rotorA._1 * trivectorB.e1_e3_no;
+	this->e1_e3_ni = rotorA._1 * trivectorB.e1_e3_ni;
+	this->e1_no_ni = rotorA._1 * trivectorB.e1_no_ni;
+	this->e2_e3_no = rotorA._1 * trivectorB.e2_e3_no;
+	this->e2_e3_ni = rotorA._1 * trivectorB.e2_e3_ni;
+	this->e2_no_ni = rotorA._1 * trivectorB.e2_no_ni;
+	this->e3_no_ni = rotorA._1 * trivectorB.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.no_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e1_e2_e3_no + rotorA.e3_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_e3 = rotorA.no_ni * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_no = (-1.0) * rotorA.e2_e3 * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * quadvectorB.e1_e3_no_ni;
+	this->e1_ni = (-1.0) * rotorA.e2_e3 * quadvectorB.e1_e2_e3_ni + rotorA.e2_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e1_e3_no_ni;
+	this->e2_e3 = rotorA.no_ni * quadvectorB.e2_e3_no_ni + rotorA.e1_ni * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e2_e3_ni;
+	this->e2_no = rotorA.e1_e3 * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * quadvectorB.e2_e3_no_ni;
+	this->e2_ni = rotorA.e1_e3 * quadvectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e2_e3_no_ni;
+	this->e3_no = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e3_no_ni + rotorA.e2_no * quadvectorB.e2_e3_no_ni;
+	this->e3_ni = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * quadvectorB.e2_e3_no_ni;
+	this->no_ni = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e1_e3 * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_e3 * quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA._1 * quadvectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = rotorA._1 * quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = rotorA._1 * quadvectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = rotorA._1 * quadvectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = rotorA._1 * quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA.no_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_no = (-1.0) * rotorA.e3_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_ni = rotorA.e3_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e3_no = rotorA.e2_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e3_ni = (-1.0) * rotorA.e2_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_no_ni = (-1.0) * rotorA.e2_e3 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_e3_no = (-1.0) * rotorA.e1_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_e3_ni = rotorA.e1_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_no_ni = rotorA.e1_e3 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e3_no_ni = (-1.0) * rotorA.e1_e2 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = rotorA._1 * psuedoscalarB.e1_e2_e3_no_ni;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Multivector& multivectorB)
+{
+	this->_1 = rotorA._1 * multivectorB._1 + rotorA.no_ni * multivectorB.no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2 + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3 + rotorA.e1_ni * multivectorB.e1_no + rotorA.e1_no * multivectorB.e1_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3 + rotorA.e2_ni * multivectorB.e2_no + rotorA.e2_no * multivectorB.e2_ni + rotorA.e3_ni * multivectorB.e3_no + rotorA.e3_no * multivectorB.e3_ni;
+	this->e1 = rotorA._1 * multivectorB.e1 + rotorA.no_ni * multivectorB.e1_no_ni + rotorA.e1_e2 * multivectorB.e2 + rotorA.e1_e3 * multivectorB.e3 + (-1.0) * rotorA.e1_ni * multivectorB.no + (-1.0) * rotorA.e1_no * multivectorB.ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3 + rotorA.e2_ni * multivectorB.e1_e2_no + rotorA.e2_no * multivectorB.e1_e2_ni + rotorA.e3_ni * multivectorB.e1_e3_no + rotorA.e3_no * multivectorB.e1_e3_ni;
+	this->e2 = rotorA._1 * multivectorB.e2 + rotorA.no_ni * multivectorB.e2_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1 + rotorA.e1_e3 * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_ni + rotorA.e2_e3 * multivectorB.e3 + (-1.0) * rotorA.e2_ni * multivectorB.no + (-1.0) * rotorA.e2_no * multivectorB.ni + rotorA.e3_ni * multivectorB.e2_e3_no + rotorA.e3_no * multivectorB.e2_e3_ni;
+	this->e3 = rotorA._1 * multivectorB.e3 + rotorA.no_ni * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_e3 * multivectorB.e1 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2 + (-1.0) * rotorA.e2_ni * multivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e2_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.no + (-1.0) * rotorA.e3_no * multivectorB.ni;
+	this->no = rotorA._1 * multivectorB.no + (-1.0) * rotorA.no_ni * multivectorB.no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_no + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1 + (-1.0) * rotorA.e1_no * multivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e2 + (-1.0) * rotorA.e2_no * multivectorB.e2_no_ni + (-1.0) * rotorA.e3_no * multivectorB.e3 + (-1.0) * rotorA.e3_no * multivectorB.e3_no_ni;
+	this->ni = rotorA._1 * multivectorB.ni + rotorA.no_ni * multivectorB.ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1 + rotorA.e1_ni * multivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_ni + (-1.0) * rotorA.e2_ni * multivectorB.e2 + rotorA.e2_ni * multivectorB.e2_no_ni + (-1.0) * rotorA.e3_ni * multivectorB.e3 + rotorA.e3_ni * multivectorB.e3_no_ni;
+	this->e1_e2 = rotorA._1 * multivectorB.e1_e2 + rotorA.no_ni * multivectorB.e1_e2_no_ni + rotorA.e1_e2 * multivectorB._1 + rotorA.e3_ni * multivectorB.e1_e2_e3_no + rotorA.e3_no * multivectorB.e1_e2_e3_ni;
+	this->e1_e3 = rotorA._1 * multivectorB.e1_e3 + rotorA.no_ni * multivectorB.e1_e3_no_ni + rotorA.e1_e3 * multivectorB._1 + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e2_e3_ni;
+	this->e1_no = rotorA._1 * multivectorB.e1_no + rotorA.e1_no * multivectorB._1 + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * multivectorB.e1_e3_no_ni;
+	this->e1_ni = rotorA._1 * multivectorB.e1_ni + rotorA.e1_ni * multivectorB._1 + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_ni + rotorA.e2_ni * multivectorB.e1_e2_no_ni + rotorA.e3_ni * multivectorB.e1_e3_no_ni;
+	this->e2_e3 = rotorA._1 * multivectorB.e2_e3 + rotorA.no_ni * multivectorB.e2_e3_no_ni + rotorA.e1_ni * multivectorB.e1_e2_e3_no + rotorA.e1_no * multivectorB.e1_e2_e3_ni + rotorA.e2_e3 * multivectorB._1;
+	this->e2_no = rotorA._1 * multivectorB.e2_no + rotorA.e1_e3 * multivectorB.e1_e2_e3_no + rotorA.e1_no * multivectorB.e1_e2_no_ni + rotorA.e2_no * multivectorB._1 + (-1.0) * rotorA.e3_no * multivectorB.e2_e3_no_ni;
+	this->e2_ni = rotorA._1 * multivectorB.e2_ni + rotorA.e1_e3 * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_no_ni + rotorA.e2_ni * multivectorB._1 + rotorA.e3_ni * multivectorB.e2_e3_no_ni;
+	this->e3_no = rotorA._1 * multivectorB.e3_no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_no + rotorA.e1_no * multivectorB.e1_e3_no_ni + rotorA.e2_no * multivectorB.e2_e3_no_ni + rotorA.e3_no * multivectorB._1;
+	this->e3_ni = rotorA._1 * multivectorB.e3_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * multivectorB.e2_e3_no_ni + rotorA.e3_ni * multivectorB._1;
+	this->no_ni = rotorA._1 * multivectorB.no_ni + rotorA.no_ni * multivectorB._1 + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_no_ni;
+	this->e1_e2_e3 = rotorA._1 * multivectorB.e1_e2_e3 + rotorA.no_ni * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e2_no = rotorA._1 * multivectorB.e1_e2_no + (-1.0) * rotorA.e3_no * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e2_ni = rotorA._1 * multivectorB.e1_e2_ni + rotorA.e3_ni * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e3_no = rotorA._1 * multivectorB.e1_e3_no + rotorA.e2_no * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e3_ni = rotorA._1 * multivectorB.e1_e3_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2_e3_no_ni;
+	this->e1_no_ni = rotorA._1 * multivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_no_ni;
+	this->e2_e3_no = rotorA._1 * multivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_e3_no_ni;
+	this->e2_e3_ni = rotorA._1 * multivectorB.e2_e3_ni + rotorA.e1_ni * multivectorB.e1_e2_e3_no_ni;
+	this->e2_no_ni = rotorA._1 * multivectorB.e2_no_ni + rotorA.e1_e3 * multivectorB.e1_e2_e3_no_ni;
+	this->e3_no_ni = rotorA._1 * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e2_e3_no = rotorA._1 * multivectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = rotorA._1 * multivectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = rotorA._1 * multivectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = rotorA._1 * multivectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = rotorA._1 * multivectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = rotorA._1 * multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::InnerProduct(const Rotor& rotorA, const Rotor& rotorB)
+{
+	this->_1 = rotorA._1 * rotorB._1 + rotorA.no_ni * rotorB.no_ni + (-1.0) * rotorA.e1_e2 * rotorB.e1_e2 + (-1.0) * rotorA.e1_e3 * rotorB.e1_e3 + rotorA.e1_ni * rotorB.e1_no + rotorA.e1_no * rotorB.e1_ni + (-1.0) * rotorA.e2_e3 * rotorB.e2_e3 + rotorA.e2_ni * rotorB.e2_no + rotorA.e2_no * rotorB.e2_ni + rotorA.e3_ni * rotorB.e3_no + rotorA.e3_no * rotorB.e3_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * rotorB.e1_e2 + rotorA.e1_e2 * rotorB._1;
+	this->e1_e3 = rotorA._1 * rotorB.e1_e3 + rotorA.e1_e3 * rotorB._1;
+	this->e1_no = rotorA._1 * rotorB.e1_no + rotorA.e1_no * rotorB._1;
+	this->e1_ni = rotorA._1 * rotorB.e1_ni + rotorA.e1_ni * rotorB._1;
+	this->e2_e3 = rotorA._1 * rotorB.e2_e3 + rotorA.e2_e3 * rotorB._1;
+	this->e2_no = rotorA._1 * rotorB.e2_no + rotorA.e2_no * rotorB._1;
+	this->e2_ni = rotorA._1 * rotorB.e2_ni + rotorA.e2_ni * rotorB._1;
+	this->e3_no = rotorA._1 * rotorB.e3_no + rotorA.e3_no * rotorB._1;
+	this->e3_ni = rotorA._1 * rotorB.e3_ni + rotorA.e3_ni * rotorB._1;
+	this->no_ni = rotorA._1 * rotorB.no_ni + rotorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::OuterProduct(const Scalar& scalarA, const Scalar& scalarB)
@@ -5876,6 +7535,42 @@ void Multivector::OuterProduct(const Scalar& scalarA, const Multivector& multive
 	this->e1_e2_e3_no_ni = scalarA._1 * multivectorB.e1_e2_e3_no_ni;
 }
 
+void Multivector::OuterProduct(const Scalar& scalarA, const Rotor& rotorB)
+{
+	this->_1 = scalarA._1 * rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = scalarA._1 * rotorB.e1_e2;
+	this->e1_e3 = scalarA._1 * rotorB.e1_e3;
+	this->e1_no = scalarA._1 * rotorB.e1_no;
+	this->e1_ni = scalarA._1 * rotorB.e1_ni;
+	this->e2_e3 = scalarA._1 * rotorB.e2_e3;
+	this->e2_no = scalarA._1 * rotorB.e2_no;
+	this->e2_ni = scalarA._1 * rotorB.e2_ni;
+	this->e3_no = scalarA._1 * rotorB.e3_no;
+	this->e3_ni = scalarA._1 * rotorB.e3_ni;
+	this->no_ni = scalarA._1 * rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::OuterProduct(const Vector& vectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -6126,6 +7821,42 @@ void Multivector::OuterProduct(const Vector& vectorA, const Multivector& multive
 	this->e1_e3_no_ni = vectorA.e1 * multivectorB.e3_no_ni + (-1.0) * vectorA.e3 * multivectorB.e1_no_ni + (-1.0) * vectorA.ni * multivectorB.e1_e3_no + vectorA.no * multivectorB.e1_e3_ni;
 	this->e2_e3_no_ni = vectorA.e2 * multivectorB.e3_no_ni + (-1.0) * vectorA.e3 * multivectorB.e2_no_ni + (-1.0) * vectorA.ni * multivectorB.e2_e3_no + vectorA.no * multivectorB.e2_e3_ni;
 	this->e1_e2_e3_no_ni = vectorA.e1 * multivectorB.e2_e3_no_ni + (-1.0) * vectorA.e2 * multivectorB.e1_e3_no_ni + vectorA.e3 * multivectorB.e1_e2_no_ni + vectorA.ni * multivectorB.e1_e2_e3_no + (-1.0) * vectorA.no * multivectorB.e1_e2_e3_ni;
+}
+
+void Multivector::OuterProduct(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = vectorA.e1 * rotorB._1;
+	this->e2 = vectorA.e2 * rotorB._1;
+	this->e3 = vectorA.e3 * rotorB._1;
+	this->no = vectorA.no * rotorB._1;
+	this->ni = vectorA.ni * rotorB._1;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = vectorA.e1 * rotorB.e2_e3 + (-1.0) * vectorA.e2 * rotorB.e1_e3 + vectorA.e3 * rotorB.e1_e2;
+	this->e1_e2_no = vectorA.e1 * rotorB.e2_no + (-1.0) * vectorA.e2 * rotorB.e1_no + vectorA.no * rotorB.e1_e2;
+	this->e1_e2_ni = vectorA.e1 * rotorB.e2_ni + (-1.0) * vectorA.e2 * rotorB.e1_ni + vectorA.ni * rotorB.e1_e2;
+	this->e1_e3_no = vectorA.e1 * rotorB.e3_no + (-1.0) * vectorA.e3 * rotorB.e1_no + vectorA.no * rotorB.e1_e3;
+	this->e1_e3_ni = vectorA.e1 * rotorB.e3_ni + (-1.0) * vectorA.e3 * rotorB.e1_ni + vectorA.ni * rotorB.e1_e3;
+	this->e1_no_ni = vectorA.e1 * rotorB.no_ni + vectorA.ni * rotorB.e1_no + (-1.0) * vectorA.no * rotorB.e1_ni;
+	this->e2_e3_no = vectorA.e2 * rotorB.e3_no + (-1.0) * vectorA.e3 * rotorB.e2_no + vectorA.no * rotorB.e2_e3;
+	this->e2_e3_ni = vectorA.e2 * rotorB.e3_ni + (-1.0) * vectorA.e3 * rotorB.e2_ni + vectorA.ni * rotorB.e2_e3;
+	this->e2_no_ni = vectorA.e2 * rotorB.no_ni + vectorA.ni * rotorB.e2_no + (-1.0) * vectorA.no * rotorB.e2_ni;
+	this->e3_no_ni = vectorA.e3 * rotorB.no_ni + vectorA.ni * rotorB.e3_no + (-1.0) * vectorA.no * rotorB.e3_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::OuterProduct(const Bivector& bivectorA, const Scalar& scalarB)
@@ -6380,6 +8111,42 @@ void Multivector::OuterProduct(const Bivector& bivectorA, const Multivector& mul
 	this->e1_e2_e3_no_ni = bivectorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * bivectorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * bivectorA.e1_ni * multivectorB.e2_e3_no + bivectorA.e1_no * multivectorB.e2_e3_ni + bivectorA.e2_e3 * multivectorB.e1_no_ni + bivectorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * bivectorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * bivectorA.e3_ni * multivectorB.e1_e2_no + bivectorA.e3_no * multivectorB.e1_e2_ni + bivectorA.no_ni * multivectorB.e1_e2_e3;
 }
 
+void Multivector::OuterProduct(const Bivector& bivectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = bivectorA.e1_e2 * rotorB._1;
+	this->e1_e3 = bivectorA.e1_e3 * rotorB._1;
+	this->e1_no = bivectorA.e1_no * rotorB._1;
+	this->e1_ni = bivectorA.e1_ni * rotorB._1;
+	this->e2_e3 = bivectorA.e2_e3 * rotorB._1;
+	this->e2_no = bivectorA.e2_no * rotorB._1;
+	this->e2_ni = bivectorA.e2_ni * rotorB._1;
+	this->e3_no = bivectorA.e3_no * rotorB._1;
+	this->e3_ni = bivectorA.e3_ni * rotorB._1;
+	this->no_ni = bivectorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = bivectorA.e1_e2 * rotorB.e3_no + (-1.0) * bivectorA.e1_e3 * rotorB.e2_no + bivectorA.e1_no * rotorB.e2_e3 + bivectorA.e2_e3 * rotorB.e1_no + (-1.0) * bivectorA.e2_no * rotorB.e1_e3 + bivectorA.e3_no * rotorB.e1_e2;
+	this->e1_e2_e3_ni = bivectorA.e1_e2 * rotorB.e3_ni + (-1.0) * bivectorA.e1_e3 * rotorB.e2_ni + bivectorA.e1_ni * rotorB.e2_e3 + bivectorA.e2_e3 * rotorB.e1_ni + (-1.0) * bivectorA.e2_ni * rotorB.e1_e3 + bivectorA.e3_ni * rotorB.e1_e2;
+	this->e1_e2_no_ni = bivectorA.e1_e2 * rotorB.no_ni + bivectorA.e1_ni * rotorB.e2_no + (-1.0) * bivectorA.e1_no * rotorB.e2_ni + (-1.0) * bivectorA.e2_ni * rotorB.e1_no + bivectorA.e2_no * rotorB.e1_ni + bivectorA.no_ni * rotorB.e1_e2;
+	this->e1_e3_no_ni = bivectorA.e1_e3 * rotorB.no_ni + bivectorA.e1_ni * rotorB.e3_no + (-1.0) * bivectorA.e1_no * rotorB.e3_ni + (-1.0) * bivectorA.e3_ni * rotorB.e1_no + bivectorA.e3_no * rotorB.e1_ni + bivectorA.no_ni * rotorB.e1_e3;
+	this->e2_e3_no_ni = bivectorA.e2_e3 * rotorB.no_ni + bivectorA.e2_ni * rotorB.e3_no + (-1.0) * bivectorA.e2_no * rotorB.e3_ni + (-1.0) * bivectorA.e3_ni * rotorB.e2_no + bivectorA.e3_no * rotorB.e2_ni + bivectorA.no_ni * rotorB.e2_e3;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::OuterProduct(const Trivector& trivectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -6630,6 +8397,42 @@ void Multivector::OuterProduct(const Trivector& trivectorA, const Multivector& m
 	this->e1_e3_no_ni = (-1.0) * trivectorA.e1_e3_ni * multivectorB.no + trivectorA.e1_e3_no * multivectorB.ni + trivectorA.e1_no_ni * multivectorB.e3 + (-1.0) * trivectorA.e3_no_ni * multivectorB.e1;
 	this->e2_e3_no_ni = (-1.0) * trivectorA.e2_e3_ni * multivectorB.no + trivectorA.e2_e3_no * multivectorB.ni + trivectorA.e2_no_ni * multivectorB.e3 + (-1.0) * trivectorA.e3_no_ni * multivectorB.e2;
 	this->e1_e2_e3_no_ni = trivectorA.e1_e2_e3 * multivectorB.no_ni + trivectorA.e1_e2_ni * multivectorB.e3_no + (-1.0) * trivectorA.e1_e2_no * multivectorB.e3_ni + (-1.0) * trivectorA.e1_e3_ni * multivectorB.e2_no + trivectorA.e1_e3_no * multivectorB.e2_ni + trivectorA.e1_no_ni * multivectorB.e2_e3 + trivectorA.e2_e3_ni * multivectorB.e1_no + (-1.0) * trivectorA.e2_e3_no * multivectorB.e1_ni + (-1.0) * trivectorA.e2_no_ni * multivectorB.e1_e3 + trivectorA.e3_no_ni * multivectorB.e1_e2;
+}
+
+void Multivector::OuterProduct(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = trivectorA.e1_e2_e3 * rotorB._1;
+	this->e1_e2_no = trivectorA.e1_e2_no * rotorB._1;
+	this->e1_e2_ni = trivectorA.e1_e2_ni * rotorB._1;
+	this->e1_e3_no = trivectorA.e1_e3_no * rotorB._1;
+	this->e1_e3_ni = trivectorA.e1_e3_ni * rotorB._1;
+	this->e1_no_ni = trivectorA.e1_no_ni * rotorB._1;
+	this->e2_e3_no = trivectorA.e2_e3_no * rotorB._1;
+	this->e2_e3_ni = trivectorA.e2_e3_ni * rotorB._1;
+	this->e2_no_ni = trivectorA.e2_no_ni * rotorB._1;
+	this->e3_no_ni = trivectorA.e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = trivectorA.e1_e2_e3 * rotorB.no_ni + trivectorA.e1_e2_ni * rotorB.e3_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e3_ni + (-1.0) * trivectorA.e1_e3_ni * rotorB.e2_no + trivectorA.e1_e3_no * rotorB.e2_ni + trivectorA.e1_no_ni * rotorB.e2_e3 + trivectorA.e2_e3_ni * rotorB.e1_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e1_ni + (-1.0) * trivectorA.e2_no_ni * rotorB.e1_e3 + trivectorA.e3_no_ni * rotorB.e1_e2;
 }
 
 void Multivector::OuterProduct(const Quadvector& quadvectorA, const Scalar& scalarB)
@@ -6884,6 +8687,42 @@ void Multivector::OuterProduct(const Quadvector& quadvectorA, const Multivector&
 	this->e1_e2_e3_no_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * multivectorB.no + quadvectorA.e1_e2_e3_no * multivectorB.ni + quadvectorA.e1_e2_no_ni * multivectorB.e3 + (-1.0) * quadvectorA.e1_e3_no_ni * multivectorB.e2 + quadvectorA.e2_e3_no_ni * multivectorB.e1;
 }
 
+void Multivector::OuterProduct(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no * rotorB._1;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni * rotorB._1;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni * rotorB._1;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::OuterProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -7134,6 +8973,42 @@ void Multivector::OuterProduct(const PsuedoScalar& psuedoscalarA, const Multivec
 	this->e1_e3_no_ni = 0.0;
 	this->e2_e3_no_ni = 0.0;
 	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * multivectorB._1;
+}
+
+void Multivector::OuterProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB._1;
 }
 
 void Multivector::OuterProduct(const Multivector& multivectorA, const Scalar& scalarB)
@@ -7388,6 +9263,330 @@ void Multivector::OuterProduct(const Multivector& multivectorA, const Multivecto
 	this->e1_e2_e3_no_ni = multivectorA._1 * multivectorB.e1_e2_e3_no_ni + (-1.0) * multivectorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * multivectorA.e1_e3_ni * multivectorB.e2_no + multivectorA.e1_e3_no * multivectorB.e2_ni + (-1.0) * multivectorA.e1_e3_no_ni * multivectorB.e2 + (-1.0) * multivectorA.e1_ni * multivectorB.e2_e3_no + multivectorA.e1_no * multivectorB.e2_e3_ni + multivectorA.e1_no_ni * multivectorB.e2_e3 + (-1.0) * multivectorA.e2 * multivectorB.e1_e3_no_ni + multivectorA.e2_e3 * multivectorB.e1_no_ni + multivectorA.e2_e3_ni * multivectorB.e1_no + multivectorA.e1 * multivectorB.e2_e3_no_ni + (-1.0) * multivectorA.e2_e3_no * multivectorB.e1_ni + multivectorA.e2_e3_no_ni * multivectorB.e1 + multivectorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * multivectorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * multivectorA.e2_no_ni * multivectorB.e1_e3 + multivectorA.e3 * multivectorB.e1_e2_no_ni + (-1.0) * multivectorA.e3_ni * multivectorB.e1_e2_no + multivectorA.e3_no * multivectorB.e1_e2_ni + multivectorA.e3_no_ni * multivectorB.e1_e2 + multivectorA.ni * multivectorB.e1_e2_e3_no + multivectorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * multivectorA.no * multivectorB.e1_e2_e3_ni + multivectorA.no_ni * multivectorB.e1_e2_e3 + multivectorA.e1_e2_e3 * multivectorB.no_ni + (-1.0) * multivectorA.e1_e2_e3_ni * multivectorB.no + multivectorA.e1_e2_e3_no * multivectorB.ni + multivectorA.e1_e2_e3_no_ni * multivectorB._1 + multivectorA.e1_e2_ni * multivectorB.e3_no + (-1.0) * multivectorA.e1_e2_no * multivectorB.e3_ni + multivectorA.e1_e2_no_ni * multivectorB.e3;
 }
 
+void Multivector::OuterProduct(const Multivector& multivectorA, const Rotor& rotorB)
+{
+	this->_1 = multivectorA._1 * rotorB._1;
+	this->e1 = multivectorA.e1 * rotorB._1;
+	this->e2 = multivectorA.e2 * rotorB._1;
+	this->e3 = multivectorA.e3 * rotorB._1;
+	this->no = multivectorA.no * rotorB._1;
+	this->ni = multivectorA.ni * rotorB._1;
+	this->e1_e2 = multivectorA._1 * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB._1;
+	this->e1_e3 = multivectorA._1 * rotorB.e1_e3 + multivectorA.e1_e3 * rotorB._1;
+	this->e1_no = multivectorA._1 * rotorB.e1_no + multivectorA.e1_no * rotorB._1;
+	this->e1_ni = multivectorA._1 * rotorB.e1_ni + multivectorA.e1_ni * rotorB._1;
+	this->e2_e3 = multivectorA._1 * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB._1;
+	this->e2_no = multivectorA._1 * rotorB.e2_no + multivectorA.e2_no * rotorB._1;
+	this->e2_ni = multivectorA._1 * rotorB.e2_ni + multivectorA.e2_ni * rotorB._1;
+	this->e3_no = multivectorA._1 * rotorB.e3_no + multivectorA.e3_no * rotorB._1;
+	this->e3_ni = multivectorA._1 * rotorB.e3_ni + multivectorA.e3_ni * rotorB._1;
+	this->no_ni = multivectorA._1 * rotorB.no_ni + multivectorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = (-1.0) * multivectorA.e2 * rotorB.e1_e3 + multivectorA.e1 * rotorB.e2_e3 + multivectorA.e3 * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB._1;
+	this->e1_e2_no = (-1.0) * multivectorA.e2 * rotorB.e1_no + multivectorA.e1 * rotorB.e2_no + multivectorA.no * rotorB.e1_e2 + multivectorA.e1_e2_no * rotorB._1;
+	this->e1_e2_ni = (-1.0) * multivectorA.e2 * rotorB.e1_ni + multivectorA.e1 * rotorB.e2_ni + multivectorA.ni * rotorB.e1_e2 + multivectorA.e1_e2_ni * rotorB._1;
+	this->e1_e3_no = multivectorA.e1_e3_no * rotorB._1 + multivectorA.e1 * rotorB.e3_no + (-1.0) * multivectorA.e3 * rotorB.e1_no + multivectorA.no * rotorB.e1_e3;
+	this->e1_e3_ni = multivectorA.e1_e3_ni * rotorB._1 + multivectorA.e1 * rotorB.e3_ni + (-1.0) * multivectorA.e3 * rotorB.e1_ni + multivectorA.ni * rotorB.e1_e3;
+	this->e1_no_ni = multivectorA.e1_no_ni * rotorB._1 + multivectorA.e1 * rotorB.no_ni + multivectorA.ni * rotorB.e1_no + (-1.0) * multivectorA.no * rotorB.e1_ni;
+	this->e2_e3_no = multivectorA.e2 * rotorB.e3_no + multivectorA.e2_e3_no * rotorB._1 + (-1.0) * multivectorA.e3 * rotorB.e2_no + multivectorA.no * rotorB.e2_e3;
+	this->e2_e3_ni = multivectorA.e2 * rotorB.e3_ni + multivectorA.e2_e3_ni * rotorB._1 + (-1.0) * multivectorA.e3 * rotorB.e2_ni + multivectorA.ni * rotorB.e2_e3;
+	this->e2_no_ni = multivectorA.e2 * rotorB.no_ni + multivectorA.e2_no_ni * rotorB._1 + multivectorA.ni * rotorB.e2_no + (-1.0) * multivectorA.no * rotorB.e2_ni;
+	this->e3_no_ni = multivectorA.e3 * rotorB.no_ni + multivectorA.e3_no_ni * rotorB._1 + multivectorA.ni * rotorB.e3_no + (-1.0) * multivectorA.no * rotorB.e3_ni;
+	this->e1_e2_e3_no = (-1.0) * multivectorA.e1_e3 * rotorB.e2_no + multivectorA.e1_no * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB.e1_no + (-1.0) * multivectorA.e2_no * rotorB.e1_e3 + multivectorA.e3_no * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB.e3_no + multivectorA.e1_e2_e3_no * rotorB._1;
+	this->e1_e2_e3_ni = (-1.0) * multivectorA.e1_e3 * rotorB.e2_ni + multivectorA.e1_ni * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB.e1_ni + (-1.0) * multivectorA.e2_ni * rotorB.e1_e3 + multivectorA.e3_ni * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB.e3_ni + multivectorA.e1_e2_e3_ni * rotorB._1;
+	this->e1_e2_no_ni = multivectorA.e1_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_no * rotorB.e2_ni + (-1.0) * multivectorA.e2_ni * rotorB.e1_no + multivectorA.e2_no * rotorB.e1_ni + multivectorA.e1_e2 * rotorB.no_ni + multivectorA.no_ni * rotorB.e1_e2 + multivectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = multivectorA.e1_e3 * rotorB.no_ni + multivectorA.e1_e3_no_ni * rotorB._1 + multivectorA.e1_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_no * rotorB.e3_ni + (-1.0) * multivectorA.e3_ni * rotorB.e1_no + multivectorA.e3_no * rotorB.e1_ni + multivectorA.no_ni * rotorB.e1_e3;
+	this->e2_e3_no_ni = multivectorA.e2_e3 * rotorB.no_ni + multivectorA.e2_e3_no_ni * rotorB._1 + multivectorA.e2_ni * rotorB.e3_no + (-1.0) * multivectorA.e2_no * rotorB.e3_ni + (-1.0) * multivectorA.e3_ni * rotorB.e2_no + multivectorA.e3_no * rotorB.e2_ni + multivectorA.no_ni * rotorB.e2_e3;
+	this->e1_e2_e3_no_ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e2_no + multivectorA.e1_e3_no * rotorB.e2_ni + multivectorA.e1_no_ni * rotorB.e2_e3 + multivectorA.e2_e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e1_ni + (-1.0) * multivectorA.e2_no_ni * rotorB.e1_e3 + multivectorA.e3_no_ni * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB.no_ni + multivectorA.e1_e2_e3_no_ni * rotorB._1 + multivectorA.e1_e2_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e3_ni;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Scalar& scalarB)
+{
+	this->_1 = rotorA._1 * scalarB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 * scalarB._1;
+	this->e1_e3 = rotorA.e1_e3 * scalarB._1;
+	this->e1_no = rotorA.e1_no * scalarB._1;
+	this->e1_ni = rotorA.e1_ni * scalarB._1;
+	this->e2_e3 = rotorA.e2_e3 * scalarB._1;
+	this->e2_no = rotorA.e2_no * scalarB._1;
+	this->e2_ni = rotorA.e2_ni * scalarB._1;
+	this->e3_no = rotorA.e3_no * scalarB._1;
+	this->e3_ni = rotorA.e3_ni * scalarB._1;
+	this->no_ni = rotorA.no_ni * scalarB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = rotorA._1 * vectorB.e1;
+	this->e2 = rotorA._1 * vectorB.e2;
+	this->e3 = rotorA._1 * vectorB.e3;
+	this->no = rotorA._1 * vectorB.no;
+	this->ni = rotorA._1 * vectorB.ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA.e1_e2 * vectorB.e3 + (-1.0) * rotorA.e1_e3 * vectorB.e2 + rotorA.e2_e3 * vectorB.e1;
+	this->e1_e2_no = rotorA.e1_e2 * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e2 + rotorA.e2_no * vectorB.e1;
+	this->e1_e2_ni = rotorA.e1_e2 * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e2 + rotorA.e2_ni * vectorB.e1;
+	this->e1_e3_no = rotorA.e1_e3 * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e3 + rotorA.e3_no * vectorB.e1;
+	this->e1_e3_ni = rotorA.e1_e3 * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e3 + rotorA.e3_ni * vectorB.e1;
+	this->e1_no_ni = rotorA.no_ni * vectorB.e1 + (-1.0) * rotorA.e1_ni * vectorB.no + rotorA.e1_no * vectorB.ni;
+	this->e2_e3_no = rotorA.e2_e3 * vectorB.no + (-1.0) * rotorA.e2_no * vectorB.e3 + rotorA.e3_no * vectorB.e2;
+	this->e2_e3_ni = rotorA.e2_e3 * vectorB.ni + (-1.0) * rotorA.e2_ni * vectorB.e3 + rotorA.e3_ni * vectorB.e2;
+	this->e2_no_ni = rotorA.no_ni * vectorB.e2 + (-1.0) * rotorA.e2_ni * vectorB.no + rotorA.e2_no * vectorB.ni;
+	this->e3_no_ni = rotorA.no_ni * vectorB.e3 + (-1.0) * rotorA.e3_ni * vectorB.no + rotorA.e3_no * vectorB.ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Bivector& bivectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * bivectorB.e1_e2;
+	this->e1_e3 = rotorA._1 * bivectorB.e1_e3;
+	this->e1_no = rotorA._1 * bivectorB.e1_no;
+	this->e1_ni = rotorA._1 * bivectorB.e1_ni;
+	this->e2_e3 = rotorA._1 * bivectorB.e2_e3;
+	this->e2_no = rotorA._1 * bivectorB.e2_no;
+	this->e2_ni = rotorA._1 * bivectorB.e2_ni;
+	this->e3_no = rotorA._1 * bivectorB.e3_no;
+	this->e3_ni = rotorA._1 * bivectorB.e3_ni;
+	this->no_ni = rotorA._1 * bivectorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA.e1_e2 * bivectorB.e3_no + (-1.0) * rotorA.e1_e3 * bivectorB.e2_no + rotorA.e1_no * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.e1_no + (-1.0) * rotorA.e2_no * bivectorB.e1_e3 + rotorA.e3_no * bivectorB.e1_e2;
+	this->e1_e2_e3_ni = rotorA.e1_e2 * bivectorB.e3_ni + (-1.0) * rotorA.e1_e3 * bivectorB.e2_ni + rotorA.e1_ni * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.e1_ni + (-1.0) * rotorA.e2_ni * bivectorB.e1_e3 + rotorA.e3_ni * bivectorB.e1_e2;
+	this->e1_e2_no_ni = rotorA.no_ni * bivectorB.e1_e2 + rotorA.e1_e2 * bivectorB.no_ni + rotorA.e1_ni * bivectorB.e2_no + (-1.0) * rotorA.e1_no * bivectorB.e2_ni + (-1.0) * rotorA.e2_ni * bivectorB.e1_no + rotorA.e2_no * bivectorB.e1_ni;
+	this->e1_e3_no_ni = rotorA.no_ni * bivectorB.e1_e3 + rotorA.e1_e3 * bivectorB.no_ni + rotorA.e1_ni * bivectorB.e3_no + (-1.0) * rotorA.e1_no * bivectorB.e3_ni + (-1.0) * rotorA.e3_ni * bivectorB.e1_no + rotorA.e3_no * bivectorB.e1_ni;
+	this->e2_e3_no_ni = rotorA.no_ni * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.no_ni + rotorA.e2_ni * bivectorB.e3_no + (-1.0) * rotorA.e2_no * bivectorB.e3_ni + (-1.0) * rotorA.e3_ni * bivectorB.e2_no + rotorA.e3_no * bivectorB.e2_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA._1 * trivectorB.e1_e2_e3;
+	this->e1_e2_no = rotorA._1 * trivectorB.e1_e2_no;
+	this->e1_e2_ni = rotorA._1 * trivectorB.e1_e2_ni;
+	this->e1_e3_no = rotorA._1 * trivectorB.e1_e3_no;
+	this->e1_e3_ni = rotorA._1 * trivectorB.e1_e3_ni;
+	this->e1_no_ni = rotorA._1 * trivectorB.e1_no_ni;
+	this->e2_e3_no = rotorA._1 * trivectorB.e2_e3_no;
+	this->e2_e3_ni = rotorA._1 * trivectorB.e2_e3_ni;
+	this->e2_no_ni = rotorA._1 * trivectorB.e2_no_ni;
+	this->e3_no_ni = rotorA._1 * trivectorB.e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = rotorA.no_ni * trivectorB.e1_e2_e3 + rotorA.e1_e2 * trivectorB.e3_no_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e2_no_ni + (-1.0) * rotorA.e1_ni * trivectorB.e2_e3_no + rotorA.e1_no * trivectorB.e2_e3_ni + rotorA.e2_e3 * trivectorB.e1_no_ni + rotorA.e2_ni * trivectorB.e1_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * trivectorB.e1_e2_no + rotorA.e3_no * trivectorB.e1_e2_ni;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA._1 * quadvectorB.e1_e2_e3_no;
+	this->e1_e2_e3_ni = rotorA._1 * quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_no_ni = rotorA._1 * quadvectorB.e1_e2_no_ni;
+	this->e1_e3_no_ni = rotorA._1 * quadvectorB.e1_e3_no_ni;
+	this->e2_e3_no_ni = rotorA._1 * quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = rotorA._1 * psuedoscalarB.e1_e2_e3_no_ni;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Multivector& multivectorB)
+{
+	this->_1 = rotorA._1 * multivectorB._1;
+	this->e1 = rotorA._1 * multivectorB.e1;
+	this->e2 = rotorA._1 * multivectorB.e2;
+	this->e3 = rotorA._1 * multivectorB.e3;
+	this->no = rotorA._1 * multivectorB.no;
+	this->ni = rotorA._1 * multivectorB.ni;
+	this->e1_e2 = rotorA._1 * multivectorB.e1_e2 + rotorA.e1_e2 * multivectorB._1;
+	this->e1_e3 = rotorA._1 * multivectorB.e1_e3 + rotorA.e1_e3 * multivectorB._1;
+	this->e1_no = rotorA._1 * multivectorB.e1_no + rotorA.e1_no * multivectorB._1;
+	this->e1_ni = rotorA._1 * multivectorB.e1_ni + rotorA.e1_ni * multivectorB._1;
+	this->e2_e3 = rotorA._1 * multivectorB.e2_e3 + rotorA.e2_e3 * multivectorB._1;
+	this->e2_no = rotorA._1 * multivectorB.e2_no + rotorA.e2_no * multivectorB._1;
+	this->e2_ni = rotorA._1 * multivectorB.e2_ni + rotorA.e2_ni * multivectorB._1;
+	this->e3_no = rotorA._1 * multivectorB.e3_no + rotorA.e3_no * multivectorB._1;
+	this->e3_ni = rotorA._1 * multivectorB.e3_ni + rotorA.e3_ni * multivectorB._1;
+	this->no_ni = rotorA._1 * multivectorB.no_ni + rotorA.no_ni * multivectorB._1;
+	this->e1_e2_e3 = rotorA._1 * multivectorB.e1_e2_e3 + rotorA.e1_e2 * multivectorB.e3 + (-1.0) * rotorA.e1_e3 * multivectorB.e2 + rotorA.e2_e3 * multivectorB.e1;
+	this->e1_e2_no = rotorA._1 * multivectorB.e1_e2_no + rotorA.e1_e2 * multivectorB.no + (-1.0) * rotorA.e1_no * multivectorB.e2 + rotorA.e2_no * multivectorB.e1;
+	this->e1_e2_ni = rotorA._1 * multivectorB.e1_e2_ni + rotorA.e1_e2 * multivectorB.ni + (-1.0) * rotorA.e1_ni * multivectorB.e2 + rotorA.e2_ni * multivectorB.e1;
+	this->e1_e3_no = rotorA._1 * multivectorB.e1_e3_no + rotorA.e1_e3 * multivectorB.no + (-1.0) * rotorA.e1_no * multivectorB.e3 + rotorA.e3_no * multivectorB.e1;
+	this->e1_e3_ni = rotorA._1 * multivectorB.e1_e3_ni + rotorA.e1_e3 * multivectorB.ni + (-1.0) * rotorA.e1_ni * multivectorB.e3 + rotorA.e3_ni * multivectorB.e1;
+	this->e1_no_ni = rotorA._1 * multivectorB.e1_no_ni + rotorA.no_ni * multivectorB.e1 + (-1.0) * rotorA.e1_ni * multivectorB.no + rotorA.e1_no * multivectorB.ni;
+	this->e2_e3_no = rotorA._1 * multivectorB.e2_e3_no + rotorA.e2_e3 * multivectorB.no + (-1.0) * rotorA.e2_no * multivectorB.e3 + rotorA.e3_no * multivectorB.e2;
+	this->e2_e3_ni = rotorA._1 * multivectorB.e2_e3_ni + rotorA.e2_e3 * multivectorB.ni + (-1.0) * rotorA.e2_ni * multivectorB.e3 + rotorA.e3_ni * multivectorB.e2;
+	this->e2_no_ni = rotorA._1 * multivectorB.e2_no_ni + rotorA.no_ni * multivectorB.e2 + (-1.0) * rotorA.e2_ni * multivectorB.no + rotorA.e2_no * multivectorB.ni;
+	this->e3_no_ni = rotorA._1 * multivectorB.e3_no_ni + rotorA.no_ni * multivectorB.e3 + (-1.0) * rotorA.e3_ni * multivectorB.no + rotorA.e3_no * multivectorB.ni;
+	this->e1_e2_e3_no = rotorA._1 * multivectorB.e1_e2_e3_no + rotorA.e1_e2 * multivectorB.e3_no + (-1.0) * rotorA.e1_e3 * multivectorB.e2_no + rotorA.e1_no * multivectorB.e2_e3 + rotorA.e2_e3 * multivectorB.e1_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e3 + rotorA.e3_no * multivectorB.e1_e2;
+	this->e1_e2_e3_ni = rotorA._1 * multivectorB.e1_e2_e3_ni + rotorA.e1_e2 * multivectorB.e3_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_ni + rotorA.e1_ni * multivectorB.e2_e3 + rotorA.e2_e3 * multivectorB.e1_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_e3 + rotorA.e3_ni * multivectorB.e1_e2;
+	this->e1_e2_no_ni = rotorA._1 * multivectorB.e1_e2_no_ni + rotorA.no_ni * multivectorB.e1_e2 + rotorA.e1_e2 * multivectorB.no_ni + rotorA.e1_ni * multivectorB.e2_no + (-1.0) * rotorA.e1_no * multivectorB.e2_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_no + rotorA.e2_no * multivectorB.e1_ni;
+	this->e1_e3_no_ni = rotorA._1 * multivectorB.e1_e3_no_ni + rotorA.no_ni * multivectorB.e1_e3 + rotorA.e1_e3 * multivectorB.no_ni + rotorA.e1_ni * multivectorB.e3_no + (-1.0) * rotorA.e1_no * multivectorB.e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_no + rotorA.e3_no * multivectorB.e1_ni;
+	this->e2_e3_no_ni = rotorA._1 * multivectorB.e2_e3_no_ni + rotorA.no_ni * multivectorB.e2_e3 + rotorA.e2_e3 * multivectorB.no_ni + rotorA.e2_ni * multivectorB.e3_no + (-1.0) * rotorA.e2_no * multivectorB.e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e2_no + rotorA.e3_no * multivectorB.e2_ni;
+	this->e1_e2_e3_no_ni = rotorA._1 * multivectorB.e1_e2_e3_no_ni + rotorA.no_ni * multivectorB.e1_e2_e3 + rotorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * rotorA.e1_ni * multivectorB.e2_e3_no + rotorA.e1_no * multivectorB.e2_e3_ni + rotorA.e2_e3 * multivectorB.e1_no_ni + rotorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_e2_no + rotorA.e3_no * multivectorB.e1_e2_ni;
+}
+
+void Multivector::OuterProduct(const Rotor& rotorA, const Rotor& rotorB)
+{
+	this->_1 = rotorA._1 * rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * rotorB.e1_e2 + rotorA.e1_e2 * rotorB._1;
+	this->e1_e3 = rotorA._1 * rotorB.e1_e3 + rotorA.e1_e3 * rotorB._1;
+	this->e1_no = rotorA._1 * rotorB.e1_no + rotorA.e1_no * rotorB._1;
+	this->e1_ni = rotorA._1 * rotorB.e1_ni + rotorA.e1_ni * rotorB._1;
+	this->e2_e3 = rotorA._1 * rotorB.e2_e3 + rotorA.e2_e3 * rotorB._1;
+	this->e2_no = rotorA._1 * rotorB.e2_no + rotorA.e2_no * rotorB._1;
+	this->e2_ni = rotorA._1 * rotorB.e2_ni + rotorA.e2_ni * rotorB._1;
+	this->e3_no = rotorA._1 * rotorB.e3_no + rotorA.e3_no * rotorB._1;
+	this->e3_ni = rotorA._1 * rotorB.e3_ni + rotorA.e3_ni * rotorB._1;
+	this->no_ni = rotorA._1 * rotorB.no_ni + rotorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA.e1_e2 * rotorB.e3_no + (-1.0) * rotorA.e1_e3 * rotorB.e2_no + rotorA.e1_no * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.e1_no + (-1.0) * rotorA.e2_no * rotorB.e1_e3 + rotorA.e3_no * rotorB.e1_e2;
+	this->e1_e2_e3_ni = rotorA.e1_e2 * rotorB.e3_ni + (-1.0) * rotorA.e1_e3 * rotorB.e2_ni + rotorA.e1_ni * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.e1_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_e3 + rotorA.e3_ni * rotorB.e1_e2;
+	this->e1_e2_no_ni = rotorA.no_ni * rotorB.e1_e2 + rotorA.e1_e2 * rotorB.no_ni + rotorA.e1_ni * rotorB.e2_no + (-1.0) * rotorA.e1_no * rotorB.e2_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_no + rotorA.e2_no * rotorB.e1_ni;
+	this->e1_e3_no_ni = rotorA.no_ni * rotorB.e1_e3 + rotorA.e1_e3 * rotorB.no_ni + rotorA.e1_ni * rotorB.e3_no + (-1.0) * rotorA.e1_no * rotorB.e3_ni + (-1.0) * rotorA.e3_ni * rotorB.e1_no + rotorA.e3_no * rotorB.e1_ni;
+	this->e2_e3_no_ni = rotorA.no_ni * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.no_ni + rotorA.e2_ni * rotorB.e3_no + (-1.0) * rotorA.e2_no * rotorB.e3_ni + (-1.0) * rotorA.e3_ni * rotorB.e2_no + rotorA.e3_no * rotorB.e2_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::GeometricProduct(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 * scalarB._1;
@@ -7638,6 +9837,42 @@ void Multivector::GeometricProduct(const Scalar& scalarA, const Multivector& mul
 	this->e1_e3_no_ni = scalarA._1 * multivectorB.e1_e3_no_ni;
 	this->e2_e3_no_ni = scalarA._1 * multivectorB.e2_e3_no_ni;
 	this->e1_e2_e3_no_ni = scalarA._1 * multivectorB.e1_e2_e3_no_ni;
+}
+
+void Multivector::GeometricProduct(const Scalar& scalarA, const Rotor& rotorB)
+{
+	this->_1 = scalarA._1 * rotorB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = scalarA._1 * rotorB.e1_e2;
+	this->e1_e3 = scalarA._1 * rotorB.e1_e3;
+	this->e1_no = scalarA._1 * rotorB.e1_no;
+	this->e1_ni = scalarA._1 * rotorB.e1_ni;
+	this->e2_e3 = scalarA._1 * rotorB.e2_e3;
+	this->e2_no = scalarA._1 * rotorB.e2_no;
+	this->e2_ni = scalarA._1 * rotorB.e2_ni;
+	this->e3_no = scalarA._1 * rotorB.e3_no;
+	this->e3_ni = scalarA._1 * rotorB.e3_ni;
+	this->no_ni = scalarA._1 * rotorB.no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::GeometricProduct(const Vector& vectorA, const Scalar& scalarB)
@@ -7892,6 +10127,42 @@ void Multivector::GeometricProduct(const Vector& vectorA, const Multivector& mul
 	this->e1_e2_e3_no_ni = vectorA.e1 * multivectorB.e2_e3_no_ni + (-1.0) * vectorA.e2 * multivectorB.e1_e3_no_ni + vectorA.e3 * multivectorB.e1_e2_no_ni + vectorA.ni * multivectorB.e1_e2_e3_no + (-1.0) * vectorA.no * multivectorB.e1_e2_e3_ni;
 }
 
+void Multivector::GeometricProduct(const Vector& vectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = vectorA.e1 * rotorB._1 + (-1.0) * vectorA.e2 * rotorB.e1_e2 + (-1.0) * vectorA.e3 * rotorB.e1_e3 + vectorA.ni * rotorB.e1_no + vectorA.no * rotorB.e1_ni;
+	this->e2 = vectorA.e1 * rotorB.e1_e2 + vectorA.e2 * rotorB._1 + (-1.0) * vectorA.e3 * rotorB.e2_e3 + vectorA.ni * rotorB.e2_no + vectorA.no * rotorB.e2_ni;
+	this->e3 = vectorA.e1 * rotorB.e1_e3 + vectorA.e2 * rotorB.e2_e3 + vectorA.e3 * rotorB._1 + vectorA.ni * rotorB.e3_no + vectorA.no * rotorB.e3_ni;
+	this->no = vectorA.e1 * rotorB.e1_no + vectorA.e2 * rotorB.e2_no + vectorA.e3 * rotorB.e3_no + vectorA.no * rotorB._1 + vectorA.no * rotorB.no_ni;
+	this->ni = vectorA.e1 * rotorB.e1_ni + vectorA.e2 * rotorB.e2_ni + vectorA.e3 * rotorB.e3_ni + vectorA.ni * rotorB._1 + (-1.0) * vectorA.ni * rotorB.no_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = vectorA.e1 * rotorB.e2_e3 + (-1.0) * vectorA.e2 * rotorB.e1_e3 + vectorA.e3 * rotorB.e1_e2;
+	this->e1_e2_no = vectorA.e1 * rotorB.e2_no + (-1.0) * vectorA.e2 * rotorB.e1_no + vectorA.no * rotorB.e1_e2;
+	this->e1_e2_ni = vectorA.e1 * rotorB.e2_ni + (-1.0) * vectorA.e2 * rotorB.e1_ni + vectorA.ni * rotorB.e1_e2;
+	this->e1_e3_no = vectorA.e1 * rotorB.e3_no + (-1.0) * vectorA.e3 * rotorB.e1_no + vectorA.no * rotorB.e1_e3;
+	this->e1_e3_ni = vectorA.e1 * rotorB.e3_ni + (-1.0) * vectorA.e3 * rotorB.e1_ni + vectorA.ni * rotorB.e1_e3;
+	this->e1_no_ni = vectorA.e1 * rotorB.no_ni + vectorA.ni * rotorB.e1_no + (-1.0) * vectorA.no * rotorB.e1_ni;
+	this->e2_e3_no = vectorA.e2 * rotorB.e3_no + (-1.0) * vectorA.e3 * rotorB.e2_no + vectorA.no * rotorB.e2_e3;
+	this->e2_e3_ni = vectorA.e2 * rotorB.e3_ni + (-1.0) * vectorA.e3 * rotorB.e2_ni + vectorA.ni * rotorB.e2_e3;
+	this->e2_no_ni = vectorA.e2 * rotorB.no_ni + vectorA.ni * rotorB.e2_no + (-1.0) * vectorA.no * rotorB.e2_ni;
+	this->e3_no_ni = vectorA.e3 * rotorB.no_ni + vectorA.ni * rotorB.e3_no + (-1.0) * vectorA.no * rotorB.e3_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
 void Multivector::GeometricProduct(const Bivector& bivectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -8142,6 +10413,42 @@ void Multivector::GeometricProduct(const Bivector& bivectorA, const Multivector&
 	this->e1_e3_no_ni = bivectorA.e1_e2 * multivectorB.e2_e3_no_ni + bivectorA.e1_e3 * multivectorB.no_ni + bivectorA.e1_ni * multivectorB.e3_no + (-1.0) * bivectorA.e1_no * multivectorB.e3_ni + (-1.0) * bivectorA.e2_e3 * multivectorB.e1_e2_no_ni + (-1.0) * bivectorA.e2_ni * multivectorB.e1_e2_e3_no + bivectorA.e2_no * multivectorB.e1_e2_e3_ni + (-1.0) * bivectorA.e3_ni * multivectorB.e1_no + bivectorA.e3_no * multivectorB.e1_ni + bivectorA.no_ni * multivectorB.e1_e3;
 	this->e2_e3_no_ni = (-1.0) * bivectorA.e1_e2 * multivectorB.e1_e3_no_ni + bivectorA.e1_e3 * multivectorB.e1_e2_no_ni + bivectorA.e1_ni * multivectorB.e1_e2_e3_no + (-1.0) * bivectorA.e1_no * multivectorB.e1_e2_e3_ni + bivectorA.e2_e3 * multivectorB.no_ni + bivectorA.e2_ni * multivectorB.e3_no + (-1.0) * bivectorA.e2_no * multivectorB.e3_ni + (-1.0) * bivectorA.e3_ni * multivectorB.e2_no + bivectorA.e3_no * multivectorB.e2_ni + bivectorA.no_ni * multivectorB.e2_e3;
 	this->e1_e2_e3_no_ni = bivectorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * bivectorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * bivectorA.e1_ni * multivectorB.e2_e3_no + bivectorA.e1_no * multivectorB.e2_e3_ni + bivectorA.e2_e3 * multivectorB.e1_no_ni + bivectorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * bivectorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * bivectorA.e3_ni * multivectorB.e1_e2_no + bivectorA.e3_no * multivectorB.e1_e2_ni + bivectorA.no_ni * multivectorB.e1_e2_e3;
+}
+
+void Multivector::GeometricProduct(const Bivector& bivectorA, const Rotor& rotorB)
+{
+	this->_1 = (-1.0) * bivectorA.e1_e2 * rotorB.e1_e2 + (-1.0) * bivectorA.e1_e3 * rotorB.e1_e3 + bivectorA.e1_ni * rotorB.e1_no + bivectorA.e1_no * rotorB.e1_ni + (-1.0) * bivectorA.e2_e3 * rotorB.e2_e3 + bivectorA.e2_ni * rotorB.e2_no + bivectorA.e2_no * rotorB.e2_ni + bivectorA.e3_ni * rotorB.e3_no + bivectorA.e3_no * rotorB.e3_ni + bivectorA.no_ni * rotorB.no_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = bivectorA.e1_e2 * rotorB._1 + (-1.0) * bivectorA.e1_e3 * rotorB.e2_e3 + bivectorA.e1_ni * rotorB.e2_no + bivectorA.e1_no * rotorB.e2_ni + bivectorA.e2_e3 * rotorB.e1_e3 + (-1.0) * bivectorA.e2_ni * rotorB.e1_no + (-1.0) * bivectorA.e2_no * rotorB.e1_ni;
+	this->e1_e3 = bivectorA.e1_e2 * rotorB.e2_e3 + bivectorA.e1_e3 * rotorB._1 + bivectorA.e1_ni * rotorB.e3_no + bivectorA.e1_no * rotorB.e3_ni + (-1.0) * bivectorA.e2_e3 * rotorB.e1_e2 + (-1.0) * bivectorA.e3_ni * rotorB.e1_no + (-1.0) * bivectorA.e3_no * rotorB.e1_ni;
+	this->e1_no = bivectorA.e1_e2 * rotorB.e2_no + bivectorA.e1_e3 * rotorB.e3_no + bivectorA.e1_no * rotorB._1 + bivectorA.e1_no * rotorB.no_ni + (-1.0) * bivectorA.e2_no * rotorB.e1_e2 + (-1.0) * bivectorA.e3_no * rotorB.e1_e3 + (-1.0) * bivectorA.no_ni * rotorB.e1_no;
+	this->e1_ni = bivectorA.e1_e2 * rotorB.e2_ni + bivectorA.e1_e3 * rotorB.e3_ni + bivectorA.e1_ni * rotorB._1 + (-1.0) * bivectorA.e1_ni * rotorB.no_ni + (-1.0) * bivectorA.e2_ni * rotorB.e1_e2 + (-1.0) * bivectorA.e3_ni * rotorB.e1_e3 + bivectorA.no_ni * rotorB.e1_ni;
+	this->e2_e3 = (-1.0) * bivectorA.e1_e2 * rotorB.e1_e3 + bivectorA.e1_e3 * rotorB.e1_e2 + bivectorA.e2_e3 * rotorB._1 + bivectorA.e2_ni * rotorB.e3_no + bivectorA.e2_no * rotorB.e3_ni + (-1.0) * bivectorA.e3_ni * rotorB.e2_no + (-1.0) * bivectorA.e3_no * rotorB.e2_ni;
+	this->e2_no = (-1.0) * bivectorA.e1_e2 * rotorB.e1_no + bivectorA.e1_no * rotorB.e1_e2 + bivectorA.e2_e3 * rotorB.e3_no + bivectorA.e2_no * rotorB._1 + bivectorA.e2_no * rotorB.no_ni + (-1.0) * bivectorA.e3_no * rotorB.e2_e3 + (-1.0) * bivectorA.no_ni * rotorB.e2_no;
+	this->e2_ni = (-1.0) * bivectorA.e1_e2 * rotorB.e1_ni + bivectorA.e1_ni * rotorB.e1_e2 + bivectorA.e2_e3 * rotorB.e3_ni + bivectorA.e2_ni * rotorB._1 + (-1.0) * bivectorA.e2_ni * rotorB.no_ni + (-1.0) * bivectorA.e3_ni * rotorB.e2_e3 + bivectorA.no_ni * rotorB.e2_ni;
+	this->e3_no = (-1.0) * bivectorA.e1_e3 * rotorB.e1_no + bivectorA.e1_no * rotorB.e1_e3 + (-1.0) * bivectorA.e2_e3 * rotorB.e2_no + bivectorA.e2_no * rotorB.e2_e3 + bivectorA.e3_no * rotorB._1 + bivectorA.e3_no * rotorB.no_ni + (-1.0) * bivectorA.no_ni * rotorB.e3_no;
+	this->e3_ni = (-1.0) * bivectorA.e1_e3 * rotorB.e1_ni + bivectorA.e1_ni * rotorB.e1_e3 + (-1.0) * bivectorA.e2_e3 * rotorB.e2_ni + bivectorA.e2_ni * rotorB.e2_e3 + bivectorA.e3_ni * rotorB._1 + (-1.0) * bivectorA.e3_ni * rotorB.no_ni + bivectorA.no_ni * rotorB.e3_ni;
+	this->no_ni = bivectorA.e1_ni * rotorB.e1_no + (-1.0) * bivectorA.e1_no * rotorB.e1_ni + bivectorA.e2_ni * rotorB.e2_no + (-1.0) * bivectorA.e2_no * rotorB.e2_ni + bivectorA.e3_ni * rotorB.e3_no + (-1.0) * bivectorA.e3_no * rotorB.e3_ni + bivectorA.no_ni * rotorB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = bivectorA.e1_e2 * rotorB.e3_no + (-1.0) * bivectorA.e1_e3 * rotorB.e2_no + bivectorA.e1_no * rotorB.e2_e3 + bivectorA.e2_e3 * rotorB.e1_no + (-1.0) * bivectorA.e2_no * rotorB.e1_e3 + bivectorA.e3_no * rotorB.e1_e2;
+	this->e1_e2_e3_ni = bivectorA.e1_e2 * rotorB.e3_ni + (-1.0) * bivectorA.e1_e3 * rotorB.e2_ni + bivectorA.e1_ni * rotorB.e2_e3 + bivectorA.e2_e3 * rotorB.e1_ni + (-1.0) * bivectorA.e2_ni * rotorB.e1_e3 + bivectorA.e3_ni * rotorB.e1_e2;
+	this->e1_e2_no_ni = bivectorA.e1_e2 * rotorB.no_ni + bivectorA.e1_ni * rotorB.e2_no + (-1.0) * bivectorA.e1_no * rotorB.e2_ni + (-1.0) * bivectorA.e2_ni * rotorB.e1_no + bivectorA.e2_no * rotorB.e1_ni + bivectorA.no_ni * rotorB.e1_e2;
+	this->e1_e3_no_ni = bivectorA.e1_e3 * rotorB.no_ni + bivectorA.e1_ni * rotorB.e3_no + (-1.0) * bivectorA.e1_no * rotorB.e3_ni + (-1.0) * bivectorA.e3_ni * rotorB.e1_no + bivectorA.e3_no * rotorB.e1_ni + bivectorA.no_ni * rotorB.e1_e3;
+	this->e2_e3_no_ni = bivectorA.e2_e3 * rotorB.no_ni + bivectorA.e2_ni * rotorB.e3_no + (-1.0) * bivectorA.e2_no * rotorB.e3_ni + (-1.0) * bivectorA.e3_ni * rotorB.e2_no + bivectorA.e3_no * rotorB.e2_ni + bivectorA.no_ni * rotorB.e2_e3;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::GeometricProduct(const Trivector& trivectorA, const Scalar& scalarB)
@@ -8396,6 +10703,42 @@ void Multivector::GeometricProduct(const Trivector& trivectorA, const Multivecto
 	this->e1_e2_e3_no_ni = trivectorA.e1_e2_e3 * multivectorB.no_ni + trivectorA.e1_e2_ni * multivectorB.e3_no + (-1.0) * trivectorA.e1_e2_no * multivectorB.e3_ni + (-1.0) * trivectorA.e1_e3_ni * multivectorB.e2_no + trivectorA.e1_e3_no * multivectorB.e2_ni + trivectorA.e1_no_ni * multivectorB.e2_e3 + trivectorA.e2_e3_ni * multivectorB.e1_no + (-1.0) * trivectorA.e2_e3_no * multivectorB.e1_ni + (-1.0) * trivectorA.e2_no_ni * multivectorB.e1_e3 + trivectorA.e3_no_ni * multivectorB.e1_e2;
 }
 
+void Multivector::GeometricProduct(const Trivector& trivectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e2_e3 + trivectorA.e1_e2_ni * rotorB.e2_no + trivectorA.e1_e2_no * rotorB.e2_ni + trivectorA.e1_e3_ni * rotorB.e3_no + trivectorA.e1_e3_no * rotorB.e3_ni + trivectorA.e1_no_ni * rotorB.no_ni;
+	this->e2 = trivectorA.e1_e2_e3 * rotorB.e1_e3 + (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e1_ni + trivectorA.e2_e3_ni * rotorB.e3_no + trivectorA.e2_e3_no * rotorB.e3_ni + trivectorA.e2_no_ni * rotorB.no_ni;
+	this->e3 = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_ni * rotorB.e1_no + (-1.0) * trivectorA.e1_e3_no * rotorB.e1_ni + (-1.0) * trivectorA.e2_e3_ni * rotorB.e2_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e2_ni + trivectorA.e3_no_ni * rotorB.no_ni;
+	this->no = (-1.0) * trivectorA.e1_e2_no * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_no * rotorB.e1_e3 + (-1.0) * trivectorA.e1_no_ni * rotorB.e1_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e2_e3 + (-1.0) * trivectorA.e2_no_ni * rotorB.e2_no + (-1.0) * trivectorA.e3_no_ni * rotorB.e3_no;
+	this->ni = (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_e2 + (-1.0) * trivectorA.e1_e3_ni * rotorB.e1_e3 + trivectorA.e1_no_ni * rotorB.e1_ni + (-1.0) * trivectorA.e2_e3_ni * rotorB.e2_e3 + trivectorA.e2_no_ni * rotorB.e2_ni + trivectorA.e3_no_ni * rotorB.e3_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = trivectorA.e1_e2_e3 * rotorB._1 + trivectorA.e1_e2_ni * rotorB.e3_no + trivectorA.e1_e2_no * rotorB.e3_ni + (-1.0) * trivectorA.e1_e3_ni * rotorB.e2_no + (-1.0) * trivectorA.e1_e3_no * rotorB.e2_ni + trivectorA.e2_e3_ni * rotorB.e1_no + trivectorA.e2_e3_no * rotorB.e1_ni;
+	this->e1_e2_no = trivectorA.e1_e2_e3 * rotorB.e3_no + trivectorA.e1_e2_no * rotorB._1 + trivectorA.e1_e2_no * rotorB.no_ni + (-1.0) * trivectorA.e1_e3_no * rotorB.e2_e3 + (-1.0) * trivectorA.e1_no_ni * rotorB.e2_no + trivectorA.e2_e3_no * rotorB.e1_e3 + trivectorA.e2_no_ni * rotorB.e1_no;
+	this->e1_e2_ni = trivectorA.e1_e2_e3 * rotorB.e3_ni + trivectorA.e1_e2_ni * rotorB._1 + (-1.0) * trivectorA.e1_e2_ni * rotorB.no_ni + (-1.0) * trivectorA.e1_e3_ni * rotorB.e2_e3 + trivectorA.e1_no_ni * rotorB.e2_ni + trivectorA.e2_e3_ni * rotorB.e1_e3 + (-1.0) * trivectorA.e2_no_ni * rotorB.e1_ni;
+	this->e1_e3_no = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e2_no + trivectorA.e1_e2_no * rotorB.e2_e3 + trivectorA.e1_e3_no * rotorB._1 + trivectorA.e1_e3_no * rotorB.no_ni + (-1.0) * trivectorA.e1_no_ni * rotorB.e3_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e1_e2 + trivectorA.e3_no_ni * rotorB.e1_no;
+	this->e1_e3_ni = (-1.0) * trivectorA.e1_e2_e3 * rotorB.e2_ni + trivectorA.e1_e2_ni * rotorB.e2_e3 + trivectorA.e1_e3_ni * rotorB._1 + (-1.0) * trivectorA.e1_e3_ni * rotorB.no_ni + trivectorA.e1_no_ni * rotorB.e3_ni + (-1.0) * trivectorA.e2_e3_ni * rotorB.e1_e2 + (-1.0) * trivectorA.e3_no_ni * rotorB.e1_ni;
+	this->e1_no_ni = trivectorA.e1_e2_ni * rotorB.e2_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e2_ni + trivectorA.e1_e3_ni * rotorB.e3_no + (-1.0) * trivectorA.e1_e3_no * rotorB.e3_ni + trivectorA.e1_no_ni * rotorB._1 + (-1.0) * trivectorA.e2_no_ni * rotorB.e1_e2 + (-1.0) * trivectorA.e3_no_ni * rotorB.e1_e3;
+	this->e2_e3_no = trivectorA.e1_e2_e3 * rotorB.e1_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e1_e3 + trivectorA.e1_e3_no * rotorB.e1_e2 + trivectorA.e2_e3_no * rotorB._1 + trivectorA.e2_e3_no * rotorB.no_ni + (-1.0) * trivectorA.e2_no_ni * rotorB.e3_no + trivectorA.e3_no_ni * rotorB.e2_no;
+	this->e2_e3_ni = trivectorA.e1_e2_e3 * rotorB.e1_ni + (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_e3 + trivectorA.e1_e3_ni * rotorB.e1_e2 + trivectorA.e2_e3_ni * rotorB._1 + (-1.0) * trivectorA.e2_e3_ni * rotorB.no_ni + trivectorA.e2_no_ni * rotorB.e3_ni + (-1.0) * trivectorA.e3_no_ni * rotorB.e2_ni;
+	this->e2_no_ni = (-1.0) * trivectorA.e1_e2_ni * rotorB.e1_no + trivectorA.e1_e2_no * rotorB.e1_ni + trivectorA.e1_no_ni * rotorB.e1_e2 + trivectorA.e2_e3_ni * rotorB.e3_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e3_ni + trivectorA.e2_no_ni * rotorB._1 + (-1.0) * trivectorA.e3_no_ni * rotorB.e2_e3;
+	this->e3_no_ni = (-1.0) * trivectorA.e1_e3_ni * rotorB.e1_no + trivectorA.e1_e3_no * rotorB.e1_ni + trivectorA.e1_no_ni * rotorB.e1_e3 + (-1.0) * trivectorA.e2_e3_ni * rotorB.e2_no + trivectorA.e2_e3_no * rotorB.e2_ni + trivectorA.e2_no_ni * rotorB.e2_e3 + trivectorA.e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = trivectorA.e1_e2_e3 * rotorB.no_ni + trivectorA.e1_e2_ni * rotorB.e3_no + (-1.0) * trivectorA.e1_e2_no * rotorB.e3_ni + (-1.0) * trivectorA.e1_e3_ni * rotorB.e2_no + trivectorA.e1_e3_no * rotorB.e2_ni + trivectorA.e1_no_ni * rotorB.e2_e3 + trivectorA.e2_e3_ni * rotorB.e1_no + (-1.0) * trivectorA.e2_e3_no * rotorB.e1_ni + (-1.0) * trivectorA.e2_no_ni * rotorB.e1_e3 + trivectorA.e3_no_ni * rotorB.e1_e2;
+}
+
 void Multivector::GeometricProduct(const Quadvector& quadvectorA, const Scalar& scalarB)
 {
 	this->_1 = 0.0;
@@ -8646,6 +10989,42 @@ void Multivector::GeometricProduct(const Quadvector& quadvectorA, const Multivec
 	this->e1_e3_no_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * multivectorB.e2_no + quadvectorA.e1_e2_e3_no * multivectorB.e2_ni + quadvectorA.e1_e2_no_ni * multivectorB.e2_e3 + quadvectorA.e1_e3_no_ni * multivectorB._1 + (-1.0) * quadvectorA.e2_e3_no_ni * multivectorB.e1_e2;
 	this->e2_e3_no_ni = quadvectorA.e1_e2_e3_ni * multivectorB.e1_no + (-1.0) * quadvectorA.e1_e2_e3_no * multivectorB.e1_ni + (-1.0) * quadvectorA.e1_e2_no_ni * multivectorB.e1_e3 + quadvectorA.e1_e3_no_ni * multivectorB.e1_e2 + quadvectorA.e2_e3_no_ni * multivectorB._1;
 	this->e1_e2_e3_no_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * multivectorB.no + quadvectorA.e1_e2_e3_no * multivectorB.ni + quadvectorA.e1_e2_no_ni * multivectorB.e3 + (-1.0) * quadvectorA.e1_e3_no_ni * multivectorB.e2 + quadvectorA.e2_e3_no_ni * multivectorB.e1;
+}
+
+void Multivector::GeometricProduct(const Quadvector& quadvectorA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = quadvectorA.e1_e2_e3_ni * rotorB.e3_no + quadvectorA.e1_e2_e3_no * rotorB.e3_ni + quadvectorA.e1_e2_no_ni * rotorB.no_ni;
+	this->e1_e3 = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e2_no + (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e2_ni + quadvectorA.e1_e3_no_ni * rotorB.no_ni;
+	this->e1_no = (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e2_e3 + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e2_no + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e3_no;
+	this->e1_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e2_e3 + quadvectorA.e1_e2_no_ni * rotorB.e2_ni + quadvectorA.e1_e3_no_ni * rotorB.e3_ni;
+	this->e2_e3 = quadvectorA.e1_e2_e3_ni * rotorB.e1_no + quadvectorA.e1_e2_e3_no * rotorB.e1_ni + quadvectorA.e2_e3_no_ni * rotorB.no_ni;
+	this->e2_no = quadvectorA.e1_e2_e3_no * rotorB.e1_e3 + quadvectorA.e1_e2_no_ni * rotorB.e1_no + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e3_no;
+	this->e2_ni = quadvectorA.e1_e2_e3_ni * rotorB.e1_e3 + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e1_ni + quadvectorA.e2_e3_no_ni * rotorB.e3_ni;
+	this->e3_no = (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e1_e2 + quadvectorA.e1_e3_no_ni * rotorB.e1_no + quadvectorA.e2_e3_no_ni * rotorB.e2_no;
+	this->e3_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e1_e2 + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e1_ni + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e2_ni;
+	this->no_ni = (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e1_e2 + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e1_e3 + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e2_e3;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no * rotorB._1 + quadvectorA.e1_e2_e3_no * rotorB.no_ni + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e3_no + quadvectorA.e1_e3_no_ni * rotorB.e2_no + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e1_no;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni * rotorB._1 + (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.no_ni + quadvectorA.e1_e2_no_ni * rotorB.e3_ni + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e2_ni + quadvectorA.e2_e3_no_ni * rotorB.e1_ni;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_e3_ni * rotorB.e3_no + (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e3_ni + quadvectorA.e1_e2_no_ni * rotorB._1 + (-1.0) * quadvectorA.e1_e3_no_ni * rotorB.e2_e3 + quadvectorA.e2_e3_no_ni * rotorB.e1_e3;
+	this->e1_e3_no_ni = (-1.0) * quadvectorA.e1_e2_e3_ni * rotorB.e2_no + quadvectorA.e1_e2_e3_no * rotorB.e2_ni + quadvectorA.e1_e2_no_ni * rotorB.e2_e3 + quadvectorA.e1_e3_no_ni * rotorB._1 + (-1.0) * quadvectorA.e2_e3_no_ni * rotorB.e1_e2;
+	this->e2_e3_no_ni = quadvectorA.e1_e2_e3_ni * rotorB.e1_no + (-1.0) * quadvectorA.e1_e2_e3_no * rotorB.e1_ni + (-1.0) * quadvectorA.e1_e2_no_ni * rotorB.e1_e3 + quadvectorA.e1_e3_no_ni * rotorB.e1_e2 + quadvectorA.e2_e3_no_ni * rotorB._1;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
 void Multivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB)
@@ -8900,6 +11279,42 @@ void Multivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Mult
 	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * multivectorB._1;
 }
 
+void Multivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Rotor& rotorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = psuedoscalarA.e1_e2_e3_no_ni * rotorB.no_ni;
+	this->e1_e2_no = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e3_no;
+	this->e1_e2_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e3_ni;
+	this->e1_e3_no = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_no;
+	this->e1_e3_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_ni;
+	this->e1_no_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e2_e3;
+	this->e2_e3_no = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_no;
+	this->e2_e3_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_ni;
+	this->e2_no_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_e3;
+	this->e3_no_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * rotorB._1;
+}
+
 void Multivector::GeometricProduct(const Multivector& multivectorA, const Scalar& scalarB)
 {
 	this->_1 = multivectorA._1 * scalarB._1;
@@ -9150,5 +11565,329 @@ void Multivector::GeometricProduct(const Multivector& multivectorA, const Multiv
 	this->e1_e3_no_ni = multivectorA._1 * multivectorB.e1_e3_no_ni + multivectorA.e1_e3 * multivectorB.no_ni + (-1.0) * multivectorA.e1_e3_ni * multivectorB.no + multivectorA.e1_e3_no * multivectorB.ni + multivectorA.e1_e3_no_ni * multivectorB._1 + multivectorA.e1_ni * multivectorB.e3_no + (-1.0) * multivectorA.e1_no * multivectorB.e3_ni + multivectorA.e1_no_ni * multivectorB.e3 + (-1.0) * multivectorA.e2 * multivectorB.e1_e2_e3_no_ni + (-1.0) * multivectorA.e2_e3 * multivectorB.e1_e2_no_ni + multivectorA.e2_e3_ni * multivectorB.e1_e2_no + multivectorA.e1 * multivectorB.e3_no_ni + (-1.0) * multivectorA.e2_e3_no * multivectorB.e1_e2_ni + (-1.0) * multivectorA.e2_e3_no_ni * multivectorB.e1_e2 + (-1.0) * multivectorA.e2_ni * multivectorB.e1_e2_e3_no + multivectorA.e2_no * multivectorB.e1_e2_e3_ni + (-1.0) * multivectorA.e2_no_ni * multivectorB.e1_e2_e3 + (-1.0) * multivectorA.e3 * multivectorB.e1_no_ni + (-1.0) * multivectorA.e3_ni * multivectorB.e1_no + multivectorA.e3_no * multivectorB.e1_ni + (-1.0) * multivectorA.e3_no_ni * multivectorB.e1 + (-1.0) * multivectorA.ni * multivectorB.e1_e3_no + multivectorA.e1_e2 * multivectorB.e2_e3_no_ni + multivectorA.no * multivectorB.e1_e3_ni + multivectorA.no_ni * multivectorB.e1_e3 + (-1.0) * multivectorA.e1_e2_e3 * multivectorB.e2_no_ni + (-1.0) * multivectorA.e1_e2_e3_ni * multivectorB.e2_no + multivectorA.e1_e2_e3_no * multivectorB.e2_ni + (-1.0) * multivectorA.e1_e2_e3_no_ni * multivectorB.e2 + (-1.0) * multivectorA.e1_e2_ni * multivectorB.e2_e3_no + multivectorA.e1_e2_no * multivectorB.e2_e3_ni + multivectorA.e1_e2_no_ni * multivectorB.e2_e3;
 	this->e2_e3_no_ni = multivectorA._1 * multivectorB.e2_e3_no_ni + multivectorA.e1_e3 * multivectorB.e1_e2_no_ni + (-1.0) * multivectorA.e1_e3_ni * multivectorB.e1_e2_no + multivectorA.e1_e3_no * multivectorB.e1_e2_ni + multivectorA.e1_e3_no_ni * multivectorB.e1_e2 + multivectorA.e1_ni * multivectorB.e1_e2_e3_no + (-1.0) * multivectorA.e1_no * multivectorB.e1_e2_e3_ni + multivectorA.e1_no_ni * multivectorB.e1_e2_e3 + multivectorA.e2 * multivectorB.e3_no_ni + multivectorA.e2_e3 * multivectorB.no_ni + (-1.0) * multivectorA.e2_e3_ni * multivectorB.no + multivectorA.e1 * multivectorB.e1_e2_e3_no_ni + multivectorA.e2_e3_no * multivectorB.ni + multivectorA.e2_e3_no_ni * multivectorB._1 + multivectorA.e2_ni * multivectorB.e3_no + (-1.0) * multivectorA.e2_no * multivectorB.e3_ni + multivectorA.e2_no_ni * multivectorB.e3 + (-1.0) * multivectorA.e3 * multivectorB.e2_no_ni + (-1.0) * multivectorA.e3_ni * multivectorB.e2_no + multivectorA.e3_no * multivectorB.e2_ni + (-1.0) * multivectorA.e3_no_ni * multivectorB.e2 + (-1.0) * multivectorA.ni * multivectorB.e2_e3_no + (-1.0) * multivectorA.e1_e2 * multivectorB.e1_e3_no_ni + multivectorA.no * multivectorB.e2_e3_ni + multivectorA.no_ni * multivectorB.e2_e3 + multivectorA.e1_e2_e3 * multivectorB.e1_no_ni + multivectorA.e1_e2_e3_ni * multivectorB.e1_no + (-1.0) * multivectorA.e1_e2_e3_no * multivectorB.e1_ni + multivectorA.e1_e2_e3_no_ni * multivectorB.e1 + multivectorA.e1_e2_ni * multivectorB.e1_e3_no + (-1.0) * multivectorA.e1_e2_no * multivectorB.e1_e3_ni + (-1.0) * multivectorA.e1_e2_no_ni * multivectorB.e1_e3;
 	this->e1_e2_e3_no_ni = multivectorA._1 * multivectorB.e1_e2_e3_no_ni + (-1.0) * multivectorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * multivectorA.e1_e3_ni * multivectorB.e2_no + multivectorA.e1_e3_no * multivectorB.e2_ni + (-1.0) * multivectorA.e1_e3_no_ni * multivectorB.e2 + (-1.0) * multivectorA.e1_ni * multivectorB.e2_e3_no + multivectorA.e1_no * multivectorB.e2_e3_ni + multivectorA.e1_no_ni * multivectorB.e2_e3 + (-1.0) * multivectorA.e2 * multivectorB.e1_e3_no_ni + multivectorA.e2_e3 * multivectorB.e1_no_ni + multivectorA.e2_e3_ni * multivectorB.e1_no + multivectorA.e1 * multivectorB.e2_e3_no_ni + (-1.0) * multivectorA.e2_e3_no * multivectorB.e1_ni + multivectorA.e2_e3_no_ni * multivectorB.e1 + multivectorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * multivectorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * multivectorA.e2_no_ni * multivectorB.e1_e3 + multivectorA.e3 * multivectorB.e1_e2_no_ni + (-1.0) * multivectorA.e3_ni * multivectorB.e1_e2_no + multivectorA.e3_no * multivectorB.e1_e2_ni + multivectorA.e3_no_ni * multivectorB.e1_e2 + multivectorA.ni * multivectorB.e1_e2_e3_no + multivectorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * multivectorA.no * multivectorB.e1_e2_e3_ni + multivectorA.no_ni * multivectorB.e1_e2_e3 + multivectorA.e1_e2_e3 * multivectorB.no_ni + (-1.0) * multivectorA.e1_e2_e3_ni * multivectorB.no + multivectorA.e1_e2_e3_no * multivectorB.ni + multivectorA.e1_e2_e3_no_ni * multivectorB._1 + multivectorA.e1_e2_ni * multivectorB.e3_no + (-1.0) * multivectorA.e1_e2_no * multivectorB.e3_ni + multivectorA.e1_e2_no_ni * multivectorB.e3;
+}
+
+void Multivector::GeometricProduct(const Multivector& multivectorA, const Rotor& rotorB)
+{
+	this->_1 = multivectorA._1 * rotorB._1 + (-1.0) * multivectorA.e1_e3 * rotorB.e1_e3 + multivectorA.e1_ni * rotorB.e1_no + multivectorA.e1_no * rotorB.e1_ni + (-1.0) * multivectorA.e2_e3 * rotorB.e2_e3 + multivectorA.e2_ni * rotorB.e2_no + multivectorA.e2_no * rotorB.e2_ni + multivectorA.e3_ni * rotorB.e3_no + multivectorA.e3_no * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2 * rotorB.e1_e2 + multivectorA.no_ni * rotorB.no_ni;
+	this->e1 = multivectorA.e1_e3_ni * rotorB.e3_no + multivectorA.e1_e3_no * rotorB.e3_ni + multivectorA.e1_no_ni * rotorB.no_ni + (-1.0) * multivectorA.e2 * rotorB.e1_e2 + multivectorA.e1 * rotorB._1 + (-1.0) * multivectorA.e3 * rotorB.e1_e3 + multivectorA.ni * rotorB.e1_no + multivectorA.no * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e2_e3 + multivectorA.e1_e2_ni * rotorB.e2_no + multivectorA.e1_e2_no * rotorB.e2_ni;
+	this->e2 = multivectorA.e2 * rotorB._1 + multivectorA.e2_e3_ni * rotorB.e3_no + multivectorA.e1 * rotorB.e1_e2 + multivectorA.e2_e3_no * rotorB.e3_ni + multivectorA.e2_no_ni * rotorB.no_ni + (-1.0) * multivectorA.e3 * rotorB.e2_e3 + multivectorA.ni * rotorB.e2_no + multivectorA.no * rotorB.e2_ni + multivectorA.e1_e2_e3 * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e1_ni;
+	this->e3 = (-1.0) * multivectorA.e1_e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e3_no * rotorB.e1_ni + multivectorA.e2 * rotorB.e2_e3 + (-1.0) * multivectorA.e2_e3_ni * rotorB.e2_no + multivectorA.e1 * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3_no * rotorB.e2_ni + multivectorA.e3 * rotorB._1 + multivectorA.e3_no_ni * rotorB.no_ni + multivectorA.ni * rotorB.e3_no + multivectorA.no * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e1_e2;
+	this->no = (-1.0) * multivectorA.e1_e3_no * rotorB.e1_e3 + (-1.0) * multivectorA.e1_no_ni * rotorB.e1_no + multivectorA.e2 * rotorB.e2_no + multivectorA.e1 * rotorB.e1_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e2_no_ni * rotorB.e2_no + multivectorA.e3 * rotorB.e3_no + (-1.0) * multivectorA.e3_no_ni * rotorB.e3_no + multivectorA.no * rotorB._1 + multivectorA.no * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_no * rotorB.e1_e2;
+	this->ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e1_e3 + multivectorA.e1_no_ni * rotorB.e1_ni + multivectorA.e2 * rotorB.e2_ni + (-1.0) * multivectorA.e2_e3_ni * rotorB.e2_e3 + multivectorA.e1 * rotorB.e1_ni + multivectorA.e2_no_ni * rotorB.e2_ni + multivectorA.e3 * rotorB.e3_ni + multivectorA.e3_no_ni * rotorB.e3_ni + multivectorA.ni * rotorB._1 + (-1.0) * multivectorA.ni * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_e2;
+	this->e1_e2 = multivectorA._1 * rotorB.e1_e2 + (-1.0) * multivectorA.e1_e3 * rotorB.e2_e3 + multivectorA.e1_ni * rotorB.e2_no + multivectorA.e1_no * rotorB.e2_ni + multivectorA.e2_e3 * rotorB.e1_e3 + (-1.0) * multivectorA.e2_ni * rotorB.e1_no + (-1.0) * multivectorA.e2_no * rotorB.e1_ni + multivectorA.e1_e2 * rotorB._1 + multivectorA.e1_e2_e3_ni * rotorB.e3_no + multivectorA.e1_e2_e3_no * rotorB.e3_ni + multivectorA.e1_e2_no_ni * rotorB.no_ni;
+	this->e1_e3 = multivectorA._1 * rotorB.e1_e3 + multivectorA.e1_e3 * rotorB._1 + multivectorA.e1_e3_no_ni * rotorB.no_ni + multivectorA.e1_ni * rotorB.e3_no + multivectorA.e1_no * rotorB.e3_ni + (-1.0) * multivectorA.e2_e3 * rotorB.e1_e2 + (-1.0) * multivectorA.e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e3_no * rotorB.e1_ni + multivectorA.e1_e2 * rotorB.e2_e3 + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e2_ni;
+	this->e1_no = multivectorA._1 * rotorB.e1_no + multivectorA.e1_e3 * rotorB.e3_no + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e3_no + multivectorA.e1_no * rotorB._1 + multivectorA.e1_no * rotorB.no_ni + (-1.0) * multivectorA.e2_no * rotorB.e1_e2 + (-1.0) * multivectorA.e3_no * rotorB.e1_e3 + multivectorA.e1_e2 * rotorB.e2_no + (-1.0) * multivectorA.no_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e2_no;
+	this->e1_ni = multivectorA._1 * rotorB.e1_ni + multivectorA.e1_e3 * rotorB.e3_ni + multivectorA.e1_e3_no_ni * rotorB.e3_ni + multivectorA.e1_ni * rotorB._1 + (-1.0) * multivectorA.e1_ni * rotorB.no_ni + (-1.0) * multivectorA.e2_ni * rotorB.e1_e2 + (-1.0) * multivectorA.e3_ni * rotorB.e1_e3 + multivectorA.e1_e2 * rotorB.e2_ni + multivectorA.no_ni * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e2_e3 + multivectorA.e1_e2_no_ni * rotorB.e2_ni;
+	this->e2_e3 = multivectorA._1 * rotorB.e2_e3 + multivectorA.e1_e3 * rotorB.e1_e2 + multivectorA.e2_e3 * rotorB._1 + multivectorA.e2_e3_no_ni * rotorB.no_ni + multivectorA.e2_ni * rotorB.e3_no + multivectorA.e2_no * rotorB.e3_ni + (-1.0) * multivectorA.e3_ni * rotorB.e2_no + (-1.0) * multivectorA.e3_no * rotorB.e2_ni + (-1.0) * multivectorA.e1_e2 * rotorB.e1_e3 + multivectorA.e1_e2_e3_ni * rotorB.e1_no + multivectorA.e1_e2_e3_no * rotorB.e1_ni;
+	this->e2_no = multivectorA._1 * rotorB.e2_no + multivectorA.e1_no * rotorB.e1_e2 + multivectorA.e2_e3 * rotorB.e3_no + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e3_no + multivectorA.e2_no * rotorB._1 + multivectorA.e2_no * rotorB.no_ni + (-1.0) * multivectorA.e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e1_e2 * rotorB.e1_no + (-1.0) * multivectorA.no_ni * rotorB.e2_no + multivectorA.e1_e2_e3_no * rotorB.e1_e3 + multivectorA.e1_e2_no_ni * rotorB.e1_no;
+	this->e2_ni = multivectorA._1 * rotorB.e2_ni + multivectorA.e1_ni * rotorB.e1_e2 + multivectorA.e2_e3 * rotorB.e3_ni + multivectorA.e2_e3_no_ni * rotorB.e3_ni + multivectorA.e2_ni * rotorB._1 + (-1.0) * multivectorA.e2_ni * rotorB.no_ni + (-1.0) * multivectorA.e3_ni * rotorB.e2_e3 + (-1.0) * multivectorA.e1_e2 * rotorB.e1_ni + multivectorA.no_ni * rotorB.e2_ni + multivectorA.e1_e2_e3_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e1_ni;
+	this->e3_no = multivectorA._1 * rotorB.e3_no + (-1.0) * multivectorA.e1_e3 * rotorB.e1_no + multivectorA.e1_e3_no_ni * rotorB.e1_no + multivectorA.e1_no * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3 * rotorB.e2_no + multivectorA.e2_e3_no_ni * rotorB.e2_no + multivectorA.e2_no * rotorB.e2_e3 + multivectorA.e3_no * rotorB._1 + multivectorA.e3_no * rotorB.no_ni + (-1.0) * multivectorA.no_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e1_e2;
+	this->e3_ni = multivectorA._1 * rotorB.e3_ni + (-1.0) * multivectorA.e1_e3 * rotorB.e1_ni + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e1_ni + multivectorA.e1_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3 * rotorB.e2_ni + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e2_ni + multivectorA.e2_ni * rotorB.e2_e3 + multivectorA.e3_ni * rotorB._1 + (-1.0) * multivectorA.e3_ni * rotorB.no_ni + multivectorA.no_ni * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e1_e2;
+	this->no_ni = multivectorA._1 * rotorB.no_ni + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e1_e3 + multivectorA.e1_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_no * rotorB.e1_ni + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e2_e3 + multivectorA.e2_ni * rotorB.e2_no + (-1.0) * multivectorA.e2_no * rotorB.e2_ni + multivectorA.e3_ni * rotorB.e3_no + (-1.0) * multivectorA.e3_no * rotorB.e3_ni + multivectorA.no_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3 = (-1.0) * multivectorA.e1_e3_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_e3_no * rotorB.e2_ni + (-1.0) * multivectorA.e2 * rotorB.e1_e3 + multivectorA.e2_e3_ni * rotorB.e1_no + multivectorA.e1 * rotorB.e2_e3 + multivectorA.e2_e3_no * rotorB.e1_ni + multivectorA.e3 * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB._1 + multivectorA.e1_e2_e3_no_ni * rotorB.no_ni + multivectorA.e1_e2_ni * rotorB.e3_no + multivectorA.e1_e2_no * rotorB.e3_ni;
+	this->e1_e2_no = (-1.0) * multivectorA.e1_e3_no * rotorB.e2_e3 + (-1.0) * multivectorA.e1_no_ni * rotorB.e2_no + (-1.0) * multivectorA.e2 * rotorB.e1_no + multivectorA.e1 * rotorB.e2_no + multivectorA.e2_e3_no * rotorB.e1_e3 + multivectorA.e2_no_ni * rotorB.e1_no + multivectorA.no * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB.e3_no + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e3_no + multivectorA.e1_e2_no * rotorB._1 + multivectorA.e1_e2_no * rotorB.no_ni;
+	this->e1_e2_ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e2_e3 + multivectorA.e1_no_ni * rotorB.e2_ni + (-1.0) * multivectorA.e2 * rotorB.e1_ni + multivectorA.e2_e3_ni * rotorB.e1_e3 + multivectorA.e1 * rotorB.e2_ni + (-1.0) * multivectorA.e2_no_ni * rotorB.e1_ni + multivectorA.ni * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB.e3_ni + multivectorA.e1_e2_e3_no_ni * rotorB.e3_ni + multivectorA.e1_e2_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_ni * rotorB.no_ni;
+	this->e1_e3_no = multivectorA.e1_e3_no * rotorB._1 + multivectorA.e1_e3_no * rotorB.no_ni + (-1.0) * multivectorA.e1_no_ni * rotorB.e3_no + multivectorA.e1 * rotorB.e3_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e1_e2 + (-1.0) * multivectorA.e3 * rotorB.e1_no + multivectorA.e3_no_ni * rotorB.e1_no + multivectorA.no * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e2_no + multivectorA.e1_e2_e3_no_ni * rotorB.e2_no + multivectorA.e1_e2_no * rotorB.e2_e3;
+	this->e1_e3_ni = multivectorA.e1_e3_ni * rotorB._1 + (-1.0) * multivectorA.e1_e3_ni * rotorB.no_ni + multivectorA.e1_no_ni * rotorB.e3_ni + (-1.0) * multivectorA.e2_e3_ni * rotorB.e1_e2 + multivectorA.e1 * rotorB.e3_ni + (-1.0) * multivectorA.e3 * rotorB.e1_ni + (-1.0) * multivectorA.e3_no_ni * rotorB.e1_ni + multivectorA.ni * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_e3 * rotorB.e2_ni + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e2_ni + multivectorA.e1_e2_ni * rotorB.e2_e3;
+	this->e1_no_ni = multivectorA.e1_e3_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_e3_no * rotorB.e3_ni + multivectorA.e1_no_ni * rotorB._1 + multivectorA.e1 * rotorB.no_ni + (-1.0) * multivectorA.e2_no_ni * rotorB.e1_e2 + (-1.0) * multivectorA.e3_no_ni * rotorB.e1_e3 + multivectorA.ni * rotorB.e1_no + (-1.0) * multivectorA.no * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e2_e3 + multivectorA.e1_e2_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e2_ni;
+	this->e2_e3_no = multivectorA.e1_e3_no * rotorB.e1_e2 + multivectorA.e2 * rotorB.e3_no + multivectorA.e2_e3_no * rotorB._1 + multivectorA.e2_e3_no * rotorB.no_ni + (-1.0) * multivectorA.e2_no_ni * rotorB.e3_no + (-1.0) * multivectorA.e3 * rotorB.e2_no + multivectorA.e3_no_ni * rotorB.e2_no + multivectorA.no * rotorB.e2_e3 + multivectorA.e1_e2_e3 * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e1_e3;
+	this->e2_e3_ni = multivectorA.e1_e3_ni * rotorB.e1_e2 + multivectorA.e2 * rotorB.e3_ni + multivectorA.e2_e3_ni * rotorB._1 + (-1.0) * multivectorA.e2_e3_ni * rotorB.no_ni + multivectorA.e2_no_ni * rotorB.e3_ni + (-1.0) * multivectorA.e3 * rotorB.e2_ni + (-1.0) * multivectorA.e3_no_ni * rotorB.e2_ni + multivectorA.ni * rotorB.e2_e3 + multivectorA.e1_e2_e3 * rotorB.e1_ni + multivectorA.e1_e2_e3_no_ni * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_e3;
+	this->e2_no_ni = multivectorA.e1_no_ni * rotorB.e1_e2 + multivectorA.e2 * rotorB.no_ni + multivectorA.e2_e3_ni * rotorB.e3_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e3_ni + multivectorA.e2_no_ni * rotorB._1 + (-1.0) * multivectorA.e3_no_ni * rotorB.e2_e3 + multivectorA.ni * rotorB.e2_no + (-1.0) * multivectorA.no * rotorB.e2_ni + multivectorA.e1_e2_e3_no_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_ni * rotorB.e1_no + multivectorA.e1_e2_no * rotorB.e1_ni;
+	this->e3_no_ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e1_no + multivectorA.e1_e3_no * rotorB.e1_ni + multivectorA.e1_no_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e2_e3_ni * rotorB.e2_no + multivectorA.e2_e3_no * rotorB.e2_ni + multivectorA.e2_no_ni * rotorB.e2_e3 + multivectorA.e3 * rotorB.no_ni + multivectorA.e3_no_ni * rotorB._1 + multivectorA.ni * rotorB.e3_no + (-1.0) * multivectorA.no * rotorB.e3_ni + (-1.0) * multivectorA.e1_e2_e3_no_ni * rotorB.e1_e2;
+	this->e1_e2_e3_no = (-1.0) * multivectorA.e1_e3 * rotorB.e2_no + multivectorA.e1_e3_no_ni * rotorB.e2_no + multivectorA.e1_no * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB.e1_no + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e1_no + (-1.0) * multivectorA.e2_no * rotorB.e1_e3 + multivectorA.e3_no * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB.e3_no + multivectorA.e1_e2_e3_no * rotorB._1 + multivectorA.e1_e2_e3_no * rotorB.no_ni + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e3_no;
+	this->e1_e2_e3_ni = (-1.0) * multivectorA.e1_e3 * rotorB.e2_ni + (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e2_ni + multivectorA.e1_ni * rotorB.e2_e3 + multivectorA.e2_e3 * rotorB.e1_ni + multivectorA.e2_e3_no_ni * rotorB.e1_ni + (-1.0) * multivectorA.e2_ni * rotorB.e1_e3 + multivectorA.e3_ni * rotorB.e1_e2 + multivectorA.e1_e2 * rotorB.e3_ni + multivectorA.e1_e2_e3_ni * rotorB._1 + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.no_ni + multivectorA.e1_e2_no_ni * rotorB.e3_ni;
+	this->e1_e2_no_ni = (-1.0) * multivectorA.e1_e3_no_ni * rotorB.e2_e3 + multivectorA.e1_ni * rotorB.e2_no + (-1.0) * multivectorA.e1_no * rotorB.e2_ni + multivectorA.e2_e3_no_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e2_ni * rotorB.e1_no + multivectorA.e2_no * rotorB.e1_ni + multivectorA.e1_e2 * rotorB.no_ni + multivectorA.no_ni * rotorB.e1_e2 + multivectorA.e1_e2_e3_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e3_ni + multivectorA.e1_e2_no_ni * rotorB._1;
+	this->e1_e3_no_ni = multivectorA.e1_e3 * rotorB.no_ni + multivectorA.e1_e3_no_ni * rotorB._1 + multivectorA.e1_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_no * rotorB.e3_ni + (-1.0) * multivectorA.e2_e3_no_ni * rotorB.e1_e2 + (-1.0) * multivectorA.e3_ni * rotorB.e1_no + multivectorA.e3_no * rotorB.e1_ni + multivectorA.no_ni * rotorB.e1_e3 + (-1.0) * multivectorA.e1_e2_e3_ni * rotorB.e2_no + multivectorA.e1_e2_e3_no * rotorB.e2_ni + multivectorA.e1_e2_no_ni * rotorB.e2_e3;
+	this->e2_e3_no_ni = multivectorA.e1_e3_no_ni * rotorB.e1_e2 + multivectorA.e2_e3 * rotorB.no_ni + multivectorA.e2_e3_no_ni * rotorB._1 + multivectorA.e2_ni * rotorB.e3_no + (-1.0) * multivectorA.e2_no * rotorB.e3_ni + (-1.0) * multivectorA.e3_ni * rotorB.e2_no + multivectorA.e3_no * rotorB.e2_ni + multivectorA.no_ni * rotorB.e2_e3 + multivectorA.e1_e2_e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e1_e2_e3_no * rotorB.e1_ni + (-1.0) * multivectorA.e1_e2_no_ni * rotorB.e1_e3;
+	this->e1_e2_e3_no_ni = (-1.0) * multivectorA.e1_e3_ni * rotorB.e2_no + multivectorA.e1_e3_no * rotorB.e2_ni + multivectorA.e1_no_ni * rotorB.e2_e3 + multivectorA.e2_e3_ni * rotorB.e1_no + (-1.0) * multivectorA.e2_e3_no * rotorB.e1_ni + (-1.0) * multivectorA.e2_no_ni * rotorB.e1_e3 + multivectorA.e3_no_ni * rotorB.e1_e2 + multivectorA.e1_e2_e3 * rotorB.no_ni + multivectorA.e1_e2_e3_no_ni * rotorB._1 + multivectorA.e1_e2_ni * rotorB.e3_no + (-1.0) * multivectorA.e1_e2_no * rotorB.e3_ni;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Scalar& scalarB)
+{
+	this->_1 = rotorA._1 * scalarB._1;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.e1_e2 * scalarB._1;
+	this->e1_e3 = rotorA.e1_e3 * scalarB._1;
+	this->e1_no = rotorA.e1_no * scalarB._1;
+	this->e1_ni = rotorA.e1_ni * scalarB._1;
+	this->e2_e3 = rotorA.e2_e3 * scalarB._1;
+	this->e2_no = rotorA.e2_no * scalarB._1;
+	this->e2_ni = rotorA.e2_ni * scalarB._1;
+	this->e3_no = rotorA.e3_no * scalarB._1;
+	this->e3_ni = rotorA.e3_ni * scalarB._1;
+	this->no_ni = rotorA.no_ni * scalarB._1;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Vector& vectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = rotorA._1 * vectorB.e1 + rotorA.e1_e2 * vectorB.e2 + rotorA.e1_e3 * vectorB.e3 + (-1.0) * rotorA.e1_ni * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.ni;
+	this->e2 = rotorA._1 * vectorB.e2 + (-1.0) * rotorA.e1_e2 * vectorB.e1 + rotorA.e2_e3 * vectorB.e3 + (-1.0) * rotorA.e2_ni * vectorB.no + (-1.0) * rotorA.e2_no * vectorB.ni;
+	this->e3 = rotorA._1 * vectorB.e3 + (-1.0) * rotorA.e1_e3 * vectorB.e1 + (-1.0) * rotorA.e2_e3 * vectorB.e2 + (-1.0) * rotorA.e3_ni * vectorB.no + (-1.0) * rotorA.e3_no * vectorB.ni;
+	this->no = rotorA._1 * vectorB.no + (-1.0) * rotorA.no_ni * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e1 + (-1.0) * rotorA.e2_no * vectorB.e2 + (-1.0) * rotorA.e3_no * vectorB.e3;
+	this->ni = rotorA._1 * vectorB.ni + rotorA.no_ni * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e1 + (-1.0) * rotorA.e2_ni * vectorB.e2 + (-1.0) * rotorA.e3_ni * vectorB.e3;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA.e1_e2 * vectorB.e3 + (-1.0) * rotorA.e1_e3 * vectorB.e2 + rotorA.e2_e3 * vectorB.e1;
+	this->e1_e2_no = rotorA.e1_e2 * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e2 + rotorA.e2_no * vectorB.e1;
+	this->e1_e2_ni = rotorA.e1_e2 * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e2 + rotorA.e2_ni * vectorB.e1;
+	this->e1_e3_no = rotorA.e1_e3 * vectorB.no + (-1.0) * rotorA.e1_no * vectorB.e3 + rotorA.e3_no * vectorB.e1;
+	this->e1_e3_ni = rotorA.e1_e3 * vectorB.ni + (-1.0) * rotorA.e1_ni * vectorB.e3 + rotorA.e3_ni * vectorB.e1;
+	this->e1_no_ni = rotorA.no_ni * vectorB.e1 + (-1.0) * rotorA.e1_ni * vectorB.no + rotorA.e1_no * vectorB.ni;
+	this->e2_e3_no = rotorA.e2_e3 * vectorB.no + (-1.0) * rotorA.e2_no * vectorB.e3 + rotorA.e3_no * vectorB.e2;
+	this->e2_e3_ni = rotorA.e2_e3 * vectorB.ni + (-1.0) * rotorA.e2_ni * vectorB.e3 + rotorA.e3_ni * vectorB.e2;
+	this->e2_no_ni = rotorA.no_ni * vectorB.e2 + (-1.0) * rotorA.e2_ni * vectorB.no + rotorA.e2_no * vectorB.ni;
+	this->e3_no_ni = rotorA.no_ni * vectorB.e3 + (-1.0) * rotorA.e3_ni * vectorB.no + rotorA.e3_no * vectorB.ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Bivector& bivectorB)
+{
+	this->_1 = rotorA.no_ni * bivectorB.no_ni + (-1.0) * rotorA.e1_e2 * bivectorB.e1_e2 + (-1.0) * rotorA.e1_e3 * bivectorB.e1_e3 + rotorA.e1_ni * bivectorB.e1_no + rotorA.e1_no * bivectorB.e1_ni + (-1.0) * rotorA.e2_e3 * bivectorB.e2_e3 + rotorA.e2_ni * bivectorB.e2_no + rotorA.e2_no * bivectorB.e2_ni + rotorA.e3_ni * bivectorB.e3_no + rotorA.e3_no * bivectorB.e3_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * bivectorB.e1_e2 + (-1.0) * rotorA.e1_e3 * bivectorB.e2_e3 + rotorA.e1_ni * bivectorB.e2_no + rotorA.e1_no * bivectorB.e2_ni + rotorA.e2_e3 * bivectorB.e1_e3 + (-1.0) * rotorA.e2_ni * bivectorB.e1_no + (-1.0) * rotorA.e2_no * bivectorB.e1_ni;
+	this->e1_e3 = rotorA._1 * bivectorB.e1_e3 + rotorA.e1_e2 * bivectorB.e2_e3 + rotorA.e1_ni * bivectorB.e3_no + rotorA.e1_no * bivectorB.e3_ni + (-1.0) * rotorA.e2_e3 * bivectorB.e1_e2 + (-1.0) * rotorA.e3_ni * bivectorB.e1_no + (-1.0) * rotorA.e3_no * bivectorB.e1_ni;
+	this->e1_no = rotorA._1 * bivectorB.e1_no + (-1.0) * rotorA.no_ni * bivectorB.e1_no + rotorA.e1_e2 * bivectorB.e2_no + rotorA.e1_e3 * bivectorB.e3_no + rotorA.e1_no * bivectorB.no_ni + (-1.0) * rotorA.e2_no * bivectorB.e1_e2 + (-1.0) * rotorA.e3_no * bivectorB.e1_e3;
+	this->e1_ni = rotorA._1 * bivectorB.e1_ni + rotorA.no_ni * bivectorB.e1_ni + rotorA.e1_e2 * bivectorB.e2_ni + rotorA.e1_e3 * bivectorB.e3_ni + (-1.0) * rotorA.e1_ni * bivectorB.no_ni + (-1.0) * rotorA.e2_ni * bivectorB.e1_e2 + (-1.0) * rotorA.e3_ni * bivectorB.e1_e3;
+	this->e2_e3 = rotorA._1 * bivectorB.e2_e3 + (-1.0) * rotorA.e1_e2 * bivectorB.e1_e3 + rotorA.e1_e3 * bivectorB.e1_e2 + rotorA.e2_ni * bivectorB.e3_no + rotorA.e2_no * bivectorB.e3_ni + (-1.0) * rotorA.e3_ni * bivectorB.e2_no + (-1.0) * rotorA.e3_no * bivectorB.e2_ni;
+	this->e2_no = rotorA._1 * bivectorB.e2_no + (-1.0) * rotorA.no_ni * bivectorB.e2_no + (-1.0) * rotorA.e1_e2 * bivectorB.e1_no + rotorA.e1_no * bivectorB.e1_e2 + rotorA.e2_e3 * bivectorB.e3_no + rotorA.e2_no * bivectorB.no_ni + (-1.0) * rotorA.e3_no * bivectorB.e2_e3;
+	this->e2_ni = rotorA._1 * bivectorB.e2_ni + rotorA.no_ni * bivectorB.e2_ni + (-1.0) * rotorA.e1_e2 * bivectorB.e1_ni + rotorA.e1_ni * bivectorB.e1_e2 + rotorA.e2_e3 * bivectorB.e3_ni + (-1.0) * rotorA.e2_ni * bivectorB.no_ni + (-1.0) * rotorA.e3_ni * bivectorB.e2_e3;
+	this->e3_no = rotorA._1 * bivectorB.e3_no + (-1.0) * rotorA.no_ni * bivectorB.e3_no + (-1.0) * rotorA.e1_e3 * bivectorB.e1_no + rotorA.e1_no * bivectorB.e1_e3 + (-1.0) * rotorA.e2_e3 * bivectorB.e2_no + rotorA.e2_no * bivectorB.e2_e3 + rotorA.e3_no * bivectorB.no_ni;
+	this->e3_ni = rotorA._1 * bivectorB.e3_ni + rotorA.no_ni * bivectorB.e3_ni + (-1.0) * rotorA.e1_e3 * bivectorB.e1_ni + rotorA.e1_ni * bivectorB.e1_e3 + (-1.0) * rotorA.e2_e3 * bivectorB.e2_ni + rotorA.e2_ni * bivectorB.e2_e3 + (-1.0) * rotorA.e3_ni * bivectorB.no_ni;
+	this->no_ni = rotorA._1 * bivectorB.no_ni + rotorA.e1_ni * bivectorB.e1_no + (-1.0) * rotorA.e1_no * bivectorB.e1_ni + rotorA.e2_ni * bivectorB.e2_no + (-1.0) * rotorA.e2_no * bivectorB.e2_ni + rotorA.e3_ni * bivectorB.e3_no + (-1.0) * rotorA.e3_no * bivectorB.e3_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA.e1_e2 * bivectorB.e3_no + (-1.0) * rotorA.e1_e3 * bivectorB.e2_no + rotorA.e1_no * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.e1_no + (-1.0) * rotorA.e2_no * bivectorB.e1_e3 + rotorA.e3_no * bivectorB.e1_e2;
+	this->e1_e2_e3_ni = rotorA.e1_e2 * bivectorB.e3_ni + (-1.0) * rotorA.e1_e3 * bivectorB.e2_ni + rotorA.e1_ni * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.e1_ni + (-1.0) * rotorA.e2_ni * bivectorB.e1_e3 + rotorA.e3_ni * bivectorB.e1_e2;
+	this->e1_e2_no_ni = rotorA.no_ni * bivectorB.e1_e2 + rotorA.e1_e2 * bivectorB.no_ni + rotorA.e1_ni * bivectorB.e2_no + (-1.0) * rotorA.e1_no * bivectorB.e2_ni + (-1.0) * rotorA.e2_ni * bivectorB.e1_no + rotorA.e2_no * bivectorB.e1_ni;
+	this->e1_e3_no_ni = rotorA.no_ni * bivectorB.e1_e3 + rotorA.e1_e3 * bivectorB.no_ni + rotorA.e1_ni * bivectorB.e3_no + (-1.0) * rotorA.e1_no * bivectorB.e3_ni + (-1.0) * rotorA.e3_ni * bivectorB.e1_no + rotorA.e3_no * bivectorB.e1_ni;
+	this->e2_e3_no_ni = rotorA.no_ni * bivectorB.e2_e3 + rotorA.e2_e3 * bivectorB.no_ni + rotorA.e2_ni * bivectorB.e3_no + (-1.0) * rotorA.e2_no * bivectorB.e3_ni + (-1.0) * rotorA.e3_ni * bivectorB.e2_no + rotorA.e3_no * bivectorB.e2_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Trivector& trivectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = rotorA.no_ni * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e1_e2_e3 + rotorA.e2_ni * trivectorB.e1_e2_no + rotorA.e2_no * trivectorB.e1_e2_ni + rotorA.e3_ni * trivectorB.e1_e3_no + rotorA.e3_no * trivectorB.e1_e3_ni;
+	this->e2 = rotorA.no_ni * trivectorB.e2_no_ni + rotorA.e1_e3 * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * trivectorB.e1_e2_ni + rotorA.e3_ni * trivectorB.e2_e3_no + rotorA.e3_no * trivectorB.e2_e3_ni;
+	this->e3 = rotorA.no_ni * trivectorB.e3_no_ni + (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * trivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e2_ni * trivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e2_e3_ni;
+	this->no = (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_e3 * trivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e2_no_ni + (-1.0) * rotorA.e3_no * trivectorB.e3_no_ni;
+	this->ni = (-1.0) * rotorA.e1_e2 * trivectorB.e1_e2_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e1_e3_ni + rotorA.e1_ni * trivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e2_e3_ni + rotorA.e2_ni * trivectorB.e2_no_ni + rotorA.e3_ni * trivectorB.e3_no_ni;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA._1 * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * trivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e2_e3_ni + rotorA.e2_ni * trivectorB.e1_e3_no + rotorA.e2_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * trivectorB.e1_e2_no + (-1.0) * rotorA.e3_no * trivectorB.e1_e2_ni;
+	this->e1_e2_no = rotorA._1 * trivectorB.e1_e2_no + (-1.0) * rotorA.no_ni * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_e3 * trivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e2_no_ni + rotorA.e2_e3 * trivectorB.e1_e3_no + rotorA.e2_no * trivectorB.e1_no_ni + (-1.0) * rotorA.e3_no * trivectorB.e1_e2_e3;
+	this->e1_e2_ni = rotorA._1 * trivectorB.e1_e2_ni + rotorA.no_ni * trivectorB.e1_e2_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e2_e3_ni + rotorA.e1_ni * trivectorB.e2_no_ni + rotorA.e2_e3 * trivectorB.e1_e3_ni + (-1.0) * rotorA.e2_ni * trivectorB.e1_no_ni + (-1.0) * rotorA.e3_ni * trivectorB.e1_e2_e3;
+	this->e1_e3_no = rotorA._1 * trivectorB.e1_e3_no + (-1.0) * rotorA.no_ni * trivectorB.e1_e3_no + rotorA.e1_e2 * trivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * trivectorB.e3_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e1_e2_no + rotorA.e2_no * trivectorB.e1_e2_e3 + rotorA.e3_no * trivectorB.e1_no_ni;
+	this->e1_e3_ni = rotorA._1 * trivectorB.e1_e3_ni + rotorA.no_ni * trivectorB.e1_e3_ni + rotorA.e1_e2 * trivectorB.e2_e3_ni + rotorA.e1_ni * trivectorB.e3_no_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e1_e2_ni + rotorA.e2_ni * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e3_ni * trivectorB.e1_no_ni;
+	this->e1_no_ni = rotorA._1 * trivectorB.e1_no_ni + rotorA.e1_e2 * trivectorB.e2_no_ni + rotorA.e1_e3 * trivectorB.e3_no_ni + rotorA.e2_ni * trivectorB.e1_e2_no + (-1.0) * rotorA.e2_no * trivectorB.e1_e2_ni + rotorA.e3_ni * trivectorB.e1_e3_no + (-1.0) * rotorA.e3_no * trivectorB.e1_e3_ni;
+	this->e2_e3_no = rotorA._1 * trivectorB.e2_e3_no + (-1.0) * rotorA.no_ni * trivectorB.e2_e3_no + (-1.0) * rotorA.e1_e2 * trivectorB.e1_e3_no + rotorA.e1_e3 * trivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * trivectorB.e1_e2_e3 + (-1.0) * rotorA.e2_no * trivectorB.e3_no_ni + rotorA.e3_no * trivectorB.e2_no_ni;
+	this->e2_e3_ni = rotorA._1 * trivectorB.e2_e3_ni + rotorA.no_ni * trivectorB.e2_e3_ni + (-1.0) * rotorA.e1_e2 * trivectorB.e1_e3_ni + rotorA.e1_e3 * trivectorB.e1_e2_ni + (-1.0) * rotorA.e1_ni * trivectorB.e1_e2_e3 + rotorA.e2_ni * trivectorB.e3_no_ni + (-1.0) * rotorA.e3_ni * trivectorB.e2_no_ni;
+	this->e2_no_ni = rotorA._1 * trivectorB.e2_no_ni + (-1.0) * rotorA.e1_e2 * trivectorB.e1_no_ni + (-1.0) * rotorA.e1_ni * trivectorB.e1_e2_no + rotorA.e1_no * trivectorB.e1_e2_ni + rotorA.e2_e3 * trivectorB.e3_no_ni + rotorA.e3_ni * trivectorB.e2_e3_no + (-1.0) * rotorA.e3_no * trivectorB.e2_e3_ni;
+	this->e3_no_ni = rotorA._1 * trivectorB.e3_no_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e1_no_ni + (-1.0) * rotorA.e1_ni * trivectorB.e1_e3_no + rotorA.e1_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e2_e3 * trivectorB.e2_no_ni + (-1.0) * rotorA.e2_ni * trivectorB.e2_e3_no + rotorA.e2_no * trivectorB.e2_e3_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = rotorA.no_ni * trivectorB.e1_e2_e3 + rotorA.e1_e2 * trivectorB.e3_no_ni + (-1.0) * rotorA.e1_e3 * trivectorB.e2_no_ni + (-1.0) * rotorA.e1_ni * trivectorB.e2_e3_no + rotorA.e1_no * trivectorB.e2_e3_ni + rotorA.e2_e3 * trivectorB.e1_no_ni + rotorA.e2_ni * trivectorB.e1_e3_no + (-1.0) * rotorA.e2_no * trivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * trivectorB.e1_e2_no + rotorA.e3_no * trivectorB.e1_e2_ni;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Quadvector& quadvectorB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA.no_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e1_e2_e3_no + rotorA.e3_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_e3 = rotorA.no_ni * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_no = (-1.0) * rotorA.e2_e3 * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * quadvectorB.e1_e3_no_ni;
+	this->e1_ni = (-1.0) * rotorA.e2_e3 * quadvectorB.e1_e2_e3_ni + rotorA.e2_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e1_e3_no_ni;
+	this->e2_e3 = rotorA.no_ni * quadvectorB.e2_e3_no_ni + rotorA.e1_ni * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e2_e3_ni;
+	this->e2_no = rotorA.e1_e3 * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * quadvectorB.e2_e3_no_ni;
+	this->e2_ni = rotorA.e1_e3 * quadvectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * quadvectorB.e1_e2_no_ni + rotorA.e3_ni * quadvectorB.e2_e3_no_ni;
+	this->e3_no = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e1_e3_no_ni + rotorA.e2_no * quadvectorB.e2_e3_no_ni;
+	this->e3_ni = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * quadvectorB.e2_e3_no_ni;
+	this->no_ni = (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e1_e3 * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_e3 * quadvectorB.e2_e3_no_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA._1 * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.no_ni * quadvectorB.e1_e2_e3_no + rotorA.e1_no * quadvectorB.e2_e3_no_ni + (-1.0) * rotorA.e2_no * quadvectorB.e1_e3_no_ni + rotorA.e3_no * quadvectorB.e1_e2_no_ni;
+	this->e1_e2_e3_ni = rotorA._1 * quadvectorB.e1_e2_e3_ni + rotorA.no_ni * quadvectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_ni * quadvectorB.e2_e3_no_ni + rotorA.e2_ni * quadvectorB.e1_e3_no_ni + (-1.0) * rotorA.e3_ni * quadvectorB.e1_e2_no_ni;
+	this->e1_e2_no_ni = rotorA._1 * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e1_e3 * quadvectorB.e2_e3_no_ni + rotorA.e2_e3 * quadvectorB.e1_e3_no_ni + rotorA.e3_ni * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e3_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_e3_no_ni = rotorA._1 * quadvectorB.e1_e3_no_ni + rotorA.e1_e2 * quadvectorB.e2_e3_no_ni + (-1.0) * rotorA.e2_e3 * quadvectorB.e1_e2_no_ni + (-1.0) * rotorA.e2_ni * quadvectorB.e1_e2_e3_no + rotorA.e2_no * quadvectorB.e1_e2_e3_ni;
+	this->e2_e3_no_ni = rotorA._1 * quadvectorB.e2_e3_no_ni + (-1.0) * rotorA.e1_e2 * quadvectorB.e1_e3_no_ni + rotorA.e1_e3 * quadvectorB.e1_e2_no_ni + rotorA.e1_ni * quadvectorB.e1_e2_e3_no + (-1.0) * rotorA.e1_no * quadvectorB.e1_e2_e3_ni;
+	this->e1_e2_e3_no_ni = 0.0;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB)
+{
+	this->_1 = 0.0;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = 0.0;
+	this->e1_e3 = 0.0;
+	this->e1_no = 0.0;
+	this->e1_ni = 0.0;
+	this->e2_e3 = 0.0;
+	this->e2_no = 0.0;
+	this->e2_ni = 0.0;
+	this->e3_no = 0.0;
+	this->e3_ni = 0.0;
+	this->no_ni = 0.0;
+	this->e1_e2_e3 = rotorA.no_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_no = (-1.0) * rotorA.e3_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_ni = rotorA.e3_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e3_no = rotorA.e2_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e3_ni = (-1.0) * rotorA.e2_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_no_ni = (-1.0) * rotorA.e2_e3 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_e3_no = (-1.0) * rotorA.e1_no * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_e3_ni = rotorA.e1_ni * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e2_no_ni = rotorA.e1_e3 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e3_no_ni = (-1.0) * rotorA.e1_e2 * psuedoscalarB.e1_e2_e3_no_ni;
+	this->e1_e2_e3_no = 0.0;
+	this->e1_e2_e3_ni = 0.0;
+	this->e1_e2_no_ni = 0.0;
+	this->e1_e3_no_ni = 0.0;
+	this->e2_e3_no_ni = 0.0;
+	this->e1_e2_e3_no_ni = rotorA._1 * psuedoscalarB.e1_e2_e3_no_ni;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Multivector& multivectorB)
+{
+	this->_1 = rotorA._1 * multivectorB._1 + rotorA.no_ni * multivectorB.no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2 + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3 + rotorA.e1_ni * multivectorB.e1_no + rotorA.e1_no * multivectorB.e1_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3 + rotorA.e2_ni * multivectorB.e2_no + rotorA.e2_no * multivectorB.e2_ni + rotorA.e3_ni * multivectorB.e3_no + rotorA.e3_no * multivectorB.e3_ni;
+	this->e1 = rotorA._1 * multivectorB.e1 + rotorA.no_ni * multivectorB.e1_no_ni + rotorA.e1_e2 * multivectorB.e2 + rotorA.e1_e3 * multivectorB.e3 + (-1.0) * rotorA.e1_ni * multivectorB.no + (-1.0) * rotorA.e1_no * multivectorB.ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3 + rotorA.e2_ni * multivectorB.e1_e2_no + rotorA.e2_no * multivectorB.e1_e2_ni + rotorA.e3_ni * multivectorB.e1_e3_no + rotorA.e3_no * multivectorB.e1_e3_ni;
+	this->e2 = rotorA._1 * multivectorB.e2 + rotorA.no_ni * multivectorB.e2_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1 + rotorA.e1_e3 * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_ni + rotorA.e2_e3 * multivectorB.e3 + (-1.0) * rotorA.e2_ni * multivectorB.no + (-1.0) * rotorA.e2_no * multivectorB.ni + rotorA.e3_ni * multivectorB.e2_e3_no + rotorA.e3_no * multivectorB.e2_e3_ni;
+	this->e3 = rotorA._1 * multivectorB.e3 + rotorA.no_ni * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_e3 * multivectorB.e1 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2 + (-1.0) * rotorA.e2_ni * multivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e2_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.no + (-1.0) * rotorA.e3_no * multivectorB.ni;
+	this->no = rotorA._1 * multivectorB.no + (-1.0) * rotorA.no_ni * multivectorB.no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_no + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1 + (-1.0) * rotorA.e1_no * multivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e2 + (-1.0) * rotorA.e2_no * multivectorB.e2_no_ni + (-1.0) * rotorA.e3_no * multivectorB.e3 + (-1.0) * rotorA.e3_no * multivectorB.e3_no_ni;
+	this->ni = rotorA._1 * multivectorB.ni + rotorA.no_ni * multivectorB.ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1 + rotorA.e1_ni * multivectorB.e1_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_ni + (-1.0) * rotorA.e2_ni * multivectorB.e2 + rotorA.e2_ni * multivectorB.e2_no_ni + (-1.0) * rotorA.e3_ni * multivectorB.e3 + rotorA.e3_ni * multivectorB.e3_no_ni;
+	this->e1_e2 = rotorA._1 * multivectorB.e1_e2 + rotorA.no_ni * multivectorB.e1_e2_no_ni + rotorA.e1_e2 * multivectorB._1 + (-1.0) * rotorA.e1_e3 * multivectorB.e2_e3 + rotorA.e1_ni * multivectorB.e2_no + rotorA.e1_no * multivectorB.e2_ni + rotorA.e2_e3 * multivectorB.e1_e3 + (-1.0) * rotorA.e2_ni * multivectorB.e1_no + (-1.0) * rotorA.e2_no * multivectorB.e1_ni + rotorA.e3_ni * multivectorB.e1_e2_e3_no + rotorA.e3_no * multivectorB.e1_e2_e3_ni;
+	this->e1_e3 = rotorA._1 * multivectorB.e1_e3 + rotorA.no_ni * multivectorB.e1_e3_no_ni + rotorA.e1_e2 * multivectorB.e2_e3 + rotorA.e1_e3 * multivectorB._1 + rotorA.e1_ni * multivectorB.e3_no + rotorA.e1_no * multivectorB.e3_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2 + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_no + (-1.0) * rotorA.e3_no * multivectorB.e1_ni;
+	this->e1_no = rotorA._1 * multivectorB.e1_no + (-1.0) * rotorA.no_ni * multivectorB.e1_no + rotorA.e1_e2 * multivectorB.e2_no + rotorA.e1_e3 * multivectorB.e3_no + rotorA.e1_no * multivectorB._1 + rotorA.e1_no * multivectorB.no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e2 + (-1.0) * rotorA.e2_no * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_no * multivectorB.e1_e3 + (-1.0) * rotorA.e3_no * multivectorB.e1_e3_no_ni;
+	this->e1_ni = rotorA._1 * multivectorB.e1_ni + rotorA.no_ni * multivectorB.e1_ni + rotorA.e1_e2 * multivectorB.e2_ni + rotorA.e1_e3 * multivectorB.e3_ni + rotorA.e1_ni * multivectorB._1 + (-1.0) * rotorA.e1_ni * multivectorB.no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2 + rotorA.e2_ni * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_e3 + rotorA.e3_ni * multivectorB.e1_e3_no_ni;
+	this->e2_e3 = rotorA._1 * multivectorB.e2_e3 + rotorA.no_ni * multivectorB.e2_e3_no_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e3 + rotorA.e1_e3 * multivectorB.e1_e2 + rotorA.e1_ni * multivectorB.e1_e2_e3_no + rotorA.e1_no * multivectorB.e1_e2_e3_ni + rotorA.e2_e3 * multivectorB._1 + rotorA.e2_ni * multivectorB.e3_no + rotorA.e2_no * multivectorB.e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e2_no + (-1.0) * rotorA.e3_no * multivectorB.e2_ni;
+	this->e2_no = rotorA._1 * multivectorB.e2_no + (-1.0) * rotorA.no_ni * multivectorB.e2_no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_no + rotorA.e1_e3 * multivectorB.e1_e2_e3_no + rotorA.e1_no * multivectorB.e1_e2 + rotorA.e1_no * multivectorB.e1_e2_no_ni + rotorA.e2_e3 * multivectorB.e3_no + rotorA.e2_no * multivectorB._1 + rotorA.e2_no * multivectorB.no_ni + (-1.0) * rotorA.e3_no * multivectorB.e2_e3 + (-1.0) * rotorA.e3_no * multivectorB.e2_e3_no_ni;
+	this->e2_ni = rotorA._1 * multivectorB.e2_ni + rotorA.no_ni * multivectorB.e2_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_ni + rotorA.e1_e3 * multivectorB.e1_e2_e3_ni + rotorA.e1_ni * multivectorB.e1_e2 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_no_ni + rotorA.e2_e3 * multivectorB.e3_ni + rotorA.e2_ni * multivectorB._1 + (-1.0) * rotorA.e2_ni * multivectorB.no_ni + (-1.0) * rotorA.e3_ni * multivectorB.e2_e3 + rotorA.e3_ni * multivectorB.e2_e3_no_ni;
+	this->e3_no = rotorA._1 * multivectorB.e3_no + (-1.0) * rotorA.no_ni * multivectorB.e3_no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e1_e3 * multivectorB.e1_no + rotorA.e1_no * multivectorB.e1_e3 + rotorA.e1_no * multivectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_no + rotorA.e2_no * multivectorB.e2_e3 + rotorA.e2_no * multivectorB.e2_e3_no_ni + rotorA.e3_no * multivectorB._1 + rotorA.e3_no * multivectorB.no_ni;
+	this->e3_ni = rotorA._1 * multivectorB.e3_ni + rotorA.no_ni * multivectorB.e3_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_ni + rotorA.e1_ni * multivectorB.e1_e3 + (-1.0) * rotorA.e1_ni * multivectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_ni + rotorA.e2_ni * multivectorB.e2_e3 + (-1.0) * rotorA.e2_ni * multivectorB.e2_e3_no_ni + rotorA.e3_ni * multivectorB._1 + (-1.0) * rotorA.e3_ni * multivectorB.no_ni;
+	this->no_ni = rotorA._1 * multivectorB.no_ni + rotorA.no_ni * multivectorB._1 + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_e3_no_ni + rotorA.e1_ni * multivectorB.e1_no + (-1.0) * rotorA.e1_no * multivectorB.e1_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_e3_no_ni + rotorA.e2_ni * multivectorB.e2_no + (-1.0) * rotorA.e2_no * multivectorB.e2_ni + rotorA.e3_ni * multivectorB.e3_no + (-1.0) * rotorA.e3_no * multivectorB.e3_ni;
+	this->e1_e2_e3 = rotorA._1 * multivectorB.e1_e2_e3 + rotorA.no_ni * multivectorB.e1_e2_e3_no_ni + rotorA.e1_e2 * multivectorB.e3 + (-1.0) * rotorA.e1_e3 * multivectorB.e2 + (-1.0) * rotorA.e1_ni * multivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e2_e3_ni + rotorA.e2_e3 * multivectorB.e1 + rotorA.e2_ni * multivectorB.e1_e3_no + rotorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_e2_no + (-1.0) * rotorA.e3_no * multivectorB.e1_e2_ni;
+	this->e1_e2_no = rotorA._1 * multivectorB.e1_e2_no + (-1.0) * rotorA.no_ni * multivectorB.e1_e2_no + rotorA.e1_e2 * multivectorB.no + (-1.0) * rotorA.e1_e3 * multivectorB.e2_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e2 + (-1.0) * rotorA.e1_no * multivectorB.e2_no_ni + rotorA.e2_e3 * multivectorB.e1_e3_no + rotorA.e2_no * multivectorB.e1 + rotorA.e2_no * multivectorB.e1_no_ni + (-1.0) * rotorA.e3_no * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e3_no * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e2_ni = rotorA._1 * multivectorB.e1_e2_ni + rotorA.no_ni * multivectorB.e1_e2_ni + rotorA.e1_e2 * multivectorB.ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_e3_ni + (-1.0) * rotorA.e1_ni * multivectorB.e2 + rotorA.e1_ni * multivectorB.e2_no_ni + rotorA.e2_e3 * multivectorB.e1_e3_ni + rotorA.e2_ni * multivectorB.e1 + (-1.0) * rotorA.e2_ni * multivectorB.e1_no_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_e2_e3 + rotorA.e3_ni * multivectorB.e1_e2_e3_no_ni;
+	this->e1_e3_no = rotorA._1 * multivectorB.e1_e3_no + (-1.0) * rotorA.no_ni * multivectorB.e1_e3_no + rotorA.e1_e2 * multivectorB.e2_e3_no + rotorA.e1_e3 * multivectorB.no + (-1.0) * rotorA.e1_no * multivectorB.e3 + (-1.0) * rotorA.e1_no * multivectorB.e3_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_no + rotorA.e2_no * multivectorB.e1_e2_e3 + rotorA.e2_no * multivectorB.e1_e2_e3_no_ni + rotorA.e3_no * multivectorB.e1 + rotorA.e3_no * multivectorB.e1_no_ni;
+	this->e1_e3_ni = rotorA._1 * multivectorB.e1_e3_ni + rotorA.no_ni * multivectorB.e1_e3_ni + rotorA.e1_e2 * multivectorB.e2_e3_ni + rotorA.e1_e3 * multivectorB.ni + (-1.0) * rotorA.e1_ni * multivectorB.e3 + rotorA.e1_ni * multivectorB.e3_no_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_ni + rotorA.e2_ni * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2_e3_no_ni + rotorA.e3_ni * multivectorB.e1 + (-1.0) * rotorA.e3_ni * multivectorB.e1_no_ni;
+	this->e1_no_ni = rotorA._1 * multivectorB.e1_no_ni + rotorA.no_ni * multivectorB.e1 + rotorA.e1_e2 * multivectorB.e2_no_ni + rotorA.e1_e3 * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_ni * multivectorB.no + rotorA.e1_no * multivectorB.ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_e3_no_ni + rotorA.e2_ni * multivectorB.e1_e2_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e2_ni + rotorA.e3_ni * multivectorB.e1_e3_no + (-1.0) * rotorA.e3_no * multivectorB.e1_e3_ni;
+	this->e2_e3_no = rotorA._1 * multivectorB.e2_e3_no + (-1.0) * rotorA.no_ni * multivectorB.e2_e3_no + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e3_no + rotorA.e1_e3 * multivectorB.e1_e2_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_e3 + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_e3_no_ni + rotorA.e2_e3 * multivectorB.no + (-1.0) * rotorA.e2_no * multivectorB.e3 + (-1.0) * rotorA.e2_no * multivectorB.e3_no_ni + rotorA.e3_no * multivectorB.e2 + rotorA.e3_no * multivectorB.e2_no_ni;
+	this->e2_e3_ni = rotorA._1 * multivectorB.e2_e3_ni + rotorA.no_ni * multivectorB.e2_e3_ni + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e3_ni + rotorA.e1_e3 * multivectorB.e1_e2_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_e3 + rotorA.e1_ni * multivectorB.e1_e2_e3_no_ni + rotorA.e2_e3 * multivectorB.ni + (-1.0) * rotorA.e2_ni * multivectorB.e3 + rotorA.e2_ni * multivectorB.e3_no_ni + rotorA.e3_ni * multivectorB.e2 + (-1.0) * rotorA.e3_ni * multivectorB.e2_no_ni;
+	this->e2_no_ni = rotorA._1 * multivectorB.e2_no_ni + rotorA.no_ni * multivectorB.e2 + (-1.0) * rotorA.e1_e2 * multivectorB.e1_no_ni + rotorA.e1_e3 * multivectorB.e1_e2_e3_no_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1_e2_no + rotorA.e1_no * multivectorB.e1_e2_ni + rotorA.e2_e3 * multivectorB.e3_no_ni + (-1.0) * rotorA.e2_ni * multivectorB.no + rotorA.e2_no * multivectorB.ni + rotorA.e3_ni * multivectorB.e2_e3_no + (-1.0) * rotorA.e3_no * multivectorB.e2_e3_ni;
+	this->e3_no_ni = rotorA._1 * multivectorB.e3_no_ni + rotorA.no_ni * multivectorB.e3 + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e2_e3_no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e1_no_ni + (-1.0) * rotorA.e1_ni * multivectorB.e1_e3_no + rotorA.e1_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e2_no_ni + (-1.0) * rotorA.e2_ni * multivectorB.e2_e3_no + rotorA.e2_no * multivectorB.e2_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.no + rotorA.e3_no * multivectorB.ni;
+	this->e1_e2_e3_no = rotorA._1 * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.no_ni * multivectorB.e1_e2_e3_no + rotorA.e1_e2 * multivectorB.e3_no + (-1.0) * rotorA.e1_e3 * multivectorB.e2_no + rotorA.e1_no * multivectorB.e2_e3 + rotorA.e1_no * multivectorB.e2_e3_no_ni + rotorA.e2_e3 * multivectorB.e1_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e3 + (-1.0) * rotorA.e2_no * multivectorB.e1_e3_no_ni + rotorA.e3_no * multivectorB.e1_e2 + rotorA.e3_no * multivectorB.e1_e2_no_ni;
+	this->e1_e2_e3_ni = rotorA._1 * multivectorB.e1_e2_e3_ni + rotorA.no_ni * multivectorB.e1_e2_e3_ni + rotorA.e1_e2 * multivectorB.e3_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_ni + rotorA.e1_ni * multivectorB.e2_e3 + (-1.0) * rotorA.e1_ni * multivectorB.e2_e3_no_ni + rotorA.e2_e3 * multivectorB.e1_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_e3 + rotorA.e2_ni * multivectorB.e1_e3_no_ni + rotorA.e3_ni * multivectorB.e1_e2 + (-1.0) * rotorA.e3_ni * multivectorB.e1_e2_no_ni;
+	this->e1_e2_no_ni = rotorA._1 * multivectorB.e1_e2_no_ni + rotorA.no_ni * multivectorB.e1_e2 + rotorA.e1_e2 * multivectorB.no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_e3_no_ni + rotorA.e1_ni * multivectorB.e2_no + (-1.0) * rotorA.e1_no * multivectorB.e2_ni + rotorA.e2_e3 * multivectorB.e1_e3_no_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_no + rotorA.e2_no * multivectorB.e1_ni + rotorA.e3_ni * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e3_no * multivectorB.e1_e2_e3_ni;
+	this->e1_e3_no_ni = rotorA._1 * multivectorB.e1_e3_no_ni + rotorA.no_ni * multivectorB.e1_e3 + rotorA.e1_e2 * multivectorB.e2_e3_no_ni + rotorA.e1_e3 * multivectorB.no_ni + rotorA.e1_ni * multivectorB.e3_no + (-1.0) * rotorA.e1_no * multivectorB.e3_ni + (-1.0) * rotorA.e2_e3 * multivectorB.e1_e2_no_ni + (-1.0) * rotorA.e2_ni * multivectorB.e1_e2_e3_no + rotorA.e2_no * multivectorB.e1_e2_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_no + rotorA.e3_no * multivectorB.e1_ni;
+	this->e2_e3_no_ni = rotorA._1 * multivectorB.e2_e3_no_ni + rotorA.no_ni * multivectorB.e2_e3 + (-1.0) * rotorA.e1_e2 * multivectorB.e1_e3_no_ni + rotorA.e1_e3 * multivectorB.e1_e2_no_ni + rotorA.e1_ni * multivectorB.e1_e2_e3_no + (-1.0) * rotorA.e1_no * multivectorB.e1_e2_e3_ni + rotorA.e2_e3 * multivectorB.no_ni + rotorA.e2_ni * multivectorB.e3_no + (-1.0) * rotorA.e2_no * multivectorB.e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e2_no + rotorA.e3_no * multivectorB.e2_ni;
+	this->e1_e2_e3_no_ni = rotorA._1 * multivectorB.e1_e2_e3_no_ni + rotorA.no_ni * multivectorB.e1_e2_e3 + rotorA.e1_e2 * multivectorB.e3_no_ni + (-1.0) * rotorA.e1_e3 * multivectorB.e2_no_ni + (-1.0) * rotorA.e1_ni * multivectorB.e2_e3_no + rotorA.e1_no * multivectorB.e2_e3_ni + rotorA.e2_e3 * multivectorB.e1_no_ni + rotorA.e2_ni * multivectorB.e1_e3_no + (-1.0) * rotorA.e2_no * multivectorB.e1_e3_ni + (-1.0) * rotorA.e3_ni * multivectorB.e1_e2_no + rotorA.e3_no * multivectorB.e1_e2_ni;
+}
+
+void Multivector::GeometricProduct(const Rotor& rotorA, const Rotor& rotorB)
+{
+	this->_1 = rotorA._1 * rotorB._1 + rotorA.no_ni * rotorB.no_ni + (-1.0) * rotorA.e1_e2 * rotorB.e1_e2 + (-1.0) * rotorA.e1_e3 * rotorB.e1_e3 + rotorA.e1_ni * rotorB.e1_no + rotorA.e1_no * rotorB.e1_ni + (-1.0) * rotorA.e2_e3 * rotorB.e2_e3 + rotorA.e2_ni * rotorB.e2_no + rotorA.e2_no * rotorB.e2_ni + rotorA.e3_ni * rotorB.e3_no + rotorA.e3_no * rotorB.e3_ni;
+	this->e1 = 0.0;
+	this->e2 = 0.0;
+	this->e3 = 0.0;
+	this->no = 0.0;
+	this->ni = 0.0;
+	this->e1_e2 = rotorA._1 * rotorB.e1_e2 + rotorA.e1_e2 * rotorB._1 + (-1.0) * rotorA.e1_e3 * rotorB.e2_e3 + rotorA.e1_ni * rotorB.e2_no + rotorA.e1_no * rotorB.e2_ni + rotorA.e2_e3 * rotorB.e1_e3 + (-1.0) * rotorA.e2_ni * rotorB.e1_no + (-1.0) * rotorA.e2_no * rotorB.e1_ni;
+	this->e1_e3 = rotorA._1 * rotorB.e1_e3 + rotorA.e1_e2 * rotorB.e2_e3 + rotorA.e1_e3 * rotorB._1 + rotorA.e1_ni * rotorB.e3_no + rotorA.e1_no * rotorB.e3_ni + (-1.0) * rotorA.e2_e3 * rotorB.e1_e2 + (-1.0) * rotorA.e3_ni * rotorB.e1_no + (-1.0) * rotorA.e3_no * rotorB.e1_ni;
+	this->e1_no = rotorA._1 * rotorB.e1_no + (-1.0) * rotorA.no_ni * rotorB.e1_no + rotorA.e1_e2 * rotorB.e2_no + rotorA.e1_e3 * rotorB.e3_no + rotorA.e1_no * rotorB._1 + rotorA.e1_no * rotorB.no_ni + (-1.0) * rotorA.e2_no * rotorB.e1_e2 + (-1.0) * rotorA.e3_no * rotorB.e1_e3;
+	this->e1_ni = rotorA._1 * rotorB.e1_ni + rotorA.no_ni * rotorB.e1_ni + rotorA.e1_e2 * rotorB.e2_ni + rotorA.e1_e3 * rotorB.e3_ni + rotorA.e1_ni * rotorB._1 + (-1.0) * rotorA.e1_ni * rotorB.no_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_e2 + (-1.0) * rotorA.e3_ni * rotorB.e1_e3;
+	this->e2_e3 = rotorA._1 * rotorB.e2_e3 + (-1.0) * rotorA.e1_e2 * rotorB.e1_e3 + rotorA.e1_e3 * rotorB.e1_e2 + rotorA.e2_e3 * rotorB._1 + rotorA.e2_ni * rotorB.e3_no + rotorA.e2_no * rotorB.e3_ni + (-1.0) * rotorA.e3_ni * rotorB.e2_no + (-1.0) * rotorA.e3_no * rotorB.e2_ni;
+	this->e2_no = rotorA._1 * rotorB.e2_no + (-1.0) * rotorA.no_ni * rotorB.e2_no + (-1.0) * rotorA.e1_e2 * rotorB.e1_no + rotorA.e1_no * rotorB.e1_e2 + rotorA.e2_e3 * rotorB.e3_no + rotorA.e2_no * rotorB._1 + rotorA.e2_no * rotorB.no_ni + (-1.0) * rotorA.e3_no * rotorB.e2_e3;
+	this->e2_ni = rotorA._1 * rotorB.e2_ni + rotorA.no_ni * rotorB.e2_ni + (-1.0) * rotorA.e1_e2 * rotorB.e1_ni + rotorA.e1_ni * rotorB.e1_e2 + rotorA.e2_e3 * rotorB.e3_ni + rotorA.e2_ni * rotorB._1 + (-1.0) * rotorA.e2_ni * rotorB.no_ni + (-1.0) * rotorA.e3_ni * rotorB.e2_e3;
+	this->e3_no = rotorA._1 * rotorB.e3_no + (-1.0) * rotorA.no_ni * rotorB.e3_no + (-1.0) * rotorA.e1_e3 * rotorB.e1_no + rotorA.e1_no * rotorB.e1_e3 + (-1.0) * rotorA.e2_e3 * rotorB.e2_no + rotorA.e2_no * rotorB.e2_e3 + rotorA.e3_no * rotorB._1 + rotorA.e3_no * rotorB.no_ni;
+	this->e3_ni = rotorA._1 * rotorB.e3_ni + rotorA.no_ni * rotorB.e3_ni + (-1.0) * rotorA.e1_e3 * rotorB.e1_ni + rotorA.e1_ni * rotorB.e1_e3 + (-1.0) * rotorA.e2_e3 * rotorB.e2_ni + rotorA.e2_ni * rotorB.e2_e3 + rotorA.e3_ni * rotorB._1 + (-1.0) * rotorA.e3_ni * rotorB.no_ni;
+	this->no_ni = rotorA._1 * rotorB.no_ni + rotorA.no_ni * rotorB._1 + rotorA.e1_ni * rotorB.e1_no + (-1.0) * rotorA.e1_no * rotorB.e1_ni + rotorA.e2_ni * rotorB.e2_no + (-1.0) * rotorA.e2_no * rotorB.e2_ni + rotorA.e3_ni * rotorB.e3_no + (-1.0) * rotorA.e3_no * rotorB.e3_ni;
+	this->e1_e2_e3 = 0.0;
+	this->e1_e2_no = 0.0;
+	this->e1_e2_ni = 0.0;
+	this->e1_e3_no = 0.0;
+	this->e1_e3_ni = 0.0;
+	this->e1_no_ni = 0.0;
+	this->e2_e3_no = 0.0;
+	this->e2_e3_ni = 0.0;
+	this->e2_no_ni = 0.0;
+	this->e3_no_ni = 0.0;
+	this->e1_e2_e3_no = rotorA.e1_e2 * rotorB.e3_no + (-1.0) * rotorA.e1_e3 * rotorB.e2_no + rotorA.e1_no * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.e1_no + (-1.0) * rotorA.e2_no * rotorB.e1_e3 + rotorA.e3_no * rotorB.e1_e2;
+	this->e1_e2_e3_ni = rotorA.e1_e2 * rotorB.e3_ni + (-1.0) * rotorA.e1_e3 * rotorB.e2_ni + rotorA.e1_ni * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.e1_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_e3 + rotorA.e3_ni * rotorB.e1_e2;
+	this->e1_e2_no_ni = rotorA.no_ni * rotorB.e1_e2 + rotorA.e1_e2 * rotorB.no_ni + rotorA.e1_ni * rotorB.e2_no + (-1.0) * rotorA.e1_no * rotorB.e2_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_no + rotorA.e2_no * rotorB.e1_ni;
+	this->e1_e3_no_ni = rotorA.no_ni * rotorB.e1_e3 + rotorA.e1_e3 * rotorB.no_ni + rotorA.e1_ni * rotorB.e3_no + (-1.0) * rotorA.e1_no * rotorB.e3_ni + (-1.0) * rotorA.e3_ni * rotorB.e1_no + rotorA.e3_no * rotorB.e1_ni;
+	this->e2_e3_no_ni = rotorA.no_ni * rotorB.e2_e3 + rotorA.e2_e3 * rotorB.no_ni + rotorA.e2_ni * rotorB.e3_no + (-1.0) * rotorA.e2_no * rotorB.e3_ni + (-1.0) * rotorA.e3_ni * rotorB.e2_no + rotorA.e3_no * rotorB.e2_ni;
+	this->e1_e2_e3_no_ni = 0.0;
 }
 
