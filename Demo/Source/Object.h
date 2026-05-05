@@ -5,6 +5,7 @@
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/Sphere.h"
 #include "HappyMath/Ray.h"
+#include "HappyMath/Vector4.h"
 #include <memory>
 
 class Drawer;
@@ -26,7 +27,7 @@ public:
 	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle);
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const = 0;
 
-	HappyMath::Vector3 color;
+	HappyMath::Vector4 color;
 };
 
 /**

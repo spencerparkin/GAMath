@@ -21,12 +21,12 @@ void Drawer::Initialize()
 	this->boxMesh.GeneratePolyhedron(HappyMath::PolygonMesh::Polyhedron::HEXADRON, 1.0f);
 }
 
-void Drawer::DrawSphere(const HappyMath::Vector3& center, double radius, const HappyMath::Vector3& color, bool lit)
+void Drawer::DrawSphere(const HappyMath::Vector3& center, double radius, const HappyMath::Vector4& color, bool lit)
 {
 	this->DrawMesh(&this->sphereMesh, center, radius, color, lit);
 }
 
-void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, const HappyMath::Vector3& color, bool lit)
+void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, const HappyMath::Vector4& color, bool lit)
 {
 	glDisable(GL_LIGHTING);
 
@@ -50,7 +50,7 @@ void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vecto
 	glLineWidth(2.0f);
 	glBegin(GL_LINE_LOOP);
 
-	glColor3d(color.x, color.y, color.z);
+	glColor4d(color.x, color.y, color.z, color.w);
 
 	int numSegments = 100;
 	for (int i = 0; i < numSegments; i++)
@@ -68,12 +68,12 @@ void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vecto
 	glEnd();
 }
 
-void Drawer::DrawPoint(const HappyMath::Vector3& location, const HappyMath::Vector3& color, bool lit)
+void Drawer::DrawPoint(const HappyMath::Vector3& location, const HappyMath::Vector4& color, bool lit)
 {
 	this->DrawMesh(&this->boxMesh, location, 0.1, color, lit);
 }
 
-void Drawer::DrawMesh(const HappyMath::PolygonMesh* mesh, const HappyMath::Vector3& translation, double scale, const HappyMath::Vector3& color, bool lit)
+void Drawer::DrawMesh(const HappyMath::PolygonMesh* mesh, const HappyMath::Vector3& translation, double scale, const HappyMath::Vector4& color, bool lit)
 {
 	if (!lit)
 		glDisable(GL_LIGHTING);
@@ -94,7 +94,7 @@ void Drawer::DrawMesh(const HappyMath::PolygonMesh* mesh, const HappyMath::Vecto
 		glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
 		glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
-		GLfloat matDiffuse[] = { (GLfloat)color.x, (GLfloat)color.y, (GLfloat)color.z, 1.0f };
+		GLfloat matDiffuse[] = { (GLfloat)color.x, (GLfloat)color.y, (GLfloat)color.z, (GLfloat)color.w };
 		GLfloat matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiffuse);
@@ -104,7 +104,7 @@ void Drawer::DrawMesh(const HappyMath::PolygonMesh* mesh, const HappyMath::Vecto
 
 	glBegin(GL_TRIANGLES);
 
-	glColor3d(color.x, color.y, color.z);
+	glColor4d(color.x, color.y, color.z, color.w);
 
 	for (const HappyMath::PolygonMesh::Polygon& polygon : mesh->GetPolygonArray())
 	{

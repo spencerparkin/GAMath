@@ -33,6 +33,12 @@ void GLCanvas::ClearScene()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+
     this->drawer.Initialize();
 }
 
@@ -79,15 +85,15 @@ void GLCanvas::ClearScene()
 
     glBegin(GL_LINES);
 
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
     glVertex3f(0.0f, 0.0f, 0.0f);
     glVertex3f(10.0f, 0.0f, 0.0f);
 
-    glColor3f(0.0f, 1.0f, 0.0f);
+    glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
     glVertex3f(0.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 10.0f, 0.0f);
 
-    glColor3f(0.0f, 0.0f, 1.0f);
+    glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
     glVertex3f(0.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 0.0f, 10.0f);
 
@@ -96,6 +102,7 @@ void GLCanvas::ClearScene()
     for (std::shared_ptr<Constraint> constraint : this->constraintArray)
         constraint->Enforce();
 
+    // STPTODO: Draw all opaque objects first, then all transparent objects, back to front.
     for (std::shared_ptr<Object> object : this->objectArray)
         object->Draw(&this->drawer, this->IsSelected(object.get()));
 

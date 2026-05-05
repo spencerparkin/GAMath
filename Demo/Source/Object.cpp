@@ -5,7 +5,7 @@
 
 Object::Object()
 {
-	this->color.SetComponents(0.0, 1.0, 1.0);
+	this->color.SetComponents(0.0, 1.0, 1.0, 1.0);
 }
 
 /*virtual*/ Object::~Object()
@@ -39,7 +39,7 @@ PointObject::PointObject()
 
 /*virtual*/ void PointObject::Draw(Drawer* drawer, bool showAsHighlighted) const
 {
-	HappyMath::Vector3 usedColor = showAsHighlighted ? HappyMath::Vector3(1.0, 1.0, 1.0) : this->color;
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
 	drawer->DrawPoint(this->point.center, usedColor, false);
 }
 
@@ -70,7 +70,7 @@ PointPairObject::PointPairObject()
 
 /*virtual*/ void PointPairObject::Draw(Drawer* drawer, bool showAsHighlighted) const
 {
-	HappyMath::Vector3 usedColor = showAsHighlighted ? HappyMath::Vector3(1.0, 1.0, 1.0) : this->color;
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
 	
 	HappyMath::Vector3 pointA = this->pointPair.center + this->pointPair.radius * this->pointPair.normal;
 	HappyMath::Vector3 pointB = this->pointPair.center - this->pointPair.radius * this->pointPair.normal;
@@ -127,7 +127,7 @@ CircleObject::CircleObject()
 
 /*virtual*/ void CircleObject::Draw(Drawer* drawer, bool showAsHighlighted) const
 {
-	HappyMath::Vector3 usedColor = showAsHighlighted ? HappyMath::Vector3(1.0, 1.0, 1.0) : this->color;
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
 	drawer->DrawCircle(this->circle.center, this->circle.normal, this->circle.radius, usedColor, false);
 }
 
@@ -187,7 +187,7 @@ SphereObject::SphereObject()
 
 /*virtual*/ void SphereObject::Draw(Drawer* drawer, bool showAsHighlighted) const
 {
-	HappyMath::Vector3 usedColor = showAsHighlighted ? HappyMath::Vector3(1.0, 1.0, 1.0) : this->color;
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
 	drawer->DrawSphere(this->sphere.center, this->sphere.radius, usedColor, true);
 }
 
