@@ -1,5 +1,6 @@
 #include "Drawer.h"
 #include "HappyMath/Polygon.h"
+#include "HappyMath/Matrix4x4.h"
 #include <QOpenGLFunctions>
 
 Drawer::Drawer()
@@ -23,6 +24,48 @@ void Drawer::Initialize()
 void Drawer::DrawSphere(const HappyMath::Vector3& center, double radius, const HappyMath::Vector3& color, bool lit)
 {
 	this->DrawMesh(&this->sphereMesh, center, radius, color, lit);
+}
+
+void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, const HappyMath::Vector3& color, bool lit)
+{
+	glDisable(GL_LIGHTING);
+
+	HappyMath::Matrix4x4 scaleMatrix;
+	scaleMatrix.SetScale(HappyMath::Vector3(radius, radius, radius));
+
+	HappyMath::Vector3 xAxis, yAxis, zAxis;
+	zAxis = normal.Normalized();
+	xAxis.SetAsOrthogonalTo(zAxis);
+	xAxis.Normalized();
+	yAxis = zAxis.Cross(xAxis);
+
+	HappyMath::Matrix4x4 orientMatrix;
+	orientMatrix.SetAxes(xAxis, yAxis, zAxis);
+
+	HappyMath::Matrix4x4 translationMatrix;
+	translationMatrix.SetTranslation(center);
+
+	HappyMath::Matrix4x4 objectToWorld = translationMatrix * orientMatrix * scaleMatrix;
+
+	glLineWidth(2.0f);
+	glBegin(GL_LINE_LOOP);
+
+	glColor3d(color.x, color.y, color.z);
+
+	int numSegments = 100;
+	for (int i = 0; i < numSegments; i++)
+	{
+		double angle = (double(i) / double(numSegments)) * 2.0 * M_PI;
+		HappyMath::Vector3 vertex;
+		vertex.x = cos(angle);
+		vertex.y = sin(angle);
+
+		vertex = objectToWorld.TransformPoint(vertex);
+
+		glVertex3d(vertex.x, vertex.y, vertex.z);
+	}
+
+	glEnd();
 }
 
 void Drawer::DrawPoint(const HappyMath::Vector3& location, const HappyMath::Vector3& color, bool lit)

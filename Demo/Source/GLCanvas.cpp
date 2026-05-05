@@ -14,44 +14,24 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
     this->cameraLookAt = HappyMath::Vector3(0.0, 0.0, 0.0);
 }
 
+void GLCanvas::AddObjectToScene(std::shared_ptr<Object> object)
+{
+    this->objectArray.push_back(object);
+    this->update();
+}
+
+void GLCanvas::ClearScene()
+{
+    this->objectArray.clear();
+    this->update();
+}
+
 /*virtual*/ void GLCanvas::initializeGL()
 {
     initializeOpenGLFunctions();
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_DEPTH_TEST);
-
-    std::shared_ptr<PointObject> pointObjectA = std::make_shared<PointObject>();
-    pointObjectA->point.center.SetComponents(0.0, 0.0, 0.0);
-    pointObjectA->color.SetComponents(0.0, 1.0, 0.0);
-    this->objectArray.push_back(pointObjectA);
-
-    std::shared_ptr<PointObject> pointObjectB = std::make_shared<PointObject>();
-    pointObjectB->point.center.SetComponents(5.0, 0.0, 0.0);
-    pointObjectB->color.SetComponents(0.0, 1.0, 0.0);
-    this->objectArray.push_back(pointObjectB);
-
-    std::shared_ptr<PointObject> pointObjectC = std::make_shared<PointObject>();
-    pointObjectC->point.center.SetComponents(0.0, 5.0, 0.0);
-    pointObjectC->color.SetComponents(0.0, 1.0, 0.0);
-    this->objectArray.push_back(pointObjectC);
-
-    std::shared_ptr<PointObject> pointObjectD = std::make_shared<PointObject>();
-    pointObjectD->point.center.SetComponents(0.0, 0.0, 5.0);
-    pointObjectD->color.SetComponents(0.0, 1.0, 0.0);
-    this->objectArray.push_back(pointObjectD);
-
-    std::shared_ptr<SphereObject> sphereObject = std::make_shared<SphereObject>();
-    sphereObject->color.SetComponents(0.0, 1.0, 1.0);
-    this->objectArray.push_back(sphereObject);
-
-    std::shared_ptr<FitSphereToPointsConstraint> constraint = std::make_shared<FitSphereToPointsConstraint>();
-    constraint->inputObjectWeakPtrArray.push_back(pointObjectA);
-    constraint->inputObjectWeakPtrArray.push_back(pointObjectB);
-    constraint->inputObjectWeakPtrArray.push_back(pointObjectC);
-    constraint->inputObjectWeakPtrArray.push_back(pointObjectD);
-    constraint->outputObjectWeakPtr = sphereObject;
-    this->constraintArray.push_back(constraint);
 
     this->drawer.Initialize();
 }
@@ -212,24 +192,64 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
     QPoint angleDelta = event->angleDelta();
 
-    HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
-
-    double minDistance = 1.0;
-    double maxDistance = 500.0;
-    double zoomFactor = 0.9;
-
-    if (angleDelta.y() > 0)
-        vector *= zoomFactor;
-    else if (angleDelta.y() < 0)
-        vector /= zoomFactor;
-
-    HappyMath::Vector3 newEyePos = this->cameraLookAt + vector;
-    double distance = (newEyePos - this->cameraLookAt).Length();
-
-    if (distance >= minDistance && distance <= maxDistance)
+    if ((event->modifiers() & Qt::ShiftModifier) != 0)
     {
-        this->cameraEyePos = newEyePos;
-        this->update();
+        std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
+        if (selectedObject.get())
+        {
+            double size = 0.0;
+            if (selectedObject->GetSize(size))
+            {
+                double scaleFactor = 0.9;
+                if (angleDelta.y() > 0)
+                    size *= scaleFactor;
+                else if (angleDelta.y() < 0)
+                    size /= scaleFactor;
+
+                selectedObject->SetSize(size);
+                this->update();
+            }
+        }
+    }
+    else if ((event->modifiers() & Qt::ControlModifier) != 0)
+    {
+        std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
+        if (selectedObject.get())
+        {
+            HappyMath::Vector3 xAxis, yAxis, zAxis;
+            this->viewToWorld.GetAxes(xAxis, yAxis, zAxis);
+
+            double angle = 0.0;
+            if (angleDelta.y() > 0)
+                angle = M_PI / 32.0;
+            else if (angleDelta.y() < 0)
+                angle = -M_PI / 32.0;
+
+            selectedObject->Rotate(xAxis, angle);
+            this->update();
+        }
+    }
+    else
+    {
+        HappyMath::Vector3 vector = this->cameraEyePos - this->cameraLookAt;
+
+        double minDistance = 1.0;
+        double maxDistance = 500.0;
+        double zoomFactor = 0.9;
+
+        if (angleDelta.y() > 0)
+            vector *= zoomFactor;
+        else if (angleDelta.y() < 0)
+            vector /= zoomFactor;
+
+        HappyMath::Vector3 newEyePos = this->cameraLookAt + vector;
+        double distance = (newEyePos - this->cameraLookAt).Length();
+
+        if (distance >= minDistance && distance <= maxDistance)
+        {
+            this->cameraEyePos = newEyePos;
+            this->update();
+        }
     }
 }
 

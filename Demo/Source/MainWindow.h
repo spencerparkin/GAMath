@@ -1,6 +1,7 @@
 #pragma once
 
 #include <qmainwindow.h>
+#include "Object.h"
 
 /**
  * 
@@ -14,4 +15,6 @@ public:
 protected:
 
 	bool OnExitDemo();
+	void OnAddGeometry(ObjectClass* objectClass);
+	void OnClearScene();
 };

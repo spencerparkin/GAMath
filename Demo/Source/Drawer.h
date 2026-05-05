@@ -9,7 +9,9 @@ public:
 	virtual ~Drawer();
 
 	void Initialize();
+
 	void DrawSphere(const HappyMath::Vector3& center, double radius, const HappyMath::Vector3& color, bool lit);
+	void DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, const HappyMath::Vector3& color, bool lit);
 	void DrawPoint(const HappyMath::Vector3& location, const HappyMath::Vector3& color, bool lit);
 
 protected:

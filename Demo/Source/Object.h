@@ -5,6 +5,7 @@
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/Sphere.h"
 #include "HappyMath/Ray.h"
+#include <memory>
 
 class Drawer;
 
@@ -20,6 +21,9 @@ public:
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const = 0;
 	virtual void SetPosition(const HappyMath::Vector3& position) = 0;
 	virtual HappyMath::Vector3 GetPosition() const = 0;
+	virtual bool SetSize(double size);
+	virtual bool GetSize(double& size) const;
+	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle);
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const = 0;
 
 	HappyMath::Vector3 color;
@@ -54,6 +58,9 @@ public:
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
 	virtual void SetPosition(const HappyMath::Vector3& position) override;
 	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool SetSize(double size) override;
+	virtual bool GetSize(double& size) const override;
+	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
 
 	C3GA::PointPair pointPair;
@@ -71,6 +78,9 @@ public:
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
 	virtual void SetPosition(const HappyMath::Vector3& position) override;
 	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool SetSize(double size) override;
+	virtual bool GetSize(double& size) const override;
+	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
 
 	C3GA::Circle circle;
@@ -88,7 +98,25 @@ public:
 	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
 	virtual void SetPosition(const HappyMath::Vector3& position) override;
 	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool SetSize(double size) override;
+	virtual bool GetSize(double& size) const override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
 
 	C3GA::Sphere sphere;
+};
+
+class ObjectClass
+{
+public:
+	virtual std::shared_ptr<Object> Create() = 0;
+};
+
+template<typename T>
+class ObjectClassT : public ObjectClass
+{
+public:
+	virtual std::shared_ptr<Object> Create() override
+	{
+		return std::make_shared<T>();
+	}
 };

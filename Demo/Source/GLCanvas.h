@@ -18,6 +18,9 @@ class GLCanvas : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     explicit GLCanvas(QWidget* parent = nullptr);
 
+    void AddObjectToScene(std::shared_ptr<Object> object);
+    void ClearScene();
+
 protected:
     virtual void initializeGL() override;
     virtual void resizeGL(int width, int height) override;
