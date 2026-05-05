@@ -96,11 +96,19 @@ void GLCanvas::ClearScene()
     for (std::shared_ptr<Constraint> constraint : this->constraintArray)
         constraint->Enforce();
 
-    std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
     for (std::shared_ptr<Object> object : this->objectArray)
-        object->Draw(&this->drawer, object == selectedObject);
+        object->Draw(&this->drawer, this->IsSelected(object.get()));
 
     glFlush();
+}
+
+bool GLCanvas::IsSelected(Object* object)
+{
+    for (std::shared_ptr<Object> selectedObject : this->selectedObjectArray)
+        if (selectedObject.get() == object)
+            return true;
+
+    return false;
 }
 
 /*virtual*/ void GLCanvas::mousePressEvent(QMouseEvent* event)
@@ -109,19 +117,28 @@ void GLCanvas::ClearScene()
     {
         case Qt::MouseButton::LeftButton:
         {
-            if ((event->modifiers() & Qt::ShiftModifier) != 0)
+            std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
+            if (object.get() && (event->modifiers() & Qt::ControlModifier) == 0)
             {
-                std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
-                if (selectedObject.get())
+                if ((event->modifiers() & Qt::ShiftModifier) == 0)
+                    this->selectedObjectArray.clear();
+
+                if (!this->IsSelected(object.get()))
+                    this->selectedObjectArray.push_back(object);
+            }
+            else if ((event->modifiers() & Qt::ControlModifier) != 0)
+            {
+                if (this->selectedObjectArray.size() == 1)
                 {
-                    this->dragDisposition = DragDisposition::DRAG_OBJECT;
+                    std::shared_ptr<Object> selectedObject = this->selectedObjectArray[0];
                     this->distanceToSelectedObject = (this->cameraEyePos - selectedObject->GetPosition()).Length();
                     this->PutSelectedObjectUnderMouse(event->position());
-                    this->update();
+                    this->dragDisposition = DragDisposition::DRAG_OBJECT;
                 }
             }
             else
             {
+                this->selectedObjectArray.clear();
                 this->dragDisposition = DragDisposition::DRAG_CAMERA;
             }
 
@@ -130,12 +147,12 @@ void GLCanvas::ClearScene()
         }
         case Qt::MouseButton::RightButton:
         {
-            std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
-            this->selectedObjectWeakPtr = object;
-            this->update();
+            // STPTODO: Do context menu here that can let you create constraints with selection.
             break;
         }
     }
+
+    this->update();
 }
 
 /*virtual*/ void GLCanvas::mouseMoveEvent(QMouseEvent* event)
@@ -194,9 +211,10 @@ void GLCanvas::ClearScene()
 
     if ((event->modifiers() & Qt::ShiftModifier) != 0)
     {
-        std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
-        if (selectedObject.get())
+        if (this->selectedObjectArray.size() == 1)
         {
+            std::shared_ptr<Object> selectedObject = this->selectedObjectArray[0];
+
             double size = 0.0;
             if (selectedObject->GetSize(size))
             {
@@ -213,9 +231,10 @@ void GLCanvas::ClearScene()
     }
     else if ((event->modifiers() & Qt::ControlModifier) != 0)
     {
-        std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
-        if (selectedObject.get())
+        if (this->selectedObjectArray.size() == 1)
         {
+            std::shared_ptr<Object> selectedObject = this->selectedObjectArray[0];
+
             HappyMath::Vector3 xAxis, yAxis, zAxis;
             this->viewToWorld.GetAxes(xAxis, yAxis, zAxis);
 
@@ -255,9 +274,10 @@ void GLCanvas::ClearScene()
 
 void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)
 {
-    std::shared_ptr<Object> selectedObject = this->selectedObjectWeakPtr.lock();
-    if (!selectedObject.get())
+    if (this->selectedObjectArray.size() != 1)
         return;
+
+    std::shared_ptr<Object> selectedObject = this->selectedObjectArray[0];
 
     HappyMath::Ray ray = this->CalcMouseRay(mousePos);
     HappyMath::Vector3 position = ray.CalculatePoint(this->distanceToSelectedObject);

@@ -42,7 +42,9 @@ protected:
 
     std::vector<std::shared_ptr<Object>> objectArray;
     std::vector<std::shared_ptr<Constraint>> constraintArray;
-    std::weak_ptr<Object> selectedObjectWeakPtr;
+    std::vector<std::shared_ptr<Object>> selectedObjectArray;
+
+    bool IsSelected(Object* object);
 
     enum DragDisposition
     {
