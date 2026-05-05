@@ -20,6 +20,7 @@ public:
 
     void AddObjectToScene(std::shared_ptr<Object> object);
     void ClearScene();
+    int GetNumObjectsInScene();
 
 protected:
     virtual void initializeGL() override;
@@ -29,6 +30,8 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
     virtual void wheelEvent(QWheelEvent* event) override;
+
+    void OnContextMenu(const QPoint& position);
 
     HappyMath::Ray CalcMouseRay(const QPointF& mousePos);
     std::shared_ptr<Object> GetObjectAtMouseLocation(const QPointF& mousePos);

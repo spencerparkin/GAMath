@@ -55,7 +55,7 @@ PointObject::PointObject()
 
 /*virtual*/ bool PointObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
 {
-	return worldRay.CastAgainstSphere(this->point.center, 0.1, rayDistance);
+	return worldRay.CastAgainstSphere(this->point.center, 0.2, rayDistance);
 }
 
 //------------------------------ PointPairObject ------------------------------
@@ -77,6 +77,8 @@ PointPairObject::PointPairObject()
 	
 	drawer->DrawPoint(pointA, usedColor, false);
 	drawer->DrawPoint(pointB, usedColor, false);
+
+	drawer->DrawVector(this->pointPair.center, this->pointPair.normal, usedColor, true);
 }
 
 /*virtual*/ void PointPairObject::SetPosition(const HappyMath::Vector3& position)
@@ -112,7 +114,7 @@ PointPairObject::PointPairObject()
 	HappyMath::Vector3 pointA = this->pointPair.center + this->pointPair.radius * this->pointPair.normal;
 	HappyMath::Vector3 pointB = this->pointPair.center - this->pointPair.radius * this->pointPair.normal;
 
-	return worldRay.CastAgainstSphere(pointA, 0.1, rayDistance) || worldRay.CastAgainstSphere(pointB, 0.1, rayDistance);
+	return worldRay.CastAgainstSphere(pointA, 0.2, rayDistance) || worldRay.CastAgainstSphere(pointB, 0.2, rayDistance);
 }
 
 //------------------------------ CircleObject ------------------------------
@@ -128,7 +130,9 @@ CircleObject::CircleObject()
 /*virtual*/ void CircleObject::Draw(Drawer* drawer, bool showAsHighlighted) const
 {
 	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
+
 	drawer->DrawCircle(this->circle.center, this->circle.normal, this->circle.radius, usedColor, false);
+	drawer->DrawVector(this->circle.center, this->circle.normal, usedColor, true);
 }
 
 /*virtual*/ void CircleObject::SetPosition(const HappyMath::Vector3& position)

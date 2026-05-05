@@ -4,6 +4,7 @@
 #include "HappyMath/Matrix4x4.h"
 #include "HappyMath/Rectangle.h"
 #include <qevent.h>
+#include <qmenu.h>
 
 GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 {
@@ -12,6 +13,10 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
     this->cameraEyePos = HappyMath::Vector3(20.0, 20.0, 20.0);
     this->cameraLookAt = HappyMath::Vector3(0.0, 0.0, 0.0);
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    this->connect(this, &QWidget::customContextMenuRequested, this, &GLCanvas::OnContextMenu);
 }
 
 void GLCanvas::AddObjectToScene(std::shared_ptr<Object> object)
@@ -24,6 +29,11 @@ void GLCanvas::ClearScene()
 {
     this->objectArray.clear();
     this->update();
+}
+
+int GLCanvas::GetNumObjectsInScene()
+{
+    return (int)this->objectArray.size();
 }
 
 /*virtual*/ void GLCanvas::initializeGL()
@@ -152,11 +162,6 @@ bool GLCanvas::IsSelected(Object* object)
             this->lastMousePos = event->position();
             break;
         }
-        case Qt::MouseButton::RightButton:
-        {
-            // STPTODO: Do context menu here that can let you create constraints with selection.
-            break;
-        }
     }
 
     this->update();
@@ -277,6 +282,20 @@ bool GLCanvas::IsSelected(Object* object)
             this->update();
         }
     }
+}
+
+void GLCanvas::OnContextMenu(const QPoint& position)
+{
+    QMenu contextMenu(this);
+
+    // STPTODO: Use current selection to build context menu containing constraints that will take.
+
+    contextMenu.addAction("Hello", []()
+        {
+
+        });
+
+    contextMenu.exec(this->mapToGlobal(position));
 }
 
 void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)

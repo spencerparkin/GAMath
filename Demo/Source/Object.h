@@ -105,19 +105,3 @@ public:
 
 	C3GA::Sphere sphere;
 };
-
-class ObjectClass
-{
-public:
-	virtual std::shared_ptr<Object> Create() = 0;
-};
-
-template<typename T>
-class ObjectClassT : public ObjectClass
-{
-public:
-	virtual std::shared_ptr<Object> Create() override
-	{
-		return std::make_shared<T>();
-	}
-};

@@ -2,6 +2,7 @@
 
 #include <qmainwindow.h>
 #include "Object.h"
+#include "Class.hpp"
 
 /**
  * 
@@ -15,6 +16,9 @@ public:
 protected:
 
 	bool OnExitDemo();
-	void OnAddGeometry(ObjectClass* objectClass);
+	void OnAddGeometry(BaseClass<Object>* objectClass);
 	void OnClearScene();
+	void OnUpdateMenuActions();
+
+	QAction* clearSceneAction;
 };

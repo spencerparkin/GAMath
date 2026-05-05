@@ -70,7 +70,12 @@ void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vecto
 
 void Drawer::DrawPoint(const HappyMath::Vector3& location, const HappyMath::Vector4& color, bool lit)
 {
-	this->DrawMesh(&this->boxMesh, location, 0.1, color, lit);
+	this->DrawMesh(&this->boxMesh, location, 0.2, color, lit);
+}
+
+void Drawer::DrawVector(const HappyMath::Vector3& location, const HappyMath::Vector3& vector, const HappyMath::Vector4& color, bool lit)
+{
+	//...
 }
 
 void Drawer::DrawMesh(const HappyMath::PolygonMesh* mesh, const HappyMath::Vector3& translation, double scale, const HappyMath::Vector4& color, bool lit)
