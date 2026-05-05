@@ -21,30 +21,32 @@ FitSphereToPointsConstraint::FitSphereToPointsConstraint()
 {
 }
 
+/*virtual*/ bool FitSphereToPointsConstraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+{
+	// STPTODO: Write this.
+	return false;
+}
+
+/*virtual*/ std::string FitSphereToPointsConstraint::GetDesc() const
+{
+	return "Fit sphere to 4 points";
+}
+
 /*virtual*/ bool FitSphereToPointsConstraint::Enforce()
 {
-	std::shared_ptr<SphereObject> sphereObject = std::dynamic_pointer_cast<SphereObject>(this->outputObjectWeakPtr.lock());
-	if (!sphereObject.get())
+	if (!this->sphereObject.get())
 		return false;
 
-	if (this->inputObjectWeakPtrArray.size() != 4)
+	if (this->pointObjectArray.size() != 4)
 		return false;
 
-	std::shared_ptr<PointObject> pointObjectA = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[0].lock());
-	if (!pointObjectA.get())
-		return false;
+	for (int i = 0; i < 4; i++)
+		if (!this->pointObjectArray[i].get())
+			return false;
 
-	std::shared_ptr<PointObject> pointObjectB = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[1].lock());
-	if (!pointObjectB.get())
-		return false;
-
-	std::shared_ptr<PointObject> pointObjectC = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[2].lock());
-	if (!pointObjectC.get())
-		return false;
-
-	std::shared_ptr<PointObject> pointObjectD = std::dynamic_pointer_cast<PointObject>(this->inputObjectWeakPtrArray[3].lock());
-	if (!pointObjectD.get())
-		return false;
-
-	return sphereObject->sphere.FitToPoints(pointObjectA->point, pointObjectB->point, pointObjectC->point, pointObjectD->point);
+	return this->sphereObject->sphere.FitToPoints(
+						this->pointObjectArray[0]->point,
+						this->pointObjectArray[1]->point,
+						this->pointObjectArray[2]->point,
+						this->pointObjectArray[3]->point);
 }
