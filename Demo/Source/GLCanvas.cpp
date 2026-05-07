@@ -3,6 +3,7 @@
 #include "Constraint.h"
 #include "HappyMath/Matrix4x4.h"
 #include "HappyMath/Rectangle.h"
+#include "Class.hpp"
 #include <qevent.h>
 #include <qmenu.h>
 
@@ -28,6 +29,7 @@ void GLCanvas::AddObjectToScene(std::shared_ptr<Object> object)
 void GLCanvas::ClearScene()
 {
     this->objectArray.clear();
+    this->constraintArray.clear();
     this->update();
 }
 
@@ -286,16 +288,32 @@ bool GLCanvas::IsSelected(Object* object)
 
 void GLCanvas::OnContextMenu(const QPoint& position)
 {
+    static std::vector<std::shared_ptr<BaseClass<Constraint>>> constraintClassArray = {
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>()
+    };
+
     QMenu contextMenu(this);
 
-    // STPTODO: Use current selection to build context menu containing constraints that will take.
-
-    contextMenu.addAction("Hello", []()
+    for (std::shared_ptr<BaseClass<Constraint>> constraintClass : constraintClassArray)
+    {
+        std::shared_ptr<Constraint> constraint = constraintClass->Create();
+        if (constraint->TakeObjects(this->selectedObjectArray))
         {
+            contextMenu.addAction(constraint->GetDesc().c_str(), [this, constraint]()
+                {
+                    this->constraintArray.push_back(constraint);
+                    this->update();
+                });
+        }
+    }
 
-        });
-
-    contextMenu.exec(this->mapToGlobal(position));
+    if (contextMenu.actions().size() > 0)
+    {
+        contextMenu.exec(this->mapToGlobal(position));
+    }
 }
 
 void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)

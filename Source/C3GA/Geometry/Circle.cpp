@@ -1,8 +1,11 @@
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/Plane.h"
 #include "C3GA/Geometry/Sphere.h"
+#include "C3GA/Geometry/Point.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
+#include "C3GA/Trivector.h"
+#include "C3GA/PsuedoScalar.h"
 #include "C3GA/Rotor.h"
 
 using namespace C3GA;
@@ -40,7 +43,20 @@ Circle::Circle(const Circle& circle)
 
 bool Circle::FitToPoints(const Point& pointA, const Point& pointB, const Point& pointC)
 {
-	return false;
+	Vector v1, v2, v3;
+	Bivector b1;
+	Trivector t1;
+	PsuedoScalar I(1.0);
+
+	pointA.ToVector(v1);
+	pointB.ToVector(v2);
+	pointC.ToVector(v3);
+
+	b1.OuterProduct(v1, v2);
+	t1.OuterProduct(b1, v3);
+	b1.GeometricProduct(t1, I);
+
+	return this->FromBivector(b1);
 }
 
 bool Circle::FitToPointPairAndPoint(const PointPair& pointPairA, const Point& pointB)
