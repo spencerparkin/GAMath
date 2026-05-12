@@ -3,7 +3,7 @@
 #include "Constraint.h"
 #include "HappyMath/Matrix4x4.h"
 #include "HappyMath/Rectangle.h"
-#include "Class.hpp"
+#include <QColorDialog>
 #include <qevent.h>
 #include <qmenu.h>
 
@@ -295,7 +295,40 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>()
     };
 
+    HappyMath::Ray mouseRay = this->CalcMouseRay(position);
+    HappyMath::Vector3 location = mouseRay.CalculatePoint((this->cameraEyePos - this->cameraLookAt).Length());
+
     QMenu contextMenu(this);
+
+    QAction* addPointAction = contextMenu.addAction("Add Point");
+    std::shared_ptr<BaseClass<Object>> pointObjectClass = std::make_shared<DerivedClass<Object, PointObject>>();
+    this->connect(addPointAction, &QAction::triggered, this, [this, pointObjectClass, location]()
+        {
+            this->OnAddGeometry(pointObjectClass.get(), location);
+        });
+
+    QAction* addPointPairAction = contextMenu.addAction("Add Point-Pair");
+    std::shared_ptr<BaseClass<Object>> pointPairObjectClass = std::make_shared<DerivedClass<Object, PointPairObject>>();
+    this->connect(addPointPairAction, &QAction::triggered, this, [this, pointPairObjectClass, location]()
+        {
+            this->OnAddGeometry(pointPairObjectClass.get(), location);
+        });
+
+    QAction* addCircleAction = contextMenu.addAction("Add Circle");
+    std::shared_ptr<BaseClass<Object>> circleObjectClass = std::make_shared<DerivedClass<Object, CircleObject>>();
+    this->connect(addCircleAction, &QAction::triggered, this, [this, circleObjectClass, location]()
+        {
+            this->OnAddGeometry(circleObjectClass.get(), location);
+        });
+
+    QAction* addSphereAction = contextMenu.addAction("Add Sphere");
+    std::shared_ptr<BaseClass<Object>> sphereObjectClass = std::make_shared<DerivedClass<Object, SphereObject>>();
+    this->connect(addSphereAction, &QAction::triggered, this, [this, sphereObjectClass, location]()
+        {
+            this->OnAddGeometry(sphereObjectClass.get(), location);
+        });
+
+    contextMenu.addSeparator();
 
     for (std::shared_ptr<BaseClass<Constraint>> constraintClass : constraintClassArray)
     {
@@ -310,10 +343,34 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         }
     }
 
-    if (contextMenu.actions().size() > 0)
+    if (this->objectArray.size() > 0)
     {
-        contextMenu.exec(this->mapToGlobal(position));
+        contextMenu.addSeparator();
+        QAction* clearSceneAction = contextMenu.addAction("Clear Scene");
+        this->connect(clearSceneAction, &QAction::triggered, this, &GLCanvas::OnClearScene);
     }
+
+    if (contextMenu.actions().size() > 0)
+        contextMenu.exec(this->mapToGlobal(position));
+}
+
+void GLCanvas::OnAddGeometry(BaseClass<Object>* objectClass, const HappyMath::Vector3& location)
+{
+    QColor color = QColorDialog::getColor(Qt::blue, this, "Choose a color, please.");
+    if (!color.isValid())
+        return;
+
+    std::shared_ptr<Object> object = objectClass->Create();
+    object->SetPosition(location);
+
+    object->color = HappyMath::Vector4(color.redF(), color.greenF(), color.blueF(), 1.0);
+
+    this->AddObjectToScene(object);
+}
+
+void GLCanvas::OnClearScene()
+{
+    this->ClearScene();
 }
 
 void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)

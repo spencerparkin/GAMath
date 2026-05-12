@@ -16,9 +16,4 @@ public:
 protected:
 
 	bool OnExitDemo();
-	void OnAddGeometry(BaseClass<Object>* objectClass);
-	void OnClearScene();
-	void OnUpdateMenuActions();
-
-	QAction* clearSceneAction;
 };

@@ -7,6 +7,7 @@
 #include "HappyMath/Matrix4x4.h"
 #include "HappyMath/Frustum.h"
 #include "HappyMath/Ray.h"
+#include "Class.hpp"
 
 class Object;
 class Constraint;
@@ -32,6 +33,8 @@ protected:
     virtual void wheelEvent(QWheelEvent* event) override;
 
     void OnContextMenu(const QPoint& position);
+    void OnAddGeometry(BaseClass<Object>* objectClass, const HappyMath::Vector3& location);
+    void OnClearScene();
 
     HappyMath::Ray CalcMouseRay(const QPointF& mousePos);
     std::shared_ptr<Object> GetObjectAtMouseLocation(const QPointF& mousePos);
