@@ -112,7 +112,7 @@ bool Circle::FromBivector(const Bivector& bivector)
 	v.y = bivector.e2_ni / this->weight;
 	v.z = bivector.e3_ni / this->weight;
 
-	v -= this->center.Dot(this->normal) * this->center;
+	v += this->center.Dot(this->normal) * this->center;
 
 	double squareRadius = this->center.SquareLength() - 2.0 * this->normal.Dot(v);
 
