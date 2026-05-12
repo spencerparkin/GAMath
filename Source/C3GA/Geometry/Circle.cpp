@@ -77,6 +77,11 @@ bool Circle::IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB)
 
 bool Circle::FromBivector(const Bivector& bivector)
 {
+	// STPTODO: My math here just has to be wrong.  For circles that are
+	//          parallel to the XY, XZ or YZ plane, they look right, but
+	//          become agregiously wrong when slanted at 45-degree angles
+	//          to the said planes.
+
 	this->normal.x = bivector.e1_no;
 	this->normal.y = bivector.e2_no;
 	this->normal.z = bivector.e3_no;
