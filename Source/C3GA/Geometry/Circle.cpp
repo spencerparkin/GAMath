@@ -6,6 +6,7 @@
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
 #include "C3GA/PsuedoScalar.h"
+#include "C3GA/Scalar.h"
 #include "C3GA/Rotor.h"
 
 using namespace C3GA;
@@ -85,7 +86,7 @@ bool Circle::FromBivector(const Bivector& bivector)
 	if (this->weight == 0.0)
 		return false;
 
-	this->normal /= weight;
+	this->normal /= this->weight;
 
 	Rotor rotor;
 	rotor._1 = -bivector.no_ni / this->weight;
@@ -105,15 +106,17 @@ bool Circle::FromBivector(const Bivector& bivector)
 	this->center.y = centre.e2;
 	this->center.z = centre.e3;
 
-	Bivector n_ni;
-	n_ni.e1_ni = bivector.e1_ni / this->weight;
-	n_ni.e2_ni = bivector.e2_ni / this->weight;
-	n_ni.e3_ni = bivector.e3_ni / this->weight;
+	Vector v;
+	v.e1 = bivector.e1_ni;
+	v.e2 = bivector.e2_ni;
+	v.e3 = bivector.e3_ni;
 
-	Vector ni;
-	ni.InnerProduct(norm, n_ni);
+	Scalar alpha;
+	alpha.InnerProduct(v, norm);
 
-	double squareRadius = this->center.Dot(center) - 2.0 * ni.ni;
+	double beta = this->center.Dot(this->normal);
+
+	double squareRadius = this->center.SquareLength() - 2.0 * (alpha._1 / this->weight + beta * beta);
 
 	this->imaginary = false;
 

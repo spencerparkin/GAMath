@@ -17,6 +17,22 @@ GLCanvas::GLCanvas(QWidget* parent) : QOpenGLWidget(parent)
 
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
+    std::shared_ptr<PointObject> pointObjectA = std::make_shared<PointObject>();
+    pointObjectA->SetPosition(HappyMath::Vector3(-5.0, 0.0, 5.0));
+    this->AddObjectToScene(pointObjectA);
+
+    std::shared_ptr<PointObject> pointObjectB = std::make_shared<PointObject>();
+    pointObjectB->SetPosition(HappyMath::Vector3(5.0, 0.0, 0.0));
+    this->AddObjectToScene(pointObjectB);
+
+    std::shared_ptr<PointObject> pointObjectC = std::make_shared<PointObject>();
+    pointObjectC->SetPosition(HappyMath::Vector3(0.0, 5.0, 5.0));
+    this->AddObjectToScene(pointObjectC);
+
+    std::shared_ptr<CircleObject> circleObject = std::make_shared<CircleObject>();
+    circleObject->SetPosition(HappyMath::Vector3(10.0, 0.0, 0.0));
+    this->AddObjectToScene(circleObject);
+
     this->connect(this, &QWidget::customContextMenuRequested, this, &GLCanvas::OnContextMenu);
 }
 
