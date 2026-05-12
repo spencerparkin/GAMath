@@ -106,17 +106,15 @@ bool Circle::FromBivector(const Bivector& bivector)
 	this->center.y = centre.e2;
 	this->center.z = centre.e3;
 
-	Vector v;
-	v.e1 = bivector.e1_ni;
-	v.e2 = bivector.e2_ni;
-	v.e3 = bivector.e3_ni;
+	HappyMath::Vector3 v;
 
-	Scalar alpha;
-	alpha.InnerProduct(v, norm);
+	v.x = bivector.e1_ni / this->weight;
+	v.y = bivector.e2_ni / this->weight;
+	v.z = bivector.e3_ni / this->weight;
 
-	double beta = this->center.Dot(this->normal);
+	v -= this->center.Dot(this->normal) * this->center;
 
-	double squareRadius = this->center.SquareLength() - 2.0 * (alpha._1 / this->weight + beta * beta);
+	double squareRadius = this->center.SquareLength() - 2.0 * this->normal.Dot(v);
 
 	this->imaginary = false;
 
