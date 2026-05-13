@@ -36,7 +36,7 @@ void Drawer::DrawCircle(const HappyMath::Vector3& center, const HappyMath::Vecto
 	HappyMath::Vector3 xAxis, yAxis, zAxis;
 	zAxis = normal.Normalized();
 	xAxis.SetAsOrthogonalTo(zAxis);
-	xAxis.Normalized();
+	xAxis.Normalize();
 	yAxis = zAxis.Cross(xAxis);
 
 	HappyMath::Matrix4x4 orientMatrix;

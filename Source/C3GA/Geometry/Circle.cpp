@@ -77,10 +77,6 @@ bool Circle::IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB)
 
 bool Circle::FromBivector(const Bivector& bivector)
 {
-	// STPTODO: My math here just has to be wrong.  Sometimes it looks right
-	//          and then sometimes it looks agregiously wrong.  I'm at a
-	//          complete loss.
-
 	this->normal.x = bivector.e1_no;
 	this->normal.y = bivector.e2_no;
 	this->normal.z = bivector.e3_no;
