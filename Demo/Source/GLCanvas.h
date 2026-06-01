@@ -22,6 +22,11 @@ public:
     void AddObjectToScene(std::shared_ptr<Object> object);
     void ClearScene();
     int GetNumObjectsInScene();
+    const std::vector<std::shared_ptr<Object>>& GetSelectedObjects() const;
+
+signals:
+    void SelectionChanged(GLCanvas* canvas);
+    void SceneChanged(GLCanvas* canvas);
 
 protected:
     virtual void initializeGL() override;

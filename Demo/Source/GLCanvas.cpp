@@ -130,12 +130,19 @@ bool GLCanvas::IsSelected(Object* object)
     return false;
 }
 
+const std::vector<std::shared_ptr<Object>>& GLCanvas::GetSelectedObjects() const
+{
+    return this->selectedObjectArray;
+}
+
 /*virtual*/ void GLCanvas::mousePressEvent(QMouseEvent* event)
 {
     switch (event->button())
     {
         case Qt::MouseButton::LeftButton:
         {
+            std::vector<std::shared_ptr<Object>> currentSelectionArray = this->selectedObjectArray;
+
             std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
             if (object.get() && (event->modifiers() & Qt::ControlModifier) == 0)
             {
@@ -162,6 +169,12 @@ bool GLCanvas::IsSelected(Object* object)
             }
 
             this->lastMousePos = event->position();
+
+            if (currentSelectionArray != this->selectedObjectArray)
+            {
+                emit this->SelectionChanged(this);
+            }
+
             break;
         }
     }
@@ -202,6 +215,7 @@ bool GLCanvas::IsSelected(Object* object)
         {
             this->PutSelectedObjectUnderMouse(event->position());
             this->update();
+            emit this->SceneChanged(this);
             break;
         }
     }
@@ -240,6 +254,8 @@ bool GLCanvas::IsSelected(Object* object)
 
                 selectedObject->SetSize(size);
                 this->update();
+
+                emit this->SceneChanged(this);
             }
         }
     }
@@ -260,6 +276,8 @@ bool GLCanvas::IsSelected(Object* object)
 
             selectedObject->Rotate(xAxis, angle);
             this->update();
+
+            emit this->SceneChanged(this);
         }
     }
     else
@@ -292,7 +310,8 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
-        std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>()
+        std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, IntersectTwoSpheres>>()
     };
 
     HappyMath::Ray mouseRay = this->CalcMouseRay(position);
@@ -366,11 +385,15 @@ void GLCanvas::OnAddGeometry(BaseClass<Object>* objectClass, const HappyMath::Ve
     object->color = HappyMath::Vector4(color.redF(), color.greenF(), color.blueF(), 1.0);
 
     this->AddObjectToScene(object);
+
+    emit this->SceneChanged(this);
 }
 
 void GLCanvas::OnClearScene()
 {
     this->ClearScene();
+
+    emit this->SceneChanged(this);
 }
 
 void GLCanvas::PutSelectedObjectUnderMouse(const QPointF& mousePos)

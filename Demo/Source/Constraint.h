@@ -97,3 +97,22 @@ private:
 	std::shared_ptr<PointPairObject> pointPairObject;
 	std::shared_ptr<PointObject> pointObject;
 };
+
+/**
+ * 
+ */
+class IntersectTwoSpheres : public Constraint
+{
+public:
+	IntersectTwoSpheres();
+	virtual ~IntersectTwoSpheres();
+
+	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+
+private:
+	std::shared_ptr<SphereObject> sphereObjectA;
+	std::shared_ptr<SphereObject> sphereObjectB;
+	std::shared_ptr<CircleObject> circleObject;
+};

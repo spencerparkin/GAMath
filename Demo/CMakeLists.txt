@@ -21,6 +21,8 @@ add_executable(Demo WIN32
 	Source/Object.h
 	Source/Constraint.cpp
 	Source/Constraint.h
+	Source/DetailsPanel.cpp
+	Source/DetailsPanel.h
 	Source/Class.hpp
 )
 

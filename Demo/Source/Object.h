@@ -26,6 +26,7 @@ public:
 	virtual bool GetSize(double& size) const;
 	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle);
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const = 0;
+	virtual std::string GetDetails() const = 0;
 
 	HappyMath::Vector4 color;
 };
@@ -43,6 +44,7 @@ public:
 	virtual void SetPosition(const HappyMath::Vector3& position) override;
 	virtual HappyMath::Vector3 GetPosition() const override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
 
 	C3GA::Point point;
 };
@@ -63,6 +65,7 @@ public:
 	virtual bool GetSize(double& size) const override;
 	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
 
 	C3GA::PointPair pointPair;
 };
@@ -83,6 +86,7 @@ public:
 	virtual bool GetSize(double& size) const override;
 	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
 
 	C3GA::Circle circle;
 };
@@ -102,6 +106,7 @@ public:
 	virtual bool SetSize(double size) override;
 	virtual bool GetSize(double& size) const override;
 	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
 
 	C3GA::Sphere sphere;
 };

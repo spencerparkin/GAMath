@@ -156,8 +156,7 @@ FitSphereToPointPairsConstraint::FitSphereToPointPairsConstraint()
 
 		if (!this->pointPairA.get())
 			this->pointPairA = std::dynamic_pointer_cast<PointPairObject>(object);
-
-		if (!this->pointPairB.get())
+		else if (!this->pointPairB.get())
 			this->pointPairB = std::dynamic_pointer_cast<PointPairObject>(object);
 	}
 
@@ -232,4 +231,60 @@ FitCircleToPointAndPointPairConstraint::FitCircleToPointAndPointPairConstraint()
 {
 	// STPTODO: Write this.
 	return false;
+}
+
+//------------------------------- IntersectTwoSpheres -------------------------------
+
+IntersectTwoSpheres::IntersectTwoSpheres()
+{
+}
+
+/*virtual*/ IntersectTwoSpheres::~IntersectTwoSpheres()
+{
+}
+
+/*virtual*/ bool IntersectTwoSpheres::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+{
+	if (objectList.size() != 3)
+		return false;
+
+	this->sphereObjectA.reset();
+	this->sphereObjectB.reset();
+	this->circleObject.reset();
+
+	for (std::shared_ptr<Object> object : objectList)
+	{
+		if (!this->circleObject.get())
+			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
+
+		if (!this->sphereObjectA.get())
+			this->sphereObjectA = std::dynamic_pointer_cast<SphereObject>(object);
+		else if (!this->sphereObjectB.get())
+			this->sphereObjectB = std::dynamic_pointer_cast<SphereObject>(object);
+	}
+
+	if (this->circleObject.get() && this->sphereObjectA.get() && this->sphereObjectB.get())
+		return true;
+
+	this->circleObject.reset();
+	this->sphereObjectA.reset();
+	this->sphereObjectB.reset();
+
+	return false;
+}
+
+/*virtual*/ std::string IntersectTwoSpheres::GetDesc() const
+{
+	return "Intersect two spheres to produce a circle.";
+}
+
+/*virtual*/ bool IntersectTwoSpheres::Enforce()
+{
+	if (!this->circleObject.get())
+		return false;
+
+	if (!this->sphereObjectA.get() || !this->sphereObjectB.get())
+		return false;
+
+	return this->circleObject->circle.IntersectSpheres(this->sphereObjectA->sphere, this->sphereObjectB->sphere);
 }

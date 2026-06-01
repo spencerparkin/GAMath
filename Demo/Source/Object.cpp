@@ -1,5 +1,7 @@
 #include "Object.h"
 #include "Drawer.h"
+#include "C3GA/Vector.h"
+#include <format>
 
 //------------------------------ Object ------------------------------
 
@@ -56,6 +58,20 @@ PointObject::PointObject()
 /*virtual*/ bool PointObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
 {
 	return worldRay.CastAgainstSphere(this->point.center, 0.2, rayDistance);
+}
+
+/*virtual*/ std::string PointObject::GetDetails() const
+{
+	std::string details;
+
+	details += std::format("Weight: {}\n", this->point.weight);
+	details += std::format("Location: {}, {}, {}\n", this->point.center.x, this->point.center.y, this->point.center.z);
+
+	// STPTODO: Can I print the vector to a string?
+	//C3GA::Vector v1;
+	//this->point.ToVector(v1);
+
+	return details;
 }
 
 //------------------------------ PointPairObject ------------------------------
@@ -115,6 +131,18 @@ PointPairObject::PointPairObject()
 	HappyMath::Vector3 pointB = this->pointPair.center - this->pointPair.radius * this->pointPair.normal;
 
 	return worldRay.CastAgainstSphere(pointA, 0.2, rayDistance) || worldRay.CastAgainstSphere(pointB, 0.2, rayDistance);
+}
+
+/*virtual*/ std::string PointPairObject::GetDetails() const
+{
+	std::string details;
+
+	details += std::format("Weight: {}\n", this->pointPair.weight);
+	details += std::format("Center: {}, {}, {}\n", this->pointPair.center.x, this->pointPair.center.y, this->pointPair.center.z);
+	details += std::format("Radius: {}\n", this->pointPair.radius);
+	details += std::string("Imaginary: ") + (this->pointPair.imaginary ? "YES" : "NO") + "\n";
+
+	return details;
 }
 
 //------------------------------ CircleObject ------------------------------
@@ -179,6 +207,18 @@ CircleObject::CircleObject()
 	return false;
 }
 
+/*virtual*/ std::string CircleObject::GetDetails() const
+{
+	std::string details;
+
+	details += std::format("Weight: {}\n", this->circle.weight);
+	details += std::format("Center: {}, {}, {}\n", this->circle.center.x, this->circle.center.y, this->circle.center.z);
+	details += std::format("Radius: {}\n", this->circle.radius);
+	details += std::string("Imaginary: ") + (this->circle.imaginary ? "YES" : "NO") + "\n";
+
+	return details;
+}
+
 //------------------------------ SphereObject ------------------------------
 
 SphereObject::SphereObject()
@@ -220,4 +260,16 @@ SphereObject::SphereObject()
 /*virtual*/ bool SphereObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
 {
 	return worldRay.CastAgainstSphere(this->sphere.center, this->sphere.radius, rayDistance);
+}
+
+/*virtual*/ std::string SphereObject::GetDetails() const
+{
+	std::string details;
+
+	details += std::format("Weight: {}\n", this->sphere.weight);
+	details += std::format("Center: {}, {}, {}\n", this->sphere.center.x, this->sphere.center.y, this->sphere.center.z);
+	details += std::format("Radius: {}\n", this->sphere.radius);
+	details += std::string("Imaginary: ") + (this->sphere.imaginary ? "YES" : "NO") + "\n";
+
+	return details;
 }

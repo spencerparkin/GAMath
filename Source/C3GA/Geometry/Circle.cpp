@@ -67,7 +67,15 @@ bool Circle::FitToPointPairAndPoint(const PointPair& pointPairA, const Point& po
 
 bool Circle::IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB)
 {
-	return false;
+	Vector v1, v2;
+	Bivector b1;
+
+	sphereA.ToVector(v1);
+	sphereB.ToVector(v2);
+
+	b1.OuterProduct(v1, v2);
+
+	return this->FromBivector(b1);
 }
 
 bool Circle::IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB)
