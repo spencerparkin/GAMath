@@ -29,4 +29,8 @@ void DetailsPanel::UpdateDetailsOfScene(GLCanvas* canvas)
 
 		this->textEdit->setPlainText(QString(details.c_str()));
 	}
+	else
+	{
+		this->textEdit->setPlainText("");
+	}
 }

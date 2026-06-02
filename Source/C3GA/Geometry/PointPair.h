@@ -6,6 +6,7 @@ namespace C3GA
 {
 	class Point;
 	class Sphere;
+	class Circle;
 	class Bivector;
 
 	class PointPair
@@ -22,6 +23,7 @@ namespace C3GA
 		bool FitToPoints(const Point& pointA, const Point& pointB);
 
 		bool IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB, const Sphere& sphereC);
+		bool IntersectSphereAndCircle(const Sphere& sphere, const Circle& circle);
 
 		HappyMath::Vector3 center;
 		HappyMath::Vector3 normal;

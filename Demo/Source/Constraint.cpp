@@ -233,17 +233,17 @@ FitCircleToPointAndPointPairConstraint::FitCircleToPointAndPointPairConstraint()
 	return false;
 }
 
-//------------------------------- IntersectTwoSpheres -------------------------------
+//------------------------------- IntersectTwoSpheresToGetCircle -------------------------------
 
-IntersectTwoSpheres::IntersectTwoSpheres()
+IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
 {
 }
 
-/*virtual*/ IntersectTwoSpheres::~IntersectTwoSpheres()
+/*virtual*/ IntersectTwoSpheresToGetCircle::~IntersectTwoSpheresToGetCircle()
 {
 }
 
-/*virtual*/ bool IntersectTwoSpheres::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+/*virtual*/ bool IntersectTwoSpheresToGetCircle::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
 {
 	if (objectList.size() != 3)
 		return false;
@@ -273,12 +273,12 @@ IntersectTwoSpheres::IntersectTwoSpheres()
 	return false;
 }
 
-/*virtual*/ std::string IntersectTwoSpheres::GetDesc() const
+/*virtual*/ std::string IntersectTwoSpheresToGetCircle::GetDesc() const
 {
 	return "Intersect two spheres to produce a circle.";
 }
 
-/*virtual*/ bool IntersectTwoSpheres::Enforce()
+/*virtual*/ bool IntersectTwoSpheresToGetCircle::Enforce()
 {
 	if (!this->circleObject.get())
 		return false;
@@ -287,4 +287,58 @@ IntersectTwoSpheres::IntersectTwoSpheres()
 		return false;
 
 	return this->circleObject->circle.IntersectSpheres(this->sphereObjectA->sphere, this->sphereObjectB->sphere);
+}
+
+//------------------------------- IntersectSphereAndCircleToGetPointPair -------------------------------
+
+IntersectSphereAndCircleToGetPointPair::IntersectSphereAndCircleToGetPointPair()
+{
+}
+
+/*virtual*/ IntersectSphereAndCircleToGetPointPair::~IntersectSphereAndCircleToGetPointPair()
+{
+}
+
+/*virtual*/ bool IntersectSphereAndCircleToGetPointPair::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+{
+	if (objectList.size() != 3)
+		return false;
+
+	this->sphereObject.reset();
+	this->circleObject.reset();
+	this->pointPairObject.reset();
+
+	for (std::shared_ptr<Object> object : objectList)
+	{
+		if (!this->sphereObject.get())
+			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
+
+		if (!this->circleObject.get())
+			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
+
+		if (!this->pointPairObject.get())
+			this->pointPairObject = std::dynamic_pointer_cast<PointPairObject>(object);
+	}
+
+	if (this->sphereObject.get() && this->circleObject.get() && this->pointPairObject.get())
+		return true;
+
+	this->sphereObject.reset();
+	this->circleObject.reset();
+	this->pointPairObject.reset();
+
+	return false;
+}
+
+/*virtual*/ std::string IntersectSphereAndCircleToGetPointPair::GetDesc() const
+{
+	return "Intersect a sphere and a circle to get a point-pair.";
+}
+
+/*virtual*/ bool IntersectSphereAndCircleToGetPointPair::Enforce()
+{
+	if (!this->sphereObject.get() || !this->circleObject.get() || !this->pointPairObject.get())
+		return false;
+
+	return this->pointPairObject->pointPair.IntersectSphereAndCircle(this->sphereObject->sphere, this->circleObject->circle);
 }

@@ -135,6 +135,20 @@ const std::vector<std::shared_ptr<Object>>& GLCanvas::GetSelectedObjects() const
     return this->selectedObjectArray;
 }
 
+void GLCanvas::ToggleSelectionOfObject(std::shared_ptr<Object> object)
+{
+    for (int i = 0; i < (int)this->selectedObjectArray.size(); i++)
+    {
+        if (this->selectedObjectArray[i] == object)
+        {
+            this->selectedObjectArray.erase(this->selectedObjectArray.begin() + i);
+            return;
+        }
+    }
+
+    this->selectedObjectArray.push_back(object);
+}
+
 /*virtual*/ void GLCanvas::mousePressEvent(QMouseEvent* event)
 {
     switch (event->button())
@@ -144,15 +158,8 @@ const std::vector<std::shared_ptr<Object>>& GLCanvas::GetSelectedObjects() const
             std::vector<std::shared_ptr<Object>> currentSelectionArray = this->selectedObjectArray;
 
             std::shared_ptr<Object> object = this->GetObjectAtMouseLocation(event->position());
-            if (object.get() && (event->modifiers() & Qt::ControlModifier) == 0)
-            {
-                if ((event->modifiers() & Qt::ShiftModifier) == 0)
-                    this->selectedObjectArray.clear();
 
-                if (!this->IsSelected(object.get()))
-                    this->selectedObjectArray.push_back(object);
-            }
-            else if ((event->modifiers() & Qt::ControlModifier) != 0)
+            if ((event->modifiers() & Qt::ControlModifier) != 0)
             {
                 if (this->selectedObjectArray.size() == 1)
                 {
@@ -162,9 +169,12 @@ const std::vector<std::shared_ptr<Object>>& GLCanvas::GetSelectedObjects() const
                     this->dragDisposition = DragDisposition::DRAG_OBJECT;
                 }
             }
+            else if (object.get())
+            {
+                this->ToggleSelectionOfObject(object);
+            }
             else
             {
-                this->selectedObjectArray.clear();
                 this->dragDisposition = DragDisposition::DRAG_CAMERA;
             }
 
@@ -228,6 +238,20 @@ const std::vector<std::shared_ptr<Object>>& GLCanvas::GetSelectedObjects() const
         case Qt::MouseButton::LeftButton:
         {
             this->dragDisposition = DragDisposition::NONE;
+            break;
+        }
+    }
+}
+
+/*virtual*/ void GLCanvas::mouseDoubleClickEvent(QMouseEvent* event)
+{
+    switch (event->button())
+    {
+        case Qt::MouseButton::LeftButton:
+        {
+            this->selectedObjectArray.clear();
+            this->update();
+            emit this->SelectionChanged(this);
             break;
         }
     }
@@ -311,7 +335,8 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>(),
-        std::make_shared<DerivedClass<Constraint, IntersectTwoSpheres>>()
+        std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
+        std::make_shared<DerivedClass<Constraint, IntersectSphereAndCircleToGetPointPair>>()
     };
 
     HappyMath::Ray mouseRay = this->CalcMouseRay(position);

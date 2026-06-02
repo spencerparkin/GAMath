@@ -1,7 +1,7 @@
 #include <qmenubar.h>
 #include <qmenu.h>
 #include <qaction.h>
-#include <qsplitter.h>
+#include <qlayout.h>
 #include "MainWindow.h"
 #include "GLCanvas.h"
 #include "DetailsPanel.h"
@@ -9,17 +9,24 @@
 
 MainWindow::MainWindow(QWidget* parentWidget) : QMainWindow(parentWidget)
 {
-	QSplitter* splitter = new QSplitter(Qt::Vertical);
+	QWidget* mainWidget = new QWidget(this);
 
-	auto* canvas = new GLCanvas(this);
-	auto* detailsPanel = new DetailsPanel(this);
+	auto* canvas = new GLCanvas(mainWidget);
+	auto* detailsPanel = new DetailsPanel(mainWidget);
 
-	splitter->addWidget(canvas);
-	splitter->addWidget(detailsPanel);
+	canvas->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-	this->setCentralWidget(splitter);
+	detailsPanel->setFixedHeight(150);
+	detailsPanel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-	splitter->setSizes({ 700, 100 });
+	auto* mainLayout = new QVBoxLayout(this);
+	mainLayout->addWidget(canvas, 1);
+	mainLayout->addWidget(detailsPanel, 0);
+	mainLayout->setSpacing(0);
+
+	mainWidget->setLayout(mainLayout);
+
+	this->setCentralWidget(mainWidget);
 
 	QObject::connect(canvas, &GLCanvas::SelectionChanged, detailsPanel, &DetailsPanel::UpdateDetailsOfScene);
 	QObject::connect(canvas, &GLCanvas::SceneChanged, detailsPanel, &DetailsPanel::UpdateDetailsOfScene);

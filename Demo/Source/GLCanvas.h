@@ -35,6 +35,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent* event) override;
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent* event) override;
     virtual void wheelEvent(QWheelEvent* event) override;
 
     void OnContextMenu(const QPoint& position);
@@ -43,8 +44,8 @@ protected:
 
     HappyMath::Ray CalcMouseRay(const QPointF& mousePos);
     std::shared_ptr<Object> GetObjectAtMouseLocation(const QPointF& mousePos);
-
     void PutSelectedObjectUnderMouse(const QPointF& mousePos);
+    void ToggleSelectionOfObject(std::shared_ptr<Object> object);
 
     HappyMath::Vector3 cameraEyePos;
     HappyMath::Vector3 cameraLookAt;

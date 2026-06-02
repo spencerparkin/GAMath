@@ -193,7 +193,7 @@ CircleObject::CircleObject()
 
 /*virtual*/ bool CircleObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
 {
-	double thickness = 0.1;
+	double thickness = 0.5;
 
 	if (worldRay.CastAgainstDisk(this->circle.center, this->circle.normal, this->circle.radius + thickness / 2.0, rayDistance))
 	{
