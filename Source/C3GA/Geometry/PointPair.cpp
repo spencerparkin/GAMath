@@ -48,28 +48,7 @@ bool PointPair::FromBivector(const Bivector& bivector)
 
 void PointPair::ToBivector(Bivector& bivector) const
 {
-	Vector v1, v2;
-
-	HappyMath::Vector3 a, b;
-
-	a = this->center - this->radius * this->normal;
-	b = this->center + this->radius * this->normal;
-
-	v1.no = this->weight;
-	v1.e1 = this->weight * a.x;
-	v1.e2 = this->weight * a.y;
-	v1.e3 = this->weight * a.z;
-	v1.ni = this->weight * 0.5 * a.SquareLength();
-
-	v2.no = 1.0;
-	v2.e1 = b.x;
-	v2.e2 = b.y;
-	v2.e3 = b.z;
-	v2.ni = 0.5 * b.SquareLength();
-
-	// STPTODO: What if it's imaginary?
-
-	bivector.OuterProduct(v1, v2);
+	// STPTODO: Base this on intersection between line running through center of sphere.
 }
 
 bool PointPair::FitToPoints(const Point& pointA, const Point& pointB)
