@@ -1,3 +1,4 @@
 # Ignore stuff...
 .vs/
 out/
+*.synctex.gz

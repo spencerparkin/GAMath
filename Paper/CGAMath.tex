@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{CGA Math}
+\author{Spencer T. Parkin}
+
+\newcommand{\nvao}{o}
+\newcommand{\nvai}{\infty}
+
+\begin{document}
+\maketitle
+
+This paper documents the math needed to compose and decompose elements of CGA.
+
+\section*{Foundation}
+
+For any blade $B$ of CGA, it represents two geometries.  These are all vectors $x$ in the euclidean sub-algebra of CGA
+such that
+\begin{equation*}
+p(x)\cdot B = 0,
+\end{equation*}
+or all such vectors with
+\begin{equation*}
+p(x)\wedge B = 0,
+\end{equation*}
+where $p(x)$ is defined as the vector
+\begin{equation*}
+p(x) = \nvao + x + \frac{1}{2}x^2\nvai.
+\end{equation*}
+For compositions we will use the form $p(x)\cdot B=0$.
+
+\section*{Compositions}
+
+For all geometry that follows, we let $c$ and $n$ denote euclidean vectors, and $r$ denote a scalar.
+We always require that $|n|=1$.  Also, we will ignore the magnitude of $B$ as long as it is non-zero.
+
+\subsection*{Planes}
+
+Letting $B=n + (n\cdot c)\nvai$, we have
+\begin{align*}
+0 &= p(x)\cdot B \\
+ &= \left(\nvao + x + \frac{1}{2}x^2\nvai\right)\cdot(n + (c\cdot n)\nvai) \\
+ &= -c\cdot n + x\cdot n \\
+ &= (x-c)\cdot n,
+\end{align*}
+which is clearly the equation for a plane centered at $c$ with normal $n$.
+
+\subsection*{Lines}
+
+Lines are a bit trickier.  Here, let $i=e_1e_2e_3$ denote the unit psuedo-scalar of the 3D euclidean sub-algebra of CGA.
+Doing so, let $B=ni + (ni\cdot c)\nvai$.  We then see that
+\begin{align*}
+0 &= p(x)\cdot B \\
+ &= \left(\nvao + x + \frac{1}{2}x^2\nvai\right)\cdot (n - (c\cdot ni)\nvai) \\
+ &= \left(\nvao + x + \frac{1}{2}x^2\nvai\right)\cdot (n + \nvai\wedge (c\cdot ni)) \\
+ &= (\nvao\cdot\nvai)(c\cdot ni) + x\cdot ni - (x\cdot(c\cdot ni))\nvai \\
+ &= -c\cdot ni + x\cdot ni - (x\cdot (c\wedge n)i)\nvai \\
+ &= (x - c)\cdot ni - (x\wedge c\wedge n)i\nvai.
+\end{align*}
+Here, we must have $0=(x-c)\cdot ni$ as well as $0=x\wedge c\wedge n$.
+The first of these is clearly a line centered at $c$ with normal $n$, which is what we're after, but what of the second?
+Well, we need only consider those values of $x$ for which the first is satisfied.
+If $x=c$, we have a trivial case, and all is well.
+Otherwise, we have $x-c=\lambda n$ for some non-zero scalar $\lambda$,
+which means that $x\wedge c\wedge n=x\wedge c\wedge\frac{1}{\lambda}(x-c)$, which
+is clearly zero.
+
+\subsection*{Spheres}
+
+Consider $B=\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right)$.  We then have
+\begin{align*}
+0 &= p(x)\cdot B \\
+ &= \left(\nvao + x + \frac{1}{2}x^2\nvai\right)\cdot\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right) \\
+ &= -\frac{1}{2}(c^2 - r^2) + x\cdot c - \frac{1}{2}x^2.
+\end{align*}
+Rearranging this, we find that
+\begin{align*}
+r^2 &= c^2 - 2(x\cdot c) + x^2 \\
+ &= (x-c)^2,
+\end{align*}
+which is clearly the equation for a sphere.
+
+\subsection*{Points}
+
+Points are simply the special case of spheres with $r=0$.  A point at $c$ is simply $p(c)$.
+Note that these, technically, are round points, not to be confused with tangent points
+or flat points.
+
+For a flat point, let
+\begin{equation*}
+B = (n + (n\cdot c)\nvai)\wedge(ni + (ni\cdot c)\nvai),
+\end{equation*}
+which is clearly the intersection of a line and a plane.
+
+TODO: Prove here that $n$ goes away.
+
+\subsection*{Circles}
+
+Here, let
+\begin{equation*}
+B=\left(n + (n\cdot c)\nvai\right)\wedge\left(\nvao + c + \frac{1}{2}(c^2-r^2)\nvai\right),
+\end{equation*}
+which is the intersection of a sphere centered on a plane.
+
+\subsection*{Point-Pairs}
+
+Point-pairs may seem odd, but they're simply the 1-dimensional analog of spheres and circles.
+Here, let
+\begin{equation*}
+B=(ni+(ni\cdot c)\nvai)\wedge\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right).
+\end{equation*}
+This is simply the intersection of a line going through the center of a sphere.
+
+\subsection*{Tangent Points}
+
+These are the special case of circles or point-pairs when $r=0$.
+Note that while it takes 4 points to fit a sphere, it only takes 2 tangent points, or 2 points and 1 tangent point, to do the same.
+
+
+\section*{Decomposition}
+
+Here we utilize the composition forumlas derived earlier in order to extract the variables $c$, $n$ and $r$
+from a given blade $B$.  Since we can't ignore magnitude here, we need an extra scalar $w$
+to represent the ``weight" of the geometry.
+
+\end{document}
