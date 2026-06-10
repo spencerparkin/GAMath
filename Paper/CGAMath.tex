@@ -32,12 +32,40 @@ where $p(x)$ is defined as the vector
 \begin{equation*}
 p(x) = \nvao + x + \frac{1}{2}x^2\nvai.
 \end{equation*}
-For compositions we will use the form $p(x)\cdot B=0$.
+We'll call the first of these the ``dot representation'' and the second, ``wedge representation''.
+To convert from one to the other, you can multiply by $I$, the unit psuedo-scalar.
+This is because
+\begin{equation*}
+p(x)\cdot B = 0\iff p(x)\wedge BI=0.
+\end{equation*}
+Of course, $B$ and $BI$ are duals of one another, so the conversion goes both ways.
+
+Using blades to represent geometries, we get the following useful properties.
+If $B_1$ and $B_2$ are blades with $B_1\wedge B_2\neq 0$, then we have
+\begin{equation*}
+\{x|p(x)\cdot B_1\wedge B_2 = 0\} = \{x|p(x)\cdot B_1=0\}\cap\{x|p(x)\cdot B_2=0\},
+\end{equation*}
+as well as
+\begin{equation*}
+\{x|p(x)\wedge B_1\wedge B_2 = 0\} \supseteq \{x|p(x)\wedge B_1=0\}\cup\{x|p(x)\wedge B_2=0\}.
+\end{equation*}
+In this latter case, since there are only so many shapes in CGA, we can reasonably deduce that
+$B_1\wedge B_2$ will be the geometry that fits those represented by $B_1$ and $B_2$.  You may,
+for example, find the sphere that fits a given circle and point, or the circle that fits 3 given points,
+and so on.
+
+The shapes of CGA are either round or flat.  If using the wedge presentation, a round can be converted
+into a flat by tacking on $\nvai$ with the outer product.  For example, if $B$ represents a
+circle using the wedge representation, then $B\wedge\nvai$ is the plane containing the circle,
+also in the wedge representation.
 
 \section*{Compositions}
 
 For all geometry that follows, we let $c$ and $n$ denote euclidean vectors, and $r$ denote a scalar.
-We always require that $|n|=1$.  Also, we will ignore the magnitude of $B$ as long as it is non-zero.
+We always require that $|n|=1$.
+
+We are going to use the dot representation here instead of the wedge representation,
+and ignore the magnitude of $B$ as long as it is non-zero.
 
 \subsection*{Planes}
 
@@ -85,6 +113,9 @@ r^2 &= c^2 - 2(x\cdot c) + x^2 \\
 \end{align*}
 which is clearly the equation for a sphere.
 
+Interestingly, we also find imaginary spheres in CGA with $B=\left(\nvao + c + \frac{1}{2}(c^2 + r^2)\nvai\right)$.
+Imaginary rounds are necessary in cases where an intersection is computed that can't actually exist.
+
 \subsection*{Points}
 
 Points are simply the special case of spheres with $r=0$.  A point at $c$ is simply $p(c)$.
@@ -95,9 +126,12 @@ For a flat point, let
 \begin{equation*}
 B = (n + (n\cdot c)\nvai)\wedge(ni + (ni\cdot c)\nvai),
 \end{equation*}
-which is clearly the intersection of a line and a plane.
-
-TODO: Prove here that $n$ goes away.
+which is clearly the intersection of a line and a plane.  If you were to expand
+this wedge product out, things would cancel, and you'd be left with
+\begin{equation*}
+B = i + ci\wedge\nvai,
+\end{equation*}
+showing that indeed $n$ is not applicable here.
 
 \subsection*{Circles}
 
@@ -105,7 +139,9 @@ Here, let
 \begin{equation*}
 B=\left(n + (n\cdot c)\nvai\right)\wedge\left(\nvao + c + \frac{1}{2}(c^2-r^2)\nvai\right),
 \end{equation*}
-which is the intersection of a sphere centered on a plane.
+which is the intersection of a sphere centered on a plane.  Use an imaginary sphere here
+to get an imaginary circle.  Such circles form the intersection of, for example, two
+real spheres that are intersected, but that don't actually intersect.
 
 \subsection*{Point-Pairs}
 
@@ -115,17 +151,28 @@ Here, let
 B=(ni+(ni\cdot c)\nvai)\wedge\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right).
 \end{equation*}
 This is simply the intersection of a line going through the center of a sphere.
+Similar to cricles, use an imaginary sphere here to get an imaginary point-pair.
+Such a point-pair would occur, for example, when you compute the intersection
+of a line and a sphere that don't actually intersect.
 
 \subsection*{Tangent Points}
 
 These are the special case of circles or point-pairs when $r=0$.
 Note that while it takes 4 points to fit a sphere, it only takes 2 tangent points, or 2 points and 1 tangent point, to do the same.
-
+You can get a tangent point by intersecting two spheres that touch in a single point.
 
 \section*{Decomposition}
 
 Here we utilize the composition forumlas derived earlier in order to extract the variables $c$, $n$ and $r$
 from a given blade $B$.  Since we can't ignore magnitude here, we need an extra scalar $w$
 to represent the ``weight" of the geometry.
+
+\section*{Transformations}
+
+\subsection*{Rotors}
+
+\subsection*{Motors}
+
+\subsection*{Transversions}
 
 \end{document}
