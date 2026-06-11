@@ -100,7 +100,7 @@ is clearly zero.
 
 \subsection*{Spheres}
 
-Consider $B=\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right)$.  We then have
+Consider $B=\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai$.  We then have
 \begin{align*}
 0 &= p(x)\cdot B \\
  &= \left(\nvao + x + \frac{1}{2}x^2\nvai\right)\cdot\left(\nvao + c + \frac{1}{2}(c^2 - r^2)\nvai\right) \\
@@ -113,7 +113,7 @@ r^2 &= c^2 - 2(x\cdot c) + x^2 \\
 \end{align*}
 which is clearly the equation for a sphere.
 
-Interestingly, we also find imaginary spheres in CGA with $B=\left(\nvao + c + \frac{1}{2}(c^2 + r^2)\nvai\right)$.
+Interestingly, we also find imaginary spheres in CGA with $B=\nvao + c + \frac{1}{2}(c^2 + r^2)\nvai$.
 Imaginary rounds are necessary in cases where an intersection is computed that can't actually exist.
 
 \subsection*{Points}
@@ -167,12 +167,95 @@ Here we utilize the composition forumlas derived earlier in order to extract the
 from a given blade $B$.  Since we can't ignore magnitude here, we need an extra scalar $w$
 to represent the ``weight" of the geometry.
 
+It should be noted here that given a blade $B$, even if we know how to decmpose any shape,
+exactly what shape to decompose $B$ as is not immediately clear.  One idea is to choose all
+that apply for the grade.  If a decomposition method succeeds, it will have been correct.
+All others should fail with division by zero or something similar.
+
+\subsection*{Planes}
+
+Let $B=w(n+(n\cdot c)\nvai)$.  We then have
+\begin{equation*}
+\nvao\cdot B\wedge\nvai = wn.
+\end{equation*}
+We can then normalize this to recover $n$ and use the length to recover $w$.
+Note that in a computer program, we might as well skip this and just pick out the $wn$ term
+from the vector.  In any case, we can recover $c$ by letting $c=\lambda n$ for some scalar $\lambda$,
+and then see that
+\begin{equation*}
+\frac{\nvao\cdot B}{-w} = n\cdot c = \lambda.
+\end{equation*}
+Likewise, in a computer program, we could just extract $w\lambda$ by picking out the coeficient of $\nvai$.
+
+\subsection*{Lines}
+
+Let $B=w(ni + (ni\cdot c)\nvai)$.  We then have
+\begin{equation*}
+-(\nvao\cdot B\wedge\nvai)i = wn.
+\end{equation*}
+Here we can recover $w$ then as the length, and normalize to recover $n$.  To find $c$,
+let $c\cdot n=0$, and write
+\begin{equation*}
+\left(\frac{\nvao\cdot B}{w}\right)i = c\wedge n = cn.
+\end{equation*}
+Multiplying this on the right by $n$ in the geometric product then gives us $c$.
+For a computer program, we could just find $wc$ directly by examining the term with $\nvai$.
+
+\subsection*{Spheres}
+
+Let $B=$.
+
+\subsection*{Circles}
+
+When we start thinking about decomposing blades of grade greater than one,
+one idea is to factor first, then try decomposition on the vector factors.  But factoring
+is not a trivial matter, and I'm not sure if just any factorization would work.
+In leu of that, we can continue to decompose using methods we've already been employing.
+
+
+
+\subsection*{Point-Pairs}
+
+\subsection*{Tangent Points}
+
 \section*{Transformations}
+
+Using the wedge representation, it's not hard to show that any of the conformal
+transformpations can be applied to any CGA shape.  The idea is simply that if $V$ is a versor,
+and $B_k=b_1\wedge\dots\wedge b_k$ is a $k$-blade, then
+\begin{equation*}
+VB_kV^{-1} = \bigwedge_{i=1}^k Vb_kV^{-1} = \bigwedge_{i=1}^k Vp(x_k)V^{-1},
+\end{equation*}
+where the points $x_k$ are suitabily chosen.
+This shows that a set of points used to fit the shape are transformed by the versor into some other
+set of points that will fit some other shape.  Thus,
+we only need to understand how the versor transforms points and $\nvai$.
+This is analogous to any linear transformation reducing to an understanding of
+how the axes are transformed.  Here, for each transformation, we need only consider how
+it transforms $p(x)$.
 
 \subsection*{Rotors}
 
 \subsection*{Motors}
 
+\subsection*{Diolations}
+
 \subsection*{Transversions}
+
+\section*{Appendix}
+
+\subsection*{Helpful Identities}
+
+Let $a$ be a vector and $A_k$ be a $k$-blade.  We then have
+\begin{align*}
+a\wedge A_k &= \frac{1}{2}\left(aA_k + (-1)^kA_ka\right), \\
+a\cdot A_k &= \frac{1}{2}\left(aA_k - (-1)^kA_ka\right).
+\end{align*}
+Then, for euclidean vectors $a$ and $b$, this helps us find
+\begin{align*}
+(a\cdot b)i &= a\wedge bi, \\
+(a\wedge b)i &= a\cdot bi.
+\end{align*}
+Similar identities are often useful when we want to pull $i$ in or out.
 
 \end{document}
