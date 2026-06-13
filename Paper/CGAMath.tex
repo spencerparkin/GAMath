@@ -203,20 +203,73 @@ For a computer program, we could just find $wc$ directly by examining the term w
 
 \subsection*{Spheres}
 
-Let $B=$.
+Let $B=w\left(\nvao + c + \frac{1}{2}(c^2-r^2)\nvai\right)$.
+Then
+\begin{equation*}
+-\nvai\cdot B = w,
+\end{equation*}
+and
+\begin{equation*}
+\frac{\nvao\cdot B\wedge\nvai}{w} - \nvao = c,
+\end{equation*}
+but, of course, in a computer program, just extract $wc$ directly from the vector.
+We also have
+\begin{equation*}
+r^2 = c^2 + \frac{2}{w}\nvao\cdot B.
+\end{equation*}
+Here we can determine if the sphere is real or imaginary by the sign of the right-hand side.
+Then just calculate $r$ by taking the square root of the absolute value of the right-hand side.
 
 \subsection*{Circles}
 
 When we start thinking about decomposing blades of grade greater than one,
 one idea is to factor first, then try decomposition on the vector factors.  But factoring
 is not a trivial matter, and I'm not sure if just any factorization would work.
-In leu of that, we can continue to decompose using methods we've already been employing.
 
-
+Let $B=w(n+(n\cdot c)\nvai)\wedge\left(\nvao + c + \frac{1}{2}(c^2-r^2)\nvai\right)$ and
+expand to get
+\begin{equation*}
+B = wn\wedge\nvao + wn\wedge c + \frac{w}{2}(c^2-r^2)n\wedge\nvai+w(n\cdot c)\nvai\wedge\nvao + w(n\cdot c)\nvai\wedge c.
+\end{equation*}
+A computer program could pick out $wn$ directly, or we could calculate it as
+\begin{equation*}
+\nvao\wedge\nvai\cdot B\wedge\nvai = wn.
+\end{equation*}
+We can now recover $w$ and $n$.  We recover $c$ with
+\begin{equation*}
+c = n\left[\frac{\nvai\wedge\nvao}{w}\cdot\left(B\wedge\nvai\wedge\nvao + B\right)\right].
+\end{equation*}
+Again, a computer program can pick out the terms easier to reduce the number of calculations needed.
+For $r^2$, we find that
+\begin{equation*}
+r^2 = c^2 - 2(c\cdot n)^2 - n\cdot\frac{2}{w}\left[\nvai\wedge\nvao\cdot B\wedge\nvao\right].
+\end{equation*}
+Here again we can determine if the circle is real or imaginary and then compute $r$.
 
 \subsection*{Point-Pairs}
 
+Let $B=w(ni + (ni\cdot c)\nvai)\wedge\left(\nvao + c + \frac{1}{2}(c^2-r^2)\nvai\right)$ and expand
+to get
+\begin{equation*}
+B = wni\wedge\nvao + wni\wedge c + \frac{w}{2}(c^2-r^2)ni\wedge\nvai + w(ni\cdot c)\wedge\nvai\wedge\nvao + w(ni\cdot c)\wedge\nvai\wedge c.
+\end{equation*}
+We then have
+\begin{equation*}
+-\left(\nvao\wedge\nvai\cdot B\wedge\nvai\right)i = wn
+\end{equation*}
+from which $w$ and $n$ may be recovered.  We recover $c$ with
+\begin{equation*}
+c = -n\left[\frac{\nvai\wedge\nvao}{w}\cdot\left(B\wedge\nvai\wedge\nvao + B\right)\right]i.
+\end{equation*}
+For $r^2$ we find that
+\begin{equation*}
+r^2 = 2(c\cdot n)^2 + n\cdot\frac{2}{w}\left[\nvai\wedge o\cdot B\wedge\nvao\right]i,
+\end{equation*}
+from which we can find $r$ and determine if the point-pair is real or imaginary.
+
 \subsection*{Tangent Points}
+
+Write this...
 
 \section*{Transformations}
 
@@ -233,6 +286,12 @@ we only need to understand how the versor transforms points and $\nvai$.
 This is analogous to any linear transformation reducing to an understanding of
 how the axes are transformed.  Here, for each transformation, we need only consider how
 it transforms $p(x)$.
+
+But what about the dot representation?  Well, if we write
+\begin{equation*}
+VB_kV^{-1} = -VB_kI^2V^{-1} = \pm VB_kIV^{-1}I,
+\end{equation*}
+then we see that they transform the same way.
 
 \subsection*{Rotors}
 
@@ -257,5 +316,11 @@ Then, for euclidean vectors $a$ and $b$, this helps us find
 (a\wedge b)i &= a\cdot bi.
 \end{align*}
 Similar identities are often useful when we want to pull $i$ in or out.
+
+You should also know
+\begin{equation*}
+a\cdot A_k = -\sum_{i=1}^k(-1)^i (a_1\wedge\dots\wedge a_{i-1}\wedge a_{i+1}\wedge\dots\wedge a_k),
+\end{equation*}
+where $A_k=\bigwedge_{i=1}^k a_k$.
 
 \end{document}
