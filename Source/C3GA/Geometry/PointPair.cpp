@@ -1,10 +1,12 @@
 #include "C3GA/Geometry/PointPair.h"
 #include "C3GA/Geometry/Sphere.h"
 #include "C3GA/Geometry/Circle.h"
+#include "C3GA/Geometry/Line.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
 #include "C3GA/PsuedoScalar.h"
+#include "C3GA/Rotor.h"
 
 using namespace C3GA;
 
@@ -39,16 +41,75 @@ PointPair::PointPair(const PointPair& pointPair)
 {
 }
 
-bool PointPair::FromBivector(const Bivector& bivector)
+bool PointPair::FromTrivector(const Trivector& trivector)
 {
-	// STPTODO: Do the math.
+	this->normal.x = trivector.e2_e3_no;
+	this->normal.y = -trivector.e1_e3_no;
+	this->normal.z = trivector.e1_e2_no;
 
-	return false;
+	this->weight = this->normal.Length();
+
+	if (this->weight == 0.0)
+		return false;
+
+	this->normal /= this->weight;
+
+	Rotor r1;
+
+	r1._1 = trivector.e1_e2_e3 / this->weight;
+	r1.e1_e2 = -trivector.e1_no_ni / this->weight;
+	r1.e1_e3 = trivector.e2_no_ni / this->weight;
+	r1.e2_e3 = -trivector.e3_no_ni / this->weight;
+
+	Vector v1, v2;
+
+	v1.e1 = this->normal.x;
+	v1.e2 = this->normal.y;
+	v1.e3 = this->normal.z;
+
+	v2.InnerProduct(v1, r1);
+
+	this->center.x = v2.e1;
+	this->center.y = v2.e2;
+	this->center.z = v2.e3;
+
+	Bivector b1;
+
+	b1.e1_e2 = trivector.e1_e2_ni * 2.0 / this->weight;
+	b1.e1_e3 = trivector.e1_e3_ni * 2.0 / this->weight;
+	b1.e2_e3 = trivector.e2_e3_ni * 2.0 / this->weight;
+
+	Trivector t1;
+
+	t1.OuterProduct(b1, v1);
+
+	double squareRadius = this->center.SquareLength() - t1.e1_e2_e3;
+	
+	this->imaginary = false;
+
+	if (squareRadius < 0.0)
+	{
+		this->imaginary = true;
+		squareRadius = -squareRadius;
+	}
+
+	this->radius = sqrt(squareRadius);
+
+	return true;
 }
 
-void PointPair::ToBivector(Bivector& bivector) const
+void PointPair::ToTrivector(Trivector& trivector) const
 {
-	// STPTODO: Base this on intersection between line running through center of sphere.
+	Sphere sphere(this->center, this->radius, 1.0);
+	Line line(this->center, this->normal, this->weight);
+
+	Vector v1;
+	Bivector b1;
+
+	sphere.ToVector(v1);
+	line.ToBivector(b1);
+
+	trivector.OuterProduct(b1, v1);
 }
 
 bool PointPair::FitToPoints(const Point& pointA, const Point& pointB)
@@ -73,7 +134,5 @@ bool PointPair::IntersectSphereAndCircle(const Sphere& sphere, const Circle& cir
 
 	t.OuterProduct(v, b1);
 
-	b2.GeometricProduct(t, I);
-
-	return this->FromBivector(b2);
+	return this->FromTrivector(t);
 }

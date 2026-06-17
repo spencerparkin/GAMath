@@ -20,4 +20,6 @@ namespace C3GA
 		HappyMath::Vector3 center;
 		double weight;
 	};
+
+	// STPTODO: Add flat point class here.
 }

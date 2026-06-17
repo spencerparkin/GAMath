@@ -7,7 +7,7 @@ namespace C3GA
 	class Point;
 	class Sphere;
 	class Circle;
-	class Bivector;
+	class Trivector;
 
 	class PointPair
 	{
@@ -17,8 +17,8 @@ namespace C3GA
 		PointPair(const PointPair& pointPair);
 		virtual ~PointPair();
 
-		bool FromBivector(const Bivector& bivector);
-		void ToBivector(Bivector& bivector) const;
+		bool FromTrivector(const Trivector& trivector);
+		void ToTrivector(Trivector& trivector) const;
 
 		bool FitToPoints(const Point& pointA, const Point& pointB);
 
