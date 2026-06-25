@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Class.hpp"
 #include <vector>
 #include <string>
 #include <memory>
@@ -22,9 +23,29 @@ public:
 	Constraint();
 	virtual ~Constraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) = 0;
+	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& givenObjectArray);
 	virtual std::string GetDesc() const = 0;
 	virtual bool Enforce() = 0;
+
+protected:
+
+	bool IsReady();
+
+	template<typename T>
+	T* GetObject(int i = 0)
+	{
+		for (std::shared_ptr<Object> object : this->objectArray)
+		{
+			T* typedObject = dynamic_cast<T*>(object.get());
+			if (typedObject && i-- <= 0)
+				return typedObject;
+		}
+
+		return nullptr;
+	}
+
+	std::vector<std::shared_ptr<BaseClass<Object>>> objectClassArray;
+	std::vector<std::shared_ptr<Object>> objectArray;
 };
 
 /**
@@ -36,13 +57,8 @@ public:
 	FitSphereToPointsConstraint();
 	virtual ~FitSphereToPointsConstraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<SphereObject> sphereObject;
-	std::vector<std::shared_ptr<PointObject>> pointObjectArray;
 };
 
 /**
@@ -54,14 +70,8 @@ public:
 	FitSphereToPointAndCircleContraint();
 	virtual ~FitSphereToPointAndCircleContraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<SphereObject> sphereObject;
-	std::shared_ptr<PointObject> pointObject;
-	std::shared_ptr<CircleObject> circleObject;
 };
 
 /**
@@ -73,13 +83,8 @@ public:
 	FitCircleToPointsConstraint();
 	virtual ~FitCircleToPointsConstraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<CircleObject> circleObject;
-	std::vector<std::shared_ptr<PointObject>> pointObjectArray;
 };
 
 /**
@@ -91,14 +96,8 @@ public:
 	FitSphereToPointPairsConstraint();
 	virtual ~FitSphereToPointPairsConstraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<SphereObject> sphereObject;
-	std::shared_ptr<PointPairObject> pointPairA;
-	std::shared_ptr<PointPairObject> pointPairB;
 };
 
 /**
@@ -110,14 +109,21 @@ public:
 	FitCircleToPointAndPointPairConstraint();
 	virtual ~FitCircleToPointAndPointPairConstraint();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
+};
 
-private:
-	std::shared_ptr<CircleObject> circleObject;
-	std::shared_ptr<PointPairObject> pointPairObject;
-	std::shared_ptr<PointObject> pointObject;
+/**
+ * 
+ */
+class FitPlaneToLineAndPointConstraints : public Constraint
+{
+public:
+	FitPlaneToLineAndPointConstraints();
+	virtual ~FitPlaneToLineAndPointConstraints();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
 };
 
 /**
@@ -129,14 +135,8 @@ public:
 	IntersectTwoSpheresToGetCircle();
 	virtual ~IntersectTwoSpheresToGetCircle();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<SphereObject> sphereObjectA;
-	std::shared_ptr<SphereObject> sphereObjectB;
-	std::shared_ptr<CircleObject> circleObject;
 };
 
 /**
@@ -148,14 +148,8 @@ public:
 	IntersectPlaneAndSphereToGetCircle();
 	virtual ~IntersectPlaneAndSphereToGetCircle();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
-
-private:
-	std::shared_ptr<PlaneObject> planeObject;
-	std::shared_ptr<SphereObject> sphereObject;
-	std::shared_ptr<CircleObject> circleObject;
 };
 
 /**
@@ -167,12 +161,32 @@ public:
 	IntersectSphereAndCircleToGetPointPair();
 	virtual ~IntersectSphereAndCircleToGetPointPair();
 
-	virtual bool TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList) override;
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
+};
 
-private:
-	std::shared_ptr<SphereObject> sphereObject;
-	std::shared_ptr<CircleObject> circleObject;
-	std::shared_ptr<PointPairObject> pointPairObject;
+/**
+ * 
+ */
+class IntersectPlaneAndCircleToGetPointPair : public Constraint
+{
+public:
+	IntersectPlaneAndCircleToGetPointPair();
+	virtual ~IntersectPlaneAndCircleToGetPointPair();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ *
+ */
+class IntersectPlaneAndLineToGetFlatPoint : public Constraint
+{
+public:
+	IntersectPlaneAndLineToGetFlatPoint();
+	virtual ~IntersectPlaneAndLineToGetFlatPoint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
 };

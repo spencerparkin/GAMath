@@ -2,6 +2,7 @@
 #include "C3GA/Geometry/Sphere.h"
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/Line.h"
+#include "C3GA/Geometry/Plane.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
@@ -125,14 +126,28 @@ bool PointPair::IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB, c
 bool PointPair::IntersectSphereAndCircle(const Sphere& sphere, const Circle& circle)
 {
 	Vector v;
-	Bivector b1, b2;
+	Bivector b;
 	Trivector t;
 	PsuedoScalar I(1.0);
 
 	sphere.ToVector(v);
-	circle.ToBivector(b1);
+	circle.ToBivector(b);
 
-	t.OuterProduct(v, b1);
+	t.OuterProduct(v, b);
+
+	return this->FromTrivector(t);
+}
+
+bool PointPair::IntersectPlaneAndCircle(const Plane& plane, const Circle& circle)
+{
+	Vector v;
+	Bivector b;
+	Trivector t;
+
+	plane.ToVector(v);
+	circle.ToBivector(b);
+
+	t.OuterProduct(v, b);
 
 	return this->FromTrivector(t);
 }

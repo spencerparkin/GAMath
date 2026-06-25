@@ -4,6 +4,8 @@
 
 namespace C3GA
 {
+	class Line;
+	class Point;
 	class Vector;
 
 	class Plane
@@ -16,6 +18,8 @@ namespace C3GA
 
 		bool FromVector(const Vector& vector);
 		void ToVector(Vector& vector) const;
+
+		bool FitPlaneToLineAndPoint(const Line& line, const Point& point);
 
 		HappyMath::Vector3 center;
 		HappyMath::Vector3 normal;

@@ -1,6 +1,11 @@
 #include "C3GA/Geometry/Plane.h"
+#include "C3GA/Geometry/Line.h"
+#include "C3GA/Geometry/Point.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
+#include "C3GA/Trivector.h"
+#include "C3GA/Quadvector.h"
+#include "C3GA/PsuedoScalar.h"
 
 using namespace C3GA;
 
@@ -53,4 +58,24 @@ void Plane::ToVector(Vector& vector) const
 	vector.e3 = this->normal.z * this->weight;
 	vector.ni = this->normal.Dot(this->center) * this->weight;
 	vector.no = 0.0;
+}
+
+bool Plane::FitPlaneToLineAndPoint(const Line& line, const Point& point)
+{
+	Vector v;
+	Bivector b;
+	Trivector t;
+	Quadvector q;
+	PsuedoScalar I(1.0);
+
+	point.ToVector(v);
+	line.ToBivector(b);
+
+	t.GeometricProduct(b, I);
+
+	q.OuterProduct(t, v);
+
+	v.GeometricProduct(q, I);
+
+	return this->FromVector(v);
 }

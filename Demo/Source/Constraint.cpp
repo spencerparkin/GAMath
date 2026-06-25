@@ -1,5 +1,6 @@
 #include "Constraint.h"
 #include "Object.h"
+#include <list>
 
 //------------------------------- Constraint -------------------------------
 
@@ -11,40 +12,60 @@ Constraint::Constraint()
 {
 }
 
+/*virtual*/ bool Constraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& givenObjectArray)
+{
+	if (givenObjectArray.size() != this->objectClassArray.size())
+		return false;
+
+	std::list<std::shared_ptr<BaseClass<Object>>> objectClassList;
+	for (std::shared_ptr<BaseClass<Object>> objectClass : this->objectClassArray)
+		objectClassList.push_back(objectClass);
+
+	this->objectArray.clear();
+
+	for(std::shared_ptr<Object> object : givenObjectArray)
+	{
+		bool foundMatch = false;
+		for (std::list<std::shared_ptr<BaseClass<Object>>>::iterator iter = objectClassList.begin(); iter != objectClassList.end(); iter++)
+		{
+			std::shared_ptr<BaseClass<Object>> objectClass = *iter;
+			if (objectClass->IsType(object.get()))
+			{
+				objectClassList.erase(iter);
+				this->objectArray.push_back(object);
+				foundMatch = true;
+				break;
+			}
+		}
+
+		if (!foundMatch)
+		{
+			this->objectArray.clear();
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool Constraint::IsReady()
+{
+	return this->objectArray.size() == this->objectClassArray.size();
+}
+
 //------------------------------- FitSphereToPointsConstraint -------------------------------
 
 FitSphereToPointsConstraint::FitSphereToPointsConstraint()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
 }
 
 /*virtual*/ FitSphereToPointsConstraint::~FitSphereToPointsConstraint()
 {
-}
-
-/*virtual*/ bool FitSphereToPointsConstraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 5)
-		return false;
-
-	this->sphereObject.reset();
-	this->pointObjectArray.clear();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->sphereObject.get())
-			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
-		
-		std::shared_ptr<PointObject> pointObject = std::dynamic_pointer_cast<PointObject>(object);
-		if (pointObject.get())
-			this->pointObjectArray.push_back(pointObject);
-	}
-
-	if (this->sphereObject.get() && this->pointObjectArray.size() == 4)
-		return true;
-
-	this->sphereObject.reset();
-	this->pointObjectArray.clear();
-	return false;
 }
 
 /*virtual*/ std::string FitSphereToPointsConstraint::GetDesc() const
@@ -54,61 +75,33 @@ FitSphereToPointsConstraint::FitSphereToPointsConstraint()
 
 /*virtual*/ bool FitSphereToPointsConstraint::Enforce()
 {
-	if (!this->sphereObject.get())
+	if (!this->IsReady())
 		return false;
 
-	if (this->pointObjectArray.size() != 4)
-		return false;
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+	PointObject* pointObjectC = this->GetObject<PointObject>(2);
+	PointObject* pointObjectD = this->GetObject<PointObject>(3);
 
-	for (int i = 0; i < 4; i++)
-		if (!this->pointObjectArray[i].get())
-			return false;
-
-	return this->sphereObject->sphere.FitToPoints(
-						this->pointObjectArray[0]->point,
-						this->pointObjectArray[1]->point,
-						this->pointObjectArray[2]->point,
-						this->pointObjectArray[3]->point);
+	return sphereObject->sphere.FitToPoints(
+								pointObjectA->point,
+								pointObjectB->point,
+								pointObjectC->point,
+								pointObjectD->point);
 }
 
 //------------------------------- FitSphereToPointAndCircleContraint -------------------------------
 
 FitSphereToPointAndCircleContraint::FitSphereToPointAndCircleContraint()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
 }
 
 /*virtual*/ FitSphereToPointAndCircleContraint::~FitSphereToPointAndCircleContraint()
 {
-}
-
-/*virtual*/ bool FitSphereToPointAndCircleContraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->sphereObject.reset();
-	this->pointObject.reset();
-	this->circleObject.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->sphereObject.get())
-			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
-
-		if (!this->pointObject.get())
-			this->pointObject = std::dynamic_pointer_cast<PointObject>(object);
-
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-	}
-
-	if (this->sphereObject.get() && this->pointObject.get() && this->circleObject.get())
-		return true;
-
-	this->sphereObject.reset();
-	this->pointObject.reset();
-	this->circleObject.reset();
-	return false;
 }
 
 /*virtual*/ std::string FitSphereToPointAndCircleContraint::GetDesc() const
@@ -118,46 +111,28 @@ FitSphereToPointAndCircleContraint::FitSphereToPointAndCircleContraint()
 
 /*virtual*/ bool FitSphereToPointAndCircleContraint::Enforce()
 {
-	if (!this->sphereObject.get() || !this->pointObject.get() || !this->circleObject.get())
+	if (!this->IsReady())
 		return false;
 
-	return this->sphereObject->sphere.FitToCircleAndPoint(this->circleObject->circle, this->pointObject->point);
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	PointObject* pointObject = this->GetObject<PointObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return sphereObject->sphere.FitToCircleAndPoint(circleObject->circle, pointObject->point);
 }
 
 //------------------------------- FitCircleToPointsConstraint -------------------------------
 
 FitCircleToPointsConstraint::FitCircleToPointsConstraint()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
 }
 
 /*virtual*/ FitCircleToPointsConstraint::~FitCircleToPointsConstraint()
 {
-}
-
-/*virtual*/ bool FitCircleToPointsConstraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 4)
-		return false;
-
-	this->circleObject.reset();
-	this->pointObjectArray.clear();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-
-		std::shared_ptr<PointObject> pointObject = std::dynamic_pointer_cast<PointObject>(object);
-		if (pointObject.get())
-			this->pointObjectArray.push_back(pointObject);
-	}
-
-	if (this->circleObject.get() && this->pointObjectArray.size() == 3)
-		return true;
-
-	this->circleObject.reset();
-	this->pointObjectArray.clear();
-	return false;
 }
 
 /*virtual*/ std::string FitCircleToPointsConstraint::GetDesc() const
@@ -167,60 +142,31 @@ FitCircleToPointsConstraint::FitCircleToPointsConstraint()
 
 /*virtual*/ bool FitCircleToPointsConstraint::Enforce()
 {
-	if (!this->circleObject.get())
+	if (!this->IsReady())
 		return false;
 
-	if (this->pointObjectArray.size() != 3)
-		return false;
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+	PointObject* pointObjectC = this->GetObject<PointObject>(2);
 
-	for (int i = 0; i < 3; i++)
-		if (!this->pointObjectArray[i].get())
-			return false;
-
-	return this->circleObject->circle.FitToPoints(
-						this->pointObjectArray[0]->point,
-						this->pointObjectArray[1]->point,
-						this->pointObjectArray[2]->point);
+	return circleObject->circle.FitToPoints(
+								pointObjectA->point,
+								pointObjectB->point,
+								pointObjectC->point);
 }
 
 //------------------------------- FitSphereToPointPairsConstraint -------------------------------
 
 FitSphereToPointPairsConstraint::FitSphereToPointPairsConstraint()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
 }
 
 /*virtual*/ FitSphereToPointPairsConstraint::~FitSphereToPointPairsConstraint()
 {
-}
-
-/*virtual*/ bool FitSphereToPointPairsConstraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->sphereObject.reset();
-	this->pointPairA.reset();
-	this->pointPairB.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->sphereObject.get())
-			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
-
-		if (!this->pointPairA.get())
-			this->pointPairA = std::dynamic_pointer_cast<PointPairObject>(object);
-		else if (!this->pointPairB.get())
-			this->pointPairB = std::dynamic_pointer_cast<PointPairObject>(object);
-	}
-
-	if (this->sphereObject.get() && this->pointPairA.get() && this->pointPairB.get())
-		return true;
-
-	this->sphereObject.reset();
-	this->pointPairA.reset();
-	this->pointPairB.reset();
-
-	return false;
 }
 
 /*virtual*/ std::string FitSphereToPointPairsConstraint::GetDesc() const
@@ -230,49 +176,29 @@ FitSphereToPointPairsConstraint::FitSphereToPointPairsConstraint()
 
 /*virtual*/ bool FitSphereToPointPairsConstraint::Enforce()
 {
-	// STPTODO: Write this.
-	return false;
+	if (!this->IsReady())
+		return false;
+
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	PointPairObject* pointPairObjectA = this->GetObject<PointPairObject>(0);
+	PointPairObject* pointPairObjectB = this->GetObject<PointPairObject>(1);
+
+	return sphereObject->sphere.FitToPointPairs(
+								pointPairObjectA->pointPair,
+								pointPairObjectB->pointPair);
 }
 
 //------------------------------- FitCircleToPointAndPointPairConstraint -------------------------------
 
 FitCircleToPointAndPointPairConstraint::FitCircleToPointAndPointPairConstraint()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
 }
 
 /*virtual*/ FitCircleToPointAndPointPairConstraint::~FitCircleToPointAndPointPairConstraint()
 {
-}
-
-/*virtual*/ bool FitCircleToPointAndPointPairConstraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->circleObject.reset();
-	this->pointObject.reset();
-	this->pointPairObject.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-
-		if (!this->pointObject.get())
-			this->pointObject = std::dynamic_pointer_cast<PointObject>(object);
-
-		if (!this->pointPairObject.get())
-			this->pointPairObject = std::dynamic_pointer_cast<PointPairObject>(object);
-	}
-
-	if (this->circleObject.get() && this->pointObject.get() && this->pointPairObject.get())
-		return true;
-
-	this->circleObject.reset();
-	this->pointObject.reset();
-	this->pointPairObject.reset();
-
-	return false;
 }
 
 /*virtual*/ std::string FitCircleToPointAndPointPairConstraint::GetDesc() const
@@ -282,48 +208,57 @@ FitCircleToPointAndPointPairConstraint::FitCircleToPointAndPointPairConstraint()
 
 /*virtual*/ bool FitCircleToPointAndPointPairConstraint::Enforce()
 {
-	// STPTODO: Write this.
-	return false;
+	if (!this->IsReady())
+		return false;
+
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	PointObject* pointObject = this->GetObject<PointObject>();
+
+	return circleObject->circle.FitToPointPairAndPoint(pointPairObject->pointPair, pointObject->point);
+}
+
+//------------------------------- FitPlaneToLineAndPointConstraints -------------------------------
+
+FitPlaneToLineAndPointConstraints::FitPlaneToLineAndPointConstraints()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitPlaneToLineAndPointConstraints::~FitPlaneToLineAndPointConstraints()
+{
+}
+
+/*virtual*/ std::string FitPlaneToLineAndPointConstraints::GetDesc() const
+{
+	return "Fit plane to line and point.";
+}
+
+/*virtual*/ bool FitPlaneToLineAndPointConstraints::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	LineObject* lineObject = this->GetObject<LineObject>();
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	PointObject* pointObject = this->GetObject<PointObject>();
+
+	return planeObject->plane.FitPlaneToLineAndPoint(lineObject->line, pointObject->point);
 }
 
 //------------------------------- IntersectTwoSpheresToGetCircle -------------------------------
 
 IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
 }
 
 /*virtual*/ IntersectTwoSpheresToGetCircle::~IntersectTwoSpheresToGetCircle()
 {
-}
-
-/*virtual*/ bool IntersectTwoSpheresToGetCircle::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->sphereObjectA.reset();
-	this->sphereObjectB.reset();
-	this->circleObject.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-
-		if (!this->sphereObjectA.get())
-			this->sphereObjectA = std::dynamic_pointer_cast<SphereObject>(object);
-		else if (!this->sphereObjectB.get())
-			this->sphereObjectB = std::dynamic_pointer_cast<SphereObject>(object);
-	}
-
-	if (this->circleObject.get() && this->sphereObjectA.get() && this->sphereObjectB.get())
-		return true;
-
-	this->circleObject.reset();
-	this->sphereObjectA.reset();
-	this->sphereObjectB.reset();
-
-	return false;
 }
 
 /*virtual*/ std::string IntersectTwoSpheresToGetCircle::GetDesc() const
@@ -333,54 +268,27 @@ IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
 
 /*virtual*/ bool IntersectTwoSpheresToGetCircle::Enforce()
 {
-	if (!this->circleObject.get())
+	if (!this->IsReady())
 		return false;
 
-	if (!this->sphereObjectA.get() || !this->sphereObjectB.get())
-		return false;
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+	SphereObject* sphereObjectA = this->GetObject<SphereObject>(0);
+	SphereObject* sphereObjectB = this->GetObject<SphereObject>(1);
 
-	return this->circleObject->circle.IntersectSpheres(this->sphereObjectA->sphere, this->sphereObjectB->sphere);
+	return circleObject->circle.IntersectSpheres(sphereObjectA->sphere, sphereObjectB->sphere);
 }
 
 //------------------------------- IntersectPlaneAndSphereToGetCircle -------------------------------
 
 IntersectPlaneAndSphereToGetCircle::IntersectPlaneAndSphereToGetCircle()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
 }
 
 /*virtual*/ IntersectPlaneAndSphereToGetCircle::~IntersectPlaneAndSphereToGetCircle()
 {
-}
-
-/*virtual*/ bool IntersectPlaneAndSphereToGetCircle::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->circleObject.reset();
-	this->sphereObject.reset();
-	this->planeObject.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-
-		if (!this->sphereObject.get())
-			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
-
-		if (!this->planeObject.get())
-			this->planeObject = std::dynamic_pointer_cast<PlaneObject>(object);
-	}
-
-	if (this->circleObject.get() && this->planeObject.get() && this->sphereObject.get())
-		return true;
-
-	this->circleObject.reset();
-	this->sphereObject.reset();
-	this->planeObject.reset();
-
-	return false;
 }
 
 /*virtual*/ std::string IntersectPlaneAndSphereToGetCircle::GetDesc() const
@@ -390,51 +298,27 @@ IntersectPlaneAndSphereToGetCircle::IntersectPlaneAndSphereToGetCircle()
 
 /*virtual*/ bool IntersectPlaneAndSphereToGetCircle::Enforce()
 {
-	if (!this->circleObject.get() || !this->planeObject.get() || !this->sphereObject.get())
+	if (!this->IsReady())
 		return false;
 
-	return this->circleObject->circle.IntersectPlaneAndSphere(this->planeObject->plane, this->sphereObject->sphere);
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return circleObject->circle.IntersectPlaneAndSphere(planeObject->plane, sphereObject->sphere);
 }
 
 //------------------------------- IntersectSphereAndCircleToGetPointPair -------------------------------
 
 IntersectSphereAndCircleToGetPointPair::IntersectSphereAndCircleToGetPointPair()
 {
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
 }
 
 /*virtual*/ IntersectSphereAndCircleToGetPointPair::~IntersectSphereAndCircleToGetPointPair()
 {
-}
-
-/*virtual*/ bool IntersectSphereAndCircleToGetPointPair::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
-{
-	if (objectList.size() != 3)
-		return false;
-
-	this->sphereObject.reset();
-	this->circleObject.reset();
-	this->pointPairObject.reset();
-
-	for (std::shared_ptr<Object> object : objectList)
-	{
-		if (!this->sphereObject.get())
-			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
-
-		if (!this->circleObject.get())
-			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
-
-		if (!this->pointPairObject.get())
-			this->pointPairObject = std::dynamic_pointer_cast<PointPairObject>(object);
-	}
-
-	if (this->sphereObject.get() && this->circleObject.get() && this->pointPairObject.get())
-		return true;
-
-	this->sphereObject.reset();
-	this->circleObject.reset();
-	this->pointPairObject.reset();
-
-	return false;
 }
 
 /*virtual*/ std::string IntersectSphereAndCircleToGetPointPair::GetDesc() const
@@ -444,8 +328,72 @@ IntersectSphereAndCircleToGetPointPair::IntersectSphereAndCircleToGetPointPair()
 
 /*virtual*/ bool IntersectSphereAndCircleToGetPointPair::Enforce()
 {
-	if (!this->sphereObject.get() || !this->circleObject.get() || !this->pointPairObject.get())
+	if (!this->IsReady())
 		return false;
 
-	return this->pointPairObject->pointPair.IntersectSphereAndCircle(this->sphereObject->sphere, this->circleObject->circle);
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return pointPairObject->pointPair.IntersectSphereAndCircle(sphereObject->sphere, circleObject->circle);
+}
+
+//------------------------------- IntersectPlaneAndCircleToGetPointPair -------------------------------
+
+IntersectPlaneAndCircleToGetPointPair::IntersectPlaneAndCircleToGetPointPair()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+}
+
+/*virtual*/ IntersectPlaneAndCircleToGetPointPair::~IntersectPlaneAndCircleToGetPointPair()
+{
+}
+
+/*virtual*/ std::string IntersectPlaneAndCircleToGetPointPair::GetDesc() const
+{
+	return "Intersect a plane and a circle to get a point-pair.";
+}
+
+/*virtual*/ bool IntersectPlaneAndCircleToGetPointPair::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return pointPairObject->pointPair.IntersectPlaneAndCircle(planeObject->plane, circleObject->circle);
+}
+
+//------------------------------- IntersectPlaneAndLineToGetFlatPoint -------------------------------
+
+IntersectPlaneAndLineToGetFlatPoint::IntersectPlaneAndLineToGetFlatPoint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, FlatPointObject>>());
+}
+
+/*virtual*/ IntersectPlaneAndLineToGetFlatPoint::~IntersectPlaneAndLineToGetFlatPoint()
+{
+}
+
+/*virtual*/ std::string IntersectPlaneAndLineToGetFlatPoint::GetDesc() const
+{
+	return "Intersect a plane and a line to get a flat-point.";
+}
+
+/*virtual*/ bool IntersectPlaneAndLineToGetFlatPoint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	LineObject* lineObject = this->GetObject<LineObject>();
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	FlatPointObject* flatPointObject = this->GetObject<FlatPointObject>();
+
+	return flatPointObject->point.IntersectPlaneAndLine(planeObject->plane, lineObject->line);
 }

@@ -365,7 +365,7 @@ LineObject::LineObject()
 
 /*virtual*/ bool LineObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
 {
-	double radius = 10.0;
+	double radius = 11.0;
 
 	HappyMath::LineSegment lineSeg;
 	lineSeg.point[0] = this->line.center - radius * this->line.normal;

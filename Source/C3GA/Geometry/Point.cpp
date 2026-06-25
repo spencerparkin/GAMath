@@ -1,5 +1,8 @@
 #include "C3GA/Geometry/Point.h"
+#include "C3GA/Geometry/Line.h"
+#include "C3GA/Geometry/Plane.h"
 #include "C3GA/Vector.h"
+#include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
 #include <math.h>
 #include <limits>
@@ -119,4 +122,18 @@ bool FlatPoint::FromTrivector(const Trivector& trivector)
 	this->center.z = trivector.e1_e2_ni / this->weight;
 
 	return true;
+}
+
+bool FlatPoint::IntersectPlaneAndLine(const Plane& plane, const Line& line)
+{
+	Vector v;
+	Bivector b;
+	Trivector t;
+
+	plane.ToVector(v);
+	line.ToBivector(b);
+
+	t.OuterProduct(v, b);
+
+	return this->FromTrivector(t);
 }

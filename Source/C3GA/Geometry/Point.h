@@ -4,6 +4,8 @@
 
 namespace C3GA
 {
+	class Plane;
+	class Line;
 	class Vector;
 	class Trivector;
 
@@ -32,6 +34,8 @@ namespace C3GA
 
 		void ToTrivector(Trivector& trivector) const;
 		bool FromTrivector(const Trivector& trivector);
+
+		bool IntersectPlaneAndLine(const Plane& plane, const Line& line);
 
 		HappyMath::Vector3 center;
 		double weight;
