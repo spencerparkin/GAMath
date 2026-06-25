@@ -1,9 +1,12 @@
 #include "C3GA/Geometry/Point.h"
 #include "C3GA/Vector.h"
+#include "C3GA/Trivector.h"
 #include <math.h>
 #include <limits>
 
 using namespace C3GA;
+
+//----------------------------------- Point -----------------------------------
 
 Point::Point()
 {
@@ -48,4 +51,72 @@ bool Point::FromVector(const Vector& vector)
 	double alpha = this->center.SquareLength() - 2.0 * vector.ni / this->weight;
 
 	return ::fabs(alpha) <= std::numeric_limits<double>::epsilon();
+}
+
+//----------------------------------- FlatPoint -----------------------------------
+
+FlatPoint::FlatPoint()
+{
+	this->weight = 1.0;
+}
+
+FlatPoint::FlatPoint(const HappyMath::Vector3 center, double weight /*= 1.0*/)
+{
+	this->weight = weight;
+	this->center = center;
+}
+
+FlatPoint::FlatPoint(const FlatPoint& point)
+{
+	this->weight = point.weight;
+	this->center = point.center;
+}
+
+/*virtual*/ FlatPoint::~FlatPoint()
+{
+}
+
+void FlatPoint::ToTrivector(Trivector& trivector) const
+{
+	trivector.e1_e2_e3 = 1.0;
+	
+	trivector.e1_e2_ni = this->center.z;
+	trivector.e1_e3_ni = -this->center.y;
+	trivector.e2_e3_ni = this->center.x;
+
+	trivector.e1_e2_no = 0.0;
+	trivector.e1_e3_no = 0.0;
+	trivector.e2_e3_no = 0.0;
+
+	trivector.e1_no_ni = 0.0;
+	trivector.e2_no_ni = 0.0;
+	trivector.e3_no_ni = 0.0;
+}
+
+bool FlatPoint::FromTrivector(const Trivector& trivector)
+{
+	if (trivector.e1_e2_e3 == 0.0)
+		return false;
+
+	if (::fabs(trivector.e1_e2_no) > std::numeric_limits<double>::epsilon() ||
+		::fabs(trivector.e1_e3_no) > std::numeric_limits<double>::epsilon() ||
+		::fabs(trivector.e2_e3_no) > std::numeric_limits<double>::epsilon())
+	{
+		return false;
+	}
+
+	if (::fabs(trivector.e1_no_ni) > std::numeric_limits<double>::epsilon() ||
+		::fabs(trivector.e2_no_ni) > std::numeric_limits<double>::epsilon() ||
+		::fabs(trivector.e3_no_ni) > std::numeric_limits<double>::epsilon())
+	{
+		return false;
+	}
+
+	this->weight = trivector.e1_e2_e3;
+
+	this->center.x = trivector.e2_e3_ni / this->weight;
+	this->center.y = -trivector.e1_e3_ni / this->weight;
+	this->center.z = trivector.e1_e2_ni / this->weight;
+
+	return true;
 }

@@ -5,6 +5,7 @@
 namespace C3GA
 {
 	class Vector;
+	class Trivector;
 
 	class Point
 	{
@@ -21,5 +22,18 @@ namespace C3GA
 		double weight;
 	};
 
-	// STPTODO: Add flat point class here.
+	class FlatPoint
+	{
+	public:
+		FlatPoint();
+		FlatPoint(const HappyMath::Vector3 center, double weight = 1.0);
+		FlatPoint(const FlatPoint& point);
+		virtual ~FlatPoint();
+
+		void ToTrivector(Trivector& trivector) const;
+		bool FromTrivector(const Trivector& trivector);
+
+		HappyMath::Vector3 center;
+		double weight;
+	};
 }

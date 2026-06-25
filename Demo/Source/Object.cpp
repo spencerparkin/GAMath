@@ -1,6 +1,7 @@
 #include "Object.h"
 #include "Drawer.h"
 #include "C3GA/Vector.h"
+#include "HappyMath/LineSegment.h"
 #include <format>
 
 //------------------------------ Object ------------------------------
@@ -64,6 +65,7 @@ PointObject::PointObject()
 {
 	std::string details;
 
+	details += "Shape: Point\n";
 	details += std::format("Weight: {}\n", this->point.weight);
 	details += std::format("Location: {}, {}, {}\n", this->point.center.x, this->point.center.y, this->point.center.z);
 
@@ -137,6 +139,7 @@ PointPairObject::PointPairObject()
 {
 	std::string details;
 
+	details += "Shape: Point-Pair\n";
 	details += std::format("Weight: {}\n", this->pointPair.weight);
 	details += std::format("Center: {}, {}, {}\n", this->pointPair.center.x, this->pointPair.center.y, this->pointPair.center.z);
 	details += std::format("Radius: {}\n", this->pointPair.radius);
@@ -211,6 +214,7 @@ CircleObject::CircleObject()
 {
 	std::string details;
 
+	details += "Shape: Circle\n";
 	details += std::format("Weight: {}\n", this->circle.weight);
 	details += std::format("Center: {}, {}, {}\n", this->circle.center.x, this->circle.center.y, this->circle.center.z);
 	details += std::format("Radius: {}\n", this->circle.radius);
@@ -266,10 +270,168 @@ SphereObject::SphereObject()
 {
 	std::string details;
 
+	details += "Shape: Sphere\n";
 	details += std::format("Weight: {}\n", this->sphere.weight);
 	details += std::format("Center: {}, {}, {}\n", this->sphere.center.x, this->sphere.center.y, this->sphere.center.z);
 	details += std::format("Radius: {}\n", this->sphere.radius);
 	details += std::string("Imaginary: ") + (this->sphere.imaginary ? "YES" : "NO") + "\n";
+
+	return details;
+}
+
+//------------------------------ FlatPointObject ------------------------------
+
+FlatPointObject::FlatPointObject()
+{
+}
+
+/*virtual*/ FlatPointObject::~FlatPointObject()
+{
+}
+
+/*virtual*/ void FlatPointObject::Draw(Drawer* drawer, bool showAsHighlighted) const
+{
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
+	drawer->DrawPoint(this->point.center, usedColor, false);
+}
+
+/*virtual*/ void FlatPointObject::SetPosition(const HappyMath::Vector3& position)
+{
+	this->point.center = position;
+}
+
+/*virtual*/ HappyMath::Vector3 FlatPointObject::GetPosition() const
+{
+	return this->point.center;
+}
+
+/*virtual*/ bool FlatPointObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
+{
+	return worldRay.CastAgainstSphere(this->point.center, 0.2, rayDistance);
+}
+
+/*virtual*/ std::string FlatPointObject::GetDetails() const
+{
+	std::string details;
+
+	details += "Shape: Flat-Point\n";
+	details += std::format("Weight: {}\n", this->point.weight);
+	details += std::format("Center: {}, {}, {}\n", this->point.center.x, this->point.center.y, this->point.center.z);
+
+	return details;
+}
+
+//------------------------------ LineObject ------------------------------
+
+LineObject::LineObject()
+{
+}
+
+/*virtual*/ LineObject::~LineObject()
+{
+}
+
+/*virtual*/ void LineObject::Draw(Drawer* drawer, bool showAsHighlighted) const
+{
+	double radius = 10.0;
+
+	HappyMath::LineSegment lineSeg;
+	lineSeg.point[0] = this->line.center - radius * this->line.normal;
+	lineSeg.point[1] = this->line.center + radius * this->line.normal;
+
+	HappyMath::Vector3 vector = lineSeg.GetDelta().Normalized();
+
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
+	drawer->DrawLine(lineSeg.point[0], lineSeg.point[1], usedColor, true);
+	drawer->DrawVector(lineSeg.point[0], -vector, usedColor, true);
+	drawer->DrawVector(lineSeg.point[1], vector, usedColor, true);
+}
+
+/*virtual*/ void LineObject::SetPosition(const HappyMath::Vector3& position)
+{
+	this->line.center = position;
+}
+
+/*virtual*/ HappyMath::Vector3 LineObject::GetPosition() const
+{
+	return this->line.center;
+}
+
+/*virtual*/ bool LineObject::Rotate(const HappyMath::Vector3& unitAxis, double angle)
+{
+	this->line.normal = this->line.normal.Rotated(unitAxis, angle).Normalized();
+	return true;
+}
+
+/*virtual*/ bool LineObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
+{
+	double radius = 10.0;
+
+	HappyMath::LineSegment lineSeg;
+	lineSeg.point[0] = this->line.center - radius * this->line.normal;
+	lineSeg.point[1] = this->line.center + radius * this->line.normal;
+
+	return worldRay.CastAgainst(lineSeg, rayDistance);
+}
+
+/*virtual*/ std::string LineObject::GetDetails() const
+{
+	std::string details;
+
+	details += "Shape: Line\n";
+	details += std::format("Weight: {}\n", this->line.weight);
+	details += std::format("Center: {}, {}, {}\n", this->line.center.x, this->line.center.y, this->line.center.z);
+	details += std::format("Normal: {}, {}, {}\n", this->line.normal.x, this->line.normal.y, this->line.normal.z);
+
+	return details;
+}
+
+//------------------------------ PlaneObject ------------------------------
+
+PlaneObject::PlaneObject()
+{
+}
+
+/*virtual*/ PlaneObject::~PlaneObject()
+{
+}
+
+/*virtual*/ void PlaneObject::Draw(Drawer* drawer, bool showAsHighlighted) const
+{
+	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
+	drawer->DrawPlane(this->plane.center, this->plane.normal, 10.0, usedColor, true);
+	drawer->DrawVector(this->plane.center, this->plane.normal, usedColor, true);
+}
+
+/*virtual*/ void PlaneObject::SetPosition(const HappyMath::Vector3& position)
+{
+	this->plane.center = position;
+}
+
+/*virtual*/ HappyMath::Vector3 PlaneObject::GetPosition() const
+{
+	return this->plane.center;
+}
+
+/*virtual*/ bool PlaneObject::Rotate(const HappyMath::Vector3& unitAxis, double angle)
+{
+	this->plane.normal = this->plane.normal.Rotated(unitAxis, angle).Normalized();
+	return true;
+}
+
+/*virtual*/ bool PlaneObject::IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const
+{
+	return worldRay.CastAgainstDisk(this->plane.center, this->plane.normal, 10.0, rayDistance);
+}
+
+/*virtual*/ std::string PlaneObject::GetDetails() const
+{
+	std::string details;
+
+	details += "Shape: Plane\n";
+	details += std::format("Weight: {}\n", this->plane.weight);
+	details += std::format("Center: {}, {}, {}\n", this->plane.center.x, this->plane.center.y, this->plane.center.z);
+	details += std::format("Normal: {}, {}, {}\n", this->plane.normal.x, this->plane.normal.y, this->plane.normal.z);
 
 	return details;
 }

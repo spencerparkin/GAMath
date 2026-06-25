@@ -1,7 +1,10 @@
 #include "C3GA/Geometry/Sphere.h"
 #include "C3GA/Geometry/Point.h"
+#include "C3GA/Geometry/PointPair.h"
+#include "C3GA/Geometry/Circle.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
+#include "C3GA/Trivector.h"
 #include "C3GA/Quadvector.h"
 #include "C3GA/PsuedoScalar.h"
 #include <math.h>
@@ -94,12 +97,40 @@ bool Sphere::FitToPoints(const Point& pointA, const Point& pointB, const Point& 
 
 bool Sphere::FitToPointPairs(const PointPair& pointPairA, const PointPair& pointPairB)
 {
-	// STPTODO: Write this.
-	return false;
+	Bivector b1, b2;
+	Trivector t1, t2;
+	PsuedoScalar I(1.0);
+	Quadvector q;
+	Vector v;
+
+	pointPairA.ToTrivector(t1);
+	pointPairB.ToTrivector(t2);
+
+	b1.GeometricProduct(t1, I);
+	b2.GeometricProduct(t2, I);
+
+	q.OuterProduct(b1, b2);
+
+	v.GeometricProduct(q, I);
+
+	return this->FromVector(v);
 }
 
 bool Sphere::FitToCircleAndPoint(const Circle& circleA, const Point& pointB)
 {
-	// STPTODO: Write this.
-	return false;
+	Trivector t;
+	Bivector b;
+	Quadvector q;
+	Vector v1, v2;
+	PsuedoScalar I(1.0);
+
+	pointB.ToVector(v1);
+
+	circleA.ToBivector(b);
+	t.GeometricProduct(b, I);
+	q.OuterProduct(t, v1);
+
+	v2.GeometricProduct(q, I);
+
+	return this->FromVector(v2);
 }

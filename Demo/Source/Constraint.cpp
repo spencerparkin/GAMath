@@ -71,6 +71,59 @@ FitSphereToPointsConstraint::FitSphereToPointsConstraint()
 						this->pointObjectArray[3]->point);
 }
 
+//------------------------------- FitSphereToPointAndCircleContraint -------------------------------
+
+FitSphereToPointAndCircleContraint::FitSphereToPointAndCircleContraint()
+{
+}
+
+/*virtual*/ FitSphereToPointAndCircleContraint::~FitSphereToPointAndCircleContraint()
+{
+}
+
+/*virtual*/ bool FitSphereToPointAndCircleContraint::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+{
+	if (objectList.size() != 3)
+		return false;
+
+	this->sphereObject.reset();
+	this->pointObject.reset();
+	this->circleObject.reset();
+
+	for (std::shared_ptr<Object> object : objectList)
+	{
+		if (!this->sphereObject.get())
+			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
+
+		if (!this->pointObject.get())
+			this->pointObject = std::dynamic_pointer_cast<PointObject>(object);
+
+		if (!this->circleObject.get())
+			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
+	}
+
+	if (this->sphereObject.get() && this->pointObject.get() && this->circleObject.get())
+		return true;
+
+	this->sphereObject.reset();
+	this->pointObject.reset();
+	this->circleObject.reset();
+	return false;
+}
+
+/*virtual*/ std::string FitSphereToPointAndCircleContraint::GetDesc() const
+{
+	return "Fit sphere to circle and point.";
+}
+
+/*virtual*/ bool FitSphereToPointAndCircleContraint::Enforce()
+{
+	if (!this->sphereObject.get() || !this->pointObject.get() || !this->circleObject.get())
+		return false;
+
+	return this->sphereObject->sphere.FitToCircleAndPoint(this->circleObject->circle, this->pointObject->point);
+}
+
 //------------------------------- FitCircleToPointsConstraint -------------------------------
 
 FitCircleToPointsConstraint::FitCircleToPointsConstraint()
@@ -287,6 +340,60 @@ IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
 		return false;
 
 	return this->circleObject->circle.IntersectSpheres(this->sphereObjectA->sphere, this->sphereObjectB->sphere);
+}
+
+//------------------------------- IntersectPlaneAndSphereToGetCircle -------------------------------
+
+IntersectPlaneAndSphereToGetCircle::IntersectPlaneAndSphereToGetCircle()
+{
+}
+
+/*virtual*/ IntersectPlaneAndSphereToGetCircle::~IntersectPlaneAndSphereToGetCircle()
+{
+}
+
+/*virtual*/ bool IntersectPlaneAndSphereToGetCircle::TakeObjects(const std::vector<std::shared_ptr<Object>>& objectList)
+{
+	if (objectList.size() != 3)
+		return false;
+
+	this->circleObject.reset();
+	this->sphereObject.reset();
+	this->planeObject.reset();
+
+	for (std::shared_ptr<Object> object : objectList)
+	{
+		if (!this->circleObject.get())
+			this->circleObject = std::dynamic_pointer_cast<CircleObject>(object);
+
+		if (!this->sphereObject.get())
+			this->sphereObject = std::dynamic_pointer_cast<SphereObject>(object);
+
+		if (!this->planeObject.get())
+			this->planeObject = std::dynamic_pointer_cast<PlaneObject>(object);
+	}
+
+	if (this->circleObject.get() && this->planeObject.get() && this->sphereObject.get())
+		return true;
+
+	this->circleObject.reset();
+	this->sphereObject.reset();
+	this->planeObject.reset();
+
+	return false;
+}
+
+/*virtual*/ std::string IntersectPlaneAndSphereToGetCircle::GetDesc() const
+{
+	return "Intersect a plane and sphere to produce circle.";
+}
+
+/*virtual*/ bool IntersectPlaneAndSphereToGetCircle::Enforce()
+{
+	if (!this->circleObject.get() || !this->planeObject.get() || !this->sphereObject.get())
+		return false;
+
+	return this->circleObject->circle.IntersectPlaneAndSphere(this->planeObject->plane, this->sphereObject->sphere);
 }
 
 //------------------------------- IntersectSphereAndCircleToGetPointPair -------------------------------

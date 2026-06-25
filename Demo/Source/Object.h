@@ -4,6 +4,8 @@
 #include "C3GA/Geometry/PointPair.h"
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/Sphere.h"
+#include "C3GA/Geometry/Line.h"
+#include "C3GA/Geometry/Plane.h"
 #include "HappyMath/Ray.h"
 #include "HappyMath/Vector4.h"
 #include <memory>
@@ -109,4 +111,60 @@ public:
 	virtual std::string GetDetails() const override;
 
 	C3GA::Sphere sphere;
+};
+
+/**
+ * These are 0-dimensional flats.
+ */
+class FlatPointObject : public Object
+{
+public:
+	FlatPointObject();
+	virtual ~FlatPointObject();
+
+	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
+	virtual void SetPosition(const HappyMath::Vector3& position) override;
+	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
+
+	C3GA::FlatPoint point;
+};
+
+/**
+ * These are 1-dimensional flats.
+ */
+class LineObject : public Object
+{
+public:
+	LineObject();
+	virtual ~LineObject();
+
+	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
+	virtual void SetPosition(const HappyMath::Vector3& position) override;
+	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
+	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
+
+	C3GA::Line line;
+};
+
+/**
+ * These are 2-dimensional flats.
+ */
+class PlaneObject : public Object
+{
+public:
+	PlaneObject();
+	virtual ~PlaneObject();
+
+	virtual void Draw(Drawer* drawer, bool showAsHighlighted) const override;
+	virtual void SetPosition(const HappyMath::Vector3& position) override;
+	virtual HappyMath::Vector3 GetPosition() const override;
+	virtual bool Rotate(const HappyMath::Vector3& unitAxis, double angle) override;
+	virtual bool IsHitByWorldRay(const HappyMath::Ray& worldRay, double& rayDistance) const override;
+	virtual std::string GetDetails() const override;
+
+	C3GA::Plane plane;
 };

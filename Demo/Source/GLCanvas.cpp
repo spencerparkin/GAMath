@@ -335,7 +335,9 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
         std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
+        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndSphereToGetCircle>>(),
         std::make_shared<DerivedClass<Constraint, IntersectSphereAndCircleToGetPointPair>>()
     };
 
@@ -370,6 +372,27 @@ void GLCanvas::OnContextMenu(const QPoint& position)
     this->connect(addSphereAction, &QAction::triggered, this, [this, sphereObjectClass, location]()
         {
             this->OnAddGeometry(sphereObjectClass.get(), location);
+        });
+
+    QAction* addFlatPointAction = contextMenu.addAction("Add Flat Point");
+    std::shared_ptr<BaseClass<Object>> flatPointObjectClass = std::make_shared<DerivedClass<Object, FlatPointObject>>();
+    this->connect(addFlatPointAction, &QAction::triggered, this, [this, flatPointObjectClass, location]()
+        {
+            this->OnAddGeometry(flatPointObjectClass.get(), location);
+        });
+
+    QAction* addLineAction = contextMenu.addAction("Add Line");
+    std::shared_ptr<BaseClass<Object>> lineObjectClass = std::make_shared<DerivedClass<Object, LineObject>>();
+    this->connect(addLineAction, &QAction::triggered, this, [this, lineObjectClass, location]()
+        {
+            this->OnAddGeometry(lineObjectClass.get(), location);
+        });
+
+    QAction* addPlaneAction = contextMenu.addAction("Add Plane");
+    std::shared_ptr<BaseClass<Object>> planeObjectClass = std::make_shared<DerivedClass<Object, PlaneObject>>();
+    this->connect(addPlaneAction, &QAction::triggered, this, [this, planeObjectClass, location]()
+        {
+            this->OnAddGeometry(planeObjectClass.get(), location);
         });
 
     contextMenu.addSeparator();
