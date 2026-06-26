@@ -278,6 +278,108 @@ IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
 	return circleObject->circle.IntersectSpheres(sphereObjectA->sphere, sphereObjectB->sphere);
 }
 
+//------------------------------- IntersectThreeSpheresToGetPointPair -------------------------------
+
+IntersectThreeSpheresToGetPointPair::IntersectThreeSpheresToGetPointPair()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+}
+
+/*virtual*/ IntersectThreeSpheresToGetPointPair::~IntersectThreeSpheresToGetPointPair()
+{
+}
+
+/*virtual*/ std::string IntersectThreeSpheresToGetPointPair::GetDesc() const
+{
+	return "Intersect three spheres to produce point-pair.";
+}
+
+/*virtual*/ bool IntersectThreeSpheresToGetPointPair::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	SphereObject* sphereObjectA = this->GetObject<SphereObject>(0);
+	SphereObject* sphereObjectB = this->GetObject<SphereObject>(1);
+	SphereObject* sphereObjectC = this->GetObject<SphereObject>(2);
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+
+	return pointPairObject->pointPair.IntersectSpheres(
+									sphereObjectA->sphere,
+									sphereObjectB->sphere,
+									sphereObjectC->sphere);
+}
+
+//------------------------------- IntersectThreePlanesToGetFlatPoint -------------------------------
+
+IntersectThreePlanesToGetFlatPoint::IntersectThreePlanesToGetFlatPoint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, FlatPointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+}
+
+/*virtual*/ IntersectThreePlanesToGetFlatPoint::~IntersectThreePlanesToGetFlatPoint()
+{
+}
+
+/*virtual*/ std::string IntersectThreePlanesToGetFlatPoint::GetDesc() const
+{
+	return "Intersect three planes to get a flat-point.";
+}
+
+/*virtual*/ bool IntersectThreePlanesToGetFlatPoint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObjectA = this->GetObject<PlaneObject>(0);
+	PlaneObject* planeObjectB = this->GetObject<PlaneObject>(1);
+	PlaneObject* planeObjectC = this->GetObject<PlaneObject>(2);
+	FlatPointObject* flatPointObject = this->GetObject<FlatPointObject>();
+
+	return flatPointObject->point.IntersectPlanes(
+									planeObjectA->plane,
+									planeObjectB->plane,
+									planeObjectC->plane);
+}
+
+//------------------------------- IntersectTwoPlanesToGetLine -------------------------------
+
+IntersectTwoPlanesToGetLine::IntersectTwoPlanesToGetLine()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+}
+
+/*virtual*/ IntersectTwoPlanesToGetLine::~IntersectTwoPlanesToGetLine()
+{
+}
+
+/*virtual*/ std::string IntersectTwoPlanesToGetLine::GetDesc() const
+{
+	return "Intersect two planes to get a line.";
+}
+
+/*virtual*/ bool IntersectTwoPlanesToGetLine::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObjectA = this->GetObject<PlaneObject>(0);
+	PlaneObject* planeObjectB = this->GetObject<PlaneObject>(1);
+	LineObject* lineObject = this->GetObject<LineObject>();
+
+	return lineObject->line.IntersectPlanes(
+							planeObjectA->plane,
+							planeObjectB->plane);
+}
+
 //------------------------------- IntersectPlaneAndSphereToGetCircle -------------------------------
 
 IntersectPlaneAndSphereToGetCircle::IntersectPlaneAndSphereToGetCircle()

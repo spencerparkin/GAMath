@@ -142,6 +142,45 @@ public:
 /**
  * 
  */
+class IntersectThreeSpheresToGetPointPair : public Constraint
+{
+public:
+	IntersectThreeSpheresToGetPointPair();
+	virtual ~IntersectThreeSpheresToGetPointPair();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ *
+ */
+class IntersectThreePlanesToGetFlatPoint : public Constraint
+{
+public:
+	IntersectThreePlanesToGetFlatPoint();
+	virtual ~IntersectThreePlanesToGetFlatPoint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class IntersectTwoPlanesToGetLine : public Constraint
+{
+public:
+	IntersectTwoPlanesToGetLine();
+	virtual ~IntersectTwoPlanesToGetLine();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
 class IntersectPlaneAndSphereToGetCircle : public Constraint
 {
 public:

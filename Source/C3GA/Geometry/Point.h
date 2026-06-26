@@ -36,6 +36,7 @@ namespace C3GA
 		bool FromTrivector(const Trivector& trivector);
 
 		bool IntersectPlaneAndLine(const Plane& plane, const Line& line);
+		bool IntersectPlanes(const Plane& planeA, const Plane& planeB, const Plane& planeC);
 
 		HappyMath::Vector3 center;
 		double weight;

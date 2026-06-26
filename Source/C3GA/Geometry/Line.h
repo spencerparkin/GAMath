@@ -4,6 +4,8 @@
 
 namespace C3GA
 {
+	class Plane;
+	class PointPair;
 	class Bivector;
 
 	class Line
@@ -16,6 +18,9 @@ namespace C3GA
 
 		bool FromBivector(const Bivector& bivector);
 		void ToBivector(Bivector& bivector) const;
+
+		bool FitPointPair(const PointPair& pointPair);
+		bool IntersectPlanes(const Plane& planeA, const Plane& planeB);
 
 		HappyMath::Vector3 center;
 		HappyMath::Vector3 normal;

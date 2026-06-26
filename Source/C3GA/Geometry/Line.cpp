@@ -1,6 +1,10 @@
 #include "C3GA/Geometry/Line.h"
+#include "C3GA/Geometry/PointPair.h"
+#include "C3GA/Geometry/Plane.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
+#include "C3GA/Trivector.h"
+#include "C3GA/PsuedoScalar.h"
 
 using namespace C3GA;
 
@@ -86,4 +90,37 @@ void Line::ToBivector(Bivector& bivector) const
 	bivector.e3_no = 0.0;
 
 	bivector.no_ni = 0.0;
+}
+
+bool Line::FitPointPair(const PointPair& pointPair)
+{
+	Bivector b;
+	Vector v;
+	Trivector t;
+	PsuedoScalar I(1.0);
+
+	pointPair.ToTrivector(t);
+
+	b.GeometricProduct(t, I);
+
+	v.ni = 1.0;
+
+	t.OuterProduct(b, v);
+
+	b.GeometricProduct(t, I);
+
+	return this->FromBivector(b);
+}
+
+bool Line::IntersectPlanes(const Plane& planeA, const Plane& planeB)
+{
+	Vector v1, v2;
+	Bivector b;
+
+	planeA.ToVector(v1);
+	planeB.ToVector(v2);
+
+	b.OuterProduct(v1, v2);
+
+	return this->FromBivector(b);
 }

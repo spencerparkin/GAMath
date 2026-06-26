@@ -137,3 +137,19 @@ bool FlatPoint::IntersectPlaneAndLine(const Plane& plane, const Line& line)
 
 	return this->FromTrivector(t);
 }
+
+bool FlatPoint::IntersectPlanes(const Plane& planeA, const Plane& planeB, const Plane& planeC)
+{
+	Vector v1, v2, v3;
+	Bivector b;
+	Trivector t;
+
+	planeA.ToVector(v1);
+	planeB.ToVector(v2);
+	planeC.ToVector(v3);
+
+	b.OuterProduct(v1, v2);
+	t.OuterProduct(b, v3);
+
+	return this->FromTrivector(t);
+}
