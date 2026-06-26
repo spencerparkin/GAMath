@@ -4,6 +4,7 @@
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
+#include "C3GA/PsuedoScalar.h"
 #include <math.h>
 #include <limits>
 
@@ -122,6 +123,24 @@ bool FlatPoint::FromTrivector(const Trivector& trivector)
 	this->center.z = trivector.e1_e2_ni / this->weight;
 
 	return true;
+}
+
+bool FlatPoint::FitToPoint(const Point& point)
+{
+	Vector v1, v2;
+	Bivector b;
+	Trivector t;
+	PsuedoScalar I(1.0);
+
+	point.ToVector(v1);
+
+	v2.ni = 1.0;
+
+	b.OuterProduct(v1, v2);
+
+	t.GeometricProduct(b, I);
+
+	return this->FromTrivector(t);
 }
 
 bool FlatPoint::IntersectPlaneAndLine(const Plane& plane, const Line& line)

@@ -35,6 +35,7 @@ namespace C3GA
 		void ToTrivector(Trivector& trivector) const;
 		bool FromTrivector(const Trivector& trivector);
 
+		bool FitToPoint(const Point& point);
 		bool IntersectPlaneAndLine(const Plane& plane, const Line& line);
 		bool IntersectPlanes(const Plane& planeA, const Plane& planeB, const Plane& planeC);
 
