@@ -337,6 +337,7 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
         std::make_shared<DerivedClass<Constraint, FitPlaneToLineAndPointConstraints>>(),
+        std::make_shared<DerivedClass<Constraint, FitCircleToSphereAndFlatPointConstraint>>(),
         std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
         std::make_shared<DerivedClass<Constraint, IntersectPlaneAndSphereToGetCircle>>(),
         std::make_shared<DerivedClass<Constraint, IntersectSphereAndCircleToGetPointPair>>(),

@@ -9,6 +9,7 @@ namespace C3GA
 	class PointPair;
 	class Sphere;
 	class Plane;
+	class FlatPoint;
 
 	class Circle
 	{
@@ -23,6 +24,7 @@ namespace C3GA
 
 		bool FitToPoints(const Point& pointA, const Point& pointB, const Point& pointC);
 		bool FitToPointPairAndPoint(const PointPair& pointPairA, const Point& pointB);
+		bool FitToSphereAndFlatPoint(const Sphere& sphere, const FlatPoint& flatPoint);
 
 		bool IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB);
 		bool IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB);

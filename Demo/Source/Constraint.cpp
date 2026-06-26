@@ -248,6 +248,36 @@ FitPlaneToLineAndPointConstraints::FitPlaneToLineAndPointConstraints()
 	return planeObject->plane.FitPlaneToLineAndPoint(lineObject->line, pointObject->point);
 }
 
+//------------------------------- FitCircleToSphereAndFlatPointConstraint -------------------------------
+
+FitCircleToSphereAndFlatPointConstraint::FitCircleToSphereAndFlatPointConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, FlatPointObject>>());
+}
+
+/*virtual*/ FitCircleToSphereAndFlatPointConstraint::~FitCircleToSphereAndFlatPointConstraint()
+{
+}
+
+/*virtual*/ std::string FitCircleToSphereAndFlatPointConstraint::GetDesc() const
+{
+	return "Fit circle to a sphere and a flat-point.";
+}
+
+/*virtual*/ bool FitCircleToSphereAndFlatPointConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	FlatPointObject* flatPointObject = this->GetObject<FlatPointObject>();
+
+	return circleObject->circle.FitToSphereAndFlatPoint(sphereObject->sphere, flatPointObject->point);
+}
+
 //------------------------------- IntersectTwoSpheresToGetCircle -------------------------------
 
 IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()

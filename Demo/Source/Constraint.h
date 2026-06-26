@@ -129,6 +129,19 @@ public:
 /**
  * 
  */
+class FitCircleToSphereAndFlatPointConstraint : public Constraint
+{
+public:
+	FitCircleToSphereAndFlatPointConstraint();
+	virtual ~FitCircleToSphereAndFlatPointConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
 class IntersectTwoSpheresToGetCircle : public Constraint
 {
 public:

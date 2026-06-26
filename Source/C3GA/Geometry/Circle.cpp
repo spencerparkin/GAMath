@@ -5,6 +5,7 @@
 #include "C3GA/Vector.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
+#include "C3GA/Quadvector.h"
 #include "C3GA/PsuedoScalar.h"
 #include "C3GA/Scalar.h"
 #include "C3GA/Rotor.h"
@@ -63,6 +64,26 @@ bool Circle::FitToPoints(const Point& pointA, const Point& pointB, const Point& 
 bool Circle::FitToPointPairAndPoint(const PointPair& pointPairA, const Point& pointB)
 {
 	return false;
+}
+
+bool Circle::FitToSphereAndFlatPoint(const Sphere& sphere, const FlatPoint& flatPoint)
+{
+	Trivector t;
+	Bivector b;
+	Quadvector q;
+	Vector v1, v2;
+	PsuedoScalar I(1.0);
+
+	sphere.ToVector(v1);
+	flatPoint.ToTrivector(t);
+
+	q.OuterProduct(v1, t);
+
+	v2.GeometricProduct(q, I);
+	
+	b.OuterProduct(v1, v2);
+
+	return this->FromBivector(b);
 }
 
 bool Circle::IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB)
