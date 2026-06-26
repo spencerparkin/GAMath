@@ -6,6 +6,7 @@ namespace C3GA
 {
 	class Line;
 	class Point;
+	class Circle;
 	class Vector;
 
 	class Plane
@@ -19,6 +20,7 @@ namespace C3GA
 		bool FromVector(const Vector& vector);
 		void ToVector(Vector& vector) const;
 
+		bool FitToCircle(const Circle& circle);
 		bool FitPlaneToLineAndPoint(const Line& line, const Point& point);
 
 		HappyMath::Vector3 center;

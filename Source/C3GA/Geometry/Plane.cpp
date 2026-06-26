@@ -1,6 +1,7 @@
 #include "C3GA/Geometry/Plane.h"
 #include "C3GA/Geometry/Line.h"
 #include "C3GA/Geometry/Point.h"
+#include "C3GA/Geometry/Circle.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Trivector.h"
@@ -58,6 +59,27 @@ void Plane::ToVector(Vector& vector) const
 	vector.e3 = this->normal.z * this->weight;
 	vector.ni = this->normal.Dot(this->center) * this->weight;
 	vector.no = 0.0;
+}
+
+bool Plane::FitToCircle(const Circle& circle)
+{
+	PsuedoScalar I(1.0);
+	Bivector b;
+	Trivector t;
+	Vector v;
+	Quadvector q;
+
+	circle.ToBivector(b);
+
+	t.GeometricProduct(b, I);
+
+	v.ni = 1.0;
+
+	q.OuterProduct(t, v);
+
+	v.GeometricProduct(q, I);
+
+	return this->FromVector(v);
 }
 
 bool Plane::FitPlaneToLineAndPoint(const Line& line, const Point& point)
