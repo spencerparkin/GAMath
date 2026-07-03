@@ -74,17 +74,14 @@ bool PointPair::FromTrivector(const Trivector& trivector)
 	this->center.y = v2.e2;
 	this->center.z = v2.e3;
 
-	Bivector b1;
+	HappyMath::Vector3 v;
 
-	b1.e1_e2 = trivector.e1_e2_ni * 2.0 / this->weight;
-	b1.e1_e3 = trivector.e1_e3_ni * 2.0 / this->weight;
-	b1.e2_e3 = trivector.e2_e3_ni * 2.0 / this->weight;
+	v.x = trivector.e2_e3_ni / this->weight;
+	v.y = -trivector.e1_e3_ni / this->weight;
+	v.z = trivector.e1_e2_ni / this->weight;
 
-	Trivector t1;
-
-	t1.OuterProduct(b1, v1);
-
-	double squareRadius = this->center.SquareLength() - t1.e1_e2_e3;
+	double c_dot_n = this->center.Dot(this->normal);
+	double squareRadius = -this->center.SquareLength() + 2.0 * c_dot_n * c_dot_n - 2.0 * this->normal.Dot(v);
 	
 	this->imaginary = false;
 
