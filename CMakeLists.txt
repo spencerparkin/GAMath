@@ -78,8 +78,6 @@ set(C3GA_SOURCES
 	Source/C3GA/Geometry/Circle.h
 	Source/C3GA/Geometry/PointPair.cpp
 	Source/C3GA/Geometry/PointPair.h
-	Source/C3GA/Geometry/TangentPoint.cpp
-	Source/C3GA/Geometry/TangentPoint.h
 	Source/C3GA/Geometry/Line.cpp
 	Source/C3GA/Geometry/Line.h
 	Source/C3GA/Geometry/Plane.cpp
