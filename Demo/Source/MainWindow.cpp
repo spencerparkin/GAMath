@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget* parentWidget) : QMainWindow(parentWidget)
 	mainLayout->addWidget(canvas, 1);
 	mainLayout->addWidget(detailsPanel, 0);
 	mainLayout->setSpacing(0);
+	mainLayout->setContentsMargins(4, 4, 4, 4);
 
 	mainWidget->setLayout(mainLayout);
 

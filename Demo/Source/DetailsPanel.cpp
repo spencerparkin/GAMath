@@ -6,6 +6,7 @@
 DetailsPanel::DetailsPanel(QWidget* parent) : QWidget(parent)
 {
 	auto* layout = new QVBoxLayout(this);
+	layout->setContentsMargins(0, 4, 0, 4);
 
 	this->textEdit = new QTextEdit();
 	this->textEdit->setReadOnly(true);
