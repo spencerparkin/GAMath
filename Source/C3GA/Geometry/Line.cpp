@@ -45,9 +45,9 @@ bool Line::FromBivector(const Bivector& bivector)
 	Bivector b1;
 	Vector v1, v2;
 
-	b1.e2_e3 = bivector.e1_ni;
-	b1.e1_e3 = -bivector.e2_ni;
-	b1.e1_e2 = bivector.e3_ni;
+	b1.e2_e3 = bivector.e1_ni / this->weight;
+	b1.e1_e3 = -bivector.e2_ni / this->weight;
+	b1.e1_e2 = bivector.e3_ni / this->weight;
 
 	v1.e1 = this->normal.x;
 	v1.e2 = this->normal.y;
