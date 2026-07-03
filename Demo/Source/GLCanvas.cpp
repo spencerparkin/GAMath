@@ -331,21 +331,45 @@ void GLCanvas::ToggleSelectionOfObject(std::shared_ptr<Object> object)
 void GLCanvas::OnContextMenu(const QPoint& position)
 {
     static std::vector<std::shared_ptr<BaseClass<Constraint>>> constraintClassArray = {
-        std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
+        
+        // Fitting point-pairs
+        // todo: fit point-pair to points
+
+        // Fitting circles
         std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
-        std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitCircleToPointAndPointPairConstraint>>(),
-        std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
-        std::make_shared<DerivedClass<Constraint, FitPlaneToLineAndPointConstraints>>(),
         std::make_shared<DerivedClass<Constraint, FitCircleToSphereAndFlatPointConstraint>>(),
+
+        // Fitting spheres
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
+
+        // Fitting flat-points
+        // todo: fit flat point to round point
+
+        // Fitting lines
+        std::make_shared<DerivedClass<Constraint, FitLineToPointPairConstraint>>(),
+        // todo: fit line to points
+        
+        // Fitting planes
+        std::make_shared<DerivedClass<Constraint, FitPlaneToLineAndPointConstraints>>(),
+        // todo: fit plane to points
+        // todo: fit plane to circle
+
+        // Intersections rounds with rounds
         std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
-        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndSphereToGetCircle>>(),
         std::make_shared<DerivedClass<Constraint, IntersectSphereAndCircleToGetPointPair>>(),
-        std::make_shared<DerivedClass<Constraint, IntersectSphereAndLineToGetPointPair>>(),
         std::make_shared<DerivedClass<Constraint, IntersectThreeSpheresToGetPointPair>>(),
+
+        // Intersecting rounds with flats
+        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndSphereToGetCircle>>(),
+        std::make_shared<DerivedClass<Constraint, IntersectSphereAndLineToGetPointPair>>(),
+        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndCircleToGetPointPair>>(),
+
+        // Intersecting flats with flats
         std::make_shared<DerivedClass<Constraint, IntersectThreePlanesToGetFlatPoint>>(),
         std::make_shared<DerivedClass<Constraint, IntersectTwoPlanesToGetLine>>(),
-        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndCircleToGetPointPair>>(),
         std::make_shared<DerivedClass<Constraint, IntersectPlaneAndLineToGetFlatPoint>>()
     };
 

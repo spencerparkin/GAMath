@@ -278,6 +278,34 @@ FitCircleToSphereAndFlatPointConstraint::FitCircleToSphereAndFlatPointConstraint
 	return circleObject->circle.FitToSphereAndFlatPoint(sphereObject->sphere, flatPointObject->point);
 }
 
+//------------------------------- FitLineToPointPairConstraint -------------------------------
+
+FitLineToPointPairConstraint::FitLineToPointPairConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+}
+
+/*virtual*/ FitLineToPointPairConstraint::~FitLineToPointPairConstraint()
+{
+}
+
+/*virtual*/ std::string FitLineToPointPairConstraint::GetDesc() const
+{
+	return "Fit line to point-pair.";
+}
+
+/*virtual*/ bool FitLineToPointPairConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	LineObject* lineObject = this->GetObject<LineObject>();
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+
+	return lineObject->line.FitToPointPair(pointPairObject->pointPair);
+}
+
 //------------------------------- IntersectTwoSpheresToGetCircle -------------------------------
 
 IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()

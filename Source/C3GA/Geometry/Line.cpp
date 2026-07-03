@@ -92,7 +92,7 @@ void Line::ToBivector(Bivector& bivector) const
 	bivector.no_ni = 0.0;
 }
 
-bool Line::FitPointPair(const PointPair& pointPair)
+bool Line::FitToPointPair(const PointPair& pointPair)
 {
 	Bivector b;
 	Vector v;

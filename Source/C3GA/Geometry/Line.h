@@ -19,7 +19,7 @@ namespace C3GA
 		bool FromBivector(const Bivector& bivector);
 		void ToBivector(Bivector& bivector) const;
 
-		bool FitPointPair(const PointPair& pointPair);
+		bool FitToPointPair(const PointPair& pointPair);
 		bool IntersectPlanes(const Plane& planeA, const Plane& planeB);
 
 		HappyMath::Vector3 center;

@@ -142,6 +142,19 @@ public:
 /**
  * 
  */
+class FitLineToPointPairConstraint : public Constraint
+{
+public:
+	FitLineToPointPairConstraint();
+	virtual ~FitLineToPointPairConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
 class IntersectTwoSpheresToGetCircle : public Constraint
 {
 public:
