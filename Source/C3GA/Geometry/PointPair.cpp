@@ -58,9 +58,9 @@ bool PointPair::FromTrivector(const Trivector& trivector)
 	Rotor r1;
 
 	r1._1 = trivector.e1_e2_e3 / this->weight;
-	r1.e1_e2 = -trivector.e1_no_ni / this->weight;
-	r1.e1_e3 = trivector.e2_no_ni / this->weight;
-	r1.e2_e3 = -trivector.e3_no_ni / this->weight;
+	r1.e2_e3 = trivector.e1_no_ni / this->weight;
+	r1.e1_e3 = -trivector.e2_no_ni / this->weight;
+	r1.e1_e2 = trivector.e3_no_ni / this->weight;
 
 	Vector v1, v2;
 
@@ -128,10 +128,23 @@ bool PointPair::IntersectSphereAndCircle(const Sphere& sphere, const Circle& cir
 	Vector v;
 	Bivector b;
 	Trivector t;
-	PsuedoScalar I(1.0);
 
 	sphere.ToVector(v);
 	circle.ToBivector(b);
+
+	t.OuterProduct(v, b);
+
+	return this->FromTrivector(t);
+}
+
+bool PointPair::IntersectSphereAndLine(const Sphere& sphere, const Line& line)
+{
+	Vector v;
+	Bivector b;
+	Trivector t;
+
+	sphere.ToVector(v);
+	line.ToBivector(b);
 
 	t.OuterProduct(v, b);
 

@@ -8,6 +8,7 @@ namespace C3GA
 	class Sphere;
 	class Circle;
 	class Plane;
+	class Line;
 	class Trivector;
 
 	class PointPair
@@ -25,6 +26,7 @@ namespace C3GA
 
 		bool IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB, const Sphere& sphereC);
 		bool IntersectSphereAndCircle(const Sphere& sphere, const Circle& circle);
+		bool IntersectSphereAndLine(const Sphere& sphere, const Line& line);
 		bool IntersectPlaneAndCircle(const Plane& plane, const Circle& circle);
 
 		HappyMath::Vector3 center;

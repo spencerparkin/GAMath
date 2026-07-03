@@ -220,6 +220,19 @@ public:
 /**
  * 
  */
+class IntersectSphereAndLineToGetPointPair : public Constraint
+{
+public:
+	IntersectSphereAndLineToGetPointPair();
+	virtual ~IntersectSphereAndLineToGetPointPair();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
 class IntersectPlaneAndCircleToGetPointPair : public Constraint
 {
 public:

@@ -470,6 +470,36 @@ IntersectSphereAndCircleToGetPointPair::IntersectSphereAndCircleToGetPointPair()
 	return pointPairObject->pointPair.IntersectSphereAndCircle(sphereObject->sphere, circleObject->circle);
 }
 
+//------------------------------- IntersectSphereAndLineToGetPointPair -------------------------------
+
+IntersectSphereAndLineToGetPointPair::IntersectSphereAndLineToGetPointPair()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+}
+
+/*virtual*/ IntersectSphereAndLineToGetPointPair::~IntersectSphereAndLineToGetPointPair()
+{
+}
+
+/*virtual*/ std::string IntersectSphereAndLineToGetPointPair::GetDesc() const
+{
+	return "Intersect a sphere and a line to get a point-pair";
+}
+
+/*virtual*/ bool IntersectSphereAndLineToGetPointPair::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	LineObject* lineObject = this->GetObject<LineObject>();
+
+	return pointPairObject->pointPair.IntersectSphereAndLine(sphereObject->sphere, lineObject->line);
+}
+
 //------------------------------- IntersectPlaneAndCircleToGetPointPair -------------------------------
 
 IntersectPlaneAndCircleToGetPointPair::IntersectPlaneAndCircleToGetPointPair()
