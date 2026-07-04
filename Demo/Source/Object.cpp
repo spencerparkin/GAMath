@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "Drawer.h"
+#include "Convert.hpp"
 #include "C3GA/Vector.h"
 #include "HappyMath/LineSegment.h"
 #include <format>
@@ -162,18 +163,18 @@ CircleObject::CircleObject()
 {
 	HappyMath::Vector4 usedColor = showAsHighlighted ? HappyMath::Vector4(1.0, 1.0, 1.0, 1.0) : this->color;
 
-	drawer->DrawCircle(this->circle.center, this->circle.normal, this->circle.radius, usedColor, false);
-	drawer->DrawVector(this->circle.center, this->circle.normal, usedColor, true);
+	drawer->DrawCircle(Convert(this->circle.center), Convert(this->circle.normal), this->circle.radius, usedColor, false);
+	drawer->DrawVector(Convert(this->circle.center), Convert(this->circle.normal), usedColor, true);
 }
 
 /*virtual*/ void CircleObject::SetPosition(const HappyMath::Vector3& position)
 {
-	this->circle.center = position;
+	this->circle.center = Convert(position);
 }
 
 /*virtual*/ HappyMath::Vector3 CircleObject::GetPosition() const
 {
-	return this->circle.center;
+	return Convert(this->circle.center);
 }
 
 /*virtual*/ bool CircleObject::SetSize(double size)
@@ -190,7 +191,7 @@ CircleObject::CircleObject()
 
 /*virtual*/ bool CircleObject::Rotate(const HappyMath::Vector3& unitAxis, double angle)
 {
-	this->circle.normal = this->circle.normal.Rotated(unitAxis, angle).Normalized();
+	this->circle.normal = Convert(Convert(this->circle.normal).Rotated(unitAxis, angle).Normalized());
 	return true;
 }
 
@@ -198,10 +199,10 @@ CircleObject::CircleObject()
 {
 	double thickness = 0.5;
 
-	if (worldRay.CastAgainstDisk(this->circle.center, this->circle.normal, this->circle.radius + thickness / 2.0, rayDistance))
+	if (worldRay.CastAgainstDisk(Convert(this->circle.center), Convert(this->circle.normal), this->circle.radius + thickness / 2.0, rayDistance))
 	{
 		double alpha = 0.0;
-		if (worldRay.CastAgainstDisk(this->circle.center, this->circle.normal, this->circle.radius - thickness / 2.0, alpha))
+		if (worldRay.CastAgainstDisk(Convert(this->circle.center), Convert(this->circle.normal), this->circle.radius - thickness / 2.0, alpha))
 			return false;
 
 		return true;
@@ -216,7 +217,7 @@ CircleObject::CircleObject()
 
 	details += "Shape: Circle\n";
 	details += std::format("Weight: {}\n", this->circle.weight);
-	details += std::format("Center: {}, {}, {}\n", this->circle.center.x, this->circle.center.y, this->circle.center.z);
+	details += std::format("Center: {}, {}, {}\n", this->circle.center.e1, this->circle.center.e2, this->circle.center.e3);
 	details += std::format("Radius: {}\n", this->circle.radius);
 	details += std::string("Imaginary: ") + (this->circle.imaginary ? "YES" : "NO") + "\n";
 

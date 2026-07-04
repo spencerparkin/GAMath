@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HappyMath/Vector3.h"
+#include "E3GA/Vector.h"
 
 namespace C3GA
 {
@@ -15,7 +15,7 @@ namespace C3GA
 	{
 	public:
 		Circle();
-		Circle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, double weight = 1.0);
+		Circle(const E3GA::Vector& center, const E3GA::Vector& normal, double radius, double weight = 1.0);
 		Circle(const Circle& circle);
 		virtual ~Circle();
 
@@ -29,8 +29,8 @@ namespace C3GA
 		bool IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB);
 		bool IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB);
 
-		HappyMath::Vector3 center;
-		HappyMath::Vector3 normal;
+		E3GA::Vector center;
+		E3GA::Vector normal;
 		double radius;
 		double weight;
 		bool imaginary;

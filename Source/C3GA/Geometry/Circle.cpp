@@ -8,7 +8,8 @@
 #include "C3GA/Quadvector.h"
 #include "C3GA/PsuedoScalar.h"
 #include "C3GA/Scalar.h"
-#include "C3GA/Rotor.h"
+#include "E3GA/Scalar.h"
+#include "E3GA/Rotor.h"
 
 using namespace C3GA;
 
@@ -17,11 +18,11 @@ Circle::Circle()
 	this->weight = 1.0;
 	this->radius = 1.0;
 	this->imaginary = false;
-	this->center.SetComponents(0.0, 0.0, 0.0);
-	this->normal.SetComponents(0.0, 0.0, 1.0);
+	this->center = E3GA::Vector(0.0, 0.0, 0.0);
+	this->normal = E3GA::Vector(0.0, 0.0, 1.0);
 }
 
-Circle::Circle(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, double weight /*= 1.0*/)
+Circle::Circle(const E3GA::Vector& center, const E3GA::Vector& normal, double radius, double weight /*= 1.0*/)
 {
 	this->center = center;
 	this->normal = normal;
@@ -114,44 +115,42 @@ bool Circle::IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB)
 
 bool Circle::FromBivector(const Bivector& bivector)
 {
-	this->normal.x = bivector.e1_no;
-	this->normal.y = bivector.e2_no;
-	this->normal.z = bivector.e3_no;
+	this->normal.e1 = bivector.e1_no;
+	this->normal.e2 = bivector.e2_no;
+	this->normal.e3 = bivector.e3_no;
 
-	this->weight = this->normal.Length();
+	this->weight = ::sqrt(this->normal.SquareMagnitude());
 
 	if (this->weight == 0.0)
 		return false;
 
-	this->normal /= this->weight;
+	this->normal.e1 /= this->weight;
+	this->normal.e2 /= this->weight;
+	this->normal.e3 /= this->weight;
 
-	Rotor rotor;
+	E3GA::Rotor rotor;
 	rotor._1 = -bivector.no_ni / this->weight;
 	rotor.e1_e2 = bivector.e1_e2 / this->weight;
-	rotor.e1_e3 = bivector.e1_e3 / this->weight;
+	rotor.e3_e1 = -bivector.e1_e3 / this->weight;
 	rotor.e2_e3 = bivector.e2_e3 / this->weight;
 
-	Vector norm;
-	norm.e1 = this->normal.x;
-	norm.e2 = this->normal.y;
-	norm.e3 = this->normal.z;
+	this->center.InnerProduct(this->normal, rotor);
 
-	Vector centre;
-	centre.InnerProduct(norm, rotor);
+	E3GA::Vector v;
+	v.e1 = bivector.e1_ni / this->weight;
+	v.e2 = bivector.e2_ni / this->weight;
+	v.e3 = bivector.e3_ni / this->weight;
 
-	this->center.x = centre.e1;
-	this->center.y = centre.e2;
-	this->center.z = centre.e3;
+	E3GA::Scalar dot;
+	dot.InnerProduct(this->center, this->normal);
 
-	HappyMath::Vector3 v;
+	v.e1 += dot._1 * this->center.e1;
+	v.e2 += dot._1 * this->center.e2;
+	v.e3 += dot._1 * this->center.e3;
 
-	v.x = bivector.e1_ni / this->weight;
-	v.y = bivector.e2_ni / this->weight;
-	v.z = bivector.e3_ni / this->weight;
+	dot.InnerProduct(this->normal, v);
 
-	v += this->center.Dot(this->normal) * this->center;
-
-	double squareRadius = this->center.SquareLength() - 2.0 * this->normal.Dot(v);
+	double squareRadius = this->center.SquareMagnitude() - 2.0 * dot._1;
 
 	this->imaginary = false;
 
@@ -168,21 +167,24 @@ bool Circle::FromBivector(const Bivector& bivector)
 
 void Circle::ToBivector(Bivector& bivector) const
 {
+	E3GA::Scalar dot;
+	dot.InnerProduct(this->normal, this->center);
+
 	Vector plane;
 	plane.no = 0.0;
-	plane.e1 = this->weight * this->normal.x;
-	plane.e2 = this->weight * this->normal.y;
-	plane.e3 = this->weight * this->normal.z;
-	plane.ni = this->normal.Dot(this->center);
+	plane.e1 = this->weight * this->normal.e1;
+	plane.e2 = this->weight * this->normal.e2;
+	plane.e3 = this->weight * this->normal.e3;
+	plane.ni = dot._1;
 
 	double sign = this->imaginary ? -1.0 : 1.0;
 
 	Vector sphere;
 	sphere.no = 1.0;
-	sphere.e1 = this->center.x;
-	sphere.e2 = this->center.y;
-	sphere.e3 = this->center.z;
-	sphere.ni = 0.5 * (this->center.Dot(center) - sign * this->radius * this->radius);
+	sphere.e1 = this->center.e1;
+	sphere.e2 = this->center.e2;
+	sphere.e3 = this->center.e3;
+	sphere.ni = 0.5 * (this->center.SquareMagnitude() - sign * this->radius * this->radius);
 
 	bivector.OuterProduct(plane, sphere);
 }

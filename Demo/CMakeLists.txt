@@ -24,6 +24,7 @@ add_executable(Demo WIN32
 	Source/DetailsPanel.cpp
 	Source/DetailsPanel.h
 	Source/Class.hpp
+	Source/Convert.hpp
 )
 
 target_link_libraries(Demo PRIVATE
