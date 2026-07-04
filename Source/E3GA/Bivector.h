@@ -37,6 +37,10 @@ namespace E3GA
 		void GeometricProduct(const Vector& vectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Bivector& bivectorA, const Scalar& scalarB);
 
+		void Reverse(const Bivector& bivectorA);
+
+		double SquareMagnitude() const;
+
 		double e1_e2, e2_e3, e3_e1;
 	};
 }

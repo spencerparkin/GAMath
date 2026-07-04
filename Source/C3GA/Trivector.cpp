@@ -277,3 +277,21 @@ void Trivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Bivect
 	this->e3_no_ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * bivectorB.e1_e2;
 }
 
+void Trivector::Reverse(const Trivector& trivectorA)
+{
+	this->e1_e2_e3 = (-1.0) * trivectorA.e1_e2_e3;
+	this->e1_e2_no = (-1.0) * trivectorA.e1_e2_no;
+	this->e1_e2_ni = (-1.0) * trivectorA.e1_e2_ni;
+	this->e1_e3_no = (-1.0) * trivectorA.e1_e3_no;
+	this->e1_e3_ni = (-1.0) * trivectorA.e1_e3_ni;
+	this->e1_no_ni = (-1.0) * trivectorA.e1_no_ni;
+	this->e2_e3_no = (-1.0) * trivectorA.e2_e3_no;
+	this->e2_e3_ni = (-1.0) * trivectorA.e2_e3_ni;
+	this->e2_no_ni = (-1.0) * trivectorA.e2_no_ni;
+	this->e3_no_ni = (-1.0) * trivectorA.e3_no_ni;
+}
+
+double Trivector::SquareMagnitude() const
+{
+	return (this->e1_e2_e3 * this->e1_e2_e3) + (-2)*this->e1_e2_ni*this->e1_e2_no + (-2)*this->e1_e3_ni*this->e1_e3_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (-2)*this->e2_e3_ni*this->e2_e3_no + (-1)*(this->e2_no_ni * this->e2_no_ni) + (-1)*(this->e3_no_ni * this->e3_no_ni);
+}

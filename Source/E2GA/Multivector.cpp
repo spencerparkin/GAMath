@@ -1064,3 +1064,15 @@ void Multivector::GeometricProduct(const Multivector& multivectorA, const Multiv
 	this->e1_e2 = multivectorA._1 * multivectorB.e1_e2 + multivectorA.e1 * multivectorB.e2 + multivectorA.e1_e2 * multivectorB._1 + (-1.0) * multivectorA.e2 * multivectorB.e1;
 }
 
+void Multivector::Reverse(const Multivector& multivectorA)
+{
+	this->_1 = multivectorA._1;
+	this->e1 = multivectorA.e1;
+	this->e2 = multivectorA.e2;
+	this->e1_e2 = (-1.0) * multivectorA.e1_e2;
+}
+
+double Multivector::SquareMagnitude() const
+{
+	return (this->_1 * this->_1) + (this->e1 * this->e1) + (this->e1_e2 * this->e1_e2) + (this->e2 * this->e2);
+}

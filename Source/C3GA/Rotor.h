@@ -94,6 +94,10 @@ namespace C3GA
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Rotor& rotorA, const Scalar& scalarB);
 
+		void Reverse(const Rotor& rotorA);
+
+		double SquareMagnitude() const;
+
 		double _1, e1_e2, e1_e3, e1_no, e1_ni, e2_e3, e2_no, e2_ni, e3_no, e3_ni, no_ni;
 	};
 }

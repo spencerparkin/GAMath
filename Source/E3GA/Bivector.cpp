@@ -135,3 +135,14 @@ void Bivector::GeometricProduct(const Bivector& bivectorA, const Scalar& scalarB
 	this->e3_e1 = bivectorA.e3_e1 * scalarB._1;
 }
 
+void Bivector::Reverse(const Bivector& bivectorA)
+{
+	this->e1_e2 = (-1.0) * bivectorA.e1_e2;
+	this->e2_e3 = (-1.0) * bivectorA.e2_e3;
+	this->e3_e1 = (-1.0) * bivectorA.e3_e1;
+}
+
+double Bivector::SquareMagnitude() const
+{
+	return (this->e1_e2 * this->e1_e2) + (this->e2_e3 * this->e2_e3) + (this->e3_e1 * this->e3_e1);
+}

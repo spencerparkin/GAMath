@@ -75,6 +75,10 @@ namespace E2GA
 		void GeometricProduct(const Rotor& rotorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const Rotor& rotorA, const Rotor& rotorB);
 
+		void Reverse(const Rotor& rotorA);
+
+		double SquareMagnitude() const;
+
 		double _1, e1_e2;
 	};
 }

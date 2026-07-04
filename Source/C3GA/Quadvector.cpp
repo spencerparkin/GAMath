@@ -191,3 +191,16 @@ void Quadvector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Vecto
 	this->e2_e3_no_ni = psuedoscalarA.e1_e2_e3_no_ni * vectorB.e1;
 }
 
+void Quadvector::Reverse(const Quadvector& quadvectorA)
+{
+	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no;
+	this->e1_e2_e3_ni = quadvectorA.e1_e2_e3_ni;
+	this->e1_e2_no_ni = quadvectorA.e1_e2_no_ni;
+	this->e1_e3_no_ni = quadvectorA.e1_e3_no_ni;
+	this->e2_e3_no_ni = quadvectorA.e2_e3_no_ni;
+}
+
+double Quadvector::SquareMagnitude() const
+{
+	return (-2)*this->e1_e2_e3_ni*this->e1_e2_e3_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni) + (-1)*(this->e1_e3_no_ni * this->e1_e3_no_ni) + (-1)*(this->e2_e3_no_ni * this->e2_e3_no_ni);
+}

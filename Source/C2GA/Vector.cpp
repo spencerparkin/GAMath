@@ -178,3 +178,15 @@ void Vector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Trivector
 	this->ni = (-1.0) * psuedoscalarA.e1_e2_no_ni * trivectorB.e1_e2_ni;
 }
 
+void Vector::Reverse(const Vector& vectorA)
+{
+	this->e1 = vectorA.e1;
+	this->e2 = vectorA.e2;
+	this->no = vectorA.no;
+	this->ni = vectorA.ni;
+}
+
+double Vector::SquareMagnitude() const
+{
+	return (this->e1 * this->e1) + (this->e2 * this->e2) + (-2)*this->ni*this->no;
+}

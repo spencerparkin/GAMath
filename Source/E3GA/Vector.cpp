@@ -142,3 +142,14 @@ void Vector::GeometricProduct(const Bivector& bivectorA, const PsuedoScalar& psu
 	this->e3 = (-1.0) * bivectorA.e1_e2 * psuedoscalarB.e1_e2_e3;
 }
 
+void Vector::Reverse(const Vector& vectorA)
+{
+	this->e1 = vectorA.e1;
+	this->e2 = vectorA.e2;
+	this->e3 = vectorA.e3;
+}
+
+double Vector::SquareMagnitude() const
+{
+	return (this->e1 * this->e1) + (this->e2 * this->e2) + (this->e3 * this->e3);
+}

@@ -190,3 +190,17 @@ void Bivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Bivecto
 	this->no_ni = (-1.0) * psuedoscalarA.e1_e2_no_ni * bivectorB.e1_e2;
 }
 
+void Bivector::Reverse(const Bivector& bivectorA)
+{
+	this->e1_e2 = (-1.0) * bivectorA.e1_e2;
+	this->e1_no = (-1.0) * bivectorA.e1_no;
+	this->e1_ni = (-1.0) * bivectorA.e1_ni;
+	this->e2_no = (-1.0) * bivectorA.e2_no;
+	this->e2_ni = (-1.0) * bivectorA.e2_ni;
+	this->no_ni = (-1.0) * bivectorA.no_ni;
+}
+
+double Bivector::SquareMagnitude() const
+{
+	return (this->e1_e2 * this->e1_e2) + (-2)*this->e1_ni*this->e1_no + (-2)*this->e2_ni*this->e2_no + (-1)*(this->no_ni * this->no_ni);
+}

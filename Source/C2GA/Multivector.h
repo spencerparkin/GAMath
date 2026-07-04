@@ -274,6 +274,10 @@ namespace C2GA
 		void GeometricProduct(const Rotor& rotorA, const Multivector& multivectorB);
 		void GeometricProduct(const Rotor& rotorA, const Rotor& rotorB);
 
+		void Reverse(const Multivector& multivectorA);
+
+		double SquareMagnitude() const;
+
 		double _1, e1, e2, no, ni, e1_e2, e1_no, e1_ni, e2_no, e2_ni, no_ni, e1_e2_no, e1_e2_ni, e1_no_ni, e2_no_ni, e1_e2_no_ni;
 	};
 }

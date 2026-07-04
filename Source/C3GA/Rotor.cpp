@@ -1106,3 +1106,22 @@ void Rotor::GeometricProduct(const Rotor& rotorA, const Scalar& scalarB)
 	this->no_ni = rotorA.no_ni * scalarB._1;
 }
 
+void Rotor::Reverse(const Rotor& rotorA)
+{
+	this->_1 = rotorA._1;
+	this->e1_e2 = (-1.0) * rotorA.e1_e2;
+	this->e1_e3 = (-1.0) * rotorA.e1_e3;
+	this->e1_no = (-1.0) * rotorA.e1_no;
+	this->e1_ni = (-1.0) * rotorA.e1_ni;
+	this->e2_e3 = (-1.0) * rotorA.e2_e3;
+	this->e2_no = (-1.0) * rotorA.e2_no;
+	this->e2_ni = (-1.0) * rotorA.e2_ni;
+	this->e3_no = (-1.0) * rotorA.e3_no;
+	this->e3_ni = (-1.0) * rotorA.e3_ni;
+	this->no_ni = (-1.0) * rotorA.no_ni;
+}
+
+double Rotor::SquareMagnitude() const
+{
+	return (this->_1 * this->_1) + (this->e1_e2 * this->e1_e2) + (-1)*(this->no_ni * this->no_ni) + (this->e1_e3 * this->e1_e3) + (-2)*this->e1_ni*this->e1_no + (this->e2_e3 * this->e2_e3) + (-2)*this->e2_ni*this->e2_no + (-2)*this->e3_ni*this->e3_no;
+}

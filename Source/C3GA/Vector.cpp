@@ -218,3 +218,16 @@ void Vector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Quadvecto
 	this->ni = (-1.0) * psuedoscalarA.e1_e2_e3_no_ni * quadvectorB.e1_e2_e3_ni;
 }
 
+void Vector::Reverse(const Vector& vectorA)
+{
+	this->e1 = vectorA.e1;
+	this->e2 = vectorA.e2;
+	this->e3 = vectorA.e3;
+	this->no = vectorA.no;
+	this->ni = vectorA.ni;
+}
+
+double Vector::SquareMagnitude() const
+{
+	return (this->e1 * this->e1) + (this->e2 * this->e2) + (this->e3 * this->e3) + (-2)*this->ni*this->no;
+}

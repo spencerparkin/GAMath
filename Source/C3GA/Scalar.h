@@ -50,6 +50,10 @@ namespace C3GA
 		void GeometricProduct(const Scalar& scalarA, const Scalar& scalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 
+		void Reverse(const Scalar& scalarA);
+
+		double SquareMagnitude() const;
+
 		double _1;
 	};
 }

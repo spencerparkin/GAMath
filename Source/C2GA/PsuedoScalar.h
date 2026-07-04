@@ -38,6 +38,10 @@ namespace C2GA
 		void GeometricProduct(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Scalar& scalarB);
 
+		void Reverse(const PsuedoScalar& psuedoscalarA);
+
+		double SquareMagnitude() const;
+
 		double e1_e2_no_ni;
 	};
 }

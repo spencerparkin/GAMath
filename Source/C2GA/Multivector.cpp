@@ -5090,3 +5090,27 @@ void Multivector::GeometricProduct(const Rotor& rotorA, const Rotor& rotorB)
 	this->e1_e2_no_ni = rotorA.e1_e2 * rotorB.no_ni + rotorA.e1_ni * rotorB.e2_no + (-1.0) * rotorA.e1_no * rotorB.e2_ni + (-1.0) * rotorA.e2_ni * rotorB.e1_no + rotorA.e2_no * rotorB.e1_ni + rotorA.no_ni * rotorB.e1_e2;
 }
 
+void Multivector::Reverse(const Multivector& multivectorA)
+{
+	this->_1 = multivectorA._1;
+	this->e1 = multivectorA.e1;
+	this->e2 = multivectorA.e2;
+	this->no = multivectorA.no;
+	this->ni = multivectorA.ni;
+	this->e1_e2 = (-1.0) * multivectorA.e1_e2;
+	this->e1_no = (-1.0) * multivectorA.e1_no;
+	this->e1_ni = (-1.0) * multivectorA.e1_ni;
+	this->e2_no = (-1.0) * multivectorA.e2_no;
+	this->e2_ni = (-1.0) * multivectorA.e2_ni;
+	this->no_ni = (-1.0) * multivectorA.no_ni;
+	this->e1_e2_no = (-1.0) * multivectorA.e1_e2_no;
+	this->e1_e2_ni = (-1.0) * multivectorA.e1_e2_ni;
+	this->e1_no_ni = (-1.0) * multivectorA.e1_no_ni;
+	this->e2_no_ni = (-1.0) * multivectorA.e2_no_ni;
+	this->e1_e2_no_ni = multivectorA.e1_e2_no_ni;
+}
+
+double Multivector::SquareMagnitude() const
+{
+	return (this->_1 * this->_1) + (this->e1 * this->e1) + (-2)*this->e2_ni*this->e2_no + (-1)*(this->e2_no_ni * this->e2_no_ni) + (-2)*this->ni*this->no + (-1)*(this->no_ni * this->no_ni) + (this->e1_e2 * this->e1_e2) + (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni) + (-2)*this->e1_ni*this->e1_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (this->e2 * this->e2);
+}

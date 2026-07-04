@@ -162,3 +162,15 @@ void Trivector::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Vector
 	this->e2_no_ni = (-1.0) * psuedoscalarA.e1_e2_no_ni * vectorB.e1;
 }
 
+void Trivector::Reverse(const Trivector& trivectorA)
+{
+	this->e1_e2_no = (-1.0) * trivectorA.e1_e2_no;
+	this->e1_e2_ni = (-1.0) * trivectorA.e1_e2_ni;
+	this->e1_no_ni = (-1.0) * trivectorA.e1_no_ni;
+	this->e2_no_ni = (-1.0) * trivectorA.e2_no_ni;
+}
+
+double Trivector::SquareMagnitude() const
+{
+	return (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (-1)*(this->e2_no_ni * this->e2_no_ni);
+}

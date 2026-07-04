@@ -150,6 +150,10 @@ namespace E2GA
 		void GeometricProduct(const Multivector& multivectorA, const Rotor& rotorB);
 		void GeometricProduct(const Multivector& multivectorA, const Multivector& multivectorB);
 
+		void Reverse(const Multivector& multivectorA);
+
+		double SquareMagnitude() const;
+
 		double _1, e1, e2, e1_e2;
 	};
 }

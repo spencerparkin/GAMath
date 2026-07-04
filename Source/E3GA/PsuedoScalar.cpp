@@ -94,3 +94,12 @@ void PsuedoScalar::GeometricProduct(const PsuedoScalar& psuedoscalarA, const Sca
 	this->e1_e2_e3 = psuedoscalarA.e1_e2_e3 * scalarB._1;
 }
 
+void PsuedoScalar::Reverse(const PsuedoScalar& psuedoscalarA)
+{
+	this->e1_e2_e3 = (-1.0) * psuedoscalarA.e1_e2_e3;
+}
+
+double PsuedoScalar::SquareMagnitude() const
+{
+	return (this->e1_e2_e3 * this->e1_e2_e3);
+}

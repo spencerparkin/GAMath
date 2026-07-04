@@ -207,6 +207,10 @@ namespace E3GA
 		void GeometricProduct(const Multivector& multivectorA, const Rotor& rotorB);
 		void GeometricProduct(const Multivector& multivectorA, const Multivector& multivectorB);
 
+		void Reverse(const Multivector& multivectorA);
+
+		double SquareMagnitude() const;
+
 		double _1, e1, e2, e3, e1_e2, e2_e3, e3_e1, e1_e2_e3;
 	};
 }

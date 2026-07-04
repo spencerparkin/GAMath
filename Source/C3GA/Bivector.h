@@ -41,6 +41,10 @@ namespace C3GA
 		void GeometricProduct(const Trivector& trivectorA, const PsuedoScalar& psuedoscalarB);
 		void GeometricProduct(const PsuedoScalar& psuedoscalarA, const Trivector& trivectorB);
 
+		void Reverse(const Bivector& bivectorA);
+
+		double SquareMagnitude() const;
+
 		double e1_e2, e1_e3, e1_no, e1_ni, e2_e3, e2_no, e2_ni, e3_no, e3_ni, no_ni;
 	};
 }
