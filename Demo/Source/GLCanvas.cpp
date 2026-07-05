@@ -345,6 +345,7 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
+        // todo: fit sphere to point pair and point
 
         // Fitting flat-points
         // todo: fit flat point to round point
@@ -357,6 +358,7 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitPlaneToLineAndPointConstraints>>(),
         // todo: fit plane to points
         // todo: fit plane to circle
+        // todo: fit plane to point-pair and point
 
         // Intersections rounds with rounds
         std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
