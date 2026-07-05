@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HappyMath/Vector3.h"
+#include "E3GA/Vector.h"
 
 namespace C3GA
 {
@@ -13,14 +13,14 @@ namespace C3GA
 	{
 	public:
 		Point();
-		Point(const HappyMath::Vector3& center, double weight = 1.0);
+		Point(const E3GA::Vector& center, double weight = 1.0);
 		Point(const Point& point);
 		virtual ~Point();
 
 		void ToVector(Vector& vector) const;
 		bool FromVector(const Vector& vector);
 
-		HappyMath::Vector3 center;
+		E3GA::Vector center;
 		double weight;
 	};
 
@@ -28,7 +28,7 @@ namespace C3GA
 	{
 	public:
 		FlatPoint();
-		FlatPoint(const HappyMath::Vector3 center, double weight = 1.0);
+		FlatPoint(const E3GA::Vector& center, double weight = 1.0);
 		FlatPoint(const FlatPoint& point);
 		virtual ~FlatPoint();
 
@@ -39,7 +39,7 @@ namespace C3GA
 		bool IntersectPlaneAndLine(const Plane& plane, const Line& line);
 		bool IntersectPlanes(const Plane& planeA, const Plane& planeB, const Plane& planeC);
 
-		HappyMath::Vector3 center;
+		E3GA::Vector center;
 		double weight;
 	};
 }

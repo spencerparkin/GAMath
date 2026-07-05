@@ -10,6 +10,7 @@
 #include "C3GA/Scalar.h"
 #include "E3GA/Scalar.h"
 #include "E3GA/Rotor.h"
+#include <math.h>
 
 using namespace C3GA;
 

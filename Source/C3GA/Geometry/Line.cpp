@@ -5,16 +5,17 @@
 #include "C3GA/Vector.h"
 #include "C3GA/Trivector.h"
 #include "C3GA/PsuedoScalar.h"
+#include <math.h>
 
 using namespace C3GA;
 
 Line::Line()
 {
 	this->weight = 1.0;
-	this->normal.SetComponents(0.0, 0.0, 1.0);
+	this->normal = E3GA::Vector(0.0, 0.0, 1.0);
 }
 
-Line::Line(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double weight /*= 1.0*/)
+Line::Line(const E3GA::Vector& center, const E3GA::Vector& normal, double weight /*= 1.0*/)
 {
 	this->center = center;
 	this->normal = normal;
@@ -31,16 +32,18 @@ Line::Line(const Line& line)
 
 bool Line::FromBivector(const Bivector& bivector)
 {
-	this->normal.x = bivector.e2_e3;
-	this->normal.y = -bivector.e1_e3;
-	this->normal.z = bivector.e1_e2;
+	this->normal.e1 = bivector.e2_e3;
+	this->normal.e2 = -bivector.e1_e3;
+	this->normal.e3 = bivector.e1_e2;
 
-	this->weight = this->normal.Length();
+	this->weight = ::sqrt(this->normal.SquareMagnitude());
 
 	if (this->weight == 0.0)
 		return false;
 
-	this->normal /= this->weight;
+	this->normal.e1 /= this->weight;
+	this->normal.e2 /= this->weight;
+	this->normal.e3 /= this->weight;
 
 	Bivector b1;
 	Vector v1, v2;
@@ -49,15 +52,15 @@ bool Line::FromBivector(const Bivector& bivector)
 	b1.e1_e3 = -bivector.e2_ni / this->weight;
 	b1.e1_e2 = bivector.e3_ni / this->weight;
 
-	v1.e1 = this->normal.x;
-	v1.e2 = this->normal.y;
-	v1.e3 = this->normal.z;
+	v1.e1 = this->normal.e1;
+	v1.e2 = this->normal.e2;
+	v1.e3 = this->normal.e3;
 
 	v2.InnerProduct(b1, v1);
 
-	this->center.x = v2.e1;
-	this->center.y = v2.e2;
-	this->center.z = v2.e3;
+	this->center.e1 = v2.e1;
+	this->center.e2 = v2.e2;
+	this->center.e3 = v2.e3;
 
 	return true;
 }
@@ -67,13 +70,13 @@ void Line::ToBivector(Bivector& bivector) const
 	Bivector b1;
 	Vector v1, v2;
 
-	b1.e2_e3 = this->normal.x * this->weight;
-	b1.e1_e3 = -this->normal.y * this->weight;
-	b1.e1_e2 = this->normal.z * this->weight;
+	b1.e2_e3 = this->normal.e1 * this->weight;
+	b1.e1_e3 = -this->normal.e2 * this->weight;
+	b1.e1_e2 = this->normal.e3 * this->weight;
 
-	v1.e1 = this->center.x;
-	v1.e2 = this->center.y;
-	v1.e3 = this->center.z;
+	v1.e1 = this->center.e1;
+	v1.e2 = this->center.e2;
+	v1.e3 = this->center.e3;
 
 	v2.InnerProduct(b1, v1);
 

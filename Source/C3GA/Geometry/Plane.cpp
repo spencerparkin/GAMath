@@ -7,16 +7,18 @@
 #include "C3GA/Trivector.h"
 #include "C3GA/Quadvector.h"
 #include "C3GA/PsuedoScalar.h"
+#include "E3GA/Scalar.h"
+#include <math.h>
 
 using namespace C3GA;
 
 Plane::Plane()
 {
 	this->weight = 1.0;
-	this->normal.SetComponents(0.0, 0.0, 1.0);
+	this->normal = E3GA::Vector(0.0, 0.0, 1.0);
 }
 
-Plane::Plane(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double weight /*= 1.0*/)
+Plane::Plane(const E3GA::Vector& center, const E3GA::Vector& normal, double weight /*= 1.0*/)
 {
 	this->center = center;
 	this->normal = normal;
@@ -36,28 +38,35 @@ Plane::Plane(const Plane& plane)
 
 bool Plane::FromVector(const Vector& vector)
 {
-	this->normal.x = vector.e1;
-	this->normal.y = vector.e2;
-	this->normal.z = vector.e3;
+	this->normal.e1 = vector.e1;
+	this->normal.e2 = vector.e2;
+	this->normal.e3 = vector.e3;
 
-	this->weight = this->normal.Length();
+	this->weight = ::sqrt(this->normal.SquareMagnitude());
 
 	if (this->weight == 0.0)
 		return false;
 
-	this->normal /= this->weight;
+	this->normal.e1 /= this->weight;
+	this->normal.e2 /= this->weight;
+	this->normal.e3 /= this->weight;
 
-	this->center = this->normal * vector.ni / this->weight;
+	this->center.e1 = this->normal.e1 * vector.ni / this->weight;
+	this->center.e2 = this->normal.e2 * vector.ni / this->weight;
+	this->center.e3 = this->normal.e3 * vector.ni / this->weight;
 
 	return true;
 }
 
 void Plane::ToVector(Vector& vector) const
 {
-	vector.e1 = this->normal.x * this->weight;
-	vector.e2 = this->normal.y * this->weight;
-	vector.e3 = this->normal.z * this->weight;
-	vector.ni = this->normal.Dot(this->center) * this->weight;
+	E3GA::Scalar dot;
+	dot.InnerProduct(this->normal, this->center);
+
+	vector.e1 = this->normal.e1 * this->weight;
+	vector.e2 = this->normal.e2 * this->weight;
+	vector.e3 = this->normal.e3 * this->weight;
+	vector.ni = dot._1 * this->weight;
 	vector.no = 0.0;
 }
 

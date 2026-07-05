@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HappyMath/Vector3.h"
+#include "E3GA/Vector.h"
 
 namespace C3GA
 {
@@ -13,7 +13,7 @@ namespace C3GA
 	{
 	public:
 		Plane();
-		Plane(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double weight = 1.0);
+		Plane(const E3GA::Vector& center, const E3GA::Vector& normal, double weight = 1.0);
 		Plane(const Plane& plane);
 		virtual ~Plane();
 
@@ -23,8 +23,8 @@ namespace C3GA
 		bool FitToCircle(const Circle& circle);
 		bool FitPlaneToLineAndPoint(const Line& line, const Point& point);
 
-		HappyMath::Vector3 center;
-		HappyMath::Vector3 normal;
+		E3GA::Vector center;
+		E3GA::Vector normal;
 		double weight;
 	};
 }

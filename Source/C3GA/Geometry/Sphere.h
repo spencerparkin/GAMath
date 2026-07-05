@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HappyMath/Vector3.h"
+#include "E3GA/Vector.h"
 
 namespace C3GA
 {
@@ -16,7 +16,7 @@ namespace C3GA
 	{
 	public:
 		Sphere();
-		Sphere(const HappyMath::Vector3& center, double radius, double weight = 1.0);
+		Sphere(const E3GA::Vector& center, double radius, double weight = 1.0);
 		Sphere(const Sphere& sphere);
 		virtual ~Sphere();
 
@@ -27,7 +27,7 @@ namespace C3GA
 		bool FitToPointPairs(const PointPair& pointPairA, const PointPair& pointPairB);
 		bool FitToCircleAndPoint(const Circle& circleA, const Point& pointB);
 
-		HappyMath::Vector3 center;
+		E3GA::Vector center;
 		double radius;
 		double weight;
 		bool imaginary;

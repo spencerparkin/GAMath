@@ -17,7 +17,7 @@ Point::Point()
 	this->weight = 1.0;
 }
 
-Point::Point(const HappyMath::Vector3& center, double weight /*= 1.0*/)
+Point::Point(const E3GA::Vector& center, double weight /*= 1.0*/)
 {
 	this->center = center;
 	this->weight = weight;
@@ -36,10 +36,10 @@ Point::Point(const Point& point)
 void Point::ToVector(Vector& vector) const
 {
 	vector.no = this->weight;
-	vector.e1 = this->weight * this->center.x;
-	vector.e2 = this->weight * this->center.y;
-	vector.e3 = this->weight * this->center.z;
-	vector.ni = 0.5 * this->center.SquareLength();
+	vector.e1 = this->weight * this->center.e1;
+	vector.e2 = this->weight * this->center.e2;
+	vector.e3 = this->weight * this->center.e3;
+	vector.ni = 0.5 * this->center.SquareMagnitude();
 }
 
 bool Point::FromVector(const Vector& vector)
@@ -48,11 +48,11 @@ bool Point::FromVector(const Vector& vector)
 		return false;
 
 	this->weight = vector.no;
-	this->center.x = vector.e1 / this->weight;
-	this->center.y = vector.e2 / this->weight;
-	this->center.z = vector.e3 / this->weight;
+	this->center.e1 = vector.e1 / this->weight;
+	this->center.e2 = vector.e2 / this->weight;
+	this->center.e3 = vector.e3 / this->weight;
 
-	double alpha = this->center.SquareLength() - 2.0 * vector.ni / this->weight;
+	double alpha = this->center.SquareMagnitude() - 2.0 * vector.ni / this->weight;
 
 	return ::fabs(alpha) <= std::numeric_limits<double>::epsilon();
 }
@@ -64,7 +64,7 @@ FlatPoint::FlatPoint()
 	this->weight = 1.0;
 }
 
-FlatPoint::FlatPoint(const HappyMath::Vector3 center, double weight /*= 1.0*/)
+FlatPoint::FlatPoint(const E3GA::Vector& center, double weight /*= 1.0*/)
 {
 	this->weight = weight;
 	this->center = center;
@@ -84,9 +84,9 @@ void FlatPoint::ToTrivector(Trivector& trivector) const
 {
 	trivector.e1_e2_e3 = 1.0;
 	
-	trivector.e1_e2_ni = this->center.z;
-	trivector.e1_e3_ni = -this->center.y;
-	trivector.e2_e3_ni = this->center.x;
+	trivector.e2_e3_ni = this->center.e1;
+	trivector.e1_e3_ni = -this->center.e2;
+	trivector.e1_e2_ni = this->center.e3;
 
 	trivector.e1_e2_no = 0.0;
 	trivector.e1_e3_no = 0.0;
@@ -118,9 +118,9 @@ bool FlatPoint::FromTrivector(const Trivector& trivector)
 
 	this->weight = trivector.e1_e2_e3;
 
-	this->center.x = trivector.e2_e3_ni / this->weight;
-	this->center.y = -trivector.e1_e3_ni / this->weight;
-	this->center.z = trivector.e1_e2_ni / this->weight;
+	this->center.e1 = trivector.e2_e3_ni / this->weight;
+	this->center.e2 = -trivector.e1_e3_ni / this->weight;
+	this->center.e3 = trivector.e1_e2_ni / this->weight;
 
 	return true;
 }

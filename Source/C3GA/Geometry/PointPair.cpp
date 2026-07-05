@@ -8,7 +8,9 @@
 #include "C3GA/Bivector.h"
 #include "C3GA/Trivector.h"
 #include "C3GA/PsuedoScalar.h"
-#include "C3GA/Rotor.h"
+#include "E3GA/Scalar.h"
+#include "E3GA/Rotor.h"
+#include <math.h>
 
 using namespace C3GA;
 
@@ -17,11 +19,11 @@ PointPair::PointPair()
 	this->weight = 1.0;
 	this->radius = 1.0;
 	this->imaginary = false;
-	this->center.SetComponents(0.0, 0.0, 0.0);
-	this->normal.SetComponents(0.0, 0.0, 1.0);
+	this->center = E3GA::Vector(0.0, 0.0, 0.0);
+	this->normal = E3GA::Vector(0.0, 0.0, 1.0);
 }
 
-PointPair::PointPair(const HappyMath::Vector3& center, const HappyMath::Vector3& normal, double radius, double weight /*= 1.0*/)
+PointPair::PointPair(const E3GA::Vector& center, const E3GA::Vector& normal, double radius, double weight /*= 1.0*/)
 {
 	this->center = center;
 	this->normal = normal;
@@ -45,44 +47,41 @@ PointPair::PointPair(const PointPair& pointPair)
 
 bool PointPair::FromTrivector(const Trivector& trivector)
 {
-	this->normal.x = trivector.e2_e3_no;
-	this->normal.y = -trivector.e1_e3_no;
-	this->normal.z = trivector.e1_e2_no;
+	this->normal.e1 = trivector.e2_e3_no;
+	this->normal.e2 = -trivector.e1_e3_no;
+	this->normal.e3 = trivector.e1_e2_no;
 
-	this->weight = this->normal.Length();
+	this->weight = ::sqrt(this->normal.SquareMagnitude());
 
 	if (this->weight == 0.0)
 		return false;
 
-	this->normal /= this->weight;
+	this->normal.e1 /= this->weight;
+	this->normal.e2 /= this->weight;
+	this->normal.e3 /= this->weight;
 
-	Rotor r1;
+	E3GA::Rotor r1;
 
 	r1._1 = trivector.e1_e2_e3 / this->weight;
 	r1.e2_e3 = trivector.e1_no_ni / this->weight;
-	r1.e1_e3 = -trivector.e2_no_ni / this->weight;
+	r1.e3_e1 = trivector.e2_no_ni / this->weight;
 	r1.e1_e2 = trivector.e3_no_ni / this->weight;
 
-	Vector v1, v2;
+	this->center.InnerProduct(this->normal, r1);
 
-	v1.e1 = this->normal.x;
-	v1.e2 = this->normal.y;
-	v1.e3 = this->normal.z;
+	E3GA::Vector v;
 
-	v2.InnerProduct(v1, r1);
+	v.e1 = trivector.e2_e3_ni / this->weight;
+	v.e2 = -trivector.e1_e3_ni / this->weight;
+	v.e3 = trivector.e1_e2_ni / this->weight;
 
-	this->center.x = v2.e1;
-	this->center.y = v2.e2;
-	this->center.z = v2.e3;
+	E3GA::Scalar c_dot_n;
+	c_dot_n.InnerProduct(this->center, this->normal);
 
-	HappyMath::Vector3 v;
+	E3GA::Scalar n_dot_v;
+	n_dot_v.InnerProduct(this->normal, v);
 
-	v.x = trivector.e2_e3_ni / this->weight;
-	v.y = -trivector.e1_e3_ni / this->weight;
-	v.z = trivector.e1_e2_ni / this->weight;
-
-	double c_dot_n = this->center.Dot(this->normal);
-	double squareRadius = -this->center.SquareLength() + 2.0 * c_dot_n * c_dot_n - 2.0 * this->normal.Dot(v);
+	double squareRadius = -this->center.SquareMagnitude() + 2.0 * c_dot_n._1 * c_dot_n._1 - 2.0 * n_dot_v._1;
 	
 	this->imaginary = false;
 

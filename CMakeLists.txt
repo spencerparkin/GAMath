@@ -8,6 +8,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Bin)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(COMPILE_DEMO "Build demo along with core lib." ON)
+
 set(E2GA_SOURCES
 	Source/E2GA/Multivector.cpp
 	Source/E2GA/Multivector.h
@@ -93,11 +95,9 @@ set(GAMATH_SOURCES
 
 add_library(GAMath STATIC ${GAMATH_SOURCES})
 
-target_link_libraries(GAMath PUBLIC
-	HappyMath
-)
-
 target_include_directories(GAMath PUBLIC Source)
 
-add_subdirectory(Demo)
-add_subdirectory(ThirdParty/HappyMath)
+if(COMPILE_DEMO)
+	add_subdirectory(Demo)
+	add_subdirectory(ThirdParty/HappyMath)
+endif()

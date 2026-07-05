@@ -30,6 +30,7 @@ void GLCanvas::ClearScene()
 {
     this->objectArray.clear();
     this->constraintArray.clear();
+    this->selectedObjectArray.clear();
     this->update();
 }
 
