@@ -1076,3 +1076,24 @@ double Multivector::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1 * this->e1) + (this->e1_e2 * this->e1_e2) + (this->e2 * this->e2);
 }
+
+int Multivector::GetMatrixSize() const
+{
+	return 4;
+}
+
+void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::FromColumnMatrix(std::function<void(int, int, double&)> elementCallback)
+{
+	// STPTODO: Write this.
+}
+

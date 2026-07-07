@@ -11931,3 +11931,24 @@ double Multivector::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1 * this->e1) + (this->e1_e3 * this->e1_e3) + (-2)*this->e1_e3_ni*this->e1_e3_no + (-1)*(this->e1_e3_no_ni * this->e1_e3_no_ni) + (-2)*this->e1_ni*this->e1_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (this->e2 * this->e2) + (this->e2_e3 * this->e2_e3) + (-2)*this->e2_e3_ni*this->e2_e3_no + (this->e1_e2 * this->e1_e2) + (-1)*(this->e2_e3_no_ni * this->e2_e3_no_ni) + (-2)*this->e2_ni*this->e2_no + (-1)*(this->e2_no_ni * this->e2_no_ni) + (this->e3 * this->e3) + (-2)*this->e3_ni*this->e3_no + (-1)*(this->e3_no_ni * this->e3_no_ni) + (-2)*this->ni*this->no + (this->e1_e2_e3 * this->e1_e2_e3) + (-1)*(this->no_ni * this->no_ni) + (-2)*this->e1_e2_e3_ni*this->e1_e2_e3_no + (-1)*(this->e1_e2_e3_no_ni * this->e1_e2_e3_no_ni) + (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni);
 }
+
+int Multivector::GetMatrixSize() const
+{
+	return 32;
+}
+
+void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::FromColumnMatrix(std::function<void(int, int, double&)> elementCallback)
+{
+	// STPTODO: Write this.
+}
+

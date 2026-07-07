@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <functional>
+
 namespace C2GA
 {
 	class Scalar;
@@ -277,6 +279,11 @@ namespace C2GA
 		void Reverse(const Multivector& multivectorA);
 
 		double SquareMagnitude() const;
+
+		int GetMatrixSize() const;
+		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
+		void ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const;
+		void FromColumnMatrix(std::function<void(int, int, double&)> elementCallback);
 
 		double _1, e1, e2, no, ni, e1_e2, e1_no, e1_ni, e2_no, e2_ni, no_ni, e1_e2_no, e1_e2_ni, e1_no_ni, e2_no_ni, e1_e2_no_ni;
 	};

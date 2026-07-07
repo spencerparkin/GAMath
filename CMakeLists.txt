@@ -94,11 +94,17 @@ set(C3GA_SOURCES
 	Source/C3GA/Transformations/Transversion.h
 )
 
+set(MATRIX_ALGEBRA_SOURCES
+	Source/MatrixAlgebra/Matrix.cpp
+	Source/MatrixAlgebra/Matrix.h
+)
+
 set(GAMATH_SOURCES
 	${E2GA_SOURCES}
 	${E3GA_SOURCES}
 	${C2GA_SOURCES}
 	${C3GA_SOURCES}
+	${MATRIX_ALGEBRA_SOURCES}
 )
 
 add_library(GAMath STATIC ${GAMATH_SOURCES})

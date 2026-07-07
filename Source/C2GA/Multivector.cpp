@@ -5114,3 +5114,24 @@ double Multivector::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1 * this->e1) + (-2)*this->e2_ni*this->e2_no + (-1)*(this->e2_no_ni * this->e2_no_ni) + (-2)*this->ni*this->no + (-1)*(this->no_ni * this->no_ni) + (this->e1_e2 * this->e1_e2) + (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni) + (-2)*this->e1_ni*this->e1_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (this->e2 * this->e2);
 }
+
+int Multivector::GetMatrixSize() const
+{
+	return 16;
+}
+
+void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	// STPTODO: Write this.
+}
+
+void Multivector::FromColumnMatrix(std::function<void(int, int, double&)> elementCallback)
+{
+	// STPTODO: Write this.
+}
+

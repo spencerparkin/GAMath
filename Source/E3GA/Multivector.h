@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <functional>
+
 namespace E3GA
 {
 	class Scalar;
@@ -210,6 +212,11 @@ namespace E3GA
 		void Reverse(const Multivector& multivectorA);
 
 		double SquareMagnitude() const;
+
+		int GetMatrixSize() const;
+		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
+		void ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const;
+		void FromColumnMatrix(std::function<void(int, int, double&)> elementCallback);
 
 		double _1, e1, e2, e3, e1_e2, e2_e3, e3_e1, e1_e2_e3;
 	};
