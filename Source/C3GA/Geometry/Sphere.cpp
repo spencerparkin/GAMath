@@ -116,6 +116,30 @@ bool Sphere::FitToPointPairs(const PointPair& pointPairA, const PointPair& point
 	return this->FromVector(v);
 }
 
+bool Sphere::FitToPointPairAndPoints(const PointPair& pointPair, const Point& pointA, const Point& pointB)
+{
+	Trivector t;
+	Bivector b1, b2;
+	Vector v1, v2, v3;
+	Quadvector q;
+	PsuedoScalar I(1.0);
+
+	pointPair.ToTrivector(t);
+
+	b1.GeometricProduct(t, I);
+
+	pointA.ToVector(v1);
+	pointB.ToVector(v2);
+
+	b2.OuterProduct(v1, v2);
+
+	q.OuterProduct(b1, b2);
+
+	v3.GeometricProduct(q, I);
+
+	return this->FromVector(v3);
+}
+
 bool Sphere::FitToCircleAndPoint(const Circle& circleA, const Point& pointB)
 {
 	Trivector t;

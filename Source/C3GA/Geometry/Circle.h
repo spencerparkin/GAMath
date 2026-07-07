@@ -29,6 +29,8 @@ namespace C3GA
 		bool IntersectSpheres(const Sphere& sphereA, const Sphere& sphereB);
 		bool IntersectPlaneAndSphere(const Plane& planeA, const Sphere& sphereB);
 
+		bool Reinterpret(const PointPair& pointPair);
+
 		E3GA::Vector center;
 		E3GA::Vector normal;
 		double radius;

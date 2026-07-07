@@ -1,6 +1,7 @@
 #include "C3GA/Geometry/Line.h"
 #include "C3GA/Geometry/PointPair.h"
 #include "C3GA/Geometry/Plane.h"
+#include "C3GA/Geometry/Point.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Trivector.h"
@@ -113,6 +114,26 @@ bool Line::FitToPointPair(const PointPair& pointPair)
 	b.GeometricProduct(t, I);
 
 	return this->FromBivector(b);
+}
+
+bool Line::FitToPoints(const Point& pointA, const Point& pointB)
+{
+	Vector v1, v2, v3;
+	Bivector b1, b2;
+	Trivector t;
+	PsuedoScalar I(1.0);
+
+	pointA.ToVector(v1);
+	pointB.ToVector(v2);
+
+	v3.ni = 1.0;
+
+	b1.OuterProduct(v1, v2);
+	t.OuterProduct(b1, v3);
+
+	b2.GeometricProduct(t, I);
+
+	return this->FromBivector(b2);
 }
 
 bool Line::IntersectPlanes(const Plane& planeA, const Plane& planeB)

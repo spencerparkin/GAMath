@@ -155,6 +155,84 @@ public:
 /**
  * 
  */
+class FitPointPairToPointsConstraint : public Constraint
+{
+public:
+	FitPointPairToPointsConstraint();
+	virtual ~FitPointPairToPointsConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class FitSphereToPointPairAndPointsConstraints : public Constraint
+{
+public:
+	FitSphereToPointPairAndPointsConstraints();
+	virtual ~FitSphereToPointPairAndPointsConstraints();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class FitLineToPointsConstraint : public Constraint
+{
+public:
+	FitLineToPointsConstraint();
+	virtual ~FitLineToPointsConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class FitPlaneToPointsConstraint : public Constraint
+{
+public:
+	FitPlaneToPointsConstraint();
+	virtual ~FitPlaneToPointsConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class FitPlaneToCircleConstraint : public Constraint
+{
+public:
+	FitPlaneToCircleConstraint();
+	virtual ~FitPlaneToCircleConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class FitPlaneToPointPairAndPointConstraint : public Constraint
+{
+public:
+	FitPlaneToPointPairAndPointConstraint();
+	virtual ~FitPlaneToPointPairAndPointConstraint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
 class IntersectTwoSpheresToGetCircle : public Constraint
 {
 public:
@@ -264,6 +342,19 @@ class IntersectPlaneAndLineToGetFlatPoint : public Constraint
 public:
 	IntersectPlaneAndLineToGetFlatPoint();
 	virtual ~IntersectPlaneAndLineToGetFlatPoint();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ * 
+ */
+class ReinterpretPointPairAsCircle : public Constraint
+{
+public:
+	ReinterpretPointPairAsCircle();
+	virtual ~ReinterpretPointPairAsCircle();
 
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;

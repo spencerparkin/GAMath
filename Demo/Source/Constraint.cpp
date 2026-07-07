@@ -306,6 +306,191 @@ FitLineToPointPairConstraint::FitLineToPointPairConstraint()
 	return lineObject->line.FitToPointPair(pointPairObject->pointPair);
 }
 
+//------------------------------- FitPointPairToPointsConstraint -------------------------------
+
+FitPointPairToPointsConstraint::FitPointPairToPointsConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitPointPairToPointsConstraint::~FitPointPairToPointsConstraint()
+{
+}
+
+/*virtual*/ std::string FitPointPairToPointsConstraint::GetDesc() const
+{
+	return "Fit point-pair to two points.";
+}
+
+/*virtual*/ bool FitPointPairToPointsConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+
+	return pointPairObject->pointPair.FitToPoints(pointObjectA->point, pointObjectB->point);
+}
+
+//------------------------------- FitSphereToPointPairAndPointsConstraints -------------------------------
+
+FitSphereToPointPairAndPointsConstraints::FitSphereToPointPairAndPointsConstraints()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitSphereToPointPairAndPointsConstraints::~FitSphereToPointPairAndPointsConstraints()
+{
+}
+
+/*virtual*/ std::string FitSphereToPointPairAndPointsConstraints::GetDesc() const
+{
+	return "Fit sphere to a point-pair and two points.";
+}
+
+/*virtual*/ bool FitSphereToPointPairAndPointsConstraints::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+
+	return sphereObject->sphere.FitToPointPairAndPoints(pointPairObject->pointPair, pointObjectA->point, pointObjectB->point);
+}
+
+//------------------------------- FitLineToPointsConstraint -------------------------------
+
+FitLineToPointsConstraint::FitLineToPointsConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitLineToPointsConstraint::~FitLineToPointsConstraint()
+{
+}
+
+/*virtual*/ std::string FitLineToPointsConstraint::GetDesc() const
+{
+	return "Fit line to two points.";
+}
+
+/*virtual*/ bool FitLineToPointsConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	LineObject* lineObject = this->GetObject<LineObject>();
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+
+	return lineObject->line.FitToPoints(pointObjectA->point, pointObjectB->point);
+}
+
+//------------------------------- FitPlaneToPointsConstraint -------------------------------
+
+FitPlaneToPointsConstraint::FitPlaneToPointsConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitPlaneToPointsConstraint::~FitPlaneToPointsConstraint()
+{
+}
+
+/*virtual*/ std::string FitPlaneToPointsConstraint::GetDesc() const
+{
+	return "Fit plane to three points.";
+}
+
+/*virtual*/ bool FitPlaneToPointsConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PointObject* pointObjectA = this->GetObject<PointObject>(0);
+	PointObject* pointObjectB = this->GetObject<PointObject>(1);
+	PointObject* pointObjectC = this->GetObject<PointObject>(2);
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	
+	return planeObject->plane.FitToPoints(
+								pointObjectA->point,
+								pointObjectB->point,
+								pointObjectC->point);
+}
+
+//------------------------------- FitPlaneToCircleConstraint -------------------------------
+
+FitPlaneToCircleConstraint::FitPlaneToCircleConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+}
+
+/*virtual*/ FitPlaneToCircleConstraint::~FitPlaneToCircleConstraint()
+{
+}
+
+/*virtual*/ std::string FitPlaneToCircleConstraint::GetDesc() const
+{
+	return "Fit plane to circle.";
+}
+
+/*virtual*/ bool FitPlaneToCircleConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return planeObject->plane.FitPlaneToCircle(circleObject->circle);
+}
+
+//------------------------------- FitPlaneToPointPairAndPointConstraint -------------------------------
+
+FitPlaneToPointPairAndPointConstraint::FitPlaneToPointPairAndPointConstraint()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointObject>>());
+}
+
+/*virtual*/ FitPlaneToPointPairAndPointConstraint::~FitPlaneToPointPairAndPointConstraint()
+{
+}
+
+/*virtual*/ std::string FitPlaneToPointPairAndPointConstraint::GetDesc() const
+{
+	return "Fit plane to point-pair and point.";
+}
+
+/*virtual*/ bool FitPlaneToPointPairAndPointConstraint::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	PointObject* pointObject = this->GetObject<PointObject>();
+
+	return planeObject->plane.FitToPointPairAndPoint(pointPairObject->pointPair, pointObject->point);
+}
+
 //------------------------------- IntersectTwoSpheresToGetCircle -------------------------------
 
 IntersectTwoSpheresToGetCircle::IntersectTwoSpheresToGetCircle()
@@ -586,4 +771,32 @@ IntersectPlaneAndLineToGetFlatPoint::IntersectPlaneAndLineToGetFlatPoint()
 	FlatPointObject* flatPointObject = this->GetObject<FlatPointObject>();
 
 	return flatPointObject->point.IntersectPlaneAndLine(planeObject->plane, lineObject->line);
+}
+
+//------------------------------- ReinterpretPointPairAsCircle -------------------------------
+
+ReinterpretPointPairAsCircle::ReinterpretPointPairAsCircle()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PointPairObject>>());
+}
+
+/*virtual*/ ReinterpretPointPairAsCircle::~ReinterpretPointPairAsCircle()
+{
+}
+
+/*virtual*/ std::string ReinterpretPointPairAsCircle::GetDesc() const
+{
+	return "Reinterpret a point-pair as a circle.";
+}
+
+/*virtual*/ bool ReinterpretPointPairAsCircle::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PointPairObject* pointPairObject = this->GetObject<PointPairObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return circleObject->circle.Reinterpret(pointPairObject->pointPair);
 }

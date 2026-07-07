@@ -25,6 +25,7 @@ namespace C3GA
 
 		bool FitToPoints(const Point& pointA, const Point& pointB, const Point& pointC, const Point& pointD);
 		bool FitToPointPairs(const PointPair& pointPairA, const PointPair& pointPairB);
+		bool FitToPointPairAndPoints(const PointPair& pointPair, const Point& pointA, const Point& pointB);
 		bool FitToCircleAndPoint(const Circle& circleA, const Point& pointB);
 
 		E3GA::Vector center;

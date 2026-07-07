@@ -5,6 +5,7 @@
 namespace C3GA
 {
 	class Plane;
+	class Point;
 	class PointPair;
 	class Bivector;
 
@@ -20,6 +21,7 @@ namespace C3GA
 		void ToBivector(Bivector& bivector) const;
 
 		bool FitToPointPair(const PointPair& pointPair);
+		bool FitToPoints(const Point& pointA, const Point& pointB);
 		bool IntersectPlanes(const Plane& planeA, const Plane& planeB);
 
 		E3GA::Vector center;

@@ -334,7 +334,7 @@ void GLCanvas::OnContextMenu(const QPoint& position)
     static std::vector<std::shared_ptr<BaseClass<Constraint>>> constraintClassArray = {
         
         // Fitting point-pairs
-        // todo: fit point-pair to points
+        std::make_shared<DerivedClass<Constraint, FitPointPairToPointsConstraint>>(),
 
         // Fitting circles
         std::make_shared<DerivedClass<Constraint, FitCircleToPointsConstraint>>(),
@@ -345,20 +345,17 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         std::make_shared<DerivedClass<Constraint, FitSphereToPointsConstraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointAndCircleContraint>>(),
         std::make_shared<DerivedClass<Constraint, FitSphereToPointPairsConstraint>>(),
-        // todo: fit sphere to point pair and point
-
-        // Fitting flat-points
-        // todo: fit flat point to round point
+        std::make_shared<DerivedClass<Constraint, FitSphereToPointPairAndPointsConstraints>>(),
 
         // Fitting lines
         std::make_shared<DerivedClass<Constraint, FitLineToPointPairConstraint>>(),
-        // todo: fit line to points
+        std::make_shared<DerivedClass<Constraint, FitLineToPointsConstraint>>(),
         
         // Fitting planes
         std::make_shared<DerivedClass<Constraint, FitPlaneToLineAndPointConstraints>>(),
-        // todo: fit plane to points
-        // todo: fit plane to circle
-        // todo: fit plane to point-pair and point
+        std::make_shared<DerivedClass<Constraint, FitPlaneToPointsConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitPlaneToCircleConstraint>>(),
+        std::make_shared<DerivedClass<Constraint, FitPlaneToPointPairAndPointConstraint>>(),
 
         // Intersections rounds with rounds
         std::make_shared<DerivedClass<Constraint, IntersectTwoSpheresToGetCircle>>(),
@@ -373,7 +370,10 @@ void GLCanvas::OnContextMenu(const QPoint& position)
         // Intersecting flats with flats
         std::make_shared<DerivedClass<Constraint, IntersectThreePlanesToGetFlatPoint>>(),
         std::make_shared<DerivedClass<Constraint, IntersectTwoPlanesToGetLine>>(),
-        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndLineToGetFlatPoint>>()
+        std::make_shared<DerivedClass<Constraint, IntersectPlaneAndLineToGetFlatPoint>>(),
+
+        // Reinterpretations
+        std::make_shared<DerivedClass<Constraint, ReinterpretPointPairAsCircle>>()
     };
 
     HappyMath::Ray mouseRay = this->CalcMouseRay(position);

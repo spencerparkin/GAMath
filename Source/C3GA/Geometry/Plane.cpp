@@ -2,6 +2,7 @@
 #include "C3GA/Geometry/Line.h"
 #include "C3GA/Geometry/Point.h"
 #include "C3GA/Geometry/Circle.h"
+#include "C3GA/Geometry/PointPair.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Trivector.h"
@@ -91,6 +92,29 @@ bool Plane::FitToCircle(const Circle& circle)
 	return this->FromVector(v);
 }
 
+bool Plane::FitToPoints(const Point& pointA, const Point& pointB, const Point& pointC)
+{
+	Vector v1, v2, v3, v4, v5;
+	Bivector b1, b2;
+	Quadvector q;
+	PsuedoScalar I(1.0);
+
+	pointA.ToVector(v1);
+	pointB.ToVector(v2);
+	pointC.ToVector(v3);
+
+	v4.ni = 1.0;
+
+	b1.OuterProduct(v1, v2);
+	b2.OuterProduct(v3, v4);
+
+	q.OuterProduct(b1, b2);
+
+	v5.GeometricProduct(q, I);
+
+	return this->FromVector(v5);
+}
+
 bool Plane::FitPlaneToLineAndPoint(const Line& line, const Point& point)
 {
 	Vector v;
@@ -109,4 +133,50 @@ bool Plane::FitPlaneToLineAndPoint(const Line& line, const Point& point)
 	v.GeometricProduct(q, I);
 
 	return this->FromVector(v);
+}
+
+bool Plane::FitPlaneToCircle(const Circle& circle)
+{
+	Bivector b;
+	Trivector t;
+	Vector v1, v2;
+	Quadvector q;
+	PsuedoScalar I(1.0);
+
+	circle.ToBivector(b);
+
+	t.GeometricProduct(b, I);
+
+	v1.ni = 1.0;
+
+	q.OuterProduct(t, v1);
+
+	v2.GeometricProduct(q, I);
+
+	return this->FromVector(v2);
+}
+
+bool Plane::FitToPointPairAndPoint(const PointPair& pointPair, const Point& point)
+{
+	Trivector t1, t2;
+	Bivector b;
+	Vector v1, v2, v3;
+	Quadvector q;
+	PsuedoScalar I(1.0);
+
+	pointPair.ToTrivector(t1);
+
+	b.GeometricProduct(t1, I);
+
+	point.ToVector(v1);
+
+	t2.OuterProduct(b, v1);
+
+	v2.ni = 1.0;
+
+	q.OuterProduct(t2, v2);
+
+	v3.GeometricProduct(q, I);
+
+	return this->FromVector(v3);
 }
