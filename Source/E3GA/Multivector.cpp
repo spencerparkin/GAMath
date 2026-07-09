@@ -2289,16 +2289,93 @@ int Multivector::GetMatrixSize() const
 
 void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
 {
-	// STPTODO: Write this.
+	elementCallback(0, 0, this->_1);
+	elementCallback(0, 1, this->e1);
+	elementCallback(0, 2, (-1.0)*this->e1_e2);
+	elementCallback(0, 3, (-1.0)*this->e1_e2_e3);
+	elementCallback(0, 4, this->e2);
+	elementCallback(0, 5, (-1.0)*this->e2_e3);
+	elementCallback(0, 6, this->e3);
+	elementCallback(0, 7, (-1.0)*this->e3_e1);
+	elementCallback(1, 1, this->_1);
+	elementCallback(1, 0, this->e1);
+	elementCallback(1, 4, this->e1_e2);
+	elementCallback(1, 5, (-1.0)*this->e1_e2_e3);
+	elementCallback(1, 2, (-1.0)*this->e2);
+	elementCallback(1, 3, (-1.0)*this->e2_e3);
+	elementCallback(1, 7, this->e3);
+	elementCallback(1, 6, (-1.0)*this->e3_e1);
+	elementCallback(4, 4, this->_1);
+	elementCallback(4, 2, this->e1);
+	elementCallback(4, 1, (-1.0)*this->e1_e2);
+	elementCallback(4, 7, (-1.0)*this->e1_e2_e3);
+	elementCallback(4, 0, this->e2);
+	elementCallback(4, 6, this->e2_e3);
+	elementCallback(4, 5, (-1.0)*this->e3);
+	elementCallback(4, 3, (-1.0)*this->e3_e1);
+	elementCallback(6, 6, this->_1);
+	elementCallback(6, 7, (-1.0)*this->e1);
+	elementCallback(6, 3, (-1.0)*this->e1_e2);
+	elementCallback(6, 2, (-1.0)*this->e1_e2_e3);
+	elementCallback(6, 5, this->e2);
+	elementCallback(6, 4, (-1.0)*this->e2_e3);
+	elementCallback(6, 0, this->e3);
+	elementCallback(6, 1, this->e3_e1);
+	elementCallback(2, 2, this->_1);
+	elementCallback(2, 4, this->e1);
+	elementCallback(2, 0, this->e1_e2);
+	elementCallback(2, 6, this->e1_e2_e3);
+	elementCallback(2, 1, (-1.0)*this->e2);
+	elementCallback(2, 7, (-1.0)*this->e2_e3);
+	elementCallback(2, 3, this->e3);
+	elementCallback(2, 5, this->e3_e1);
+	elementCallback(7, 7, (-1.0)*this->_1);
+	elementCallback(7, 6, this->e1);
+	elementCallback(7, 5, this->e1_e2);
+	elementCallback(7, 4, (-1.0)*this->e1_e2_e3);
+	elementCallback(7, 3, (-1.0)*this->e2);
+	elementCallback(7, 2, (-1.0)*this->e2_e3);
+	elementCallback(7, 1, (-1.0)*this->e3);
+	elementCallback(7, 0, (-1.0)*this->e3_e1);
+	elementCallback(5, 5, this->_1);
+	elementCallback(5, 3, this->e1);
+	elementCallback(5, 7, this->e1_e2);
+	elementCallback(5, 1, this->e1_e2_e3);
+	elementCallback(5, 6, this->e2);
+	elementCallback(5, 0, this->e2_e3);
+	elementCallback(5, 4, (-1.0)*this->e3);
+	elementCallback(5, 2, (-1.0)*this->e3_e1);
+	elementCallback(3, 3, this->_1);
+	elementCallback(3, 5, this->e1);
+	elementCallback(3, 6, this->e1_e2);
+	elementCallback(3, 0, this->e1_e2_e3);
+	elementCallback(3, 7, this->e2);
+	elementCallback(3, 1, this->e2_e3);
+	elementCallback(3, 2, this->e3);
+	elementCallback(3, 4, this->e3_e1);
 }
 
-void Multivector::ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const
+void Multivector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
 {
-	// STPTODO: Write this.
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1);
+	elementCallback(2, this->e1_e2);
+	elementCallback(3, this->e1_e2_e3);
+	elementCallback(4, this->e2);
+	elementCallback(5, this->e2_e3);
+	elementCallback(6, this->e3);
+	elementCallback(7, this->e3_e1);
 }
 
-void Multivector::FromColumnMatrix(std::function<void(int, int, double&)> elementCallback)
+void Multivector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
 {
-	// STPTODO: Write this.
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1);
+	elementCallback(2, this->e1_e2);
+	elementCallback(3, this->e1_e2_e3);
+	elementCallback(4, this->e2);
+	elementCallback(5, this->e2_e3);
+	elementCallback(6, this->e3);
+	elementCallback(7, this->e3_e1);
 }
 

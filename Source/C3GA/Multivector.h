@@ -359,8 +359,8 @@ namespace C3GA
 
 		int GetMatrixSize() const;
 		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
-		void ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const;
-		void FromColumnMatrix(std::function<void(int, int, double&)> elementCallback);
+		void ToColumnMatrix(std::function<void(int, double)> elementCallback) const;
+		void FromColumnMatrix(std::function<void(int, double&)> elementCallback);
 
 		double _1, e1, e2, e3, no, ni, e1_e2, e1_e3, e1_no, e1_ni, e2_e3, e2_no, e2_ni, e3_no, e3_ni, no_ni, e1_e2_e3, e1_e2_no, e1_e2_ni, e1_e3_no, e1_e3_ni, e1_no_ni, e2_e3_no, e2_e3_ni, e2_no_ni, e3_no_ni, e1_e2_e3_no, e1_e2_e3_ni, e1_e2_no_ni, e1_e3_no_ni, e2_e3_no_ni, e1_e2_e3_no_ni;
 	};

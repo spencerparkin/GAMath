@@ -288,9 +288,9 @@ namespace MatrixAlgebra
 			return false;
 
 		// The first column of the inverted matrix is the one we want.
-		multivectorInverted.FromColumnMatrix([&matrixInverse](int row, int col, double& element) -> void
+		multivectorInverted.FromColumnMatrix([&matrixInverse](int row, double& element) -> void
 			{
-				matrixInverse.GetElement(row, col, element);
+				matrixInverse.GetElement(row, 0, element);
 			});
 
 		return true;

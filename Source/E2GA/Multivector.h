@@ -158,8 +158,8 @@ namespace E2GA
 
 		int GetMatrixSize() const;
 		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
-		void ToColumnMatrix(std::function<void(int, int, double)> elementCallback) const;
-		void FromColumnMatrix(std::function<void(int, int, double&)> elementCallback);
+		void ToColumnMatrix(std::function<void(int, double)> elementCallback) const;
+		void FromColumnMatrix(std::function<void(int, double&)> elementCallback);
 
 		double _1, e1, e2, e1_e2;
 	};
