@@ -256,10 +256,12 @@ bool Matrix::Invert(const Matrix& matrix)
 	this->SetAsCopyOf(matrix);
 
 	std::vector<std::shared_ptr<RowOperation>> rowOperationArray;
+	this->PerformFullRowReduction(rowOperationArray);
 
-	// STPTODO: Use something other than row-reduction since it's not numerically stable for large matrices.
-	if (!this->PerformFullRowReduction(rowOperationArray))
-		return false;
+	// Return false here if the square matrix was singular.
+	for (int i = 0; i < matrix.numRows; i++)
+		if (matrix.GetElement(i, i) == 0.0)		// STPTODO: Maybe use epsilon?
+			return false;
 
 	// We should already be the identity matrix at this point,
 	// but set the identity here anyway to reduce round-off error.
@@ -300,26 +302,49 @@ bool Matrix::GetDeterminant(double& determinant) const
 	return true;
 }
 
-bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>& rowOperationArray)
+void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>& rowOperationArray)
 {
-	if (this->numRows != this->numCols)
-		return false;
-
 #ifdef _DEBUG
 	std::string debugMatStr;
 #endif
 
-	for (int diag = 0; diag < this->numRows; diag++)
+	int pivotColumn = -1;
+
+	for (int pivotRow = 0; pivotRow < this->numRows; pivotRow++)
 	{
 #ifdef _DEBUG
 		debugMatStr = this->Print();
 #endif
 
-		int bestRow = -1;
-		double largestMag = -1.0;
-		for (int row = diag; row < this->numRows; row++)
+		// Find the pivot position.  We know that the pivot row is correct, but
+		// we must advance the pivot column until we find non-zero elements anywhere
+		// at or below it.  (Doesn't matter if non-zero elements occur above it.)
+		pivotColumn++;
+		bool foundNonZeroElement = false;
+		while (pivotColumn < this->numCols)
 		{
-			double elementMag = ::fabs(this->elementMatrix[row][diag]);
+			for (int row = pivotRow; row < this->numRows && !foundNonZeroElement; row++)
+				if (this->elementMatrix[row][pivotColumn] != 0.0)
+					foundNonZeroElement = true;
+
+			if (foundNonZeroElement)
+				break;
+
+			pivotColumn++;
+		}
+
+		// If we don't have a pivot position, then we're done.
+		if (!foundNonZeroElement)
+			break;
+
+		// We now look for an entry in the pivot column (and below the pivot point!) of
+		// largest absolute value, because this improves our numerical accuracy to have
+		// it serve in the pivot position.
+		int bestRow = pivotRow;
+		double largestMag = 0.0;
+		for (int row = pivotRow; row < this->numRows; row++)
+		{
+			double elementMag = ::fabs(this->elementMatrix[row][pivotColumn]);
 			if (elementMag > largestMag)
 			{
 				largestMag = elementMag;
@@ -327,13 +352,10 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			}
 		}
 
-		// Singular matrix.
-		if (largestMag == 0.0)
-			return false;
-
-		if (bestRow != diag)
+		// If the said element is not alraedy in the pivot position, get it there.
+		if (bestRow != pivotRow)
 		{
-			std::shared_ptr<SwapRowsOperation> rowOp = std::make_shared<SwapRowsOperation>(bestRow, diag);
+			std::shared_ptr<SwapRowsOperation> rowOp = std::make_shared<SwapRowsOperation>(bestRow, pivotRow);
 			rowOp->Perform(*this);
 			rowOperationArray.push_back(rowOp);
 		}
@@ -342,17 +364,18 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 		debugMatStr = this->Print();
 #endif
 
-		double diagElement = this->elementMatrix[diag][diag];
+		// We now want zeros above and below the pivot position.
+		double pivotPositionElement = this->elementMatrix[pivotRow][pivotColumn];
 		for (int row = 0; row < this->numRows; row++)
 		{
-			if (row == diag)
+			if (row == pivotRow)
 				continue;
 
-			if (this->elementMatrix[row][diag] == 0.0)
+			if (this->elementMatrix[row][pivotColumn] == 0.0)
 				continue;
 
-			double scalar = -this->elementMatrix[row][diag] / diagElement;
-			std::shared_ptr<AddRowMultipleOperation> rowOp = std::make_shared<AddRowMultipleOperation>(row, diag, scalar);
+			double scalar = -this->elementMatrix[row][pivotColumn] / pivotPositionElement;
+			std::shared_ptr<AddRowMultipleOperation> rowOp = std::make_shared<AddRowMultipleOperation>(row, pivotRow, scalar);
 			rowOp->Perform(*this);
 			rowOperationArray.push_back(rowOp);
 
@@ -360,22 +383,12 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			debugMatStr = this->Print();
 #endif
 		}
-	}
 
-	for (int diag = 0; diag < this->numRows; diag++)
-	{
-		double diagElement = this->elementMatrix[diag][diag];
-		double scalar = 1.0 / diagElement;
-		std::shared_ptr<ScaleRowOperation> rowOp = std::make_shared<ScaleRowOperation>(diag, scalar);
+		// Lastly, get a one in the pivot position.
+		std::shared_ptr<ScaleRowOperation> rowOp = std::make_shared<ScaleRowOperation>(pivotRow, 1.0 / pivotPositionElement);
 		rowOp->Perform(*this);
 		rowOperationArray.push_back(rowOp);
-
-#ifdef _DEBUG
-		debugMatStr = this->Print();
-#endif
 	}
-
-	return true;
 }
 
 bool Matrix::ApplyRowOperations(const std::vector<std::shared_ptr<RowOperation>>& rowOperationArray)

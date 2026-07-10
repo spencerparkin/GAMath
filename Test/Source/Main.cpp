@@ -20,6 +20,44 @@ bool ApproximatelyEqual(double valueA, double valueB, double eps = 1e-4)
 	return ::fabs(valueA - valueB) < eps;
 }
 
+void TestMatrix()
+{
+	using namespace MatrixAlgebra;
+
+	Matrix matrix(4, 5);
+
+	matrix.SetElement(0, 0, 0.0);
+	matrix.SetElement(0, 1, -3.0);
+	matrix.SetElement(0, 2, -6.0);
+	matrix.SetElement(0, 3, 4.0);
+	matrix.SetElement(0, 4, 9.0);
+
+	matrix.SetElement(1, 0, -1.0);
+	matrix.SetElement(1, 1, -2.0);
+	matrix.SetElement(1, 2, -1.0);
+	matrix.SetElement(1, 3, 3.0);
+	matrix.SetElement(1, 4, 1.0);
+
+	matrix.SetElement(2, 0, -2.0);
+	matrix.SetElement(2, 1, -3.0);
+	matrix.SetElement(2, 2, 0.0);
+	matrix.SetElement(2, 3, 3.0);
+	matrix.SetElement(2, 4, -1.0);
+
+	matrix.SetElement(3, 0, 1.0);
+	matrix.SetElement(3, 1, 4.0);
+	matrix.SetElement(3, 2, 5.0);
+	matrix.SetElement(3, 3, -9.0);
+	matrix.SetElement(3, 4, -7.0);
+
+	std::vector<std::shared_ptr<Matrix::RowOperation>> rowOperationArray;
+	matrix.PerformFullRowReduction(rowOperationArray);
+
+	std::string matrixStr = matrix.Print();
+
+	printf("%s\n", matrixStr.c_str());
+}
+
 void TestE2GA()
 {
 	using namespace E2GA;
@@ -279,6 +317,7 @@ int main(int argc, char** argv)
 
 	try
 	{
+		//TestMatrix();
 		TestE2GA();
 		TestE3GA();
 	}

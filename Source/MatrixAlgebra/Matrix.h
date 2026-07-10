@@ -176,12 +176,11 @@ namespace MatrixAlgebra
 		bool GetDeterminant(double& determinant) const;
 
 		/**
-		 * Fully reduce this matrix to the identity matrix.
+		 * Perform Gaussian elimination on this matrix.
 		 * 
 		 * @param[out] rowOperationArray The row operations performed in the reduction process are returned here.
-		 * @return False returned here indicates that the matrix is non-square or non-singular.
 		 */
-		bool PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>& rowOperationArray);
+		void PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>& rowOperationArray);
 
 		/**
 		 * Apply the given set of row operation, in order, to this matrix.
@@ -284,17 +283,6 @@ namespace MatrixAlgebra
 		if (numRows < numCols)
 			return false;
 
-		// STPTODO: We possible need to take the entire matrix, and then only remove
-		//          rows that we know are a linear combination of the other rows.
-
-		// In this case we have an overdetermined system.  I'm going to try throwing
-		// out the the linear equations on the backend.  The first equation is important,
-		// because it's the only one equal to one.  The rest are set to zero.
-		if (numRows > numCols)
-		{
-			numRows = numCols;
-		}
-
 		Matrix matrix;
 		matrix.SetSize(numRows, numCols);
 
@@ -303,15 +291,20 @@ namespace MatrixAlgebra
 				matrix.SetElement(row, col, element);
 			});
 
-		Matrix matrixInverse;
-		if (!matrixInverse.Invert(matrix))
-			return false;
+		std::vector<std::shared_ptr<Matrix::RowOperation>> rowOperationArray;
+		matrix.PerformFullRowReduction(rowOperationArray);
+
+		Matrix solutionMatrix(numRows, 1);
+		for (int i = 0; i < numRows; i++)
+			solutionMatrix.SetElement(i, 0, ((i == 0) ? 1.0 : 0.0));
+
+		solutionMatrix.ApplyRowOperations(rowOperationArray);
 
 		// The first column of the inverted matrix is the one we want.
 		// Interestingly, the other columns have geometric significance, but we're throwing that information away.
-		gaElementInverted.FromColumnMatrix([&matrixInverse](int row, double& element) -> void
+		gaElementInverted.FromColumnMatrix([&solutionMatrix](int row, double& element) -> void
 			{
-				matrixInverse.GetElement(row, 0, element);
+				solutionMatrix.GetElement(row, 0, element);
 			});
 
 		return true;
