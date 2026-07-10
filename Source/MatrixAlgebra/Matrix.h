@@ -291,8 +291,14 @@ namespace MatrixAlgebra
 				matrix.SetElement(row, col, element);
 			});
 
+		// The sequence of row operations returned here is effective a left-inverse of the possibly non-square matrix.
 		std::vector<std::shared_ptr<Matrix::RowOperation>> rowOperationArray;
 		matrix.PerformFullRowReduction(rowOperationArray);
+
+		// Check for no inverse.
+		for (int i = 0; i < numCols; i++)
+			if (matrix.GetElement(i, i) == 0.0)		// STPTODO: Use epsilon here?
+				return false;
 
 		Matrix solutionMatrix(numRows, 1);
 		for (int i = 0; i < numRows; i++)
@@ -300,8 +306,6 @@ namespace MatrixAlgebra
 
 		solutionMatrix.ApplyRowOperations(rowOperationArray);
 
-		// The first column of the inverted matrix is the one we want.
-		// Interestingly, the other columns have geometric significance, but we're throwing that information away.
 		gaElementInverted.FromColumnMatrix([&solutionMatrix](int row, double& element) -> void
 			{
 				solutionMatrix.GetElement(row, 0, element);
