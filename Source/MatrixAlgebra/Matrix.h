@@ -284,6 +284,9 @@ namespace MatrixAlgebra
 		if (numRows < numCols)
 			return false;
 
+		// STPTODO: We possible need to take the entire matrix, and then only remove
+		//          rows that we know are a linear combination of the other rows.
+
 		// In this case we have an overdetermined system.  I'm going to try throwing
 		// out the the linear equations on the backend.  The first equation is important,
 		// because it's the only one equal to one.  The rest are set to zero.
