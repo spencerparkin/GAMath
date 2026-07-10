@@ -352,7 +352,7 @@ void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			}
 		}
 
-		// If the said element is not alraedy in the pivot position, get it there.
+		// If the said element is not already in the pivot position, get it there.
 		if (bestRow != pivotRow)
 		{
 			std::shared_ptr<SwapRowsOperation> rowOp = std::make_shared<SwapRowsOperation>(bestRow, pivotRow);
@@ -384,10 +384,13 @@ void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 #endif
 		}
 
-		// Lastly, get a one in the pivot position.
-		std::shared_ptr<ScaleRowOperation> rowOp = std::make_shared<ScaleRowOperation>(pivotRow, 1.0 / pivotPositionElement);
-		rowOp->Perform(*this);
-		rowOperationArray.push_back(rowOp);
+		// Lastly, make sure we have a one in the pivot position.
+		if (pivotPositionElement != 1.0)
+		{
+			std::shared_ptr<ScaleRowOperation> rowOp = std::make_shared<ScaleRowOperation>(pivotRow, 1.0 / pivotPositionElement);
+			rowOp->Perform(*this);
+			rowOperationArray.push_back(rowOp);
+		}
 	}
 }
 
