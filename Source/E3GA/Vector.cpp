@@ -153,3 +153,36 @@ double Vector::SquareMagnitude() const
 {
 	return (this->e1 * this->e1) + (this->e2 * this->e2) + (this->e3 * this->e3);
 }
+
+int Vector::GetMatrixSize() const
+{
+	return 4;
+}
+
+void Vector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->e1);
+	elementCallback(0, 1, this->e2);
+	elementCallback(0, 2, this->e3);
+	elementCallback(1, 1, this->e1);
+	elementCallback(1, 0, (-1.0)*this->e2);
+	elementCallback(2, 2, this->e1);
+	elementCallback(2, 0, (-1.0)*this->e3);
+	elementCallback(3, 2, this->e2);
+	elementCallback(3, 1, (-1.0)*this->e3);
+}
+
+void Vector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1);
+	elementCallback(1, this->e2);
+	elementCallback(2, this->e3);
+}
+
+void Vector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1);
+	elementCallback(1, this->e2);
+	elementCallback(2, this->e3);
+}
+

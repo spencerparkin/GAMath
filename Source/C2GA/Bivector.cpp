@@ -204,3 +204,69 @@ double Bivector::SquareMagnitude() const
 {
 	return (this->e1_e2 * this->e1_e2) + (-2)*this->e1_ni*this->e1_no + (-2)*this->e2_ni*this->e2_no + (-1)*(this->no_ni * this->no_ni);
 }
+
+int Bivector::GetMatrixSize() const
+{
+	return 8;
+}
+
+void Bivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, (-1.0)*this->e1_e2);
+	elementCallback(0, 2, this->e1_ni);
+	elementCallback(0, 1, this->e1_no);
+	elementCallback(0, 4, this->e2_ni);
+	elementCallback(0, 3, this->e2_no);
+	elementCallback(0, 5, this->no_ni);
+	elementCallback(1, 4, this->e1_ni);
+	elementCallback(1, 3, this->e1_no);
+	elementCallback(1, 2, (-1.0)*this->e2_ni);
+	elementCallback(1, 1, (-1.0)*this->e2_no);
+	elementCallback(2, 3, this->e1_e2);
+	elementCallback(2, 5, (-1.0)*this->e1_ni);
+	elementCallback(2, 0, (-1.0)*this->e2_ni);
+	elementCallback(2, 1, this->no_ni);
+	elementCallback(3, 4, this->e1_e2);
+	elementCallback(3, 5, this->e1_no);
+	elementCallback(3, 0, (-1.0)*this->e2_no);
+	elementCallback(3, 2, (-1.0)*this->no_ni);
+	elementCallback(4, 1, (-1.0)*this->e1_e2);
+	elementCallback(4, 0, this->e1_ni);
+	elementCallback(4, 5, (-1.0)*this->e2_ni);
+	elementCallback(4, 3, this->no_ni);
+	elementCallback(5, 2, (-1.0)*this->e1_e2);
+	elementCallback(5, 0, this->e1_no);
+	elementCallback(5, 5, this->e2_no);
+	elementCallback(5, 4, (-1.0)*this->no_ni);
+	elementCallback(6, 2, (-1.0)*this->e1_ni);
+	elementCallback(6, 1, this->e1_no);
+	elementCallback(6, 4, (-1.0)*this->e2_ni);
+	elementCallback(6, 3, this->e2_no);
+	elementCallback(7, 5, (-1.0)*this->e1_e2);
+	elementCallback(7, 4, (-1.0)*this->e1_ni);
+	elementCallback(7, 3, this->e1_no);
+	elementCallback(7, 2, this->e2_ni);
+	elementCallback(7, 1, (-1.0)*this->e2_no);
+	elementCallback(7, 0, (-1.0)*this->no_ni);
+}
+
+void Bivector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1_e2);
+	elementCallback(1, this->e1_ni);
+	elementCallback(2, this->e1_no);
+	elementCallback(3, this->e2_ni);
+	elementCallback(4, this->e2_no);
+	elementCallback(5, this->no_ni);
+}
+
+void Bivector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1_e2);
+	elementCallback(1, this->e1_ni);
+	elementCallback(2, this->e1_no);
+	elementCallback(3, this->e2_ni);
+	elementCallback(4, this->e2_no);
+	elementCallback(5, this->no_ni);
+}
+

@@ -103,3 +103,24 @@ double PsuedoScalar::SquareMagnitude() const
 {
 	return (this->e1_e2_e3 * this->e1_e2_e3);
 }
+
+int PsuedoScalar::GetMatrixSize() const
+{
+	return 1;
+}
+
+void PsuedoScalar::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, (-1.0)*this->e1_e2_e3);
+}
+
+void PsuedoScalar::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1_e2_e3);
+}
+
+void PsuedoScalar::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1_e2_e3);
+}
+

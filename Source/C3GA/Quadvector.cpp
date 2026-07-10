@@ -204,3 +204,56 @@ double Quadvector::SquareMagnitude() const
 {
 	return (-2)*this->e1_e2_e3_ni*this->e1_e2_e3_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni) + (-1)*(this->e1_e3_no_ni * this->e1_e3_no_ni) + (-1)*(this->e2_e3_no_ni * this->e2_e3_no_ni);
 }
+
+int Quadvector::GetMatrixSize() const
+{
+	return 11;
+}
+
+void Quadvector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 1, (-1.0)*this->e1_e2_e3_ni);
+	elementCallback(0, 0, (-1.0)*this->e1_e2_e3_no);
+	elementCallback(0, 2, (-1.0)*this->e1_e2_no_ni);
+	elementCallback(0, 3, (-1.0)*this->e1_e3_no_ni);
+	elementCallback(0, 4, (-1.0)*this->e2_e3_no_ni);
+	elementCallback(1, 4, (-1.0)*this->e1_e3_no_ni);
+	elementCallback(1, 3, this->e2_e3_no_ni);
+	elementCallback(2, 4, this->e1_e2_no_ni);
+	elementCallback(2, 2, (-1.0)*this->e2_e3_no_ni);
+	elementCallback(3, 4, this->e1_e2_e3_ni);
+	elementCallback(3, 0, (-1.0)*this->e2_e3_no_ni);
+	elementCallback(4, 4, (-1.0)*this->e1_e2_e3_no);
+	elementCallback(4, 1, this->e2_e3_no_ni);
+	elementCallback(5, 3, (-1.0)*this->e1_e2_no_ni);
+	elementCallback(5, 2, this->e1_e3_no_ni);
+	elementCallback(6, 3, (-1.0)*this->e1_e2_e3_ni);
+	elementCallback(6, 0, this->e1_e3_no_ni);
+	elementCallback(7, 3, this->e1_e2_e3_no);
+	elementCallback(7, 1, (-1.0)*this->e1_e3_no_ni);
+	elementCallback(8, 2, this->e1_e2_e3_ni);
+	elementCallback(8, 0, (-1.0)*this->e1_e2_no_ni);
+	elementCallback(9, 2, (-1.0)*this->e1_e2_e3_no);
+	elementCallback(9, 1, this->e1_e2_no_ni);
+	elementCallback(10, 1, this->e1_e2_e3_ni);
+	elementCallback(10, 0, (-1.0)*this->e1_e2_e3_no);
+}
+
+void Quadvector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1_e2_e3_ni);
+	elementCallback(1, this->e1_e2_e3_no);
+	elementCallback(2, this->e1_e2_no_ni);
+	elementCallback(3, this->e1_e3_no_ni);
+	elementCallback(4, this->e2_e3_no_ni);
+}
+
+void Quadvector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1_e2_e3_ni);
+	elementCallback(1, this->e1_e2_e3_no);
+	elementCallback(2, this->e1_e2_no_ni);
+	elementCallback(3, this->e1_e3_no_ni);
+	elementCallback(4, this->e2_e3_no_ni);
+}
+

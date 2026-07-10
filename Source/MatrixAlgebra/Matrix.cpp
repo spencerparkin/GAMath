@@ -1,4 +1,5 @@
 #include "MatrixAlgebra/Matrix.h"
+#include <format>
 
 using namespace MatrixAlgebra;
 
@@ -252,13 +253,11 @@ bool Matrix::Invert(const Matrix& matrix)
 	if (matrix.numRows != matrix.numCols)
 		return false;
 
-	if (!this->HasSameDimensionsAs(matrix))
-		return false;
-
 	this->SetAsCopyOf(matrix);
 
 	std::vector<std::shared_ptr<RowOperation>> rowOperationArray;
 
+	// STPTODO: Use something other than row-reduction since it's not numerically stable for large matrices.
 	if (!this->PerformFullRowReduction(rowOperationArray))
 		return false;
 
@@ -306,8 +305,16 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 	if (this->numRows != this->numCols)
 		return false;
 
+#ifdef _DEBUG
+	std::string debugMatStr;
+#endif
+
 	for (int diag = 0; diag < this->numRows; diag++)
 	{
+#ifdef _DEBUG
+		debugMatStr = this->Print();
+#endif
+
 		int bestRow = -1;
 		double largestMag = -1.0;
 		for (int row = diag; row < this->numRows; row++)
@@ -331,6 +338,10 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			rowOperationArray.push_back(rowOp);
 		}
 
+#ifdef _DEBUG
+		debugMatStr = this->Print();
+#endif
+
 		double diagElement = this->elementMatrix[diag][diag];
 		for (int row = 0; row < this->numRows; row++)
 		{
@@ -344,6 +355,10 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			std::shared_ptr<AddRowMultipleOperation> rowOp = std::make_shared<AddRowMultipleOperation>(row, diag, scalar);
 			rowOp->Perform(*this);
 			rowOperationArray.push_back(rowOp);
+
+#ifdef _DEBUG
+			debugMatStr = this->Print();
+#endif
 		}
 	}
 
@@ -354,6 +369,10 @@ bool Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 		std::shared_ptr<ScaleRowOperation> rowOp = std::make_shared<ScaleRowOperation>(diag, scalar);
 		rowOp->Perform(*this);
 		rowOperationArray.push_back(rowOp);
+
+#ifdef _DEBUG
+		debugMatStr = this->Print();
+#endif
 	}
 
 	return true;
@@ -366,6 +385,23 @@ bool Matrix::ApplyRowOperations(const std::vector<std::shared_ptr<RowOperation>>
 			return false;
 
 	return true;
+}
+
+std::string Matrix::Print() const
+{
+	std::string matStr;
+
+	for (int row = 0; row < this->numRows; row++)
+	{
+		for (int col = 0; col < this->numCols; col++)
+		{
+			matStr += std::format("{:.2f} ", this->elementMatrix[row][col]);
+		}
+
+		matStr += "\n";
+	}
+
+	return matStr;
 }
 
 //------------------------------ Matrix::RowOperation ------------------------------

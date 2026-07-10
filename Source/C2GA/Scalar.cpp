@@ -134,3 +134,24 @@ double Scalar::SquareMagnitude() const
 {
 	return (this->_1 * this->_1);
 }
+
+int Scalar::GetMatrixSize() const
+{
+	return 1;
+}
+
+void Scalar::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->_1);
+}
+
+void Scalar::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->_1);
+}
+
+void Scalar::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->_1);
+}
+

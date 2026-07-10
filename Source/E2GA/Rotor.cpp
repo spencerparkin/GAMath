@@ -360,3 +360,29 @@ double Rotor::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1_e2 * this->e1_e2);
 }
+
+int Rotor::GetMatrixSize() const
+{
+	return 2;
+}
+
+void Rotor::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->_1);
+	elementCallback(0, 1, (-1.0)*this->e1_e2);
+	elementCallback(1, 1, this->_1);
+	elementCallback(1, 0, this->e1_e2);
+}
+
+void Rotor::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+}
+
+void Rotor::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+}
+

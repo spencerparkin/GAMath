@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <functional>
+
 namespace E2GA
 {
 	class Scalar;
@@ -78,6 +80,12 @@ namespace E2GA
 		void Reverse(const Rotor& rotorA);
 
 		double SquareMagnitude() const;
+
+		int GetMatrixSize() const;
+
+		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
+		void ToColumnMatrix(std::function<void(int, double)> elementCallback) const;
+		void FromColumnMatrix(std::function<void(int, double&)> elementCallback);
 
 		double _1, e1_e2;
 	};

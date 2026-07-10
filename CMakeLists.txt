@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(COMPILE_DEMO "Build demo along with core lib." ON)
+option(COMPILE_TEST "Build test application that exercises the lib." ON)
 
 set(E2GA_SOURCES
 	Source/E2GA/Multivector.cpp
@@ -114,4 +115,8 @@ target_include_directories(GAMath PUBLIC Source)
 if(COMPILE_DEMO)
 	add_subdirectory(Demo)
 	add_subdirectory(ThirdParty/HappyMath)
+endif()
+
+if(COMPILE_TEST)
+	add_subdirectory(Test)
 endif()

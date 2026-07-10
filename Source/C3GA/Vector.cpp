@@ -231,3 +231,56 @@ double Vector::SquareMagnitude() const
 {
 	return (this->e1 * this->e1) + (this->e2 * this->e2) + (this->e3 * this->e3) + (-2)*this->ni*this->no;
 }
+
+int Vector::GetMatrixSize() const
+{
+	return 11;
+}
+
+void Vector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->e1);
+	elementCallback(0, 1, this->e2);
+	elementCallback(0, 2, this->e3);
+	elementCallback(0, 4, (-1.0)*this->ni);
+	elementCallback(0, 3, (-1.0)*this->no);
+	elementCallback(1, 1, this->e1);
+	elementCallback(1, 0, (-1.0)*this->e2);
+	elementCallback(2, 2, this->e1);
+	elementCallback(2, 0, (-1.0)*this->e3);
+	elementCallback(3, 3, this->e1);
+	elementCallback(3, 0, (-1.0)*this->ni);
+	elementCallback(4, 4, this->e1);
+	elementCallback(4, 0, (-1.0)*this->no);
+	elementCallback(5, 2, this->e2);
+	elementCallback(5, 1, (-1.0)*this->e3);
+	elementCallback(6, 3, this->e2);
+	elementCallback(6, 1, (-1.0)*this->ni);
+	elementCallback(7, 4, this->e2);
+	elementCallback(7, 1, (-1.0)*this->no);
+	elementCallback(8, 3, this->e3);
+	elementCallback(8, 2, (-1.0)*this->ni);
+	elementCallback(9, 4, this->e3);
+	elementCallback(9, 2, (-1.0)*this->no);
+	elementCallback(10, 4, this->ni);
+	elementCallback(10, 3, (-1.0)*this->no);
+}
+
+void Vector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1);
+	elementCallback(1, this->e2);
+	elementCallback(2, this->e3);
+	elementCallback(3, this->ni);
+	elementCallback(4, this->no);
+}
+
+void Vector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1);
+	elementCallback(1, this->e2);
+	elementCallback(2, this->e3);
+	elementCallback(3, this->ni);
+	elementCallback(4, this->no);
+}
+

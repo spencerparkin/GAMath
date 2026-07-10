@@ -1125,3 +1125,164 @@ double Rotor::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1_e2 * this->e1_e2) + (-1)*(this->no_ni * this->no_ni) + (this->e1_e3 * this->e1_e3) + (-2)*this->e1_ni*this->e1_no + (this->e2_e3 * this->e2_e3) + (-2)*this->e2_ni*this->e2_no + (-2)*this->e3_ni*this->e3_no;
 }
+
+int Rotor::GetMatrixSize() const
+{
+	return 16;
+}
+
+void Rotor::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->_1);
+	elementCallback(0, 10, this->no_ni);
+	elementCallback(0, 1, (-1.0)*this->e1_e2);
+	elementCallback(0, 2, (-1.0)*this->e1_e3);
+	elementCallback(0, 4, this->e1_ni);
+	elementCallback(0, 3, this->e1_no);
+	elementCallback(0, 5, (-1.0)*this->e2_e3);
+	elementCallback(0, 7, this->e2_ni);
+	elementCallback(0, 6, this->e2_no);
+	elementCallback(0, 9, this->e3_ni);
+	elementCallback(0, 8, this->e3_no);
+	elementCallback(1, 1, this->_1);
+	elementCallback(1, 0, this->e1_e2);
+	elementCallback(1, 5, (-1.0)*this->e1_e3);
+	elementCallback(1, 7, this->e1_ni);
+	elementCallback(1, 6, this->e1_no);
+	elementCallback(1, 2, this->e2_e3);
+	elementCallback(1, 4, (-1.0)*this->e2_ni);
+	elementCallback(1, 3, (-1.0)*this->e2_no);
+	elementCallback(2, 2, this->_1);
+	elementCallback(2, 5, this->e1_e2);
+	elementCallback(2, 0, this->e1_e3);
+	elementCallback(2, 9, this->e1_ni);
+	elementCallback(2, 8, this->e1_no);
+	elementCallback(2, 1, (-1.0)*this->e2_e3);
+	elementCallback(2, 4, (-1.0)*this->e3_ni);
+	elementCallback(2, 3, (-1.0)*this->e3_no);
+	elementCallback(3, 3, this->_1);
+	elementCallback(3, 3, this->no_ni);
+	elementCallback(3, 6, this->e1_e2);
+	elementCallback(3, 8, this->e1_e3);
+	elementCallback(3, 0, this->e1_ni);
+	elementCallback(3, 10, (-1.0)*this->e1_ni);
+	elementCallback(3, 1, (-1.0)*this->e2_ni);
+	elementCallback(3, 2, (-1.0)*this->e3_ni);
+	elementCallback(4, 4, this->_1);
+	elementCallback(4, 4, (-1.0)*this->no_ni);
+	elementCallback(4, 7, this->e1_e2);
+	elementCallback(4, 9, this->e1_e3);
+	elementCallback(4, 0, this->e1_no);
+	elementCallback(4, 10, this->e1_no);
+	elementCallback(4, 1, (-1.0)*this->e2_no);
+	elementCallback(4, 2, (-1.0)*this->e3_no);
+	elementCallback(5, 5, this->_1);
+	elementCallback(5, 2, (-1.0)*this->e1_e2);
+	elementCallback(5, 1, this->e1_e3);
+	elementCallback(5, 0, this->e2_e3);
+	elementCallback(5, 9, this->e2_ni);
+	elementCallback(5, 8, this->e2_no);
+	elementCallback(5, 7, (-1.0)*this->e3_ni);
+	elementCallback(5, 6, (-1.0)*this->e3_no);
+	elementCallback(6, 6, this->_1);
+	elementCallback(6, 6, this->no_ni);
+	elementCallback(6, 3, (-1.0)*this->e1_e2);
+	elementCallback(6, 1, this->e1_ni);
+	elementCallback(6, 8, this->e2_e3);
+	elementCallback(6, 0, this->e2_ni);
+	elementCallback(6, 10, (-1.0)*this->e2_ni);
+	elementCallback(6, 5, (-1.0)*this->e3_ni);
+	elementCallback(7, 7, this->_1);
+	elementCallback(7, 7, (-1.0)*this->no_ni);
+	elementCallback(7, 4, (-1.0)*this->e1_e2);
+	elementCallback(7, 1, this->e1_no);
+	elementCallback(7, 9, this->e2_e3);
+	elementCallback(7, 0, this->e2_no);
+	elementCallback(7, 10, this->e2_no);
+	elementCallback(7, 5, (-1.0)*this->e3_no);
+	elementCallback(8, 8, this->_1);
+	elementCallback(8, 8, this->no_ni);
+	elementCallback(8, 3, (-1.0)*this->e1_e3);
+	elementCallback(8, 2, this->e1_ni);
+	elementCallback(8, 6, (-1.0)*this->e2_e3);
+	elementCallback(8, 5, this->e2_ni);
+	elementCallback(8, 0, this->e3_ni);
+	elementCallback(8, 10, (-1.0)*this->e3_ni);
+	elementCallback(9, 9, this->_1);
+	elementCallback(9, 9, (-1.0)*this->no_ni);
+	elementCallback(9, 4, (-1.0)*this->e1_e3);
+	elementCallback(9, 2, this->e1_no);
+	elementCallback(9, 7, (-1.0)*this->e2_e3);
+	elementCallback(9, 5, this->e2_no);
+	elementCallback(9, 0, this->e3_no);
+	elementCallback(9, 10, this->e3_no);
+	elementCallback(10, 10, (-1.0)*this->_1);
+	elementCallback(10, 0, (-1.0)*this->no_ni);
+	elementCallback(10, 4, (-1.0)*this->e1_ni);
+	elementCallback(10, 3, this->e1_no);
+	elementCallback(10, 7, (-1.0)*this->e2_ni);
+	elementCallback(10, 6, this->e2_no);
+	elementCallback(10, 9, (-1.0)*this->e3_ni);
+	elementCallback(10, 8, this->e3_no);
+	elementCallback(11, 8, this->e1_e2);
+	elementCallback(11, 6, (-1.0)*this->e1_e3);
+	elementCallback(11, 5, this->e1_ni);
+	elementCallback(11, 3, this->e2_e3);
+	elementCallback(11, 2, (-1.0)*this->e2_ni);
+	elementCallback(11, 1, this->e3_ni);
+	elementCallback(12, 9, this->e1_e2);
+	elementCallback(12, 7, (-1.0)*this->e1_e3);
+	elementCallback(12, 5, this->e1_no);
+	elementCallback(12, 4, this->e2_e3);
+	elementCallback(12, 2, (-1.0)*this->e2_no);
+	elementCallback(12, 1, this->e3_no);
+	elementCallback(13, 1, (-1.0)*this->no_ni);
+	elementCallback(13, 10, (-1.0)*this->e1_e2);
+	elementCallback(13, 7, (-1.0)*this->e1_ni);
+	elementCallback(13, 6, this->e1_no);
+	elementCallback(13, 4, this->e2_ni);
+	elementCallback(13, 3, (-1.0)*this->e2_no);
+	elementCallback(14, 2, (-1.0)*this->no_ni);
+	elementCallback(14, 10, (-1.0)*this->e1_e3);
+	elementCallback(14, 9, (-1.0)*this->e1_ni);
+	elementCallback(14, 8, this->e1_no);
+	elementCallback(14, 4, this->e3_ni);
+	elementCallback(14, 3, (-1.0)*this->e3_no);
+	elementCallback(15, 5, (-1.0)*this->no_ni);
+	elementCallback(15, 10, (-1.0)*this->e2_e3);
+	elementCallback(15, 9, (-1.0)*this->e2_ni);
+	elementCallback(15, 8, this->e2_no);
+	elementCallback(15, 7, this->e3_ni);
+	elementCallback(15, 6, (-1.0)*this->e3_no);
+}
+
+void Rotor::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+	elementCallback(2, this->e1_e3);
+	elementCallback(3, this->e1_ni);
+	elementCallback(4, this->e1_no);
+	elementCallback(5, this->e2_e3);
+	elementCallback(6, this->e2_ni);
+	elementCallback(7, this->e2_no);
+	elementCallback(8, this->e3_ni);
+	elementCallback(9, this->e3_no);
+	elementCallback(10, this->no_ni);
+}
+
+void Rotor::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+	elementCallback(2, this->e1_e3);
+	elementCallback(3, this->e1_ni);
+	elementCallback(4, this->e1_no);
+	elementCallback(5, this->e2_e3);
+	elementCallback(6, this->e2_ni);
+	elementCallback(7, this->e2_no);
+	elementCallback(8, this->e3_ni);
+	elementCallback(9, this->e3_no);
+	elementCallback(10, this->no_ni);
+}
+

@@ -174,3 +174,45 @@ double Trivector::SquareMagnitude() const
 {
 	return (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (-1)*(this->e2_no_ni * this->e2_no_ni);
 }
+
+int Trivector::GetMatrixSize() const
+{
+	return 7;
+}
+
+void Trivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 1, this->e1_e2_ni);
+	elementCallback(0, 0, this->e1_e2_no);
+	elementCallback(0, 2, this->e1_no_ni);
+	elementCallback(0, 3, this->e2_no_ni);
+	elementCallback(1, 3, this->e1_no_ni);
+	elementCallback(1, 2, (-1.0)*this->e2_no_ni);
+	elementCallback(2, 3, this->e1_e2_ni);
+	elementCallback(2, 0, (-1.0)*this->e2_no_ni);
+	elementCallback(3, 3, (-1.0)*this->e1_e2_no);
+	elementCallback(3, 1, this->e2_no_ni);
+	elementCallback(4, 2, (-1.0)*this->e1_e2_ni);
+	elementCallback(4, 0, this->e1_no_ni);
+	elementCallback(5, 2, this->e1_e2_no);
+	elementCallback(5, 1, (-1.0)*this->e1_no_ni);
+	elementCallback(6, 1, (-1.0)*this->e1_e2_ni);
+	elementCallback(6, 0, this->e1_e2_no);
+}
+
+void Trivector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1_e2_ni);
+	elementCallback(1, this->e1_e2_no);
+	elementCallback(2, this->e1_no_ni);
+	elementCallback(3, this->e2_no_ni);
+}
+
+void Trivector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1_e2_ni);
+	elementCallback(1, this->e1_e2_no);
+	elementCallback(2, this->e1_no_ni);
+	elementCallback(3, this->e2_no_ni);
+}
+

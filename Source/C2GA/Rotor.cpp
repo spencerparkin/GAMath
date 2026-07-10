@@ -740,3 +740,84 @@ double Rotor::SquareMagnitude() const
 {
 	return (this->_1 * this->_1) + (this->e1_e2 * this->e1_e2) + (-2)*this->e1_ni*this->e1_no + (-2)*this->e2_ni*this->e2_no + (-1)*(this->no_ni * this->no_ni);
 }
+
+int Rotor::GetMatrixSize() const
+{
+	return 8;
+}
+
+void Rotor::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, this->_1);
+	elementCallback(0, 1, (-1.0)*this->e1_e2);
+	elementCallback(0, 3, this->e1_ni);
+	elementCallback(0, 2, this->e1_no);
+	elementCallback(0, 5, this->e2_ni);
+	elementCallback(0, 4, this->e2_no);
+	elementCallback(0, 6, this->no_ni);
+	elementCallback(1, 1, this->_1);
+	elementCallback(1, 0, this->e1_e2);
+	elementCallback(1, 5, this->e1_ni);
+	elementCallback(1, 4, this->e1_no);
+	elementCallback(1, 3, (-1.0)*this->e2_ni);
+	elementCallback(1, 2, (-1.0)*this->e2_no);
+	elementCallback(2, 2, this->_1);
+	elementCallback(2, 4, this->e1_e2);
+	elementCallback(2, 0, this->e1_ni);
+	elementCallback(2, 6, (-1.0)*this->e1_ni);
+	elementCallback(2, 1, (-1.0)*this->e2_ni);
+	elementCallback(2, 2, this->no_ni);
+	elementCallback(3, 3, this->_1);
+	elementCallback(3, 5, this->e1_e2);
+	elementCallback(3, 0, this->e1_no);
+	elementCallback(3, 6, this->e1_no);
+	elementCallback(3, 1, (-1.0)*this->e2_no);
+	elementCallback(3, 3, (-1.0)*this->no_ni);
+	elementCallback(4, 4, this->_1);
+	elementCallback(4, 2, (-1.0)*this->e1_e2);
+	elementCallback(4, 1, this->e1_ni);
+	elementCallback(4, 0, this->e2_ni);
+	elementCallback(4, 6, (-1.0)*this->e2_ni);
+	elementCallback(4, 4, this->no_ni);
+	elementCallback(5, 5, this->_1);
+	elementCallback(5, 3, (-1.0)*this->e1_e2);
+	elementCallback(5, 1, this->e1_no);
+	elementCallback(5, 0, this->e2_no);
+	elementCallback(5, 6, this->e2_no);
+	elementCallback(5, 5, (-1.0)*this->no_ni);
+	elementCallback(6, 6, (-1.0)*this->_1);
+	elementCallback(6, 3, (-1.0)*this->e1_ni);
+	elementCallback(6, 2, this->e1_no);
+	elementCallback(6, 5, (-1.0)*this->e2_ni);
+	elementCallback(6, 4, this->e2_no);
+	elementCallback(6, 0, (-1.0)*this->no_ni);
+	elementCallback(7, 6, (-1.0)*this->e1_e2);
+	elementCallback(7, 5, (-1.0)*this->e1_ni);
+	elementCallback(7, 4, this->e1_no);
+	elementCallback(7, 3, this->e2_ni);
+	elementCallback(7, 2, (-1.0)*this->e2_no);
+	elementCallback(7, 1, (-1.0)*this->no_ni);
+}
+
+void Rotor::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+	elementCallback(2, this->e1_ni);
+	elementCallback(3, this->e1_no);
+	elementCallback(4, this->e2_ni);
+	elementCallback(5, this->e2_no);
+	elementCallback(6, this->no_ni);
+}
+
+void Rotor::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->_1);
+	elementCallback(1, this->e1_e2);
+	elementCallback(2, this->e1_ni);
+	elementCallback(3, this->e1_no);
+	elementCallback(4, this->e2_ni);
+	elementCallback(5, this->e2_no);
+	elementCallback(6, this->no_ni);
+}
+

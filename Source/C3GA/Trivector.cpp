@@ -295,3 +295,141 @@ double Trivector::SquareMagnitude() const
 {
 	return (this->e1_e2_e3 * this->e1_e2_e3) + (-2)*this->e1_e2_ni*this->e1_e2_no + (-2)*this->e1_e3_ni*this->e1_e3_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (-2)*this->e2_e3_ni*this->e2_e3_no + (-1)*(this->e2_no_ni * this->e2_no_ni) + (-1)*(this->e3_no_ni * this->e3_no_ni);
 }
+
+int Trivector::GetMatrixSize() const
+{
+	return 16;
+}
+
+void Trivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
+{
+	elementCallback(0, 0, (-1.0)*this->e1_e2_e3);
+	elementCallback(0, 2, this->e1_e2_ni);
+	elementCallback(0, 1, this->e1_e2_no);
+	elementCallback(0, 4, this->e1_e3_ni);
+	elementCallback(0, 3, this->e1_e3_no);
+	elementCallback(0, 5, this->e1_no_ni);
+	elementCallback(0, 7, this->e2_e3_ni);
+	elementCallback(0, 6, this->e2_e3_no);
+	elementCallback(0, 8, this->e2_no_ni);
+	elementCallback(0, 9, this->e3_no_ni);
+	elementCallback(1, 7, this->e1_e3_ni);
+	elementCallback(1, 6, this->e1_e3_no);
+	elementCallback(1, 8, this->e1_no_ni);
+	elementCallback(1, 4, (-1.0)*this->e2_e3_ni);
+	elementCallback(1, 3, (-1.0)*this->e2_e3_no);
+	elementCallback(1, 5, (-1.0)*this->e2_no_ni);
+	elementCallback(2, 7, (-1.0)*this->e1_e2_ni);
+	elementCallback(2, 6, (-1.0)*this->e1_e2_no);
+	elementCallback(2, 9, this->e1_no_ni);
+	elementCallback(2, 2, this->e2_e3_ni);
+	elementCallback(2, 1, this->e2_e3_no);
+	elementCallback(2, 5, (-1.0)*this->e3_no_ni);
+	elementCallback(3, 6, (-1.0)*this->e1_e2_e3);
+	elementCallback(3, 8, this->e1_e2_ni);
+	elementCallback(3, 9, this->e1_e3_ni);
+	elementCallback(3, 0, this->e2_e3_ni);
+	elementCallback(3, 1, (-1.0)*this->e2_no_ni);
+	elementCallback(3, 3, (-1.0)*this->e3_no_ni);
+	elementCallback(4, 7, (-1.0)*this->e1_e2_e3);
+	elementCallback(4, 8, (-1.0)*this->e1_e2_no);
+	elementCallback(4, 9, (-1.0)*this->e1_e3_no);
+	elementCallback(4, 0, this->e2_e3_no);
+	elementCallback(4, 2, this->e2_no_ni);
+	elementCallback(4, 4, this->e3_no_ni);
+	elementCallback(5, 4, this->e1_e2_ni);
+	elementCallback(5, 3, this->e1_e2_no);
+	elementCallback(5, 2, (-1.0)*this->e1_e3_ni);
+	elementCallback(5, 1, (-1.0)*this->e1_e3_no);
+	elementCallback(5, 9, this->e2_no_ni);
+	elementCallback(5, 8, (-1.0)*this->e3_no_ni);
+	elementCallback(6, 3, this->e1_e2_e3);
+	elementCallback(6, 5, (-1.0)*this->e1_e2_ni);
+	elementCallback(6, 0, (-1.0)*this->e1_e3_ni);
+	elementCallback(6, 1, this->e1_no_ni);
+	elementCallback(6, 9, this->e2_e3_ni);
+	elementCallback(6, 6, (-1.0)*this->e3_no_ni);
+	elementCallback(7, 4, this->e1_e2_e3);
+	elementCallback(7, 5, this->e1_e2_no);
+	elementCallback(7, 0, (-1.0)*this->e1_e3_no);
+	elementCallback(7, 2, (-1.0)*this->e1_no_ni);
+	elementCallback(7, 9, (-1.0)*this->e2_e3_no);
+	elementCallback(7, 7, this->e3_no_ni);
+	elementCallback(8, 1, (-1.0)*this->e1_e2_e3);
+	elementCallback(8, 0, this->e1_e2_ni);
+	elementCallback(8, 5, (-1.0)*this->e1_e3_ni);
+	elementCallback(8, 3, this->e1_no_ni);
+	elementCallback(8, 8, (-1.0)*this->e2_e3_ni);
+	elementCallback(8, 6, this->e2_no_ni);
+	elementCallback(9, 2, (-1.0)*this->e1_e2_e3);
+	elementCallback(9, 0, this->e1_e2_no);
+	elementCallback(9, 5, this->e1_e3_no);
+	elementCallback(9, 4, (-1.0)*this->e1_no_ni);
+	elementCallback(9, 8, this->e2_e3_no);
+	elementCallback(9, 7, (-1.0)*this->e2_no_ni);
+	elementCallback(10, 2, (-1.0)*this->e1_e2_ni);
+	elementCallback(10, 1, this->e1_e2_no);
+	elementCallback(10, 4, (-1.0)*this->e1_e3_ni);
+	elementCallback(10, 3, this->e1_e3_no);
+	elementCallback(10, 7, (-1.0)*this->e2_e3_ni);
+	elementCallback(10, 6, this->e2_e3_no);
+	elementCallback(11, 9, this->e1_e2_ni);
+	elementCallback(11, 8, (-1.0)*this->e1_e3_ni);
+	elementCallback(11, 6, this->e1_no_ni);
+	elementCallback(11, 5, this->e2_e3_ni);
+	elementCallback(11, 3, (-1.0)*this->e2_no_ni);
+	elementCallback(11, 1, this->e3_no_ni);
+	elementCallback(12, 9, (-1.0)*this->e1_e2_no);
+	elementCallback(12, 8, this->e1_e3_no);
+	elementCallback(12, 7, (-1.0)*this->e1_no_ni);
+	elementCallback(12, 5, (-1.0)*this->e2_e3_no);
+	elementCallback(12, 4, this->e2_no_ni);
+	elementCallback(12, 2, (-1.0)*this->e3_no_ni);
+	elementCallback(13, 9, (-1.0)*this->e1_e2_e3);
+	elementCallback(13, 7, (-1.0)*this->e1_e3_ni);
+	elementCallback(13, 6, this->e1_e3_no);
+	elementCallback(13, 4, this->e2_e3_ni);
+	elementCallback(13, 3, (-1.0)*this->e2_e3_no);
+	elementCallback(13, 0, (-1.0)*this->e3_no_ni);
+	elementCallback(14, 8, this->e1_e2_e3);
+	elementCallback(14, 7, this->e1_e2_ni);
+	elementCallback(14, 6, (-1.0)*this->e1_e2_no);
+	elementCallback(14, 2, (-1.0)*this->e2_e3_ni);
+	elementCallback(14, 1, this->e2_e3_no);
+	elementCallback(14, 0, this->e2_no_ni);
+	elementCallback(15, 5, (-1.0)*this->e1_e2_e3);
+	elementCallback(15, 4, (-1.0)*this->e1_e2_ni);
+	elementCallback(15, 3, this->e1_e2_no);
+	elementCallback(15, 2, this->e1_e3_ni);
+	elementCallback(15, 1, (-1.0)*this->e1_e3_no);
+	elementCallback(15, 0, (-1.0)*this->e1_no_ni);
+}
+
+void Trivector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const
+{
+	elementCallback(0, this->e1_e2_e3);
+	elementCallback(1, this->e1_e2_ni);
+	elementCallback(2, this->e1_e2_no);
+	elementCallback(3, this->e1_e3_ni);
+	elementCallback(4, this->e1_e3_no);
+	elementCallback(5, this->e1_no_ni);
+	elementCallback(6, this->e2_e3_ni);
+	elementCallback(7, this->e2_e3_no);
+	elementCallback(8, this->e2_no_ni);
+	elementCallback(9, this->e3_no_ni);
+}
+
+void Trivector::FromColumnMatrix(std::function<void(int, double&)> elementCallback)
+{
+	elementCallback(0, this->e1_e2_e3);
+	elementCallback(1, this->e1_e2_ni);
+	elementCallback(2, this->e1_e2_no);
+	elementCallback(3, this->e1_e3_ni);
+	elementCallback(4, this->e1_e3_no);
+	elementCallback(5, this->e1_no_ni);
+	elementCallback(6, this->e2_e3_ni);
+	elementCallback(7, this->e2_e3_no);
+	elementCallback(8, this->e2_no_ni);
+	elementCallback(9, this->e3_no_ni);
+}
+

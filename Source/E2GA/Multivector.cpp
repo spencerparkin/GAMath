@@ -1092,14 +1092,14 @@ void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCa
 	elementCallback(1, 0, this->e1);
 	elementCallback(1, 3, this->e1_e2);
 	elementCallback(1, 2, (-1.0)*this->e2);
-	elementCallback(3, 3, this->_1);
-	elementCallback(3, 2, this->e1);
-	elementCallback(3, 1, (-1.0)*this->e1_e2);
-	elementCallback(3, 0, this->e2);
-	elementCallback(2, 2, this->_1);
-	elementCallback(2, 3, this->e1);
-	elementCallback(2, 0, this->e1_e2);
-	elementCallback(2, 1, (-1.0)*this->e2);
+	elementCallback(2, 3, this->_1);
+	elementCallback(2, 2, this->e1);
+	elementCallback(2, 1, (-1.0)*this->e1_e2);
+	elementCallback(2, 0, this->e2);
+	elementCallback(3, 2, this->_1);
+	elementCallback(3, 3, this->e1);
+	elementCallback(3, 0, this->e1_e2);
+	elementCallback(3, 1, (-1.0)*this->e2);
 }
 
 void Multivector::ToColumnMatrix(std::function<void(int, double)> elementCallback) const

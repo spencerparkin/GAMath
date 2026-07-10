@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 namespace MatrixAlgebra
 {
@@ -191,6 +192,11 @@ namespace MatrixAlgebra
 		bool ApplyRowOperations(const std::vector<std::shared_ptr<RowOperation>>& rowOperationArray);
 
 		/**
+		 * Return a human-readable string showing the content of the matrix.
+		 */
+		std::string Print() const;
+
+		/**
 		 * This is the base class for any row operation we can perform on a matrix.
 		 */
 		class RowOperation
@@ -261,24 +267,19 @@ namespace MatrixAlgebra
 	};
 
 	/**
-	 * This function can be used to invert a multivector with
-	 * respect to the geometric product.  Since each element of
-	 * a geometric algebra is a multivector, this can be used
-	 * to find the inverse of any element.  You just need to store
-	 * it as a multivector first, then pull the result out of the
-	 * multivector inverse, if found.
+	 * This function can be used to invert a GA element with respect to the geometric product.
 	 * 
-	 * @param[in] multivector This is the multivector whose inverse we seek.
-	 * @param[out] multivectorInverted The multiplicative inverse of the given multivector, if it exists, is returned here.
-	 * @return False is returned if the given multivector had no multiplicative inverse with respect to the geometric product.
+	 * @param[in] gaElement This is the GA element (vector, bivector, etc.) whose inverse we seek.
+	 * @param[out] gaElementInverted The inverse of the given GA element, if it exists, is returned here.
+	 * @return False is returned if the given GA element had no multiplicative inverse with respect to the geometric product.
 	 */
 	template<typename T>
-	bool InvertMultivector(const T& multivector, T& multivectorInverted)
+	bool InvertGAElement(const T& gaElement, T& gaElementInverted)
 	{
 		Matrix matrix;
-		matrix.SetSize(multivector.GetMatrixSize(), multivector.GetMatrixSize());
+		matrix.SetSize(gaElement.GetMatrixSize(), gaElement.GetMatrixSize());
 
-		multivector.ToSquareMatrix([&matrix](int row, int col, double element) -> void
+		gaElement.ToSquareMatrix([&matrix](int row, int col, double element) -> void
 			{
 				matrix.SetElement(row, col, element);
 			});
@@ -288,7 +289,8 @@ namespace MatrixAlgebra
 			return false;
 
 		// The first column of the inverted matrix is the one we want.
-		multivectorInverted.FromColumnMatrix([&matrixInverse](int row, double& element) -> void
+		// Interestingly, the other columns have geometric significance, but we're throwing that information away.
+		gaElementInverted.FromColumnMatrix([&matrixInverse](int row, double& element) -> void
 			{
 				matrixInverse.GetElement(row, 0, element);
 			});
