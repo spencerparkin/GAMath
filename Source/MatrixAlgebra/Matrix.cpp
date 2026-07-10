@@ -304,7 +304,7 @@ bool Matrix::GetDeterminant(double& determinant) const
 
 void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>& rowOperationArray)
 {
-#ifdef _DEBUG
+#ifdef MATRIX_DEBUG
 	std::string debugMatStr;
 #endif
 
@@ -312,7 +312,7 @@ void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 
 	for (int pivotRow = 0; pivotRow < this->numRows; pivotRow++)
 	{
-#ifdef _DEBUG
+#ifdef MATRIX_DEBUG
 		debugMatStr = this->Print();
 #endif
 
@@ -360,7 +360,7 @@ void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			rowOperationArray.push_back(rowOp);
 		}
 
-#ifdef _DEBUG
+#ifdef MATRIX_DEBUG
 		debugMatStr = this->Print();
 #endif
 
@@ -379,7 +379,7 @@ void Matrix::PerformFullRowReduction(std::vector<std::shared_ptr<RowOperation>>&
 			rowOp->Perform(*this);
 			rowOperationArray.push_back(rowOp);
 
-#ifdef _DEBUG
+#ifdef MATRIX_DEBUG
 			debugMatStr = this->Print();
 #endif
 		}
