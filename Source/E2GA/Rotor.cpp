@@ -361,9 +361,10 @@ double Rotor::SquareMagnitude() const
 	return (this->_1 * this->_1) + (this->e1_e2 * this->e1_e2);
 }
 
-int Rotor::GetMatrixSize() const
+void Rotor::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 2;
+	numRows = 2;
+	numCols = 2;
 }
 
 void Rotor::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

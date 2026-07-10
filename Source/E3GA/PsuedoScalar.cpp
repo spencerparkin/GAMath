@@ -104,9 +104,10 @@ double PsuedoScalar::SquareMagnitude() const
 	return (this->e1_e2_e3 * this->e1_e2_e3);
 }
 
-int PsuedoScalar::GetMatrixSize() const
+void PsuedoScalar::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 1;
+	numRows = 1;
+	numCols = 1;
 }
 
 void PsuedoScalar::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

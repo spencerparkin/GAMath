@@ -276,8 +276,24 @@ namespace MatrixAlgebra
 	template<typename T>
 	bool InvertGAElement(const T& gaElement, T& gaElementInverted)
 	{
+		int numRows = 0;
+		int numCols = 0;
+
+		gaElement.GetMatrixSize(numRows, numCols);
+
+		if (numRows < numCols)
+			return false;
+
+		// In this case we have an overdetermined system.  I'm going to try throwing
+		// out the the linear equations on the backend.  The first equation is important,
+		// because it's the only one equal to one.  The rest are set to zero.
+		if (numRows > numCols)
+		{
+			numRows = numCols;
+		}
+
 		Matrix matrix;
-		matrix.SetSize(gaElement.GetMatrixSize(), gaElement.GetMatrixSize());
+		matrix.SetSize(numRows, numCols);
 
 		gaElement.ToSquareMatrix([&matrix](int row, int col, double element) -> void
 			{

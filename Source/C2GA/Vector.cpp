@@ -191,9 +191,10 @@ double Vector::SquareMagnitude() const
 	return (this->e1 * this->e1) + (this->e2 * this->e2) + (-2)*this->ni*this->no;
 }
 
-int Vector::GetMatrixSize() const
+void Vector::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 7;
+	numRows = 7;
+	numCols = 4;
 }
 
 void Vector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

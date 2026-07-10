@@ -175,9 +175,10 @@ double Trivector::SquareMagnitude() const
 	return (-2)*this->e1_e2_ni*this->e1_e2_no + (-1)*(this->e1_no_ni * this->e1_no_ni) + (-1)*(this->e2_no_ni * this->e2_no_ni);
 }
 
-int Trivector::GetMatrixSize() const
+void Trivector::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 7;
+	numRows = 7;
+	numCols = 4;
 }
 
 void Trivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

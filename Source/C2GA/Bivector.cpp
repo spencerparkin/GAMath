@@ -205,9 +205,10 @@ double Bivector::SquareMagnitude() const
 	return (this->e1_e2 * this->e1_e2) + (-2)*this->e1_ni*this->e1_no + (-2)*this->e2_ni*this->e2_no + (-1)*(this->no_ni * this->no_ni);
 }
 
-int Bivector::GetMatrixSize() const
+void Bivector::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 8;
+	numRows = 8;
+	numCols = 6;
 }
 
 void Bivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

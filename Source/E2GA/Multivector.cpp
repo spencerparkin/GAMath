@@ -1077,9 +1077,10 @@ double Multivector::SquareMagnitude() const
 	return (this->_1 * this->_1) + (this->e1 * this->e1) + (this->e1_e2 * this->e1_e2) + (this->e2 * this->e2);
 }
 
-int Multivector::GetMatrixSize() const
+void Multivector::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 4;
+	numRows = 4;
+	numCols = 4;
 }
 
 void Multivector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const

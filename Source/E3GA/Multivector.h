@@ -213,7 +213,7 @@ namespace E3GA
 
 		double SquareMagnitude() const;
 
-		int GetMatrixSize() const;
+		void GetMatrixSize(int& numRows, int& numCols) const;
 
 		void ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const;
 		void ToColumnMatrix(std::function<void(int, double)> elementCallback) const;

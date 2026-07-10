@@ -205,9 +205,10 @@ double Quadvector::SquareMagnitude() const
 	return (-2)*this->e1_e2_e3_ni*this->e1_e2_e3_no + (-1)*(this->e1_e2_no_ni * this->e1_e2_no_ni) + (-1)*(this->e1_e3_no_ni * this->e1_e3_no_ni) + (-1)*(this->e2_e3_no_ni * this->e2_e3_no_ni);
 }
 
-int Quadvector::GetMatrixSize() const
+void Quadvector::GetMatrixSize(int& numRows, int& numCols) const
 {
-	return 11;
+	numRows = 11;
+	numCols = 5;
 }
 
 void Quadvector::ToSquareMatrix(std::function<void(int, int, double)> elementCallback) const
