@@ -49,6 +49,18 @@ Rotor::Rotor(const Rotor& rotor)
 	this->e3_e1 = rotor.e3_e1;
 }
 
+void Rotor::GetScalar(Scalar& scalar) const
+{
+	scalar._1 = this->_1;
+}
+
+void Rotor::GetBivector(Bivector& bivector) const
+{
+	bivector.e1_e2 = this->e1_e2;
+	bivector.e2_e3 = this->e2_e3;
+	bivector.e3_e1 = this->e3_e1;
+}
+
 void Rotor::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;

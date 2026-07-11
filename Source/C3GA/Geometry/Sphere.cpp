@@ -177,18 +177,7 @@ bool Sphere::InvertLineToCircle(const Line& line, Circle& circle) const
 	m2.GeometricProduct(m1, sphereVectorInv);
 
 	Bivector circleBivector;
-
-	// STPTODO: Generate convenience functions for this.
-	circleBivector.e1_e2 = m2.e1_e2;
-	circleBivector.e1_e3 = m2.e1_e3;
-	circleBivector.e1_no = m2.e1_no;
-	circleBivector.e1_ni = m2.e1_ni;
-	circleBivector.e2_e3 = m2.e2_e3;
-	circleBivector.e2_no = m2.e2_no;
-	circleBivector.e2_ni = m2.e2_ni;
-	circleBivector.e3_no = m2.e3_no;
-	circleBivector.e3_ni = m2.e3_ni;
-	circleBivector.no_ni = m2.no_ni;
+	m2.GetBivector(circleBivector);
 
 	return circle.FromBivector(circleBivector);
 }
@@ -208,18 +197,7 @@ bool Sphere::InvertCircleToCircle(const Circle& circleA, Circle& circleB) const
 	m2.GeometricProduct(m1, sphereVectorInv);
 
 	Bivector circleBBivector;
-
-	// STPTODO: Generate convenience functions for this.
-	circleBBivector.e1_e2 = m2.e1_e2;
-	circleBBivector.e1_e3 = m2.e1_e3;
-	circleBBivector.e1_no = m2.e1_no;
-	circleBBivector.e1_ni = m2.e1_ni;
-	circleBBivector.e2_e3 = m2.e2_e3;
-	circleBBivector.e2_no = m2.e2_no;
-	circleBBivector.e2_ni = m2.e2_ni;
-	circleBBivector.e3_no = m2.e3_no;
-	circleBBivector.e3_ni = m2.e3_ni;
-	circleBBivector.no_ni = m2.no_ni;
+	m2.GetBivector(circleBBivector);
 
 	return circleB.FromBivector(circleBBivector);
 }

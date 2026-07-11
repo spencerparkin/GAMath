@@ -20,6 +20,9 @@ namespace E2GA
 		Rotor(const PsuedoScalar& psuedoscalar);
 		Rotor(const Rotor& rotor);
 
+		void GetScalar(Scalar& scalar) const;
+		void GetPsuedoScalar(PsuedoScalar& psuedoscalar) const;
+
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 		void Add(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Scalar& scalarA, const Rotor& rotorB);

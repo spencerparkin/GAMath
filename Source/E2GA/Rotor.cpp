@@ -38,6 +38,16 @@ Rotor::Rotor(const Rotor& rotor)
 	this->e1_e2 = rotor.e1_e2;
 }
 
+void Rotor::GetScalar(Scalar& scalar) const
+{
+	scalar._1 = this->_1;
+}
+
+void Rotor::GetPsuedoScalar(PsuedoScalar& psuedoscalar) const
+{
+	psuedoscalar.e1_e2 = this->e1_e2;
+}
+
 void Rotor::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;

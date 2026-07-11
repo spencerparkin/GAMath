@@ -22,6 +22,11 @@ namespace E2GA
 		Multivector(const Rotor& rotor);
 		Multivector(const Multivector& multivector);
 
+		void GetScalar(Scalar& scalar) const;
+		void GetPsuedoScalar(PsuedoScalar& psuedoscalar) const;
+		void GetVector(Vector& vector) const;
+		void GetRotor(Rotor& rotor) const;
+
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 		void Add(const Scalar& scalarA, const PsuedoScalar& psuedoscalarB);
 		void Add(const Scalar& scalarA, const Vector& vectorB);

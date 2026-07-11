@@ -371,6 +371,77 @@ Multivector::Multivector(const Rotor& rotor)
 	this->e1_e2_e3_no_ni = 0.0;
 }
 
+void Multivector::GetScalar(Scalar& scalar) const
+{
+	scalar._1 = this->_1;
+}
+
+void Multivector::GetVector(Vector& vector) const
+{
+	vector.e1 = this->e1;
+	vector.e2 = this->e2;
+	vector.e3 = this->e3;
+	vector.no = this->no;
+	vector.ni = this->ni;
+}
+
+void Multivector::GetBivector(Bivector& bivector) const
+{
+	bivector.e1_e2 = this->e1_e2;
+	bivector.e1_e3 = this->e1_e3;
+	bivector.e1_no = this->e1_no;
+	bivector.e1_ni = this->e1_ni;
+	bivector.e2_e3 = this->e2_e3;
+	bivector.e2_no = this->e2_no;
+	bivector.e2_ni = this->e2_ni;
+	bivector.e3_no = this->e3_no;
+	bivector.e3_ni = this->e3_ni;
+	bivector.no_ni = this->no_ni;
+}
+
+void Multivector::GetTrivector(Trivector& trivector) const
+{
+	trivector.e1_e2_e3 = this->e1_e2_e3;
+	trivector.e1_e2_no = this->e1_e2_no;
+	trivector.e1_e2_ni = this->e1_e2_ni;
+	trivector.e1_e3_no = this->e1_e3_no;
+	trivector.e1_e3_ni = this->e1_e3_ni;
+	trivector.e1_no_ni = this->e1_no_ni;
+	trivector.e2_e3_no = this->e2_e3_no;
+	trivector.e2_e3_ni = this->e2_e3_ni;
+	trivector.e2_no_ni = this->e2_no_ni;
+	trivector.e3_no_ni = this->e3_no_ni;
+}
+
+void Multivector::GetQuadvector(Quadvector& quadvector) const
+{
+	quadvector.e1_e2_e3_no = this->e1_e2_e3_no;
+	quadvector.e1_e2_e3_ni = this->e1_e2_e3_ni;
+	quadvector.e1_e2_no_ni = this->e1_e2_no_ni;
+	quadvector.e1_e3_no_ni = this->e1_e3_no_ni;
+	quadvector.e2_e3_no_ni = this->e2_e3_no_ni;
+}
+
+void Multivector::GetPsuedoScalar(PsuedoScalar& psuedoscalar) const
+{
+	psuedoscalar.e1_e2_e3_no_ni = this->e1_e2_e3_no_ni;
+}
+
+void Multivector::GetRotor(Rotor& rotor) const
+{
+	rotor._1 = this->_1;
+	rotor.e1_e2 = this->e1_e2;
+	rotor.e1_e3 = this->e1_e3;
+	rotor.e1_no = this->e1_no;
+	rotor.e1_ni = this->e1_ni;
+	rotor.e2_e3 = this->e2_e3;
+	rotor.e2_no = this->e2_no;
+	rotor.e2_ni = this->e2_ni;
+	rotor.e3_no = this->e3_no;
+	rotor.e3_ni = this->e3_ni;
+	rotor.no_ni = this->no_ni;
+}
+
 void Multivector::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;

@@ -105,6 +105,38 @@ Multivector::Multivector(const Multivector& multivector)
 	this->e1_e2_e3 = multivector.e1_e2_e3;
 }
 
+void Multivector::GetScalar(Scalar& scalar) const
+{
+	scalar._1 = this->_1;
+}
+
+void Multivector::GetPsuedoScalar(PsuedoScalar& psuedoscalar) const
+{
+	psuedoscalar.e1_e2_e3 = this->e1_e2_e3;
+}
+
+void Multivector::GetVector(Vector& vector) const
+{
+	vector.e1 = this->e1;
+	vector.e2 = this->e2;
+	vector.e3 = this->e3;
+}
+
+void Multivector::GetBivector(Bivector& bivector) const
+{
+	bivector.e1_e2 = this->e1_e2;
+	bivector.e2_e3 = this->e2_e3;
+	bivector.e3_e1 = this->e3_e1;
+}
+
+void Multivector::GetRotor(Rotor& rotor) const
+{
+	rotor._1 = this->_1;
+	rotor.e1_e2 = this->e1_e2;
+	rotor.e2_e3 = this->e2_e3;
+	rotor.e3_e1 = this->e3_e1;
+}
+
 void Multivector::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;

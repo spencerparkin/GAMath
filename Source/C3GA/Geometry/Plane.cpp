@@ -199,18 +199,7 @@ bool Plane::ReflectCircleToCircle(const Circle& circleA, Circle& circleB) const
 	m2.GeometricProduct(m1, planeVectorInv);
 
 	Bivector circleBBivector;
-
-	// STPTODO: Generate convenience functions for this.
-	circleBBivector.e1_e2 = m2.e1_e2;
-	circleBBivector.e1_e3 = m2.e1_e3;
-	circleBBivector.e1_no = m2.e1_no;
-	circleBBivector.e1_ni = m2.e1_ni;
-	circleBBivector.e2_e3 = m2.e2_e3;
-	circleBBivector.e2_no = m2.e2_no;
-	circleBBivector.e2_ni = m2.e2_ni;
-	circleBBivector.e3_no = m2.e3_no;
-	circleBBivector.e3_ni = m2.e3_ni;
-	circleBBivector.no_ni = m2.no_ni;
+	m2.GetBivector(circleBBivector);
 
 	return circleB.FromBivector(circleBBivector);
 }
@@ -230,13 +219,7 @@ bool Plane::ReflectSphereToSphere(const Sphere& sphereA, Sphere& sphereB) const
 	m2.GeometricProduct(m1, planeVectorInv);
 
 	Vector sphereBVector;
-
-	// STPTODO: Generate convenience functions for this.
-	sphereBVector.e1 = m2.e1;
-	sphereBVector.e2 = m2.e2;
-	sphereBVector.e3 = m2.e3;
-	sphereBVector.no = m2.no;
-	sphereBVector.ni = m2.ni;
+	m2.GetVector(sphereBVector);
 
 	return sphereB.FromVector(sphereBVector);
 }
@@ -256,18 +239,7 @@ bool Plane::ReflectLineToLine(const Line& lineA, Line& lineB) const
 	m2.GeometricProduct(m1, planeVectorInv);
 
 	Bivector lineBBivector;
-
-	// STPTODO: Generate convenience functions for this.
-	lineBBivector.e1_e2 = m2.e1_e2;
-	lineBBivector.e1_e3 = m2.e1_e3;
-	lineBBivector.e1_no = m2.e1_no;
-	lineBBivector.e1_ni = m2.e1_ni;
-	lineBBivector.e2_e3 = m2.e2_e3;
-	lineBBivector.e2_no = m2.e2_no;
-	lineBBivector.e2_ni = m2.e2_ni;
-	lineBBivector.e3_no = m2.e3_no;
-	lineBBivector.e3_ni = m2.e3_ni;
-	lineBBivector.no_ni = m2.no_ni;
+	m2.GetBivector(lineBBivector);
 
 	return lineB.FromBivector(lineBBivector);
 }

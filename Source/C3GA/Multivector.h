@@ -28,6 +28,14 @@ namespace C3GA
 		Multivector(const Multivector& multivector);
 		Multivector(const Rotor& rotor);
 
+		void GetScalar(Scalar& scalar) const;
+		void GetVector(Vector& vector) const;
+		void GetBivector(Bivector& bivector) const;
+		void GetTrivector(Trivector& trivector) const;
+		void GetQuadvector(Quadvector& quadvector) const;
+		void GetPsuedoScalar(PsuedoScalar& psuedoscalar) const;
+		void GetRotor(Rotor& rotor) const;
+
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 		void Add(const Scalar& scalarA, const Vector& vectorB);
 		void Add(const Scalar& scalarA, const Bivector& bivectorB);

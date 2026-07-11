@@ -22,6 +22,9 @@ namespace C2GA
 		Rotor(const Bivector& bivector);
 		Rotor(const Rotor& rotor);
 
+		void GetScalar(Scalar& scalar) const;
+		void GetBivector(Bivector& bivector) const;
+
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 		void Add(const Scalar& scalarA, const Bivector& bivectorB);
 		void Add(const Scalar& scalarA, const Rotor& rotorB);
