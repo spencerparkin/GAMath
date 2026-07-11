@@ -8,6 +8,7 @@ namespace C3GA
 	class Point;
 	class PointPair;
 	class Circle;
+	class Line;
 
 	/**
 	 * These are spheres in 3D conformal geometric algebra.
@@ -27,6 +28,9 @@ namespace C3GA
 		bool FitToPointPairs(const PointPair& pointPairA, const PointPair& pointPairB);
 		bool FitToPointPairAndPoints(const PointPair& pointPair, const Point& pointA, const Point& pointB);
 		bool FitToCircleAndPoint(const Circle& circleA, const Point& pointB);
+
+		bool InvertLineToCircle(const Line& line, Circle& circle) const;
+		bool InvertCircleToCircle(const Circle& circleA, Circle& circleB) const;
 
 		E3GA::Vector center;
 		double radius;

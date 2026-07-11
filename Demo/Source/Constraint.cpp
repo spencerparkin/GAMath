@@ -800,3 +800,63 @@ ReinterpretPointPairAsCircle::ReinterpretPointPairAsCircle()
 
 	return circleObject->circle.Reinterpret(pointPairObject->pointPair);
 }
+
+//------------------------------- TransformLineUsingSphere -------------------------------
+
+TransformLineUsingSphere::TransformLineUsingSphere()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+}
+
+/*virtual*/ TransformLineUsingSphere::~TransformLineUsingSphere()
+{
+}
+
+/*virtual*/ std::string TransformLineUsingSphere::GetDesc() const
+{
+	return "Transform a line into a circle using a spherical inversion.";
+}
+
+/*virtual*/ bool TransformLineUsingSphere::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	LineObject* lineObject = this->GetObject<LineObject>();
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	CircleObject* circleObject = this->GetObject<CircleObject>();
+
+	return sphereObject->sphere.InvertLineToCircle(lineObject->line, circleObject->circle);
+}
+
+//------------------------------- TransformCircleUsingSphere -------------------------------
+
+TransformCircleUsingSphere::TransformCircleUsingSphere()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+}
+
+/*virtual*/ TransformCircleUsingSphere::~TransformCircleUsingSphere()
+{
+}
+
+/*virtual*/ std::string TransformCircleUsingSphere::GetDesc() const
+{
+	return "Transform a circle using a spherical inversion.";
+}
+
+/*virtual*/ bool TransformCircleUsingSphere::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	SphereObject* sphereObject = this->GetObject<SphereObject>();
+	CircleObject* circleObjectA = this->GetObject<CircleObject>(0);
+	CircleObject* circleObjectB = this->GetObject<CircleObject>(1);
+
+	return sphereObject->sphere.InvertCircleToCircle(circleObjectA->circle, circleObjectB->circle);
+}

@@ -85,14 +85,6 @@ set(C3GA_SOURCES
 	Source/C3GA/Geometry/Line.h
 	Source/C3GA/Geometry/Plane.cpp
 	Source/C3GA/Geometry/Plane.h
-	Source/C3GA/Transformations/Rotation.cpp
-	Source/C3GA/Transformations/Rotation.h
-	Source/C3GA/Transformations/Translation.cpp
-	Source/C3GA/Transformations/Translation.h
-	Source/C3GA/Transformations/Diolation.cpp
-	Source/C3GA/Transformations/Diolation.h
-	Source/C3GA/Transformations/Transversion.cpp
-	Source/C3GA/Transformations/Transversion.h
 )
 
 set(MATRIX_ALGEBRA_SOURCES

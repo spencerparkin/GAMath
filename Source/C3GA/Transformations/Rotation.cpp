@@ -1,1 +1,0 @@
-#include "C3GA/Transformations/Rotation.h"
