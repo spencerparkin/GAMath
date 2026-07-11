@@ -166,7 +166,8 @@ bool Sphere::InvertLineToCircle(const Line& line, Circle& circle) const
 {
 	Vector sphereVector, sphereVectorInv;
 	this->ToVector(sphereVector);
-	MatrixAlgebra::InvertGAElement(sphereVector, sphereVectorInv);
+	if (!MatrixAlgebra::InvertGAElement(sphereVector, sphereVectorInv))
+		return false;
 
 	Bivector lineBivector;
 	line.ToBivector(lineBivector);
@@ -196,7 +197,8 @@ bool Sphere::InvertCircleToCircle(const Circle& circleA, Circle& circleB) const
 {
 	Vector sphereVector, sphereVectorInv;
 	this->ToVector(sphereVector);
-	MatrixAlgebra::InvertGAElement(sphereVector, sphereVectorInv);
+	if (!MatrixAlgebra::InvertGAElement(sphereVector, sphereVectorInv))
+		return false;
 
 	Bivector circleABivector;
 	circleA.ToBivector(circleABivector);

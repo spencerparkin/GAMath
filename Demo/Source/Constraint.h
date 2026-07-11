@@ -385,3 +385,42 @@ public:
 	virtual std::string GetDesc() const override;
 	virtual bool Enforce() override;
 };
+
+/**
+ * 
+ */
+class TransformCircleUsingPlane : public Constraint
+{
+public:
+	TransformCircleUsingPlane();
+	virtual ~TransformCircleUsingPlane();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ *
+ */
+class TransformSphereUsingPlane : public Constraint
+{
+public:
+	TransformSphereUsingPlane();
+	virtual ~TransformSphereUsingPlane();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};
+
+/**
+ *
+ */
+class TransformLineUsingPlane : public Constraint
+{
+public:
+	TransformLineUsingPlane();
+	virtual ~TransformLineUsingPlane();
+
+	virtual std::string GetDesc() const override;
+	virtual bool Enforce() override;
+};

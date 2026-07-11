@@ -860,3 +860,90 @@ TransformCircleUsingSphere::TransformCircleUsingSphere()
 
 	return sphereObject->sphere.InvertCircleToCircle(circleObjectA->circle, circleObjectB->circle);
 }
+
+//------------------------------- TransformCircleUsingPlane -------------------------------
+
+TransformCircleUsingPlane::TransformCircleUsingPlane()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, CircleObject>>());
+}
+
+/*virtual*/ TransformCircleUsingPlane::~TransformCircleUsingPlane()
+{
+}
+
+/*virtual*/ std::string TransformCircleUsingPlane::GetDesc() const
+{
+	return "Reflect a circle about a plane.";
+}
+
+/*virtual*/ bool TransformCircleUsingPlane::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	CircleObject* circleObjectA = this->GetObject<CircleObject>(0);
+	CircleObject* circleObjectB = this->GetObject<CircleObject>(1);
+
+	return planeObject->plane.ReflectCircleToCircle(circleObjectA->circle, circleObjectB->circle);
+}
+
+//------------------------------- TransformSphereUsingPlane -------------------------------
+
+TransformSphereUsingPlane::TransformSphereUsingPlane()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, SphereObject>>());
+}
+
+/*virtual*/ TransformSphereUsingPlane::~TransformSphereUsingPlane()
+{
+}
+
+/*virtual*/ std::string TransformSphereUsingPlane::GetDesc() const
+{
+	return "Reflect a sphere about a plane.";
+}
+
+/*virtual*/ bool TransformSphereUsingPlane::Enforce()
+{
+	if (!this->IsReady())
+		return false;
+
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	SphereObject* sphereObjectA = this->GetObject<SphereObject>(0);
+	SphereObject* sphereObjectB = this->GetObject<SphereObject>(1);
+
+	return planeObject->plane.ReflectSphereToSphere(sphereObjectA->sphere, sphereObjectB->sphere);
+}
+
+//------------------------------- TransformLineUsingPlane -------------------------------
+
+TransformLineUsingPlane::TransformLineUsingPlane()
+{
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, PlaneObject>>());
+	this->objectClassArray.push_back(std::make_shared<DerivedClass<Object, LineObject>>());
+}
+
+/*virtual*/ TransformLineUsingPlane::~TransformLineUsingPlane()
+{
+}
+
+/*virtual*/ std::string TransformLineUsingPlane::GetDesc() const
+{
+	return "Reflect a line about a plane.h";
+}
+
+/*virtual*/ bool TransformLineUsingPlane::Enforce()
+{
+	PlaneObject* planeObject = this->GetObject<PlaneObject>();
+	LineObject* lineObjectA = this->GetObject<LineObject>(0);
+	LineObject* lineObjectB = this->GetObject<LineObject>(1);
+	
+	return planeObject->plane.ReflectLineToLine(lineObjectA->line, lineObjectB->line);
+}

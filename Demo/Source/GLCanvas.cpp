@@ -377,7 +377,10 @@ void GLCanvas::OnContextMenu(const QPoint& position)
 
         // Transformations
         std::make_shared<DerivedClass<Constraint, TransformLineUsingSphere>>(),
-        std::make_shared<DerivedClass<Constraint, TransformCircleUsingSphere>>()
+        std::make_shared<DerivedClass<Constraint, TransformCircleUsingSphere>>(),
+        std::make_shared<DerivedClass<Constraint, TransformCircleUsingPlane>>(),
+        std::make_shared<DerivedClass<Constraint, TransformSphereUsingPlane>>(),
+        std::make_shared<DerivedClass<Constraint, TransformLineUsingPlane>>(),
     };
 
     HappyMath::Ray mouseRay = this->CalcMouseRay(position);

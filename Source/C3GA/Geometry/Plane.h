@@ -8,6 +8,7 @@ namespace C3GA
 	class Point;
 	class PointPair;
 	class Circle;
+	class Sphere;
 	class Vector;
 
 	class Plane
@@ -26,6 +27,10 @@ namespace C3GA
 		bool FitPlaneToLineAndPoint(const Line& line, const Point& point);
 		bool FitPlaneToCircle(const Circle& circle);
 		bool FitToPointPairAndPoint(const PointPair& pointPair, const Point& point);
+
+		bool ReflectCircleToCircle(const Circle& circleA, Circle& circleB) const;
+		bool ReflectSphereToSphere(const Sphere& sphereA, Sphere& sphereB) const;
+		bool ReflectLineToLine(const Line& lineA, Line& lineB) const;
 
 		E3GA::Vector center;
 		E3GA::Vector normal;

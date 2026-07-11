@@ -3,12 +3,15 @@
 #include "C3GA/Geometry/Point.h"
 #include "C3GA/Geometry/Circle.h"
 #include "C3GA/Geometry/PointPair.h"
+#include "C3GA/Geometry/Sphere.h"
 #include "C3GA/Bivector.h"
 #include "C3GA/Vector.h"
 #include "C3GA/Trivector.h"
 #include "C3GA/Quadvector.h"
 #include "C3GA/PsuedoScalar.h"
+#include "C3GA/Multivector.h"
 #include "E3GA/Scalar.h"
+#include "MatrixAlgebra/Matrix.h"
 #include <math.h>
 
 using namespace C3GA;
@@ -179,4 +182,92 @@ bool Plane::FitToPointPairAndPoint(const PointPair& pointPair, const Point& poin
 	v3.GeometricProduct(q, I);
 
 	return this->FromVector(v3);
+}
+
+bool Plane::ReflectCircleToCircle(const Circle& circleA, Circle& circleB) const
+{
+	Vector planeVector, planeVectorInv;
+	this->ToVector(planeVector);
+	if (!MatrixAlgebra::InvertGAElement(planeVector, planeVectorInv))
+		return false;
+
+	Bivector circleABivector;
+	circleA.ToBivector(circleABivector);
+
+	Multivector m1, m2;
+	m1.GeometricProduct(planeVector, circleABivector);
+	m2.GeometricProduct(m1, planeVectorInv);
+
+	Bivector circleBBivector;
+
+	// STPTODO: Generate convenience functions for this.
+	circleBBivector.e1_e2 = m2.e1_e2;
+	circleBBivector.e1_e3 = m2.e1_e3;
+	circleBBivector.e1_no = m2.e1_no;
+	circleBBivector.e1_ni = m2.e1_ni;
+	circleBBivector.e2_e3 = m2.e2_e3;
+	circleBBivector.e2_no = m2.e2_no;
+	circleBBivector.e2_ni = m2.e2_ni;
+	circleBBivector.e3_no = m2.e3_no;
+	circleBBivector.e3_ni = m2.e3_ni;
+	circleBBivector.no_ni = m2.no_ni;
+
+	return circleB.FromBivector(circleBBivector);
+}
+
+bool Plane::ReflectSphereToSphere(const Sphere& sphereA, Sphere& sphereB) const
+{
+	Vector planeVector, planeVectorInv;
+	this->ToVector(planeVector);
+	if (!MatrixAlgebra::InvertGAElement(planeVector, planeVectorInv))
+		return false;
+
+	Vector sphereAVector;
+	sphereA.ToVector(sphereAVector);
+
+	Multivector m1, m2;
+	m1.GeometricProduct(planeVector, sphereAVector);
+	m2.GeometricProduct(m1, planeVectorInv);
+
+	Vector sphereBVector;
+
+	// STPTODO: Generate convenience functions for this.
+	sphereBVector.e1 = m2.e1;
+	sphereBVector.e2 = m2.e2;
+	sphereBVector.e3 = m2.e3;
+	sphereBVector.no = m2.no;
+	sphereBVector.ni = m2.ni;
+
+	return sphereB.FromVector(sphereBVector);
+}
+
+bool Plane::ReflectLineToLine(const Line& lineA, Line& lineB) const
+{
+	Vector planeVector, planeVectorInv;
+	this->ToVector(planeVector);
+	if (!MatrixAlgebra::InvertGAElement(planeVector, planeVectorInv))
+		return false;
+
+	Bivector lineABivector;
+	lineA.ToBivector(lineABivector);
+
+	Multivector m1, m2;
+	m1.GeometricProduct(planeVector, lineABivector);
+	m2.GeometricProduct(m1, planeVectorInv);
+
+	Bivector lineBBivector;
+
+	// STPTODO: Generate convenience functions for this.
+	lineBBivector.e1_e2 = m2.e1_e2;
+	lineBBivector.e1_e3 = m2.e1_e3;
+	lineBBivector.e1_no = m2.e1_no;
+	lineBBivector.e1_ni = m2.e1_ni;
+	lineBBivector.e2_e3 = m2.e2_e3;
+	lineBBivector.e2_no = m2.e2_no;
+	lineBBivector.e2_ni = m2.e2_ni;
+	lineBBivector.e3_no = m2.e3_no;
+	lineBBivector.e3_ni = m2.e3_ni;
+	lineBBivector.no_ni = m2.no_ni;
+
+	return lineB.FromBivector(lineBBivector);
 }
