@@ -315,13 +315,60 @@ VB_kV^{-1} = -VB_kI^2V^{-1} = \pm VB_kIV^{-1}I,
 \end{equation*}
 then we see that they transform the same way.
 
-\subsection*{Rotors}
+So what are the transformations?  Since versors are geometric products of vectors,
+we first look at what vectors do.  All other transformations are composed of a sequence
+of what transformations vectors can perform.  What we find is that vectors can
+perform reflections of inversions.  Interestingly, all rigid body transformations come
+from just reflections.
 
-\subsection*{Motors}
+\subsection*{Reflections}
 
-\subsection*{Diolations}
+If we let $V$ be the dot representation of a plane, then $Vp(c)\tilde{V}$ reflects $c$ about the plane.
+If $x$ is the smallest vector such that $c+x$ is on the plane, then the reflected point is $c + 2x$.
+
+\subsection*{Inversions}
+
+If we let $V$ be the dot representation of a sphere, then $Vp(c)\tilde{V}$ inverts $c$ about the sphere.
+But what in the world does this mean?  Is the point reflected across the surface of the sphere?  That was my
+initial thought, but to really know what's going on, we need to do the math.
+
+If we let $V=\nvao-\frac{1}{2}r^2\nvai$ be the dot representation of a sphere centered at origin with radius $r$, then
+\begin{equation*}
+\frac{Vp(c)\tilde{V}}{-c^2} = p(r^2c^{-1}).
+\end{equation*}
+Here we see where the transform gets its name.  Seeing where the point is going to land in all cases is still
+not terribly intuitive with this result.  Also, what if we move the sphere away from origin?
+Does the problem just translate?  I'm going to leave these questions open for now and move on.
+
+\subsection*{Rotations}
+
+These are just double reflections in distinct planes intersecting in the axis of rotation.
+The angle between the planes is half the desired angle of rotation.
+
+\subsection*{Translations}
+
+These are just double reflections in distinct yet parallel planes.
+The distance between the planes is half the desired distance of translation.
+
+\subsection*{Uniform Scale}
+
+These are also called diolations.
+What we do here is a double inversion about concentric spheres.
+If
+\begin{equation*}
+V=(\nvao+\frac{1}{2}(-r_b^2)\nvai)(\nvao+\frac{1}{2}(-r_a^2)\nvai),
+\end{equation*}
+then
+\begin{equation*}
+\frac{Vp(c)\tilde{V}}{r_a^4} = p\left(\frac{r_b^2}{r_a^2}c\right).
+\end{equation*}
+Therefore, letting $r_a=1$ arbitrarily, we can determine $r_b$ from a given scale factor $s$ as $r_b=\sqrt{s}$.
 
 \subsection*{Transversions}
+
+Here we're going to mix reflections with inversions.
+
+Do some research and talk more about it here...
 
 \section*{Appendix}
 

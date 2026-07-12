@@ -96,7 +96,11 @@ void Transform::ConcatScale(double uniformScale)
 
 void Transform::ConcatScale(double uniformScale, const E3GA::Vector& centerOfScale)
 {
-	// STPTODO: Use double inversion in concentric spheres.
+	double radiusA = 1.0;
+	double radiusB = ::sqrt(uniformScale);
+
+	this->ConcatInversion(centerOfScale, radiusA);
+	this->ConcatInversion(centerOfScale, radiusB);
 }
 
 void Transform::ConcatRigidBodyMotion(const E3GA::Vector& unitRotationAxis, double rotationAngle, const E3GA::Vector& translationDelta)
