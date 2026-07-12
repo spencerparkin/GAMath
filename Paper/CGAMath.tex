@@ -337,8 +337,17 @@ If we let $V=\nvao-\frac{1}{2}r^2\nvai$ be the dot representation of a sphere ce
 \frac{Vp(c)\tilde{V}}{-c^2} = p(r^2c^{-1}).
 \end{equation*}
 Here we see where the transform gets its name.  Seeing where the point is going to land in all cases is still
-not terribly intuitive with this result.  Also, what if we move the sphere away from origin?
-Does the problem just translate?  I'm going to leave these questions open for now and move on.
+not terribly intuitive with this result.
+
+Note that it's easy to see what happens if we choose a sphere with center not at the origin.
+Let $T$ be a translation versor that gets us from the origin to the chosen sphere center.
+Then what we're considering is
+\begin{equation*}
+(TVT^{-1})p(c)(TVT^{-1})^{-1} = T(V(T^{-1}p(c)T)V)T^{-1}.
+\end{equation*}
+So we see that the problem is just translated to origin where our original analysis holds, then we
+translate back out.  In short, spherical inversions at origin act the same way anywhere else, and
+that place is determined by the sphere's center.
 
 \subsection*{Rotations}
 
@@ -363,6 +372,16 @@ then
 \frac{Vp(c)\tilde{V}}{r_a^4} = p\left(\frac{r_b^2}{r_a^2}c\right).
 \end{equation*}
 Therefore, letting $r_a=1$ arbitrarily, we can determine $r_b$ from a given scale factor $s$ as $r_b=\sqrt{s}$.
+
+Note that the argument we made for inversions translating anywhere applies here as well.
+In other words, we can diolate, not just from origin, but from anywhere else, and the place is
+determined by the center of the two concentric spheres.
+
+At this point it's very natural to ask: if we found value in double reflections where the two
+planes involved changed in their relative special relationship (i.e., parallel versus intersecting),
+might we do that here as well?
+That is, how about a double inversion between two non-concentric spheres?
+I think I'll save that for another day.
 
 \subsection*{Transversions}
 
