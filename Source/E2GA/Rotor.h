@@ -20,6 +20,8 @@ namespace E2GA
 		Rotor(const PsuedoScalar& psuedoscalar);
 		Rotor(const Rotor& rotor);
 
+		bool IsEqualTo(const Rotor& rotor, double epsilon = 1e-5) const;
+
 		void GetScalar(Scalar& scalar) const;
 		void GetPsuedoScalar(PsuedoScalar& psuedoscalar) const;
 

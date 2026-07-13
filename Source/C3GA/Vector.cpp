@@ -38,6 +38,26 @@ Vector::Vector(const Vector& vector)
 	this->ni = vector.ni;
 }
 
+bool Vector::IsEqualTo(const Vector& vector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1 - vector.e1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2 - vector.e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3 - vector.e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->no - vector.no) >= epsilon)
+		return false;
+
+	if(::fabs(this->ni - vector.ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Vector::Add(const Vector& vectorA, const Vector& vectorB)
 {
 	this->e1 = vectorA.e1 + vectorB.e1;

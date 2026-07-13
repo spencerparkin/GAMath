@@ -22,6 +22,8 @@ namespace E2GA
 		Multivector(const Rotor& rotor);
 		Multivector(const Multivector& multivector);
 
+		bool IsEqualTo(const Multivector& multivector, double epsilon = 1e-5) const;
+
 		void GetScalar(Scalar& scalar) const;
 		void GetPsuedoScalar(PsuedoScalar& psuedoscalar) const;
 		void GetVector(Vector& vector) const;

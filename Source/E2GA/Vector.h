@@ -18,6 +18,8 @@ namespace E2GA
 		Vector(double e1, double e2);
 		Vector(const Vector& vector);
 
+		bool IsEqualTo(const Vector& vector, double epsilon = 1e-5) const;
+
 		void Add(const Vector& vectorA, const Vector& vectorB);
 
 		void Subtract(const Vector& vectorA, const Vector& vectorB);

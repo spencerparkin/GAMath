@@ -105,6 +105,35 @@ Multivector::Multivector(const Multivector& multivector)
 	this->e1_e2_e3 = multivector.e1_e2_e3;
 }
 
+bool Multivector::IsEqualTo(const Multivector& multivector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->_1 - multivector._1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1 - multivector.e1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2 - multivector.e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3 - multivector.e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2 - multivector.e1_e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3 - multivector.e2_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_e1 - multivector.e3_e1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3 - multivector.e1_e2_e3) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Multivector::GetScalar(Scalar& scalar) const
 {
 	scalar._1 = this->_1;

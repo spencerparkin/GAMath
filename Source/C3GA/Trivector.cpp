@@ -53,6 +53,41 @@ Trivector::Trivector(const Trivector& trivector)
 	this->e3_no_ni = trivector.e3_no_ni;
 }
 
+bool Trivector::IsEqualTo(const Trivector& trivector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1_e2_e3 - trivector.e1_e2_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_no - trivector.e1_e2_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_ni - trivector.e1_e2_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_no - trivector.e1_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_ni - trivector.e1_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_no_ni - trivector.e1_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_no - trivector.e2_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_ni - trivector.e2_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_no_ni - trivector.e2_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_no_ni - trivector.e3_no_ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Trivector::Add(const Trivector& trivectorA, const Trivector& trivectorB)
 {
 	this->e1_e2_e3 = trivectorA.e1_e2_e3 + trivectorB.e1_e2_e3;

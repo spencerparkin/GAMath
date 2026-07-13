@@ -65,6 +65,32 @@ Rotor::Rotor(const Rotor& rotor)
 	this->no_ni = rotor.no_ni;
 }
 
+bool Rotor::IsEqualTo(const Rotor& rotor, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->_1 - rotor._1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2 - rotor.e1_e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_no - rotor.e1_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_ni - rotor.e1_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_no - rotor.e2_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_ni - rotor.e2_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->no_ni - rotor.no_ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Rotor::GetScalar(Scalar& scalar) const
 {
 	scalar._1 = this->_1;

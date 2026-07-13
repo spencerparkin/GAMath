@@ -19,6 +19,8 @@ namespace E3GA
 		PsuedoScalar(double e1_e2_e3);
 		PsuedoScalar(const PsuedoScalar& psuedoscalar);
 
+		bool IsEqualTo(const PsuedoScalar& psuedoscalar, double epsilon = 1e-5) const;
+
 		void Add(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);
 
 		void Subtract(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB);

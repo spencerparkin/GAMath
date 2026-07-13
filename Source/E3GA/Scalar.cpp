@@ -24,6 +24,14 @@ Scalar::Scalar(const Scalar& scalar)
 	this->_1 = scalar._1;
 }
 
+bool Scalar::IsEqualTo(const Scalar& scalar, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->_1 - scalar._1) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Scalar::Add(const Scalar& scalarA, const Scalar& scalarB)
 {
 	this->_1 = scalarA._1 + scalarB._1;

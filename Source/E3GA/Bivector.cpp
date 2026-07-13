@@ -30,6 +30,20 @@ Bivector::Bivector(const Bivector& bivector)
 	this->e3_e1 = bivector.e3_e1;
 }
 
+bool Bivector::IsEqualTo(const Bivector& bivector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1_e2 - bivector.e1_e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3 - bivector.e2_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_e1 - bivector.e3_e1) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Bivector::Add(const Bivector& bivectorA, const Bivector& bivectorB)
 {
 	this->e1_e2 = bivectorA.e1_e2 + bivectorB.e1_e2;

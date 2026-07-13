@@ -20,6 +20,8 @@ namespace C2GA
 		Bivector(double e1_e2, double e1_no, double e1_ni, double e2_no, double e2_ni, double no_ni);
 		Bivector(const Bivector& bivector);
 
+		bool IsEqualTo(const Bivector& bivector, double epsilon = 1e-5) const;
+
 		void Add(const Bivector& bivectorA, const Bivector& bivectorB);
 
 		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);

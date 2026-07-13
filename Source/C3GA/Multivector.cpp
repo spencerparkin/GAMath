@@ -371,6 +371,107 @@ Multivector::Multivector(const Rotor& rotor)
 	this->e1_e2_e3_no_ni = 0.0;
 }
 
+bool Multivector::IsEqualTo(const Multivector& multivector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->_1 - multivector._1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1 - multivector.e1) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2 - multivector.e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3 - multivector.e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->no - multivector.no) >= epsilon)
+		return false;
+
+	if(::fabs(this->ni - multivector.ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2 - multivector.e1_e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3 - multivector.e1_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_no - multivector.e1_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_ni - multivector.e1_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3 - multivector.e2_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_no - multivector.e2_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_ni - multivector.e2_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_no - multivector.e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_ni - multivector.e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->no_ni - multivector.no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3 - multivector.e1_e2_e3) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_no - multivector.e1_e2_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_ni - multivector.e1_e2_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_no - multivector.e1_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_ni - multivector.e1_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_no_ni - multivector.e1_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_no - multivector.e2_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_ni - multivector.e2_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_no_ni - multivector.e2_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e3_no_ni - multivector.e3_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3_no - multivector.e1_e2_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3_ni - multivector.e1_e2_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_no_ni - multivector.e1_e2_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_no_ni - multivector.e1_e3_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_no_ni - multivector.e2_e3_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3_no_ni - multivector.e1_e2_e3_no_ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Multivector::GetScalar(Scalar& scalar) const
 {
 	scalar._1 = this->_1;

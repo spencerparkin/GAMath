@@ -38,6 +38,26 @@ Quadvector::Quadvector(const Quadvector& quadvector)
 	this->e2_e3_no_ni = quadvector.e2_e3_no_ni;
 }
 
+bool Quadvector::IsEqualTo(const Quadvector& quadvector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1_e2_e3_no - quadvector.e1_e2_e3_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_e3_ni - quadvector.e1_e2_e3_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e2_no_ni - quadvector.e1_e2_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_e3_no_ni - quadvector.e1_e3_no_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_e3_no_ni - quadvector.e2_e3_no_ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Quadvector::Add(const Quadvector& quadvectorA, const Quadvector& quadvectorB)
 {
 	this->e1_e2_e3_no = quadvectorA.e1_e2_e3_no + quadvectorB.e1_e2_e3_no;

@@ -40,6 +40,29 @@ Bivector::Bivector(const Bivector& bivector)
 	this->no_ni = bivector.no_ni;
 }
 
+bool Bivector::IsEqualTo(const Bivector& bivector, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1_e2 - bivector.e1_e2) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_no - bivector.e1_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e1_ni - bivector.e1_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_no - bivector.e2_no) >= epsilon)
+		return false;
+
+	if(::fabs(this->e2_ni - bivector.e2_ni) >= epsilon)
+		return false;
+
+	if(::fabs(this->no_ni - bivector.no_ni) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void Bivector::Add(const Bivector& bivectorA, const Bivector& bivectorB)
 {
 	this->e1_e2 = bivectorA.e1_e2 + bivectorB.e1_e2;

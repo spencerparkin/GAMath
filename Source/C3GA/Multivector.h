@@ -28,6 +28,8 @@ namespace C3GA
 		Multivector(const Multivector& multivector);
 		Multivector(const Rotor& rotor);
 
+		bool IsEqualTo(const Multivector& multivector, double epsilon = 1e-5) const;
+
 		void GetScalar(Scalar& scalar) const;
 		void GetVector(Vector& vector) const;
 		void GetBivector(Bivector& bivector) const;

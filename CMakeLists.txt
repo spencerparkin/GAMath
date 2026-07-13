@@ -87,6 +87,8 @@ set(C3GA_SOURCES
 	Source/C3GA/Geometry/Plane.h
 	Source/C3GA/Transform.cpp
 	Source/C3GA/Transform.h
+	Source/C3GA/Factoring.cpp
+	Source/C3GA/Factoring.h
 )
 
 set(MATRIX_ALGEBRA_SOURCES

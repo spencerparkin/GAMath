@@ -19,6 +19,8 @@ namespace E3GA
 		Scalar(double _1);
 		Scalar(const Scalar& scalar);
 
+		bool IsEqualTo(const Scalar& scalar, double epsilon = 1e-5) const;
+
 		void Add(const Scalar& scalarA, const Scalar& scalarB);
 
 		void Subtract(const Scalar& scalarA, const Scalar& scalarB);

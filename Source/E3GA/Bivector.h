@@ -19,6 +19,8 @@ namespace E3GA
 		Bivector(double e1_e2, double e2_e3, double e3_e1);
 		Bivector(const Bivector& bivector);
 
+		bool IsEqualTo(const Bivector& bivector, double epsilon = 1e-5) const;
+
 		void Add(const Bivector& bivectorA, const Bivector& bivectorB);
 
 		void Subtract(const Bivector& bivectorA, const Bivector& bivectorB);

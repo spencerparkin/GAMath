@@ -21,6 +21,8 @@ namespace C3GA
 		Trivector(double e1_e2_e3, double e1_e2_no, double e1_e2_ni, double e1_e3_no, double e1_e3_ni, double e1_no_ni, double e2_e3_no, double e2_e3_ni, double e2_no_ni, double e3_no_ni);
 		Trivector(const Trivector& trivector);
 
+		bool IsEqualTo(const Trivector& trivector, double epsilon = 1e-5) const;
+
 		void Add(const Trivector& trivectorA, const Trivector& trivectorB);
 
 		void Subtract(const Trivector& trivectorA, const Trivector& trivectorB);

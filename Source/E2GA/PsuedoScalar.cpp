@@ -23,6 +23,14 @@ PsuedoScalar::PsuedoScalar(const PsuedoScalar& psuedoscalar)
 	this->e1_e2 = psuedoscalar.e1_e2;
 }
 
+bool PsuedoScalar::IsEqualTo(const PsuedoScalar& psuedoscalar, double epsilon /*= 1e-5*/) const
+{
+	if(::fabs(this->e1_e2 - psuedoscalar.e1_e2) >= epsilon)
+		return false;
+
+	return true;
+}
+
 void PsuedoScalar::Add(const PsuedoScalar& psuedoscalarA, const PsuedoScalar& psuedoscalarB)
 {
 	this->e1_e2 = psuedoscalarA.e1_e2 + psuedoscalarB.e1_e2;

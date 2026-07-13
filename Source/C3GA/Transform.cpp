@@ -171,6 +171,8 @@ void Transform::CalcInverse()
 	this->versorInv.GeometricProduct(versorReverse, scalar);
 }
 
+// STPTODO: Move these (below) to where it makes more sense.
+
 /*static*/ void Transform::MakeOrthogonalVector(const E3GA::Vector& vector, E3GA::Vector& orthogonalVector)
 {
 	double abs_e1 = ::fabs(vector.e1);
